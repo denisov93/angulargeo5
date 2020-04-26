@@ -1,6 +1,6 @@
 
 <div class="maincomp">
-    <p>home works!</p>
+    <p>{{'Sitetitle' | translate }}</p>
 
     <li>
         <a [routerLink]=" '/main'">main</a>
@@ -17,4 +17,20 @@
       <li>
         <a [routerLink]="'/signup'">signup</a>
       </li>
+
+      <span class="form-inline">
+        <select 
+            class="form-control" 
+            #selectedLang 
+            (change)="switchLang(selectedLang.value)">
+          <option *ngFor="let language of translate.getLangs()" 
+            [value]="language"
+            [selected]="language === translate.currentLang">
+            {{ language }}
+          </option>
+        </select>
+      </span>
+      <a class="navbar-brand">
+        {{'Exit' | translate }}
+      </a>
 </div>

@@ -1,0 +1,16 @@
+{
+    "Sitetitle": "Aqui vai uma breve descriçâo sobre nos",
+    "Name": "Nome",
+    "NameError": "Nome Invalido",
+    "Email": "E-mail",
+    "PhoneNo": "Telefoon nr",
+    "Password": "Wachtwoord",
+    "Bio": "Voer bio in",
+    "TermsConditions": "Ik ga akkoord met de voorwaarden.",
+    "Submit": "voorleggen",
+    "Exit":"Sair",
+    "Register":"Registar",
+    "Login":"Entrar",
+    "Profile":"Utilizador",
+    "Map":"Mapa"
+}
