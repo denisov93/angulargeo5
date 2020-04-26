@@ -1,31 +1,56 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TopBarComponent } from './entrypoint/top-bar/top-bar.component';
+import { TopBarComponent } from './top-bar/top-bar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SimplebarAngularModule } from 'simplebar-angular';
 import { AgmCoreModule } from '@agm/core';
-import { MapappComponent } from './mapcomponent/mapapp/mapapp.component';
+import { MapappComponent } from './mapapp/mapapp.component';
 import { HomeComponent } from './home/home.component';
+import { UserComponent } from './user/user.component';
+import { SignInComponent } from './user/sign-in/sign-in.component';
+import { SignUpComponent } from './user/sign-up/sign-up.component';
+import { PersoneComponent } from './person/persone/persone.component';
+import { JwtModule } from "@auth0/angular-jwt";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+export function tokenGetter() {
+  return localStorage.getItem("tokenID");
+}
 
 @NgModule({
   declarations: [
     AppComponent,
     TopBarComponent,
     MapappComponent,
-    HomeComponent  ],
+    HomeComponent,
+    UserComponent,
+    SignInComponent,
+    SignUpComponent,
+    PersoneComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     NgbModule,
+    FormsModule,
     FontAwesomeModule,
     SimplebarAngularModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBY1VATzvx85tm56FL0C4Agf_gojmbE_XI'
-    })
+    }),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ["http://localhost:4200/person/"],
+        blacklistedRoutes: ["http://localhost:4200/map/"]
+      }
+    }),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

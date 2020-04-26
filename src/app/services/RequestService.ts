@@ -1,0 +1,61 @@
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {NgForm} from '@angular/forms';
+
+const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
+  
+  @Injectable({
+    providedIn: 'root'
+  })
+export class RequestService {
+      
+    
+  isLoggedIn() {
+      return !!this.getJwtToken();
+  }
+  
+    todosUrl:string = 'https://apdc-1920-avaliacao-individual.ey.r.appspot.com';
+    todosLimit = '?_limit=5';
+    forecast:string = '';
+
+
+    constructor(private http:HttpClient) { }
+
+
+    ping() {
+      this.http.get("http://example.com/api/things").subscribe(
+        data => console.log(data),
+        err => console.log(err)
+      );
+    }
+
+    userLogs='/rest/login/user';
+    getlogs( me : any ):Observable<string[]>{
+        return this.http.post<string[]>(`${this.todosUrl}${this.userLogs}`,me,httpOptions);
+    }
+
+
+    
+    userlogin='/rest/login/v2';
+    userAuthentication(username , password):Observable<JSON>{  
+      const body={
+        username: username,
+        password: password
+      }
+      return this.http.post<JSON>(`${this.todosUrl}${this.userlogin}`,body,httpOptions);
+    }
+    
+    userReg='/rest/register/v1';
+    userRegist(body):Observable<JSON>{  
+      return this.http.post<JSON>(`${this.todosUrl}${this.userReg}`,body,httpOptions);
+    }
+    
+    getJwtToken() {
+      return localStorage.getItem('tokenID');
+    }
+}
