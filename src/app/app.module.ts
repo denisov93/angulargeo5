@@ -33,7 +33,8 @@ export function tokenGetter() {
     UserComponent,
     SignInComponent,
     SignUpComponent,
-    PersoneComponent  ],
+    PersoneComponent,
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

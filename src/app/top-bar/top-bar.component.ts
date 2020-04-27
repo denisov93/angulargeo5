@@ -5,16 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.css']
 })
-export class TopBarComponent implements OnInit {
- SignOut =
-   {pt:"Sair",
-   en:"Exit"}
+export class TopBarComponent implements OnInit { 
+ 
+  constructor() {   }
   
-  Language:string = 'pt'
-
-  public isMenuCollapsed = true;
-  constructor() { }
-
   ngOnInit(): void {
   }
 

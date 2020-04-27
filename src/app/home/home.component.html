@@ -1,5 +1,20 @@
 
 <div class="maincomp">
+  
+    <span class="form-group f_ixed">
+      <select 
+          class="form-control f_ixed" 
+          #selectedLang 
+          (change)="switchLang(selectedLang.value)">
+        <option *ngFor="let language of translate.getLangs()" 
+          [value]="language"
+          [selected]="language === translate.currentLang">
+          {{ language }}
+        </option>
+      </select>
+    </span>
+  
+
     <p>{{'Sitetitle' | translate }}</p>
 
     <li>
@@ -17,20 +32,4 @@
       <li>
         <a [routerLink]="'/signup'">signup</a>
       </li>
-
-      <span class="form-inline">
-        <select 
-            class="form-control" 
-            #selectedLang 
-            (change)="switchLang(selectedLang.value)">
-          <option *ngFor="let language of translate.getLangs()" 
-            [value]="language"
-            [selected]="language === translate.currentLang">
-            {{ language }}
-          </option>
-        </select>
-      </span>
-      <a class="navbar-brand">
-        {{'Exit' | translate }}
-      </a>
 </div>

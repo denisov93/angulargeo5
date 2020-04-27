@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {NgForm} from '@angular/forms';
+import { randomImages } from '../mapapp/mapapp.component'; //lixo
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -13,6 +14,12 @@ const httpOptions = {
     providedIn: 'root'
   })
 export class RequestService {
+
+  url = 'https://picsum.photos/v2/list?page=2&limit=1'; //lixo
+   
+  getTodos():Observable<randomImages[]> { //lixo
+    return this.http.get<randomImages[]>(`${this.url}`);
+    }
       
     
   isLoggedIn() {

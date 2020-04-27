@@ -19,6 +19,7 @@
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   text-align: center;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 /**
 * Tabs object.
@@ -36,6 +37,7 @@
   display: table; /* [1] */
   table-layout: fixed; /* [2] */
   width: 100%; /* [3] */
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 
   .tabs__item {
@@ -65,6 +67,7 @@
           color: #fff;
           font-weight: bold;
           text-decoration: none;
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
       }
 
       .primary-nav a:hover {
@@ -120,7 +123,7 @@ html {
     height: 40px;
     background-color:var(--bg-primary);
     border-radius: 22px;
-  
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
     font-family: sans-serif;
     font-size: 16px;
     color: #fff;
