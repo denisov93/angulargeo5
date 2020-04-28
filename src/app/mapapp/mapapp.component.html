@@ -2,7 +2,8 @@
 <div class="mainBarCompBox">  
 <div class="mainBarComp">
     <div class="subComp">
-        <h1>this is important text</h1>
+        <h1>{{'MapPointTitle | translate'}}</h1>
+        <h2>{{'MapPointDescription' | translate}}</h2>
         <div *ngFor="let randomImage of imagesRandom">
             <img src= '{{randomImage.download_url}}' width="100%" height="100%">
         </div>        
@@ -24,4 +25,9 @@
           </agm-info-window>
         </agm-marker>
     </agm-map>
+<<<<<<< HEAD
 </div>
+=======
+
+</div>
+>>>>>>> 0329764e770ad20a42bc4aec346a2bf9b1038c85

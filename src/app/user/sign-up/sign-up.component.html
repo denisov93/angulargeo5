@@ -2,10 +2,10 @@
   <div class="maincomp">
       <ul class="tabs  primary-nav">
           <li class="tabs__item">
-              <a class="tabs__link" [routerLink]="'/signin'"routerLinkActive='active'>Sign In</a>
+              <a class="tabs__link" [routerLink]="'/signin'"routerLinkActive='active'>{{'SignIn' | translate}}</a>
           </li>
           <li class="tabs__item">
-              <a class="tabs__link" [routerLink]="'/signup'" routerLinkActive='active'>Sign Up</a> 
+              <a class="tabs__link" [routerLink]="'/signup'" routerLinkActive='active'>{{'SignUp' | translate}}</a> 
           </li>
       </ul>
       <div class="body">
@@ -33,7 +33,7 @@
         </div>
         <p></p>
     <div class="form-btn">
-    <button class="btn" [disabled]="!registForm.valid" type="submit">Submit</button>
+    <button class="btn" [disabled]="!registForm.valid" type="submit">{{'Submit' | translate}}</button>
     </div>
     <br>      
 </form>

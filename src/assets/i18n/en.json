@@ -8,9 +8,14 @@
     "Bio": "Enter bio",
     "TermsConditions": "I agree to terms and conditions.",
     "Submit": "Submit",
-    "Exit":"Exit",
-    "Register":"Register",
-    "Login":"Login",
-    "Profile":"Profile",
-    "Map":"Map"
+    "Exit": "Exit",
+    "Register": "Register",
+    "Login": "Login",
+    "SignIn": "Sign in",
+    "SignUp": "Sign up",
+    "Profile": "Profile",
+    "Map": "Map",
+    "MapPointTitle": "Point name.",
+    "MapPointDescription": "Description",
+    "UserProfession": "Architect & Engineer"
 }
