@@ -9,8 +9,9 @@
     </div>
 </div>
 </div>  
-    <agm-map [latitude]="lat" [longitude]="lng">
-        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+        <agm-marker [latitude]="latitude" [longitude]="longitude"[markerDraggable]="true"
+        (dragEnd)="markerDragEnd($event)"></agm-marker>
     </agm-map>
 
 </div>
