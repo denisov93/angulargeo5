@@ -9,32 +9,31 @@ import { RequestService } from '../services/RequestService';
   styleUrls: ['./mapapp.component.css']
 })
 export class MapappComponent implements OnInit {
-    
+  imagesRandom:randomImages[];    
   latitude: number = 38.661076;
   longitude: number = -9.205908;
   zoom:number;
-    
+  previous;
   
-  imagesRandom:randomImages[];
+  markers = [
+    {latitude: 38.657849552573595, longitude: -9.177789709716588,info:'this is 1'}, 
+    {latitude: 38.6494375039336, longitude: -9.163289687782079,info:'this is 2'},
+    {latitude: 38.66250759275842, longitude: -9.160076401382238,info:'this is 3'}
+  ]
 
-    constructor(private req:RequestService, private mapsAPILoader: MapsAPILoader,
+  constructor(private req:RequestService, private mapsAPILoader: MapsAPILoader,
       private ngZone: NgZone){    }
   
   
   ngOnInit(): void {
-    this.setCurrentLocation();
-
- /*   this.req.getTodos().subscribe(reqw => {
-      this.imagesRandom = reqw;
-      console.log(reqw);
-    });
-   */ 
+    this.setCurrentLocation(); 
   }
 
 // Get Current Location Coordinates
 private setCurrentLocation() {
   if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position);
       this.latitude = position.coords.latitude;
       this.longitude = position.coords.longitude;
       this.zoom = 15;
@@ -42,11 +41,17 @@ private setCurrentLocation() {
   }
 }
 
+clickedMarker(infowindow) {
+  if (this.previous) {
+      this.previous.close();
+  }
+  this.previous = infowindow;
+}
+
 markerDragEnd($event: MouseEvent) {
   console.log($event);
   this.latitude = $event.coords.lat;
   this.longitude = $event.coords.lng;
-  
 }
 
 }
@@ -58,3 +63,16 @@ export class randomImages {
       url: Url;
       download_url: Url
 }
+
+/*  part of Init
+    this.req.getTodos().subscribe(reqw => {
+      this.imagesRandom = reqw;
+      console.log(reqw);
+    });
+  */ 
+
+/* maybe new method form
+markerDragEnd(m: marker, $event: MouseEvent) {
+  console.log('dragEnd', m, $event);
+}
+*/

@@ -20,6 +20,7 @@ import { PersoneComponent } from './person/persone/persone.component';
 import { JwtModule } from "@auth0/angular-jwt";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 export function tokenGetter() {
   return localStorage.getItem("tokenID");
 }
