@@ -14,7 +14,9 @@ export class MapappComponent implements OnInit {
   longitude: number = -9.205908;
   zoom:number;
   previous;
-  
+  public origin: any
+  public destination: any
+  public travelMode: any
   markers = [
     {latitude: 38.657849552573595, longitude: -9.177789709716588,info:'this is 1'}, 
     {latitude: 38.6494375039336, longitude: -9.163289687782079,info:'this is 2'},
@@ -27,6 +29,12 @@ export class MapappComponent implements OnInit {
   
   ngOnInit(): void {
     this.setCurrentLocation(); 
+    this.getDirection()
+    this.travelMode = 'WALKING'  //DRIVING  BICYCLING TRANSIT 
+  }
+  getDirection() {
+    this.origin = { lat: 38.661076, lng: -9.205908 }
+    this.destination = { lat: 38.66250759275842, lng: -9.160076401382238 }
   }
 
 // Get Current Location Coordinates
