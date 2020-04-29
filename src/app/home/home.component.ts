@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-home',
@@ -8,20 +9,27 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HomeComponent implements OnInit {
   l: string;
-  constructor(  public translate: TranslateService) 
-  {
+  constructor( public translate: TranslateService) {
     translate.addLangs(['pt','en']);
-    this.l = localStorage.getItem('language');
-    if(this.l===null)
-    this.l='pt';
-    translate.setDefaultLang(this.l);
-  }
+   }
 
   ngOnInit(): void {
+
+    this.l = localStorage.getItem('language');
+    if(this.l===null) this.l='pt';
+
+    this.translate.setDefaultLang(this.l);
+
+    $(document).ready(function() {
+      $('select').val( localStorage.getItem('language') );
+      
+    });
+
   }
 
   switchLang(lang: string) {
     localStorage.setItem('language',lang);
     this.translate.use(lang);
+    this.translate.setDefaultLang(lang);
   }
 }

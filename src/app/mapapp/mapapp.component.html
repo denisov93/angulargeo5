@@ -19,7 +19,7 @@
         <agm-marker *ngFor="let marker of markers" [latitude]="marker.latitude" [longitude]="marker.longitude" [markerDraggable]="false" (markerClick)="clickedMarker(infowindow)">       
         <agm-info-window [disableAutoPan]="true" #infowindow>{{marker.info}}</agm-info-window>
         </agm-marker>
-        <agm-direction [travelMode]="travelMode" [origin]="origin" [destination]="destination">
+        <agm-direction [travelMode]="travelMode" [origin]="origin" [destination]="destination" [waypoints]="waypoints">
         </agm-direction>
     </agm-map>
 </div>

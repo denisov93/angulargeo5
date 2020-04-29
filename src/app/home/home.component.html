@@ -2,10 +2,12 @@
 <div class="maincomp">
   
     <span class="form-group f_ixed">
-      <select 
+      <select
+          id="langSelected" 
           class="form-control f_ixed" 
           #selectedLang 
-          (change)="switchLang(selectedLang.value)">
+          (change)="switchLang(selectedLang.value)"
+          >
         <option *ngFor="let language of translate.getLangs()" 
           [value]="language"
           [selected]="language === translate.currentLang">
@@ -13,8 +15,6 @@
         </option>
       </select>
     </span>
-  
-
     <p>{{'Sitetitle' | translate }}</p>
 
     <li>

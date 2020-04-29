@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, NgZone  } from '@angular/core
 import { AgmCoreModule, MapsAPILoader, MouseEvent } from '@agm/core';
 import { Url } from 'url';
 import { RequestService } from '../services/RequestService';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-mapapp',
@@ -17,14 +18,23 @@ export class MapappComponent implements OnInit {
   public origin: any
   public destination: any
   public travelMode: any
+  public waypoints: any
   markers = [
     {latitude: 38.657849552573595, longitude: -9.177789709716588,info:'this is 1'}, 
     {latitude: 38.6494375039336, longitude: -9.163289687782079,info:'this is 2'},
     {latitude: 38.66250759275842, longitude: -9.160076401382238,info:'this is 3'}
   ]
 
-  constructor(private req:RequestService, private mapsAPILoader: MapsAPILoader,
-      private ngZone: NgZone){    }
+  constructor(
+      private req:RequestService, 
+      private mapsAPILoader: MapsAPILoader,
+      private ngZone: NgZone, 
+      public translate: TranslateService
+  )
+  {  
+      translate.addLangs(['pt','en']); 
+      translate.setDefaultLang(localStorage.getItem('language'));  
+  }
   
   
   ngOnInit(): void {
@@ -35,6 +45,10 @@ export class MapappComponent implements OnInit {
   getDirection() {
     this.origin = { lat: 38.661076, lng: -9.205908 }
     this.destination = { lat: 38.66250759275842, lng: -9.160076401382238 }
+    this.waypoints = [
+      {location: {lat: 38.664092,lng: -9.196742}},
+      {location: {lat: 38.661202,lng: -9.185289}}
+    ]
   }
 
 // Get Current Location Coordinates
