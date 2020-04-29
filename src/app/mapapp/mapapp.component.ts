@@ -3,6 +3,7 @@ import { AgmCoreModule, MapsAPILoader, MouseEvent } from '@agm/core';
 import { Url } from 'url';
 import { RequestService } from '../services/RequestService';
 import { TranslateService } from '@ngx-translate/core';
+import { AgmDirectionModule } from 'agm-direction';
 
 @Component({
   selector: 'app-mapapp',
@@ -19,6 +20,7 @@ export class MapappComponent implements OnInit {
   public destination: any
   public travelMode: any
   public waypoints: any
+  previous
   markers = [
     {latitude: 38.657849552573595, longitude: -9.177789709716588,info:'this is 1'}, 
     {latitude: 38.6494375039336, longitude: -9.163289687782079,info:'this is 2'},
@@ -47,7 +49,7 @@ export class MapappComponent implements OnInit {
   
   ngOnInit(): void {
     this.setCurrentLocation();
-
+    this.getDirection();
     this.req.getTodos().subscribe(reqw => {
       this.imagesRandom = reqw;
       //reqw.forEach(randomImages, index: number, array: randomImages[])
@@ -55,6 +57,15 @@ export class MapappComponent implements OnInit {
     });
    
   }
+
+  clickedMarker(infowindow) {
+    if (this.previous) {
+        this.previous.close();
+    }
+    this.previous = infowindow;
+  }
+  
+
 
 // Get Current Location Coordinates
 private setCurrentLocation() {
@@ -76,6 +87,7 @@ markerDragEnd($event: MouseEvent) {
   
 }
 getDirection() {
+  this.travelMode = "WALKING" //WALKING TRANSIT BICYCLING DRIVING 
   this.origin = { lat: 38.661076, lng: -9.205908 }
   this.destination = { lat: 38.66250759275842, lng: -9.160076401382238 }
   this.waypoints = [
