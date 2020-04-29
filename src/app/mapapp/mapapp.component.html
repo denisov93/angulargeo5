@@ -5,17 +5,40 @@
         <carousel [slides]="slides"></carousel> 
         <h1>{{'MapPointTitle' | translate}}</h1>
         <h2>{{'MapPointDescription' | translate}}</h2>
+        <button type="button" (click)="removeDirection()">Remove</button>
+        <button type="button" (click)="showDirection()">Show</button>
     </div>
 </div>
 </div>  
-    <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+    <agm-map
+    
+    [latitude]="latitude" 
+    [longitude]="longitude" 
+    [zoom]="zoom" 
+    [disableDoubleClickZoom]="true"
+    (mapDblClick)="getDirection()"
+    (mapRightClick)="getOptions($event,infoWindowOption)"
+    >
+        <agm-info-window
+        #infoWindowOption
+        [latitude]="infoOptionLat" 
+        [longitude]="infoOptionLng"  
+        [disableAutoPan]="true" 
+        [isOpen]="show2"
+        >
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+        </agm-info-window>
+        
         <agm-marker [latitude]="latitude" [longitude]="longitude"[markerDraggable]="true"
         (dragEnd)="markerDragEnd($event)"></agm-marker>
         <agm-marker *ngFor="let marker of markers" [latitude]="marker.latitude" [longitude]="marker.longitude" [markerDraggable]="false" (markerClick)="clickedMarker(infowindow)">       
             <agm-info-window [disableAutoPan]="true" #infowindow>{{marker.info}}</agm-info-window>
-            </agm-marker>
-            <agm-direction [travelMode]="travelMode" [origin]="origin" [destination]="destination" [waypoints]="waypoints">
-            </agm-direction>
+        </agm-marker>
+            
+        <agm-direction #defWay [travelMode]="travelMode" [origin]="origin" [destination]="destination" [waypoints]="waypoints" [visible]="show">
+        </agm-direction>
 
     </agm-map>
 

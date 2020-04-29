@@ -3,7 +3,7 @@ import { AgmCoreModule, MapsAPILoader, MouseEvent } from '@agm/core';
 import { Url } from 'url';
 import { RequestService } from '../services/RequestService';
 import { TranslateService } from '@ngx-translate/core';
-import { AgmDirectionModule } from 'agm-direction';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-mapapp',
@@ -21,6 +21,16 @@ export class MapappComponent implements OnInit {
   public travelMode: any
   public waypoints: any
   previous
+  Options
+  public show: boolean = false
+
+  public removeDirection(){
+    this.show = false
+  }
+  public showDirection(){
+    this.show = true
+  }
+
   markers = [
     {latitude: 38.657849552573595, longitude: -9.177789709716588,info:'this is 1'}, 
     {latitude: 38.6494375039336, longitude: -9.163289687782079,info:'this is 2'},
@@ -49,7 +59,7 @@ export class MapappComponent implements OnInit {
   
   ngOnInit(): void {
     this.setCurrentLocation();
-    this.getDirection();
+    this.getDirection()
     this.req.getTodos().subscribe(reqw => {
       this.imagesRandom = reqw;
       //reqw.forEach(randomImages, index: number, array: randomImages[])
@@ -58,14 +68,28 @@ export class MapappComponent implements OnInit {
    
   }
 
+
   clickedMarker(infowindow) {
     if (this.previous) {
         this.previous.close();
     }
     this.previous = infowindow;
   }
-  
 
+
+ public infoOptionLat: any
+ public infoOptionLng: any
+
+ public show2: boolean = false;
+ 
+ //right click display Options
+  getOptions($event: MouseEvent, inf){  
+  this.infoOptionLat = $event.coords.lat;
+  this.infoOptionLng = $event.coords.lng;
+  if(this.show2){
+    inf.close();
+  }else inf.open();
+}
 
 // Get Current Location Coordinates
 private setCurrentLocation() {
@@ -95,6 +119,7 @@ getDirection() {
     {location: {lat: 38.661202,lng: -9.185289}}
   ]
 }
+
 }
 export class randomImages {
       id : number;

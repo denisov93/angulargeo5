@@ -8,6 +8,7 @@ import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { PersoneComponent } from './person/persone/persone.component';
 import { AuthGuard } from './auth/auth.guard';
+import { MapControllComponent } from './mapapp/map-controll/map-controll.component';
 
 const routes: Routes = [
 
@@ -15,7 +16,10 @@ const routes: Routes = [
   children:[{path : '',component : HomeComponent}]},
 
 
-  {path : 'map', component : MapappComponent},
+  {path : 'map', component : MapappComponent,
+  children: [{path:'',component : MapControllComponent}]
+
+  },
 
   {
     path :'signup',component : TopBarComponent,
