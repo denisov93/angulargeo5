@@ -3,6 +3,7 @@ agm-map {
   height: 100vh;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
   }
+
 .mainBarComp {
     width: 25vw;
     height: 100vh;
@@ -13,9 +14,8 @@ agm-map {
 .subComp{
     background-color: white;
     top:0;
-    height: 20vh;
+    height: 30vh;
 }
-
 
     /* Small screens */
     @media only screen and (max-width: 650px) {

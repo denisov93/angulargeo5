@@ -2,78 +2,62 @@ import { Component, OnInit, ViewChild, ElementRef, NgZone  } from '@angular/core
 import { AgmCoreModule, MapsAPILoader, MouseEvent } from '@agm/core';
 import { Url } from 'url';
 import { RequestService } from '../services/RequestService';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-mapapp',
   templateUrl: './mapapp.component.html',
   styleUrls: ['./mapapp.component.css']
 })
+
 export class MapappComponent implements OnInit {
-  imagesRandom:randomImages[];    
+    
   latitude: number = 38.661076;
   longitude: number = -9.205908;
   zoom:number;
-  previous;
-  public origin: any
-  public destination: any
-  public travelMode: any
-  public waypoints: any
-  markers = [
-    {latitude: 38.657849552573595, longitude: -9.177789709716588,info:'this is 1'}, 
-    {latitude: 38.6494375039336, longitude: -9.163289687782079,info:'this is 2'},
-    {latitude: 38.66250759275842, longitude: -9.160076401382238,info:'this is 3'}
-  ]
+    
+  
+  imagesRandom:randomImages[];
 
-  constructor(
-      private req:RequestService, 
-      private mapsAPILoader: MapsAPILoader,
-      private ngZone: NgZone, 
-      public translate: TranslateService
-  )
-  {  
-      translate.addLangs(['pt','en']); 
-      translate.setDefaultLang(localStorage.getItem('language'));  
-  }
+  public slides = [
+    { src: "https://s1.1zoom.me/big0/703/Planets_Trees_Night_576489_1280x800.jpg" },
+    { src: "https://s1.1zoom.me/big0/324/USA_Coast_Oregon_coast_sea_Crag_Trees_576509_1280x791.jpg" },
+    { src: "https://s1.1zoom.me/big0/205/Greece_Sunrises_and_sunsets_Coast_Korfu_Crag_Rays_575551_1280x853.jpg" },
+    { src: "https://s1.1zoom.me/big0/307/Forests_Autumn_Trees_Rays_of_light_575453_1280x720.jpg" }
+  ];
+  
+  constructor(private req:RequestService, private mapsAPILoader: MapsAPILoader,
+      private ngZone: NgZone){    }
   
   
   ngOnInit(): void {
-    this.setCurrentLocation(); 
-    this.getDirection()
-    this.travelMode = 'WALKING'  //DRIVING  BICYCLING TRANSIT 
-  }
-  getDirection() {
-    this.origin = { lat: 38.661076, lng: -9.205908 }
-    this.destination = { lat: 38.66250759275842, lng: -9.160076401382238 }
-    this.waypoints = [
-      {location: {lat: 38.664092,lng: -9.196742}},
-      {location: {lat: 38.661202,lng: -9.185289}}
-    ]
+    this.setCurrentLocation();
+
+    this.req.getTodos().subscribe(reqw => {
+      this.imagesRandom = reqw;
+      //reqw.forEach(randomImages, index: number, array: randomImages[])
+      console.log(reqw);
+    });
+   
   }
 
 // Get Current Location Coordinates
 private setCurrentLocation() {
   if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position);
       this.latitude = position.coords.latitude;
       this.longitude = position.coords.longitude;
       this.zoom = 15;
+      console.log(position);
+      console.log(this.latitude, this.longitude);
     });
   }
-}
-
-clickedMarker(infowindow) {
-  if (this.previous) {
-      this.previous.close();
-  }
-  this.previous = infowindow;
 }
 
 markerDragEnd($event: MouseEvent) {
   console.log($event);
   this.latitude = $event.coords.lat;
   this.longitude = $event.coords.lng;
+  
 }
 
 }
@@ -85,16 +69,3 @@ export class randomImages {
       url: Url;
       download_url: Url
 }
-
-/*  part of Init
-    this.req.getTodos().subscribe(reqw => {
-      this.imagesRandom = reqw;
-      console.log(reqw);
-    });
-  */ 
-
-/* maybe new method form
-markerDragEnd(m: marker, $event: MouseEvent) {
-  console.log('dragEnd', m, $event);
-}
-*/

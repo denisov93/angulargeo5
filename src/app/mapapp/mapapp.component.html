@@ -1,26 +1,16 @@
 <div>
-    <div class="mainBarCompBox">  
-    <div class="mainBarComp">
-        <div class="subComp">
-            <h1>{{'MapPointTitle' | translate}}</h1>
-            <h2>{{'MapPointDescription' | translate}}</h2>
-            <div *ngFor="let randomImage of imagesRandom">
-                <img src= '{{randomImage.download_url}}' width="100%" height="100%">
-            </div>        
-        </div>
+<div class="mainBarCompBox">  
+<div class="mainBarComp">
+    <div class="subComp">
+        <carousel [slides]="slides"></carousel> 
+        <h1>{{'MapPointTitle' | translate}}</h1>
+        <h2>{{'MapPointDescription' | translate}}</h2>
     </div>
-    </div>
-    
-    <agm-map id="map" [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" (mapClick)="markerDragEnd($event)" [disableDefaultUI]="false" [zoomControl]="true">
-        <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true" (markerClick)="clickedMarker(infowindow)" >
-            <agm-info-window [disableAutoPan]="true"#infowindow >Hi, this is the content of the <strong>info window</strong>
-          </agm-info-window>
-        </agm-marker>
-        <agm-marker *ngFor="let marker of markers" [latitude]="marker.latitude" [longitude]="marker.longitude" [markerDraggable]="false" (markerClick)="clickedMarker(infowindow)">       
-        <agm-info-window [disableAutoPan]="true" #infowindow>{{marker.info}}</agm-info-window>
-        </agm-marker>
-        <agm-direction [travelMode]="travelMode" [origin]="origin" [destination]="destination" [waypoints]="waypoints">
-        </agm-direction>
-    </agm-map>
 </div>
+</div>  
+    <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+        <agm-marker [latitude]="latitude" [longitude]="longitude"[markerDraggable]="true"
+        (dragEnd)="markerDragEnd($event)"></agm-marker>
+    </agm-map>
 
+</div>

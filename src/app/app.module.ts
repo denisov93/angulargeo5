@@ -19,8 +19,8 @@ import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { PersoneComponent } from './person/persone/persone.component';
 import { JwtModule } from "@auth0/angular-jwt";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AgmDirectionModule } from 'agm-direction';
-import { MapControllComponent } from './mapapp/map-controll/map-controll.component'
+import { CarouselComponent } from './carousel/carousel.component';
+
 
 export function tokenGetter() {
   return localStorage.getItem("tokenID");
@@ -36,10 +36,11 @@ export function tokenGetter() {
     SignInComponent,
     SignUpComponent,
     PersoneComponent,
-    MapControllComponent,
+    CarouselComponent,
     ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
@@ -49,7 +50,6 @@ export function tokenGetter() {
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBY1VATzvx85tm56FL0C4Agf_gojmbE_XI'
     }),
-    AgmDirectionModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
