@@ -26,7 +26,7 @@ export class RequestService {
       return !!this.getJwtToken();
   }
   
-    todosUrl:string = 'https://apdc-1920-avaliacao-individual.ey.r.appspot.com';
+    todosUrl:string = 'https://apdc-geoproj.ey.r.appspot.com';
     todosLimit = '?_limit=5';
     forecast:string = '';
 
@@ -48,7 +48,7 @@ export class RequestService {
 
 
     
-    userlogin='/rest/login/v2';
+    userlogin='/rest/login/';
     userAuthentication(username , password):Observable<JSON>{  
       const body={
         username: username,
@@ -57,7 +57,7 @@ export class RequestService {
       return this.http.post<JSON>(`${this.todosUrl}${this.userlogin}`,body,httpOptions);
     }
     
-    userReg='/rest/register/v1';
+    userReg='/rest/register';
     userRegist(body):Observable<JSON>{  
       return this.http.post<JSON>(`${this.todosUrl}${this.userReg}`,body,httpOptions);
     }

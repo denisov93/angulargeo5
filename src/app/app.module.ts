@@ -21,7 +21,8 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselComponent } from './carousel/carousel.component';
 import { AgmDirectionModule } from 'agm-direction';
-
+import { CommunityMainComponent } from './community-main/community-main.component';
+import { PostItemComponent } from './community-main/post-item/post-item.component';
 export function tokenGetter() {
   return localStorage.getItem("tokenID");
 }
@@ -37,6 +38,8 @@ export function tokenGetter() {
     SignUpComponent,
     PersoneComponent,
     CarouselComponent,
+    CommunityMainComponent,
+    PostItemComponent
     ],
   imports: [
     BrowserModule,
@@ -48,7 +51,7 @@ export function tokenGetter() {
     FontAwesomeModule,
     SimplebarAngularModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBY1VATzvx85tm56FL0C4Agf_gojmbE_XI'
+      apiKey: 'AIzaSyDaxjTT7ejDx8ykQs7UU3_fuKnPLIIztjo'
     }),
     AgmDirectionModule,
     JwtModule.forRoot({

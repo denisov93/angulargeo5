@@ -9,12 +9,16 @@ import { SignInComponent } from './user/sign-in/sign-in.component';
 import { PersoneComponent } from './person/persone/persone.component';
 import { AuthGuard } from './auth/auth.guard';
 import { MapControllComponent } from './mapapp/map-controll/map-controll.component';
+import { CommunityMainComponent } from './community-main/community-main.component';
 
 const routes: Routes = [
 
   {path: 'home',component : TopBarComponent,
   children:[{path : '',component : HomeComponent}]},
 
+  {path: 'community',component : TopBarComponent,
+    children:[{path : '',component : CommunityMainComponent}]
+  },
 
   {path : 'map', component : MapappComponent,
   children: [{path:'',component : MapControllComponent}]
