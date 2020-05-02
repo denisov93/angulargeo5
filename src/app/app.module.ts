@@ -23,9 +23,8 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { AgmDirectionModule } from 'agm-direction';
 import { CommunityMainComponent } from './community-main/community-main.component';
 import { PostItemComponent } from './community-main/post-item/post-item.component';
-export function tokenGetter() {
-  return localStorage.getItem("tokenID");
-}
+import { CaminhoComponent } from './mapapp/caminho/caminho.component';
+import { MapControllComponent } from './mapapp/map-controll/map-controll.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +38,9 @@ export function tokenGetter() {
     PersoneComponent,
     CarouselComponent,
     CommunityMainComponent,
-    PostItemComponent
+    PostItemComponent,
+    CaminhoComponent,
+    MapControllComponent
     ],
   imports: [
     BrowserModule,
@@ -78,4 +79,8 @@ export class AppModule { }
 // AOT compilation support
 export function httpTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
+}
+
+export function tokenGetter() {
+  return localStorage.getItem("tokenID");
 }

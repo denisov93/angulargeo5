@@ -11,6 +11,7 @@ export class CommunityMainComponent implements OnInit {
 
   feeds:any =[
     {
+      id:"sfge",
       image:'../../../assets/logogeo5.png',
       date:'30/04/20 17:25',
       likes:'5666',

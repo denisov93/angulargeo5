@@ -46,19 +46,23 @@ export class RequestService {
         return this.http.post<string[]>(`${this.todosUrl}${this.userLogs}`,me,httpOptions);
     }
 
+    userlogin='/rest/login';
+    userAuthentication(body):Observable<JSON>{  
+      console.log(httpOptions);
 
-    
-    userlogin='/rest/login/';
-    userAuthentication(username , password):Observable<JSON>{  
-      const body={
-        username: username,
-        password: password
-      }
       return this.http.post<JSON>(`${this.todosUrl}${this.userlogin}`,body,httpOptions);
     }
-    
+
+    userlogout='/rest/logout';
+    logOutUser(token){
+      return this.http.post<JSON>(`${this.todosUrl}${this.userlogout}`,token,httpOptions);
+    }
+
     userReg='/rest/register';
-    userRegist(body):Observable<JSON>{  
+    userRegist(body):Observable<JSON>{ 
+      httpOptions.headers.append(
+        'Authorization', `Bearer ${localStorage.getItem('token')}`
+      ); 
       return this.http.post<JSON>(`${this.todosUrl}${this.userReg}`,body,httpOptions);
     }
     

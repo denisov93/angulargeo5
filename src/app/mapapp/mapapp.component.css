@@ -9,7 +9,7 @@ agm-map {
     height: 100vh;
     position: fixed;
     background-color: seashell;
-
+    overflow: auto;
 }
 .subComp{
     background-color: white;

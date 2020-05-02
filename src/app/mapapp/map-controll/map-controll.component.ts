@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MapappComponent } from '../mapapp.component';
 
 @Component({
   selector: 'app-map-controll',
@@ -8,18 +7,11 @@ import { MapappComponent } from '../mapapp.component';
 })
 export class MapControllComponent implements OnInit {
 
-  constructor(private comp:MapappComponent ) {
+  constructor( ) {
    }
 
   ngOnInit(): void {
-   
   }
 
-  removeDirection(){
-    this.comp.removeDirection();
-  }
 
-  showDirection(){
-    this.comp.showDirection();
-  }
 }

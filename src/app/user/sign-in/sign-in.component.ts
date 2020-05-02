@@ -16,12 +16,16 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
    // this.request.ping();
   }
-  OnSubmit(userName,password){
-    this.request.userAuthentication(userName,password).subscribe((data : any)=>{
+  OnSubmit(userName,Password){
+    const body={
+      username:userName,
+      password:Password
+    }
+    this.request.userAuthentication(body).subscribe((data : any)=>{
      console.log(data);
-     localStorage.setItem('password',password);
+     localStorage.setItem('password',Password);
      localStorage.setItem('username',data.username);
-     localStorage.setItem('tokenID',data.tokenID);
+     localStorage.setItem('tokenID',data);
      this.router.navigate(['/person']);
    },
    (err : HttpErrorResponse)=>{

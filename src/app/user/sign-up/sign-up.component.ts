@@ -2,6 +2,7 @@ import { Component, OnInit ,NgModule} from '@angular/core';
 import { RequestService } from '../../services/RequestService';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { SimplebarAngularModule } from 'simplebar-angular';
 
 
 @Component({
@@ -20,23 +21,24 @@ export class SignUpComponent implements OnInit {
   key = <any>'';
   
   OnSubmit(UserName,Name,Email,Password,Confirmation){
+    if(Password===Confirmation){
     const body={
       username:UserName,
       name:Name,
       password:Password,
-      email:Email,
-      confirmation:Confirmation,
-      secretkey: this.key
+      email:Email
     }
     
     this.request.userRegist(body).subscribe((data : any)=>{
      console.log(data);
      localStorage.setItem('username',data.username);
-     this.router.navigate(['/person']);
+     this.router.navigate(['/home']);
    },
    (err : HttpErrorResponse)=>{
      this.isRegError = true;
    });
-   console.log();
+  }else{
+    console.log('error on logIn');
+  }
  }
 }
