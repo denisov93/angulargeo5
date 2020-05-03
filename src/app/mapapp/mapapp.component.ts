@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef, NgZone ,Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone ,Renderer2, ComponentFactoryResolver } from '@angular/core';
 import { AgmCoreModule, MapsAPILoader, MouseEvent } from '@agm/core';
 import { Url } from 'url';
 import { RequestService } from '../services/RequestService';
 import { TranslateService } from '@ngx-translate/core';
+import { NgForm,FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Direction } from '../models/Direction';
 
 @Component({
   selector: 'app-mapapp',
@@ -30,15 +32,27 @@ export class MapappComponent implements OnInit {
   }
 
   imagesRandom:randomImages[];
+  formDir ;
 
   constructor(
+    private formBuilder:FormBuilder,
     private req:RequestService,  
     public translate: TranslateService
 )
 {  
+
     translate.addLangs(['pt','en']); 
     translate.setDefaultLang(localStorage.getItem('language'));
-    this.str = localStorage.getItem("onMainPage");  
+    
+    this.str = localStorage.getItem("onMainPage");
+    this.formDir = new FormGroup(
+      {
+        travelMode: new FormControl("WALKING"),
+        origin: new FormGroup ({lat: new FormControl(), lng: new FormControl()}),
+        destination:new FormGroup ({lat: new FormControl(),lng: new FormControl()}),
+        visible: new FormControl(true)
+      }
+    );
 }
  str;
   ngOnInit(): void {
@@ -49,13 +63,16 @@ export class MapappComponent implements OnInit {
     else{
       this.ChangeOnMainPageF();
     }
+
+    this.loadDirections();
+
     this.setCurrentLocation();
     this.getDirection()
-    this.req.getTodos().subscribe(reqw => {
-      this.imagesRandom = reqw;
+   // this.req.getTodos().subscribe(reqw => {
+   //   this.imagesRandom = reqw;
       //reqw.forEach(randomImages, index: number, array: randomImages[])
-      console.log(reqw);
-    });
+   //   console.log(reqw);
+   // });
    
   }
 
@@ -78,7 +95,16 @@ export class MapappComponent implements OnInit {
     this.onMainPage = false;
   }
 
-
+  loadDirections(){
+    const st = localStorage.getItem("myDirections");
+    if(st==null){
+      this.waywayway = [];
+    }
+    else this.waywayway = JSON.parse(st);
+  }
+  saveDirections(){
+    localStorage.setItem("myDirections", JSON.stringify(this.waywayway));
+  }
 
  public infoOptionLat: any
  public infoOptionLng: any
@@ -134,7 +160,33 @@ definirCaminho(){
 definirC2(){
   
 }
+counter = 1;
+onSubmit(myForm){
 
+ const latlongO = new google.maps.LatLng(parseFloat(myForm.origin.lat),parseFloat(myForm.origin.lng));
+ const latlongD = new google.maps.LatLng(parseFloat(myForm.destination.lat),parseFloat(myForm.destination.lng));
+ const mf = new Direction(); 
+  mf.id = this.counter;
+  mf.travelMode="WALKING";
+  mf.origin.lat = parseFloat(myForm.origin.lat)
+  mf.origin.lng = parseFloat(myForm.origin.lng);
+  mf.destination.lat = parseFloat(myForm.destination.lat);
+  mf.destination.lng = parseFloat(myForm.destination.lng);
+  mf.visible = true;
+ 
+
+ this.waywayway.push(mf);
+ this.counter++;
+
+ this.saveDirections();
+
+  this.newDefInc=true;
+  this.newDef1=false;
+  this.newDef2=false;
+}
+
+public waywayway: Direction[];
+/*
 public waywayway = [
 {
   travelMode:"WALKING",
@@ -144,7 +196,7 @@ public waywayway = [
     {location: {lat: 42.03107,lng: -8.160093}},
     {location: {lat: 42.031072,lng: -8.161099}}
   ],
-  visible:this.show
+  visible:true
 },
 {
   travelMode:"WALKING", //WALKING TRANSIT BICYCLING DRIVING 
@@ -154,9 +206,10 @@ public waywayway = [
     {location: {lat: 38.664092,lng: -9.196742}},
     {location: {lat: 38.661202,lng: -9.185289}}
   ],
-  visible:this.show
+  visible:true
 }
 ]
+*/
 //////////////////////////////////////////////////
 public origin: any
 public destination: any

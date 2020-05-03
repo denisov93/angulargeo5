@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule,HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { FormsModule} from '@angular/forms';
+import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
@@ -25,6 +25,7 @@ import { CommunityMainComponent } from './community-main/community-main.componen
 import { PostItemComponent } from './community-main/post-item/post-item.component';
 import { CaminhoComponent } from './mapapp/caminho/caminho.component';
 import { MapControllComponent } from './mapapp/map-controll/map-controll.component';
+import { DirectionComponent } from './mapapp/caminho/direction/direction.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { MapControllComponent } from './mapapp/map-controll/map-controll.compone
     CommunityMainComponent,
     PostItemComponent,
     CaminhoComponent,
-    MapControllComponent
+    MapControllComponent,
+    DirectionComponent
     ],
   imports: [
     BrowserModule,
@@ -49,6 +51,7 @@ import { MapControllComponent } from './mapapp/map-controll/map-controll.compone
     HttpClientModule,
     NgbModule,
     FormsModule,
+    ReactiveFormsModule,
     FontAwesomeModule,
     SimplebarAngularModule,
     AgmCoreModule.forRoot({

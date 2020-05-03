@@ -53,21 +53,21 @@
                             Or you can use this form:
                         </div>
                     </div>
-                        <form  >
-                            <div class="form-group">
+                        <form [formGroup]="formDir" (ngSubmit)="onSubmit(formDir.value)">
+                            <div class="form-group" formGroupName="origin">
                               <label for="exampleInputEmail1">Latitude e Longitude Start Point</label>
-                              <input type="text" class="form-control" id="lat1"  placeholder="latitude start">
-                              <input type="text" class="form-control" id="lng1"  placeholder="longitude start">
+                              <input type="text" class="form-control" formControlName="lat" [value]="origin.lat" placeholder="latitude start">
+                              <input type="text" class="form-control" formControlName="lng" [value]="destination.lng" placeholder="longitude start">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" formGroupName="destination">
                                 <label for="exampleInputEmail1">Latitude e Longitude End Point</label>
-                                <input type="text" class="form-control" id="lat2"  placeholder="latitude finish">
-                                <input type="text" class="form-control" id="lng2"  placeholder="longitude finish">
+                                <input type="text" class="form-control" formControlName="lat" [value]="destination.lat" placeholder="latitude finish">
+                                <input type="text" class="form-control" formControlName="lng" [value]="destination.lng" placeholder="longitude finish">
                               </div>    
                             <button type="submit" class="btn btn-primary" >Submit</button>
                             <br><br><br><br><br><br>
                         </form>
-                    
+            
                 </div>    
         </div>
     </div>            
