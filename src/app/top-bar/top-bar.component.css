@@ -24,17 +24,6 @@
     padding: 1rem;
   }
   
-  ::-webkit-scrollbar {
-    width: 0.25rem;
-  }
-  
-::-webkit-scrollbar-track {
-    background: #2196f3;
-  }
-  
-::-webkit-scrollbar-thumb {
-    background: #183958;
-  }
   .middle{
     position: absolute;
     top: 50%;
