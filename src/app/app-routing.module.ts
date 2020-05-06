@@ -11,6 +11,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { MapControllComponent } from './mapapp/map-controll/map-controll.component';
 import { CommunityMainComponent } from './community-main/community-main.component';
 import { CaminhoComponent } from './mapapp/caminho/caminho.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
 
 const routes: Routes = [
 
@@ -41,6 +42,10 @@ const routes: Routes = [
 
   {path:'person',component : TopBarComponent,
   children:[{path : '',component:PersoneComponent, canActivate:[AuthGuard]}]},
+
+
+  {path: 'aboutus',component : TopBarComponent,
+  children:[{path : '',component : AboutusComponent}]},
 
   {path :'',redirectTo:'home',pathMatch:'full'},
   {path :'*',redirectTo:'home',pathMatch:'full'},
