@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule,HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
@@ -17,15 +17,15 @@ import { UserComponent } from './user/user.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { PersoneComponent } from './person/persone/persone.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
 import { JwtModule } from "@auth0/angular-jwt";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselComponent } from './carousel/carousel.component';
 import { AgmDirectionModule } from 'agm-direction';
-import { CommunityMainComponent } from './community-main/community-main.component';
-import { PostItemComponent } from './community-main/post-item/post-item.component';
-import { CaminhoComponent } from './mapapp/caminho/caminho.component';
-import { MapControllComponent } from './mapapp/map-controll/map-controll.component';
-import { DirectionComponent } from './mapapp/caminho/direction/direction.component';
+
+export function tokenGetter() {
+  return localStorage.getItem("tokenID");
+}
 
 @NgModule({
   declarations: [
@@ -38,11 +38,7 @@ import { DirectionComponent } from './mapapp/caminho/direction/direction.compone
     SignUpComponent,
     PersoneComponent,
     CarouselComponent,
-    CommunityMainComponent,
-    PostItemComponent,
-    CaminhoComponent,
-    MapControllComponent,
-    DirectionComponent
+    AboutusComponent,
     ],
   imports: [
     BrowserModule,
@@ -51,11 +47,10 @@ import { DirectionComponent } from './mapapp/caminho/direction/direction.compone
     HttpClientModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule,
     FontAwesomeModule,
     SimplebarAngularModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDaxjTT7ejDx8ykQs7UU3_fuKnPLIIztjo'
+      apiKey: 'AIzaSyBY1VATzvx85tm56FL0C4Agf_gojmbE_XI'
     }),
     AgmDirectionModule,
     JwtModule.forRoot({
@@ -82,8 +77,4 @@ export class AppModule { }
 // AOT compilation support
 export function httpTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http);
-}
-
-export function tokenGetter() {
-  return localStorage.getItem("tokenID");
 }
