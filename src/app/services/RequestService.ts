@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {NgForm} from '@angular/forms';
 import { randomImages } from '../mapapp/mapapp.component'; //lixo
-
+import { Direction } from '../models/Direction';
 const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -39,6 +39,14 @@ export class RequestService {
         this.todosUrl = "https://apdc-geoproj.ey.r.appspot.com";
       }
      
+     }
+
+     addToFav = '/rest/route/submit';
+     addToFovorites(direction:Direction):Observable<JSON>{
+      httpOptions.headers.append(
+        'Authorization', `Bearer ${localStorage.getItem('token')}`
+      ); 
+      return this.http.post<JSON>('${this.addToFav}',direction,httpOptions);
      }
 
 

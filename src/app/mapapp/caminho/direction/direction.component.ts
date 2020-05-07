@@ -1,6 +1,7 @@
 import { Component, OnInit ,Input, EventEmitter, Output} from '@angular/core';
-
+import { RequestService } from '../../../services/RequestService';
 import { Direction } from '../../../models/Direction';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-direction',
@@ -10,8 +11,9 @@ import { Direction } from '../../../models/Direction';
 export class DirectionComponent implements OnInit {
   @Input() direction : Direction
   @Output() deleteDir: EventEmitter<Direction> = new EventEmitter();
+  isRequestError: boolean = false;
 
-  constructor() { }
+  constructor( private req: RequestService ) { }
 
   ngOnInit(): void {
   }
@@ -29,4 +31,14 @@ export class DirectionComponent implements OnInit {
     this.direction.visible = !this.direction.visible;
   }
 
+  addtoFavorites(direction){
+    this.req.addToFovorites(direction).subscribe(
+      (data : any)=>{
+        
+        console.log("Dir Added");
+      },
+      (err : HttpErrorResponse)=>{
+        this.isRequestError = true;
+      });
+  }
 }
