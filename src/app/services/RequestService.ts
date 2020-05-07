@@ -46,7 +46,7 @@ export class RequestService {
       httpOptions.headers.append(
         'Authorization', `Bearer ${localStorage.getItem('token')}`
       ); 
-      return this.http.post<JSON>('${this.addToFav}',direction,httpOptions);
+      return this.http.post<JSON>(`${this.addToFav}`,direction,httpOptions);
      }
 
 
