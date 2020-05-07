@@ -9,6 +9,8 @@ import { Direction } from '../../../models/Direction';
 })
 export class DirectionComponent implements OnInit {
   @Input() direction : Direction
+  @Output() deleteDir: EventEmitter<Direction> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
@@ -20,7 +22,9 @@ export class DirectionComponent implements OnInit {
     }
     return classes
   }
-
+  delete(direction){
+    this.deleteDir.emit(direction);
+  }
   showHide(){
     this.direction.visible = !this.direction.visible;
   }

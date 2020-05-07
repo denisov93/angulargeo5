@@ -7,6 +7,9 @@
     <div class="card text-center">
         <div class="card-header">
           <ul class="nav nav-pills card-header-pills">
+            
+            <a [routerLink]="'/home'" class="nav-link">Home</a> 
+           
             <li class="nav-item" (click)="ChangeOnMainPageT()">
               <a class="nav-link" [routerLink]="[ '/map']">Mapa </a>
             </li>
@@ -27,7 +30,8 @@
                 <div>Longitude: {{longitudeM}}</div>
                 <h5 class="card-title">Special title treatment</h5>
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <div class="row" *ngIf="newDefInc">
+                
+                <div class="row" *ngIf="newDefInc && !newDef1">
                     <div class="col">
                         <button  class="btn btn-primary" (click)="removeDirection()" >Hide</button>
                     </div>
@@ -35,39 +39,58 @@
                         <button  class="btn btn-primary" (click)="showDirection()" >Show</button>
                     </div>
                     <div class="col">
-                        <button id="new" class="btn btn-primary" (click)="definirCaminho()" >New</button>
+                        <button id="new" class="btn btn-success" (click)="definirCaminho()" >New</button>
                     </div>
-                    {{ waywayway | json }}
+                    
                 </div>
-                <div *ngIf="!newDefInc">
-                <div class="row" *ngIf="!newDefInc">
-                    <div class="alert alert-primary" role="alert">
+                
+                <div *ngIf="!newDefInc && !newDef1">
+                    <div class="row" *ngIf="!newDefInc">
+                        <div class="alert alert-primary" role="alert">
                         Hello there! You may chose Strarting Point! <strong>Just Drag Marker and Press Set when you ready!</strong>
-                      </div>
-                    <div class="col">
-                        <button  class="btn btn-primary" (click)="definirC2()" >Set</button>
-                    </div>
-                </div><br>
+                        </div>
+                        <div class="col">
+                        <button  class="btn btn-success" (click)="definirC1()" >Set</button>
+                        </div>
+                    </div><br>
+
                     <div class="row"> 
                         <div class="alert alert-primary" role="alert">
                             Or you can use this form:
                         </div>
                     </div>
-                        <form [formGroup]="formDir" (ngSubmit)="onSubmit(formDir.value)">
-                            <div class="form-group" formGroupName="origin">
-                              <label for="exampleInputEmail1">Latitude e Longitude Start Point</label>
-                              <input type="text" class="form-control" formControlName="lat" [value]="origin.lat" placeholder="latitude start">
-                              <input type="text" class="form-control" formControlName="lng" [value]="destination.lng" placeholder="longitude start">
-                            </div>
-                            <div class="form-group" formGroupName="destination">
-                                <label for="exampleInputEmail1">Latitude e Longitude End Point</label>
-                                <input type="text" class="form-control" formControlName="lat" [value]="destination.lat" placeholder="latitude finish">
-                                <input type="text" class="form-control" formControlName="lng" [value]="destination.lng" placeholder="longitude finish">
-                              </div>    
-                            <button type="submit" class="btn btn-primary" >Submit</button>
-                            <br><br><br><br><br><br>
-                        </form>
+
+                    <form [formGroup]="formDir" (ngSubmit)="onSubmit(formDir.value)">
+                        <div class="form-group" formGroupName="origin">
+                          <label for="exampleInputEmail1">Latitude e Longitude Start Point</label>
+                            <input type="text" class="form-control" formControlName="lat" [value]="origin.lat" placeholder="latitude start">
+                            <input type="text" class="form-control" formControlName="lng" [value]="destination.lng" placeholder="longitude start">
+                        </div>
+                        <div class="form-group" formGroupName="destination">
+                            <label for="exampleInputEmail1">Latitude e Longitude End Point</label>
+                            <input type="text" class="form-control" formControlName="lat" [value]="destination.lat" placeholder="latitude finish">
+                            <input type="text" class="form-control" formControlName="lng" [value]="destination.lng" placeholder="longitude finish">
+                        </div>    
+                        <button type="submit" class="btn btn-primary" >Submit</button>
+                        <br><br><br><br><br><br>
+                    </form>
             
+                </div>
+                <div *ngIf="!newDefInc && newDef1 && !newDef2">
+                    <div class="alert alert-success" role="alert">
+                        <strong>Star set to {{origin.lat}} && {{origin.lng}}</strong>  Drag Marker and Press Set when you ready!
+                        </div>
+                        <div class="col">
+                        <button  class="btn btn-success" (click)="definirC2()" >Set</button>
+                        </div>
+
+                </div>
+                <div *ngIf="!newDefInc && newDef1 && newDef2">
+                    <div class="alert alert-success" role="alert">
+                        <strong>Star set to {{origin.lat}} && {{origin.lng}}  and  Destination set to {{destination.lat}}&& {{destination.lng}} Create?</strong>
+                    </div>
+                    <button  class="btn btn-success" (click)="anyWaypoints()" >Create</button>
+                    <button  class="btn btn-danger" (click)="abortChanges()" >Set</button>
                 </div>    
         </div>
     </div>            

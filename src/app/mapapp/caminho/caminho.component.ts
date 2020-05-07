@@ -23,6 +23,15 @@ export class CaminhoComponent implements OnInit {
     this.displayCaminho = !this.displayCaminho;
   }
 
+  deleteDir(direction:Direction){
+    this.directions = this.directions.filter(tr => tr.id !== direction.id);
+
+    
+    this.t.waywayway = this.directions;
+
+    this.t.saveDirections();
+
+  }
 
 
 }

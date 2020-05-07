@@ -26,12 +26,20 @@ export class RequestService {
       return !!this.getJwtToken();
   }
   
-    todosUrl:string = 'https://apdc-geoproj.ey.r.appspot.com';
+
+    todosUrl:string = '';
+
     todosLimit = '?_limit=5';
     forecast:string = '';
 
 
-    constructor(private http:HttpClient) { }
+    constructor(private http:HttpClient) {
+      
+      if( window.location.origin == "http://localhost:4200"){
+        this.todosUrl = "https://apdc-geoproj.ey.r.appspot.com";
+      }
+     
+     }
 
 
     ping() {
@@ -48,8 +56,8 @@ export class RequestService {
 
     userlogin='/rest/login';
     userAuthentication(body):Observable<JSON>{  
+     
       console.log(httpOptions);
-
       return this.http.post<JSON>(`${this.todosUrl}${this.userlogin}`,body,httpOptions);
     }
 

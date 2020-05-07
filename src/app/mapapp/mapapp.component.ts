@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgForm,FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Direction } from '../models/Direction';
 
+
 @Component({
   selector: 'app-mapapp',
   templateUrl: './mapapp.component.html',
@@ -154,25 +155,26 @@ newDef1=false;
 newDef2=false;
 definirCaminho(){
   this.newDefInc =false;
-  this.newDef2=true;
-}
-//Def way 2nd part
-definirC2(){
   
 }
-counter = 1;
-onSubmit(myForm){
+//Def way 2nd part
+definirC1(){
+  this.origin = { lat: this.latitudeM, lng: this.longitudeM};
+  this.newDef1=true;
+}
 
- const latlongO = new google.maps.LatLng(parseFloat(myForm.origin.lat),parseFloat(myForm.origin.lng));
- const latlongD = new google.maps.LatLng(parseFloat(myForm.destination.lat),parseFloat(myForm.destination.lng));
- const mf = new Direction(); 
+definirC2(){
+  this.destination = { lat: this.latitudeM, lng: this.longitudeM };
+  this.newDef2 = true;
+}
+
+anyWaypoints(){
+  const mf = new Direction(); 
   mf.id = this.counter;
   mf.travelMode="WALKING";
-  mf.origin.lat = parseFloat(myForm.origin.lat)
-  mf.origin.lng = parseFloat(myForm.origin.lng);
-  mf.destination.lat = parseFloat(myForm.destination.lat);
-  mf.destination.lng = parseFloat(myForm.destination.lng);
-  mf.visible = true;
+  mf.origin = this.origin;
+  mf.destination = this.destination;
+  mf.visible = false;
  
 
  this.waywayway.push(mf);
@@ -180,9 +182,47 @@ onSubmit(myForm){
 
  this.saveDirections();
 
-  this.newDefInc=true;
+  
+ this.abortChanges();
+
+}
+
+abortChanges(){
+  this.newDefInc=true
   this.newDef1=false;
   this.newDef2=false;
+}
+
+counter = 1;
+onSubmit(myForm){
+
+ const latlongO = new google.maps.LatLng(parseFloat(myForm.origin.lat),parseFloat(myForm.origin.lng));
+ const latlongD = new google.maps.LatLng(parseFloat(myForm.destination.lat),parseFloat(myForm.destination.lng));
+
+ const mf = new Direction(); 
+  mf.id = this.counter;
+  mf.travelMode="WALKING";
+  mf.origin.lat = parseFloat(myForm.origin.lat)
+  mf.origin.lng = parseFloat(myForm.origin.lng);
+  mf.destination.lat = parseFloat(myForm.destination.lat);
+  mf.destination.lng = parseFloat(myForm.destination.lng);
+  mf.visible = false;
+ 
+
+ this.waywayway.push(mf);
+ this.counter++;
+
+ this.saveDirections();
+
+  
+ this.abortChanges();
+}
+
+deleteDir(direction:Direction){
+  this.waypoints = this.waypoints.filter(tr => tr.id !== direction.id);
+
+  this.saveDirections();
+
 }
 
 public waywayway: Direction[];
@@ -227,6 +267,22 @@ public slides = [
   { src: "https://s1.1zoom.me/big0/205/Greece_Sunrises_and_sunsets_Coast_Korfu_Crag_Rays_575551_1280x853.jpg" },
   { src: "https://s1.1zoom.me/big0/307/Forests_Autumn_Trees_Rays_of_light_575453_1280x720.jpg" }
 ];
+
+public renderOptions = {
+  suppressMarkers: true,
+}
+
+public markerOptions = {
+  origin: {
+      icon: {url: '../../assets/svg/flag-checkered-solid.svg' // atençao svg alterado para width="50" height="50"
+    }
+  },
+  destination: {
+      icon: { }
+     
+  },
+}
+
 }
 export class randomImages {
       id : number;
