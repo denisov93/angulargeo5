@@ -13,10 +13,15 @@ import { SimplebarAngularModule } from 'simplebar-angular';
 import { AgmCoreModule } from '@agm/core';
 import { MapappComponent } from './mapapp/mapapp.component';
 import { HomeComponent } from './home/home.component';
+import { ParallaxDirective } from './home/parallax.directive';
 import { UserComponent } from './user/user.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { PersoneComponent } from './person/persone/persone.component';
+import { SettingsComponent } from './person/persone/settings/settings.component';
+import { RoutsComponent } from './person/persone/routs/routs.component';
+import { GalleryComponent } from './person/persone/gallery/gallery.component';
+import { RockTrophyComponent } from './person/persone/rock-trophy/rock-trophy.component';
 import { JwtModule } from "@auth0/angular-jwt";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselComponent } from './carousel/carousel.component';
@@ -27,12 +32,14 @@ import { CaminhoComponent } from './mapapp/caminho/caminho.component';
 import { MapControllComponent } from './mapapp/map-controll/map-controll.component';
 import { DirectionComponent } from './mapapp/caminho/direction/direction.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     TopBarComponent,
     MapappComponent,
     HomeComponent,
+    ParallaxDirective,
     UserComponent,
     SignInComponent,
     SignUpComponent,
@@ -42,7 +49,11 @@ import { DirectionComponent } from './mapapp/caminho/direction/direction.compone
     PostItemComponent,
     CaminhoComponent,
     MapControllComponent,
-    DirectionComponent
+    DirectionComponent,
+    RoutsComponent,
+    GalleryComponent,
+    RockTrophyComponent,
+    SettingsComponent
     ],
   imports: [
     BrowserModule,

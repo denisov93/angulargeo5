@@ -7,6 +7,10 @@ import { UserComponent } from './user/user.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { PersoneComponent } from './person/persone/persone.component';
+import { SettingsComponent } from './person/persone/settings/settings.component';
+import { RoutsComponent } from './person/persone/routs/routs.component';
+import { GalleryComponent } from './person/persone/gallery/gallery.component';
+import { RockTrophyComponent } from './person/persone/rock-trophy/rock-trophy.component';
 import { AuthGuard } from './auth/auth.guard';
 import { MapControllComponent } from './mapapp/map-controll/map-controll.component';
 import { CommunityMainComponent } from './community-main/community-main.component';
@@ -43,6 +47,17 @@ const routes: Routes = [
   {path:'person',component : TopBarComponent,
   children:[{path : '',component:PersoneComponent, canActivate:[AuthGuard]}]},
 
+  {path: 'person-settings',component : TopBarComponent,
+  children:[{path : '',component : SettingsComponent}]},
+
+  {path: 'person-routs',component : TopBarComponent,
+  children:[{path : '',component : RoutsComponent}]},
+
+  {path: 'person-gallery',component : TopBarComponent,
+  children:[{path : '',component : GalleryComponent}]},
+
+  {path: 'person-rocktrophy',component : TopBarComponent,
+  children:[{path : '',component :  RockTrophyComponent}]},
 
   {path: 'aboutus',component : TopBarComponent,
   children:[{path : '',component : AboutusComponent}]},
