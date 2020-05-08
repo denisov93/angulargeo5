@@ -1,5 +1,18 @@
+<body>
+  <section>
+    <img src = '../../assets/bg.jpg' id= "bg" >
+    <img src = '../../assets/sol-00.png' id= "sol-00">
+    <img src = '../../assets/Serra-Arrabida.png' id= "Serra-Arrabida">
+    <img src = '../../assets/caminhantes-00.png' id= "caminhantes-00">
+    <h2 id= "text">GeoPlaces</h2>
+  </section>
+  <div homeParallax [ratio]="0.5" id="bg"></div>
+  <div homeParallax [ratio]="-0.5" id="sol-00"></div>
+  <div homeParallax [ratio]="-0.15" id="Serra-Arrabida"></div>
+  <div homeParallax [ratio]="0.15" id="caminhantes-00"></div>
+  <div homeParallax [ratio]="0.15" id="text"></div>
 
-<div class="maincomp">
+  <div class="maincomp">
   
     <span class="form-group f_ixed">
       <select
@@ -15,6 +28,7 @@
         </option>
       </select>
     </span>
+
     <p>{{'Sitetitle' | translate }}</p>
 
     <li>
@@ -132,3 +146,6 @@
       brooklyn.
     </p>
 </div>
+
+</body>
+
