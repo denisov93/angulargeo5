@@ -8,6 +8,7 @@
     --bg-secondary: #183958;
     --bg-third: #90caf9;
     --transition-speed: 600ms;
+    z-index: 10002;
   }
   
   body {
