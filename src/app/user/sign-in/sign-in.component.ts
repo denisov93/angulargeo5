@@ -26,6 +26,7 @@ export class SignInComponent implements OnInit {
      localStorage.setItem('password',Password);
      localStorage.setItem('username',data.username);
      localStorage.setItem('tokenID',data);
+
      this.router.navigate(['/person']);
    },
    (err : HttpErrorResponse)=>{

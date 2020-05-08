@@ -17,6 +17,7 @@ export class TopBarComponent implements OnInit {
   }
 
   logOut(){
+    /*
     this.request.logOutUser(localStorage.getItem('tokenID')).subscribe((data : any)=>{
       localStorage.removeItem('tokenID');  
       this.router.navigate(['/home']);
@@ -24,7 +25,9 @@ export class TopBarComponent implements OnInit {
     (err : HttpErrorResponse)=>{
       this.isLogOutError = true;
     });
-
+*/
+localStorage.removeItem('tokenID');  
+      this.router.navigate(['/home']);
   }
 
 }
