@@ -14,12 +14,13 @@ export class ParallaxDirective {
 
   @HostListener("window:scroll", ["$event"])
   onWindowScroll(event) {
-      if(this.parallaxRatio != -0.5){
+      if(this.parallaxRatio != 0.5){
         this.eleRef.nativeElement.style.top = (this.initialTop - (window.scrollY * this.parallaxRatio)) + 'px'
       }
       //For sun img
       else{
         this.eleRef.nativeElement.style.left = (this.initialTop - (window.scrollY * this.parallaxRatio)) + 'px'
+        this.eleRef.nativeElement.style.top = (this.initialTop - (-window.scrollY * this.parallaxRatio)) + 'px';
       }
   }
 

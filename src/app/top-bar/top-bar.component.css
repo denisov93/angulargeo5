@@ -4,8 +4,8 @@
     font-family: 'Open Sans';
     --text-primary: white;
     --text-secondary: #ececec;
-    --bg-primary: #2196f3;
-    --bg-secondary: #183958;
+    --bg-primary: 	#48D1CC;
+    --bg-secondary: #008080;
     --bg-third: #90caf9;
     --transition-speed: 600ms;
     z-index: 10002;
@@ -21,8 +21,6 @@
   .maincomp {
     font-size: 16px;
     font-family: 'Open Sans';
-    margin-left: 6rem;
-    padding: 1rem;
   }
   
   ::-webkit-scrollbar {
@@ -68,11 +66,11 @@
   }
   
   .navbar::-webkit-scrollbar-track {
-    background: #2196f3;
+    background: var(--bg-primary);
   }
   
   .navbar::-webkit-scrollbar-thumb {
-    background: #2196f3;
+    background: var(--bg-primary);
   }
   
   .navbar-nav {

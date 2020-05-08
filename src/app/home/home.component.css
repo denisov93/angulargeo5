@@ -5,9 +5,15 @@
     padding: 0;
     font-family: 'Poppins' , sans-serif;
 }
-
+.maincomp {
+    font-size: 16px;
+    font-family: 'Open Sans';
+    margin-left: 6rem;
+    padding: 1rem;
+  }
 body{
-    min-height: 1500px;
+    min-height: 100px;
+    background-color: var(--bg-primary);;
 }
 
 section{
@@ -26,7 +32,7 @@ section:before{
     bottom: 0;
     width: 100%;
     height: 100px;
-    background: linear-gradient(to top, rgb(187, 255, 187), transparent);
+    background: linear-gradient(to top, var(--bg-primary), transparent);
     z-index: 10000;
 }
 
@@ -37,12 +43,12 @@ section:after{
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgb(187, 255, 187);
     z-index: 10000;
     mix-blend-mode: color;
 }
 
-section .img{
+
+#bg{
     position: absolute;
     top: 0;
     left: 0;
@@ -50,14 +56,53 @@ section .img{
     height: 100%;
     object-fit: cover;
     pointer-events: none;
+    opacity: 80%;
+}
+#sol-00{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    pointer-events: none;
+    opacity: 90%;
 }
 
 #text{
     position: relative;
-    color: #fff;
-    font-size: 10em;
-    z-index: 1;
+    width: 60%;
+    height: 60%;
+    object-fit: cover;
+    pointer-events: none;
+    opacity: 90%;
+    color: black;
+    font-size: 100px;  
 }
+
+#Serra-Arrabida{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    opacity: 80%;
+}
+#caminhantes-00{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    pointer-events: none;
+    opacity: 100%;
+}
+
+
+
 .f_ixed{
     z-index: 10001;
 }
@@ -132,3 +177,33 @@ html {
     font: 0.75em/1.5 sans-serif;
 }
 
+#square{
+    position: fixed;
+    z-index: -1;
+    top: 0px; 
+    left: 0px;
+    width: 100px;
+    height: 100px;
+    background-color: green;
+}
+
+#rectangle{
+    position: fixed;
+    z-index: -1;
+    bottom: 0px; 
+    left: 50px;
+    width: 200px;
+    height: 100px;
+    background-color: red;
+}
+
+#circle{
+    position: fixed;
+    z-index: -1;
+    bottom: 0px; 
+    right: 0px;
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+    border-radius: 50px;
+}
