@@ -43,10 +43,14 @@ export class RequestService {
 
      addToFav = '/rest/route/submit';
      addToFovorites(direction:Direction):Observable<JSON>{
-      httpOptions.headers.append(
-        'Authorization', `Bearer ${localStorage.getItem('token')}`
-      ); 
-      return this.http.post<JSON>(`${this.addToFav}`,direction,httpOptions);
+       
+        const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.addToFav}`,direction,httpOption);
      }
 
 
@@ -64,8 +68,8 @@ export class RequestService {
 
     userlogin='/rest/login';
     userAuthentication(body):Observable<JSON>{  
-     
-      console.log(httpOptions);
+      
+      
       return this.http.post<JSON>(`${this.todosUrl}${this.userlogin}`,body,httpOptions);
     }
 
@@ -76,13 +80,24 @@ export class RequestService {
 
     userReg='/rest/register';
     userRegist(body):Observable<JSON>{ 
-      httpOptions.headers.append(
-        'Authorization', `Bearer ${localStorage.getItem('token')}`
-      ); 
       return this.http.post<JSON>(`${this.todosUrl}${this.userReg}`,body,httpOptions);
     }
     
     getJwtToken() {
       return localStorage.getItem('tokenID');
     }
+
+    getCams="'/rest/route/user";
+    getmyCams(){
+      const thisss ={};
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.getCams}`,thisss,httpOption);
+    }
+    
+
 }

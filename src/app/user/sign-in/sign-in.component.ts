@@ -23,11 +23,13 @@ export class SignInComponent implements OnInit {
     }
     this.request.userAuthentication(body).subscribe((data : any)=>{
      console.log(data);
-     localStorage.setItem('password',Password);
-     localStorage.setItem('username',data.username);
+     
+     localStorage.setItem('username',userName);
      localStorage.setItem('tokenID',data);
 
-     this.router.navigate(['/person']);
+     setTimeout( () => this.router.navigate(['/person']) , 200 );     
+    
+    
    },
    (err : HttpErrorResponse)=>{
      this.isLoginError = true;

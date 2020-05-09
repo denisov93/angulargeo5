@@ -14,7 +14,7 @@ import { Direction } from '../models/Direction';
 })
 
 export class MapappComponent implements OnInit {
-    
+  maptype:String  
   latitude: number
   longitude: number
   zoom:number;
@@ -57,7 +57,9 @@ export class MapappComponent implements OnInit {
 }
  str;
   ngOnInit(): void {
-      
+    let r = Math.random().toString(36).substring(7);
+    console.log("random", r);
+    
     if( this.srt === null || this.str =="true"){
       this.ChangeOnMainPageT();
     }
@@ -74,9 +76,10 @@ export class MapappComponent implements OnInit {
       //reqw.forEach(randomImages, index: number, array: randomImages[])
    //   console.log(reqw);
    // });
-   
+   console.log(this.waywayway);
   }
 
+  
 
   clickedMarker(infowindow) {
     if (this.previous) {
@@ -170,7 +173,9 @@ definirC2(){
 
 anyWaypoints(){
   const mf = new Direction(); 
-  mf.id = this.counter;
+  mf.username = localStorage.getItem("username");
+  mf.title = "test_Title";
+  mf.description = "test_Description";
   mf.travelMode="WALKING";
   mf.origin = this.origin;
   mf.destination = this.destination;
@@ -200,7 +205,9 @@ onSubmit(myForm){
  const latlongD = new google.maps.LatLng(parseFloat(myForm.destination.lat),parseFloat(myForm.destination.lng));
 
  const mf = new Direction(); 
-  mf.id = this.counter;
+ mf.username = localStorage.getItem("username");
+ mf.title = "test_Title";
+ mf.description = "test_Description";
   mf.travelMode="WALKING";
   mf.origin.lat = parseFloat(myForm.origin.lat)
   mf.origin.lng = parseFloat(myForm.origin.lng);
@@ -219,7 +226,7 @@ onSubmit(myForm){
 }
 
 deleteDir(direction:Direction){
-  this.waypoints = this.waypoints.filter(tr => tr.id !== direction.id);
+  this.waypoints = this.waypoints.filter(tr => tr !== direction);
 
   this.saveDirections();
 

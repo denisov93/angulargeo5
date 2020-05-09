@@ -39,6 +39,9 @@ export class DirectionComponent implements OnInit {
       },
       (err : HttpErrorResponse)=>{
         this.isRequestError = true;
+        setTimeout( () => this.isRequestError = false , 2500 );     
+    
+  
       });
   }
 }

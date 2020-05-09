@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as $ from 'jquery';
+import { RequestService } from '../services/RequestService';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +10,17 @@ import * as $ from 'jquery';
 })
 export class HomeComponent implements OnInit {
   l: string;
-  constructor( public translate: TranslateService) {
+  constructor( public translate: TranslateService ,private req: RequestService ) {
     translate.addLangs(['pt','en']);
    }
 
+   public sol 
+   public cam
+   public bg
+   public serra
+
   ngOnInit(): void {
+
 
     this.l = localStorage.getItem('language');
     if(this.l===null) this.l='pt';

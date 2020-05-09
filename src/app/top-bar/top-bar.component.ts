@@ -26,8 +26,10 @@ export class TopBarComponent implements OnInit {
       this.isLogOutError = true;
     });
 */
-localStorage.removeItem('tokenID');  
-      this.router.navigate(['/home']);
+localStorage.removeItem('tokenID');
+
+setTimeout( () => this.router.navigate(['/home']) , 200 );     
+    
   }
 
 }

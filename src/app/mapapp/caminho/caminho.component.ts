@@ -24,7 +24,7 @@ export class CaminhoComponent implements OnInit {
   }
 
   deleteDir(direction:Direction){
-    this.directions = this.directions.filter(tr => tr.id !== direction.id);
+    this.directions = this.directions.filter(tr => tr !== direction);
 
     
     this.t.waywayway = this.directions;
