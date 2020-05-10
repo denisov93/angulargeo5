@@ -6,7 +6,11 @@
       <button  class="btn btn-primary" (click)="getAllMyRoutes()">Hide</button>
     </div>
   </div>
-  <div class="card-body" *ngIf="oksT">
+  <div class="card-body" *ngIf="false">
     <div> {{cams}} </div>
+  </div>
+  <button  class="btn btn-primary" (click)="setUnexploredRoute()">setUnexploredRoute</button>
+  <div class="card-body" *ngIf="oksT">
+    {{infosOfPoint}}
   </div>
 </div>

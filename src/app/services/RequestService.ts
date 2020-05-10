@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {NgForm} from '@angular/forms';
 import { randomImages } from '../mapapp/mapapp.component'; //lixo
 import { Direction } from '../models/Direction';
+import { Data } from '@angular/router';
 const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -99,5 +100,17 @@ export class RequestService {
       return this.http.post<JSON>(`${this.getCams}`,thisss,httpOption);
     }
     
+/*
+    urlSpls = 'http://maps.googleapis.com/maps/api/staticmap?center=38.658598517398275,-9.166824321240243&zoom=16&size=50x50&maptype=roadmap&sensor=false&key=AIzaSyBY1VATzvx85tm56FL0C4Agf_gojmbE_XI'
+    getInfosOfPoint(){
+      return this.http.put(this.urlSpls).subscribe(
+                  
+        ( data: ImageData) => { 
+          console.log(data.data); 
+        }
+      )
+      ;
+    }
+*/
 
 }

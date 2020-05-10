@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone ,Renderer2, ComponentFactoryResolver } from '@angular/core';
-import { AgmCoreModule, MapsAPILoader, MouseEvent } from '@agm/core';
+import { AgmCoreModule, MapsAPILoader, MouseEvent, AgmMap } from '@agm/core';
 import { Url } from 'url';
 import { RequestService } from '../services/RequestService';
 import { TranslateService } from '@ngx-translate/core';
@@ -24,42 +24,37 @@ export class MapappComponent implements OnInit {
   srt: any;
   latitudeM: number;
   longitudeM: number;
-
-  public removeDirection(){
-    this.show = false
-  }
-  public showDirection(){
-    this.show = true
-  }
-
+  showMarker:boolean = false;
   imagesRandom:randomImages[];
+  onMainPage:boolean;
+  str;
   formDir ;
-
+  public infoOptionLat: any
+  public infoOptionLng: any
+ 
+  public show2: boolean = false;
   constructor(
     private formBuilder:FormBuilder,
     private req:RequestService,  
     public translate: TranslateService
-)
-{  
-
-    translate.addLangs(['pt','en']); 
-    translate.setDefaultLang(localStorage.getItem('language'));
+  )
+  {  
+      this.formDir = new FormGroup(
+        {
+          travelMode: new FormControl("WALKING"),
+          origin: new FormGroup ({lat: new FormControl(), lng: new FormControl()}),
+          destination:new FormGroup ({lat: new FormControl(),lng: new FormControl()}),
+          visible: new FormControl(true)
+        }
+      );
+  }
+  ngOnInit(): void {
+    this.setCurrentLocation();
+    this.translate.addLangs(['pt','en']); 
+    this.translate.setDefaultLang(localStorage.getItem('language'));
     
     this.str = localStorage.getItem("onMainPage");
-    this.formDir = new FormGroup(
-      {
-        travelMode: new FormControl("WALKING"),
-        origin: new FormGroup ({lat: new FormControl(), lng: new FormControl()}),
-        destination:new FormGroup ({lat: new FormControl(),lng: new FormControl()}),
-        visible: new FormControl(true)
-      }
-    );
-}
- str;
-  ngOnInit(): void {
-    let r = Math.random().toString(36).substring(7);
-    console.log("random", r);
-    
+
     if( this.srt === null || this.str =="true"){
       this.ChangeOnMainPageT();
     }
@@ -69,16 +64,32 @@ export class MapappComponent implements OnInit {
 
     this.loadDirections();
 
-    this.setCurrentLocation();
-    this.getDirection()
+    
+   // this.getDirection();
    // this.req.getTodos().subscribe(reqw => {
    //   this.imagesRandom = reqw;
       //reqw.forEach(randomImages, index: number, array: randomImages[])
    //   console.log(reqw);
    // });
-   console.log(this.waywayway);
+   
   }
 
+  showHMarker($event: MouseEvent){
+    this.latitudeM = $event.coords.lat;
+    this.longitudeM = $event.coords.lng;
+
+    localStorage.setItem("posMLat",this.latitudeM.toString());
+    localStorage.setItem("posMLng",this.longitudeM.toString());
+     this.showMarker = !this.showMarker ; 
+    
+  }
+
+  public removeDirection(){
+    this.show = false
+  }
+  public showDirection(){
+    this.show = true
+  }
   
 
   clickedMarker(infowindow) {
@@ -88,8 +99,7 @@ export class MapappComponent implements OnInit {
     this.previous = infowindow;
   }
 
-  onMainPage:boolean;
-
+  
   ChangeOnMainPageT(){
     localStorage.setItem("onMainPage","true");
     this.onMainPage = true;
@@ -110,11 +120,6 @@ export class MapappComponent implements OnInit {
     localStorage.setItem("myDirections", JSON.stringify(this.waywayway));
   }
 
- public infoOptionLat: any
- public infoOptionLng: any
-
- public show2: boolean = false;
- 
  //right click display Options
   getOptions($event: MouseEvent, inf){  
   this.infoOptionLat = $event.coords.lat;
@@ -126,6 +131,9 @@ export class MapappComponent implements OnInit {
 
 // Get Current Location Coordinates
 private setCurrentLocation() {
+  const posMLat = localStorage.getItem("posMLat");
+  const posMLng = localStorage.getItem("posMLng");
+  if(posMLat==null){
   if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition((position) => {
       this.latitude = position.coords.latitude;
@@ -136,13 +144,22 @@ private setCurrentLocation() {
       this.zoom = 15;
     });
   }
+} else{
+  this.latitude = parseFloat(posMLat);
+  this.longitude = parseFloat(posMLng);
+  this.latitudeM = parseFloat(posMLat);
+  this.longitudeM = parseFloat(posMLng);
+
+  this.zoom = 15;
+
+  }
 }
 
 markerDragEnd($event: MouseEvent) {
   this.latitudeM = $event.coords.lat;
   this.longitudeM = $event.coords.lng;
-  
 }
+
 getDirection() {
   this.travelMode = "WALKING" //WALKING TRANSIT BICYCLING DRIVING 
   this.origin = { lat: 38.661076, lng: -9.205908 }
@@ -157,13 +174,17 @@ newDefInc=true
 newDef1=false;
 newDef2=false;
 definirCaminho(){
-  this.newDefInc =false;
+  this.showMarker = true;
+
+  setTimeout( () => this.newDefInc =false ,100);
   
 }
 //Def way 2nd part
 definirC1(){
-  this.origin = { lat: this.latitudeM, lng: this.longitudeM};
-  this.newDef1=true;
+  
+    this.origin = { lat: this.latitudeM, lng: this.longitudeM};
+    this.newDef1=true;
+  
 }
 
 definirC2(){
@@ -183,7 +204,7 @@ anyWaypoints(){
  
 
  this.waywayway.push(mf);
- this.counter++;
+ 
 
  this.saveDirections();
 
@@ -198,7 +219,6 @@ abortChanges(){
   this.newDef2=false;
 }
 
-counter = 1;
 onSubmit(myForm){
 
  const latlongO = new google.maps.LatLng(parseFloat(myForm.origin.lat),parseFloat(myForm.origin.lng));
@@ -217,7 +237,7 @@ onSubmit(myForm){
  
 
  this.waywayway.push(mf);
- this.counter++;
+ 
 
  this.saveDirections();
 
@@ -289,6 +309,7 @@ public markerOptions = {
      
   },
 }
+
 
 }
 export class randomImages {

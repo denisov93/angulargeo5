@@ -102,7 +102,8 @@
     [latitude]="latitude" 
     [longitude]="longitude" 
     [zoom]="zoom" 
-    [disableDoubleClickZoom]="true"    
+    [disableDoubleClickZoom]="true"
+    (mapDblClick) ="showHMarker($event)"    
     (mapRightClick)="getOptions($event,infoWindowOption)"
     >
         <agm-info-window
@@ -112,10 +113,10 @@
         [disableAutoPan]="true" 
         [isOpen]="show2"
         >
- 
         </agm-info-window>
         
         <agm-marker 
+        *ngIf="showMarker"
         [latitude]="latitudeM" 
         [longitude]="longitudeM"
         [markerDraggable]="true"
@@ -130,7 +131,10 @@
         
         </agm-direction>
 
-
+        <agm-polyline  [strokeColor]="'red'">
+            <agm-polyline-point  *ngFor="let marker of markers" [latitude]="marker.latitude" [longitude]="marker.longitude">
+            </agm-polyline-point>
+        </agm-polyline>
 
     </agm-map>
 

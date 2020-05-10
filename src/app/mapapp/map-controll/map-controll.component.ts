@@ -12,12 +12,21 @@ export class MapControllComponent implements OnInit {
   public isRequestError:boolean = false;
   public cams: any[];
 
+  public infosOfPoint: any;
+
   constructor(private req: RequestService ) {
    }
 
   ngOnInit(): void {
   }
-
+  /*
+  getInfosOfPoint(){
+    this.req.getInfosOfPoint();
+  }
+*/
+setUnexploredRoute(){
+  
+}
   getAllMyRoutes(){
     this.req.getmyCams().subscribe(
       (data : any)=>{

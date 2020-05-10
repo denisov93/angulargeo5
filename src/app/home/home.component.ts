@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
    }
 
    public sol 
-   public cam
+   public cam 
    public bg
    public serra
 

@@ -66,7 +66,7 @@ import { DirectionComponent } from './mapapp/caminho/direction/direction.compone
     FontAwesomeModule,
     SimplebarAngularModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDaxjTT7ejDx8ykQs7UU3_fuKnPLIIztjo',
+      apiKey: 'AIzaSyBY1VATzvx85tm56FL0C4Agf_gojmbE_XI', //'AIzaSyDaxjTT7ejDx8ykQs7UU3_fuKnPLIIztjo',
       libraries: ['places', 'drawing', 'geometry'],
     }),
     AgmDirectionModule,
