@@ -1,16 +1,34 @@
 <div>    
     <div class="card-body">
-        <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <button  class="btn btn-primary" (click)="getAllMyRoutes()">Hide</button>
-    </div>
+        <div class="card-body" *ngIf="!flagone&&!flagtwo&&!flagtree">
+            <h1 class="card-title">Lets Build New</h1>
+            <p class="card-text" style="color:red" >Press This RED Button</p>
+            <button class="btn btn-outline-danger" (click)="startOne()">Build Your WAY</button>
+      </div>
+      <div class="card-body" *ngIf="flagone&&!flagtwo&&!flagtree">
+        <h1 class="card-title">Select Starting Point</h1>
+        
+        <button class="btn btn-outline-success"(click)="setOrigin()">Starting Point</button>
+      </div>
+      <div class="card-body" *ngIf="flagone&&flagtwo&&!flagtree">
+        <h1 class="card-title">Select WayPoints</h1>
+        <p class="card-text" style="color:green" >Press This Green Button to WayPoints</p>
+        <button class="btn btn-outline-success" (click)="setWay()" >WAY Point</button>
+        <p class="card-text" style="color:red" >Press This RED Button to FINISH</p>
+        <button class="btn btn-outline-danger"(click)="setDest()" >END Point</button>
+
+      </div>
   </div>
-  <div class="card-body" *ngIf="false">
-    <div> {{cams}} </div>
-  </div>
-  <button  class="btn btn-primary" (click)="setUnexploredRoute()">setUnexploredRoute</button>
+  
+  <button  class="btn btn-primary" (click)="getInfosOfPoint()">setUnexploredRoute</button>
   <div class="card-body" *ngIf="oksT">
-    {{infosOfPoint}}
+  
+  <img [src]="imageToShow"
+     alt="Place image title"
+     *ngIf="!isImageLoading; else noImageFound">
+      <ng-template #noImageFound>
+     <img src="" alt="Fallbackimage">
+      </ng-template>
+      <canvas id="mycanvas" width="1px" height="1px" ></canvas>  
   </div>
 </div>

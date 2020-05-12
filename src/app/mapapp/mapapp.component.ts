@@ -5,6 +5,8 @@ import { RequestService } from '../services/RequestService';
 import { TranslateService } from '@ngx-translate/core';
 import { NgForm,FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Direction } from '../models/Direction';
+import { DirectionWhithWaypoints } from '../models/DirectionWithWaypoints';
+import { latLon } from '../models/latLon';
 
 
 @Component({
@@ -63,7 +65,7 @@ export class MapappComponent implements OnInit {
     }
 
     this.loadDirections();
-
+    this.getDirection();
     
    // this.getDirection();
    // this.req.getTodos().subscribe(reqw => {
@@ -78,8 +80,7 @@ export class MapappComponent implements OnInit {
     this.latitudeM = $event.coords.lat;
     this.longitudeM = $event.coords.lng;
 
-    localStorage.setItem("posMLat",this.latitudeM.toString());
-    localStorage.setItem("posMLng",this.longitudeM.toString());
+ 
      this.showMarker = !this.showMarker ; 
     
   }
@@ -158,6 +159,8 @@ private setCurrentLocation() {
 markerDragEnd($event: MouseEvent) {
   this.latitudeM = $event.coords.lat;
   this.longitudeM = $event.coords.lng;
+  localStorage.setItem("posMLat",this.latitudeM.toString());
+  localStorage.setItem("posMLng",this.longitudeM.toString());
 }
 
 getDirection() {
@@ -176,7 +179,7 @@ newDef2=false;
 definirCaminho(){
   this.showMarker = true;
 
-  setTimeout( () => this.newDefInc =false ,100);
+  setTimeout( () => this.newDefInc =false ,500);
   
 }
 //Def way 2nd part
@@ -211,6 +214,15 @@ anyWaypoints(){
   
  this.abortChanges();
 
+}
+dirWaysP:any[]=[];
+newPolly:boolean=false;
+paintMap(dirW){
+
+  this.dirWaysP = dirW;
+  setTimeout(
+    ()=> this.newPolly=true, 1000
+  );
 }
 
 abortChanges(){
