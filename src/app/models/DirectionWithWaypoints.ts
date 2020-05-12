@@ -7,6 +7,6 @@ export class DirectionWhithWaypoints{
     travelMode:String
     origin: latLon
     destination:latLon
-    waypoints:latLon[]
+    waypoints:latLon[] //string ID 
     visible:boolean
 }

@@ -32,6 +32,7 @@ export class DirectionComponent implements OnInit {
   }
 
   addtoFavorites(direction){
+    
     this.req.addToFovorites(direction).subscribe(
       (data : any)=>{
         

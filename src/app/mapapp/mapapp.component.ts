@@ -195,6 +195,16 @@ definirC2(){
   this.newDef2 = true;
 }
 
+create_UUID(){
+  var dt = new Date().getTime();
+  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = (dt + Math.random()*16)%16 | 0;
+      dt = Math.floor(dt/16);
+      return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+  });
+  return uuid;
+}
+
 anyWaypoints(){
   const mf = new Direction(); 
   mf.username = localStorage.getItem("username");
@@ -204,7 +214,8 @@ anyWaypoints(){
   mf.origin = this.origin;
   mf.destination = this.destination;
   mf.visible = false;
- 
+  mf.id = this.create_UUID();
+  console.log(mf.id);
 
  this.waywayway.push(mf);
  
@@ -215,6 +226,8 @@ anyWaypoints(){
  this.abortChanges();
 
 }
+
+////////////////////////////////////////////////
 dirWaysP:any[]=[];
 newPolly:boolean=false;
 paintMap(dirW){
@@ -224,7 +237,7 @@ paintMap(dirW){
     ()=> this.newPolly=true, 1000
   );
 }
-
+//////////////////////////////////////////////////
 abortChanges(){
   this.newDefInc=true
   this.newDef1=false;

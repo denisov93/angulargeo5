@@ -1,4 +1,5 @@
 export class Direction{
+    id:String
     username:String
     title:String
     description:String
