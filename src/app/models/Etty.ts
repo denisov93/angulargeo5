@@ -12,4 +12,5 @@ export class Etty
       }
       intermidiatePoints: {lat:string,lng:string} []
       visible:boolean
+      type:boolean
     }

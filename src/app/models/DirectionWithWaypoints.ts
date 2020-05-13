@@ -22,5 +22,4 @@ export class DirectionWhithWaypoints{
         } 
     }
     visible:boolean
-    type:boolean
 }

@@ -5,6 +5,7 @@ import { Direction } from '../../models/Direction';
 import { RequestService } from 'src/app/services/RequestService';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Etty } from 'src/app/models/Etty';
+import { locationl } from 'src/app/models/locationl';
 
 @Component({
   selector: 'app-caminho',
@@ -43,7 +44,8 @@ export class CaminhoComponent implements OnInit {
     (data : any )=>{
     
     data.forEach( (element: Etty) => {
-      
+    
+    if(element.type){  
     const mf = new Direction();
     mf.travelMode = "WALKING";
     mf.destination = 
@@ -57,18 +59,48 @@ export class CaminhoComponent implements OnInit {
       lng: parseFloat(  element.origin.lng.valueOf())
     };
     
-    if(element.visible){
-      element.intermidiatePoints.forEach(
-        (obj) =>  mf.waypoints.push(  {location:{
-                            lat: parseFloat(obj.lat),
-                            lng: parseFloat(obj.lng)} 
-                        }
-                    )         
-                  
-        );
-      }
+    
+      var arr: [{location:{lat:number,lng:number}}] = [{location:{lat:0,lng:0}}];
+      
 
+      for(var i = 0;i<element.intermidiatePoints.length;i++){
+        
+        arr[i] = 
+        {location:{
+          lat: parseFloat(element.intermidiatePoints[i].lat),
+          lng: parseFloat(element.intermidiatePoints[i].lng)} 
+        };
+
+      }
+      mf.waypoints = [{
+        location:
+        { 
+            lat:0,
+            lng:0
+        }
+      }];
+      mf.waypoints = arr; 
+      
      this.t.waywayway.push(mf);
+    }
+    else{
+      const ms = new Direction();
+      ms.travelMode = "WALKING";
+      ms.destination = 
+    {
+      lat: parseFloat(  element.destination.lat.valueOf() ),
+      lng: parseFloat(  element.destination.lng.valueOf())
+    };
+    ms.origin = 
+    {
+      lat: parseFloat(  element.origin.lat.valueOf()) ,
+      lng: parseFloat(  element.origin.lng.valueOf())
+    };
+    
+    this.t.waywayway.push(ms);
+    }
+    
+    
     });
   
     this.t.saveDirections();
