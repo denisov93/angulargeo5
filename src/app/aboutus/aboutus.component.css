@@ -8,19 +8,21 @@
   }
   
   body{
-     margin-left: 15rem;
-     background-color:paleturquoise;
+     position: absolute;     
+     background: linear-gradient(to top, var(--bg-primary), transparent);
+     width: 90%;     
+     color: gray;
   }
   
   .blog{
-    margin-left: 20rem;
-    margin-top: 35rem;
+    position: absolute;
+    margin-top: 38rem;
     background-color:transparent;
   }
 
   .wrapper{
     position: absolute;
-    top: 30rem;
+    top:20rem;
     margin-left: 3rem;
     left: 55%;
     transform: translate(-50%,-50%);
@@ -30,6 +32,7 @@
   }
   
   .wrapper .leftcard{
+    margin-top: 8.5rem;
     width: 30%;
     height: 70%;
     background: linear-gradient(to right,#48D1CC,#008080);
@@ -55,12 +58,11 @@
   }
 
   .wrapper .midlecard{
+    margin-top: 8.5rem;
     width: 30%;
     height: 70%;
     background: linear-gradient(to right,#48D1CC,#008080);
     padding: 30px 25px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
     text-align: center;
     color: #fff;
   }
@@ -80,12 +82,13 @@
   }
 
   .wrapper .rigthcard{
+    margin-top: 8.5rem;
     width: 30%;
     height: 70%;
     background: linear-gradient(to right,#48D1CC,#008080);
     padding: 30px 25px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     text-align: center;
     color: #fff;
   }
