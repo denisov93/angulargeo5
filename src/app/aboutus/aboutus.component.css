@@ -1,1 +1,105 @@
-/*Personalizar pagina about us*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: 'Josefin Sans', sans-serif;
+    z-index: -1;
+  }
+  
+  body{
+     margin-left: 15rem;
+     background-color:paleturquoise;
+  }
+  
+  .blog{
+    margin-left: 20rem;
+    margin-top: 35rem;
+    background-color:transparent;
+  }
+
+  .wrapper{
+    position: absolute;
+    top: 30rem;
+    margin-left: 3rem;
+    left: 55%;
+    transform: translate(-50%,-50%);
+    width: 80%;
+    height: 100%;
+    display: flex;
+  }
+  
+  .wrapper .leftcard{
+    width: 30%;
+    height: 70%;
+    background: linear-gradient(to right,#48D1CC,#008080);
+    padding: 30px 25px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .wrapper .leftcard img{
+    border-radius: 50%;
+    width: 80%;
+    margin-bottom: 10px;
+  }
+  
+  .wrapper .leftcard h4{
+    margin-bottom: 10px;
+  }
+  
+  .wrapper .leftcard p{
+    font-size: 12px;
+  }
+
+  .wrapper .midlecard{
+    width: 30%;
+    height: 70%;
+    background: linear-gradient(to right,#48D1CC,#008080);
+    padding: 30px 25px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .wrapper .midlecard img{
+    border-radius: 50%;
+    width: 80%;
+    margin-bottom: 10px;
+  }
+  
+  .wrapper .midlecard h4{
+    margin-bottom: 10px;
+  }
+  
+  .wrapper .midlecard p{
+    font-size: 12px;
+  }
+
+  .wrapper .rigthcard{
+    width: 30%;
+    height: 70%;
+    background: linear-gradient(to right,#48D1CC,#008080);
+    padding: 30px 25px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .wrapper .rigthcard img{
+    border-radius: 50%;
+    width: 80%;
+    margin-bottom: 10px;
+  }
+  
+  .wrapper .rigthcard h4{
+    margin-bottom: 10px;
+  }
+  
+  .wrapper .rigthcard p{
+    font-size: 12px;
+  }
