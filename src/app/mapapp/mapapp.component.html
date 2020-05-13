@@ -83,7 +83,15 @@
                         <div class="col">
                         <button  class="btn btn-success" (click)="definirC2()" >Set</button>
                         </div>
-
+                        <div class="alert alert-primary" role="alert">
+                            <strong>Use Set Waypoint</strong> to add intermediate points
+                        </div>
+                        <button  class="btn btn-primary" (click)="definirC2WayP()" >Set Waypoint</button>
+                        <div *ngIf="wayPushed">
+                            <div class="alert alert-success" role="alert">
+                                <strong>Point Added!</strong>
+                            </div>
+                        </div>
                 </div>
                 <div *ngIf="!newDefInc && newDef1 && newDef2">
                     <div class="alert alert-success" role="alert">

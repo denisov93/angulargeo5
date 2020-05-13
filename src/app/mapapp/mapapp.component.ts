@@ -178,13 +178,13 @@ newDef1=false;
 newDef2=false;
 definirCaminho(){
   this.showMarker = true;
-
+  this.waypoints = [];
   setTimeout( () => this.newDefInc =false ,500);
   
 }
 //Def way 2nd part
 definirC1(){
-  
+    
     this.origin = { lat: this.latitudeM, lng: this.longitudeM};
     this.newDef1=true;
   
@@ -193,6 +193,23 @@ definirC1(){
 definirC2(){
   this.destination = { lat: this.latitudeM, lng: this.longitudeM };
   this.newDef2 = true;
+}
+
+wayPushed:boolean=false;
+anyWayP:boolean=false;
+definirC2WayP(){
+  var mf = {
+    location: {
+      lat: this.latitudeM, 
+      lng: this.longitudeM
+    }
+  }
+  
+  this.waypoints.push(mf);
+
+  this.wayPushed = true;
+  this.anyWayP = true;
+  setTimeout(()=>this.wayPushed=false,600);
 }
 
 create_UUID(){
@@ -206,7 +223,14 @@ create_UUID(){
 }
 
 anyWaypoints(){
-  const mf = new Direction(); 
+var mf;
+if(this.anyWayP){
+   mf = new DirectionWhithWaypoints();
+   mf.waypoints = this.waypoints;
+}else{
+   mf = new Direction();
+}
+   
   mf.username = localStorage.getItem("username");
   mf.title = "test_Title";
   mf.description = "test_Description";
@@ -217,6 +241,7 @@ anyWaypoints(){
   mf.id = this.create_UUID();
   console.log(mf.id);
 
+  
  this.waywayway.push(mf);
  
 
@@ -270,12 +295,7 @@ onSubmit(myForm){
  this.abortChanges();
 }
 
-deleteDir(direction:Direction){
-  this.waypoints = this.waypoints.filter(tr => tr !== direction);
 
-  this.saveDirections();
-
-}
 
 public waywayway: Direction[];
 /*
@@ -309,9 +329,9 @@ public travelMode: any
 public waypoints: any
 
 markers = [
-  {latitude: 38.657849552573595, longitude: -9.177789709716588,info:'this is 1'}, 
-  {latitude: 38.6494375039336, longitude: -9.163289687782079,info:'this is 2'},
-  {latitude: 38.66250759275842, longitude: -9.160076401382238,info:'this is 3'}
+ // {latitude: 38.657849552573595, longitude: -9.177789709716588,info:'this is 1'}, 
+  //{latitude: 38.6494375039336, longitude: -9.163289687782079,info:'this is 2'},
+ // {latitude: 38.66250759275842, longitude: -9.160076401382238,info:'this is 3'}
 ]  
 public slides = [
   { src: "https://s1.1zoom.me/big0/703/Planets_Trees_Night_576489_1280x800.jpg" },

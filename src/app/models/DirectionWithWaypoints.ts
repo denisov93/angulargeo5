@@ -5,8 +5,14 @@ export class DirectionWhithWaypoints{
     title:String
     description:String
     travelMode:String
-    origin: latLon
-    destination:latLon
-    waypoints:latLon[] //string ID 
+    origin: {lat: number, lng: number}
+    destination:{lat: number,lng: number}
+    waypoints: {
+        location:
+        { 
+            lat:number
+            lng:number
+        } 
+    }
     visible:boolean
 }
