@@ -31,6 +31,7 @@ import { PostItemComponent } from './community-main/post-item/post-item.componen
 import { CaminhoComponent } from './mapapp/caminho/caminho.component';
 import { MapControllComponent } from './mapapp/map-controll/map-controll.component';
 import { DirectionComponent } from './mapapp/caminho/direction/direction.component';
+import { AboutusComponent} from './aboutus/aboutus.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { DirectionComponent } from './mapapp/caminho/direction/direction.compone
     RoutsComponent,
     GalleryComponent,
     RockTrophyComponent,
-    SettingsComponent
+    SettingsComponent,
+    AboutusComponent
     ],
   imports: [
     BrowserModule,
