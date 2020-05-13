@@ -40,24 +40,37 @@ export class CaminhoComponent implements OnInit {
   getAllMyRoutes(){
     this.req.getmyCams().subscribe(
   
-      (data : any )=>{
-
+    (data : any )=>{
+    
     data.forEach( (element: Etty) => {
-     const mf = new Direction();
-     mf.travelMode = "WALKING";
+      
+    const mf = new Direction();
+    mf.travelMode = "WALKING";
     mf.destination = 
     {
-      lat: parseFloat(  element.properties.route_end_lat.value.valueOf() ),
-      lng: parseFloat(  element.properties.route_end_lon.value.valueOf())
+      lat: parseFloat(  element.destination.lat.valueOf() ),
+      lng: parseFloat(  element.destination.lng.valueOf())
     };
     mf.origin = 
     {
-      lat: parseFloat(  element.properties.route_start_lat.value.valueOf()) ,
-      lng: parseFloat(  element.properties.route_start_lon.value.valueOf())
+      lat: parseFloat(  element.origin.lat.valueOf()) ,
+      lng: parseFloat(  element.origin.lng.valueOf())
     };
-     
+    
+    if(element.visible){
+      element.intermidiatePoints.forEach(
+        (obj) =>  mf.waypoints.push(  {location:{
+                            lat: parseFloat(obj.lat),
+                            lng: parseFloat(obj.lng)} 
+                        }
+                    )         
+                  
+        );
+      }
+
      this.t.waywayway.push(mf);
     });
+  
     this.t.saveDirections();
     this.loadingFav = true;
     setTimeout(()=>this.loadingFav = false,1000);

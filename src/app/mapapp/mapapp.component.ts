@@ -176,6 +176,7 @@ getDirection() {
 newDefInc=true
 newDef1=false;
 newDef2=false;
+
 definirCaminho(){
   this.showMarker = true;
   this.waypoints = [];
@@ -237,8 +238,9 @@ if(this.anyWayP){
   mf.travelMode="WALKING";
   mf.origin = this.origin;
   mf.destination = this.destination;
-  mf.visible = false;
   mf.id = this.create_UUID();
+  mf.type = this.anyWayP;
+
   console.log(mf.id);
 
   

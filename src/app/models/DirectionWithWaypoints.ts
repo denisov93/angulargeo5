@@ -7,6 +7,13 @@ export class DirectionWhithWaypoints{
     travelMode:String
     origin: {lat: number, lng: number}
     destination:{lat: number,lng: number}
+    intermidiatePoints: {
+        location:
+        { 
+            lat:number
+            lng:number
+        } 
+    }
     waypoints: {
         location:
         { 
@@ -15,4 +22,5 @@ export class DirectionWhithWaypoints{
         } 
     }
     visible:boolean
+    type:boolean
 }

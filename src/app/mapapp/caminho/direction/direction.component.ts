@@ -31,9 +31,26 @@ export class DirectionComponent implements OnInit {
     this.direction.visible = !this.direction.visible;
   }
 
-  addtoFavorites(direction){
+  addtoFavorites(direction:Direction){
+    var dir = new Direction();
+    dir.id = direction.id;
+    dir.description = direction.description;
+    dir.destination = direction.destination;
+    dir.origin = direction.origin;
+    dir.title = direction.title;
+    dir.travelMode = direction.travelMode;
+    dir.username = direction.username;
     
-    this.req.addToFovorites(direction).subscribe(
+    
+    if(direction.type){
+      dir.intermidiatePoints = [];
+      for(var i=0;i<direction.waypoints.length;i++){
+        dir.intermidiatePoints[i] = direction.waypoints[i].location;
+      }
+    }
+    
+    console.log(dir);
+    this.req.addToFovorites(dir).subscribe(
       (data : any)=>{
         
         console.log("Dir Added");

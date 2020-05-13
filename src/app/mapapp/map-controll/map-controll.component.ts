@@ -30,7 +30,7 @@ export class MapControllComponent implements OnInit {
   public origin: latLon;
   public dest: latLon;
   public wayPoints: latLon[]= [];
-  
+  public onWater:boolean ;
 
   constructor(private req: RequestService ,private map: MapappComponent) {
    }
@@ -57,6 +57,10 @@ export class MapControllComponent implements OnInit {
     this.map.showMarker = true;
   }
   setOrigin(){
+    this.getInfosOfPoint();
+
+    if(!this.onWater){
+
     this.wayPoints.push( 
       {
       lat: this.map.latitudeM,
@@ -64,24 +68,32 @@ export class MapControllComponent implements OnInit {
     }
     );
     this.flagtwo = true;
+    }
+    
   }
   setWay(){
+    if(!this.onWater){this.getInfosOfPoint();
     this.wayPoints.push(
       {
         lat: this.map.latitudeM,
         lng: this.map.longitudeM
       }
-    );
+    );}
   }
   setDest(){
-    this.wayPoints.push( 
+    if(!this.onWater)
+    {
+      this.getInfosOfPoint();
+      this.wayPoints.push( 
       {
       lat: this.map.latitudeM ,
       lng: this.map.longitudeM 
     }
     );
  console.log( this.wayPoints);
-  this.map.paintMap(this.wayPoints);
+ this.flagone=false;
+ this.flagtwo=false;
+  this.map.paintMap(this.wayPoints);}
   }
 
 imageToShow: any;
@@ -98,7 +110,13 @@ createImageFromBlob(image: Blob) {
         ctx.drawImage(img, 0, 0)
         var pixel = ctx.getImageData(0,0,1,1);
         console.log(pixel.data[0],pixel.data[1],pixel.data[2],pixel.data[3]);
-  
+        if(pixel.data[0]==171&&pixel.data[1]==219&&pixel.data[2]==255){
+          window.alert("ON WATER");
+          this.onWater=true;
+        }
+        else{
+          this.onWater=false;
+        }
       }
    }, false);
 
@@ -107,11 +125,12 @@ createImageFromBlob(image: Blob) {
     }
 }
 
-urlSpls = 'http://maps.googleapis.com/maps/api/staticmap?center=38.57546452749099,-9.204723923867316&zoom=16&size=1x1&maptype=roadmap&sensor=false&key=AIzaSyBY1VATzvx85tm56FL0C4Agf_gojmbE_XI'
 
   getInfosOfPoint(){
+    const urlSpls = 'http://maps.googleapis.com/maps/api/staticmap?center='+`${this.map.latitudeM}`+','+`${this.map.longitudeM}`+'&zoom=16&size=1x1&maptype=roadmap&sensor=false&key=AIzaSyBY1VATzvx85tm56FL0C4Agf_gojmbE_XI'
+
     this.isImageLoading = true;
-    this.req.getInfosOfPoint(this.urlSpls).subscribe(
+    this.req.getInfosOfPoint(urlSpls).subscribe(
       data => {
         this.createImageFromBlob(data);
         this.createArrFromBlob(data);
@@ -120,7 +139,11 @@ urlSpls = 'http://maps.googleapis.com/maps/api/staticmap?center=38.5754645274909
         this.isImageLoading = false;
         console.log(error);
       });
-    
+
+     return new Promise((resolve, reject) => {
+        console.log('getInfosOfPoint');
+        resolve();
+    });
   }
 
 setUnexploredRoute(){
