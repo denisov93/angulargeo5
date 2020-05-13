@@ -254,7 +254,7 @@ onSubmit(myForm){
  mf.title = "test_Title";
  mf.description = "test_Description";
   mf.travelMode="WALKING";
-  mf.origin.lat = parseFloat(myForm.origin.lat)
+  mf.origin.lat = parseFloat(myForm.origin.lat);
   mf.origin.lng = parseFloat(myForm.origin.lng);
   mf.destination.lat = parseFloat(myForm.destination.lat);
   mf.destination.lng = parseFloat(myForm.destination.lng);

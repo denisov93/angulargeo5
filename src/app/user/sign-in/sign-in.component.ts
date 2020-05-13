@@ -3,6 +3,7 @@ import { RequestService } from '../../services/RequestService';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -29,11 +30,10 @@ export class SignInComponent implements OnInit {
 
      setTimeout( () => this.router.navigate(['/person']) , 200 );     
     
-    
    },
    (err : HttpErrorResponse)=>{
      this.isLoginError = true;
    });
-   console.log();
+  
  }
 }

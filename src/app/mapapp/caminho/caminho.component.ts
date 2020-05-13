@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MapappComponent } from '../mapapp.component';
 
 import { Direction } from '../../models/Direction';
+import { RequestService } from 'src/app/services/RequestService';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Etty } from 'src/app/models/Etty';
 
 @Component({
   selector: 'app-caminho',
@@ -10,7 +13,9 @@ import { Direction } from '../../models/Direction';
 })
 export class CaminhoComponent implements OnInit {
   directions:Direction[];
-  constructor(private t:MapappComponent) { }
+  isFavError: boolean = false;
+  loadingFav: boolean = false;
+  constructor(private t:MapappComponent,private req: RequestService) { }
 
   ngOnInit(): void {
     this.directions = this.t.waywayway;    
@@ -32,6 +37,34 @@ export class CaminhoComponent implements OnInit {
     this.t.saveDirections();
 
   }
+  getAllMyRoutes(){
+    this.req.getmyCams().subscribe(
+  
+      (data : any )=>{
 
+    data.forEach( (element: Etty) => {
+     const mf = new Direction();
+     mf.travelMode = "WALKING";
+    mf.destination = 
+    {
+      lat: parseFloat(  element.properties.route_end_lat.value.valueOf() ),
+      lng: parseFloat(  element.properties.route_end_lon.value.valueOf())
+    };
+    mf.origin = 
+    {
+      lat: parseFloat(  element.properties.route_start_lat.value.valueOf()) ,
+      lng: parseFloat(  element.properties.route_start_lon.value.valueOf())
+    };
+     
+     this.t.waywayway.push(mf);
+    });
+    this.t.saveDirections();
+    this.loadingFav = true;
+    setTimeout(()=>this.loadingFav = false,1000);
+},
+(err : HttpErrorResponse)=>{
+ this.isFavError = true;
+});
+}
 
 }

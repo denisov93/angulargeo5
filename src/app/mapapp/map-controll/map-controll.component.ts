@@ -126,17 +126,6 @@ urlSpls = 'http://maps.googleapis.com/maps/api/staticmap?center=38.5754645274909
 setUnexploredRoute(){
   
 }
-  getAllMyRoutes(){
-    this.req.getmyCams().subscribe(
-      (data : any)=>{
-        this.cams = data;
-        console.log("Dir recieved");
-      },
-      (err : HttpErrorResponse)=>{
-        this.isRequestError = true;
-        setTimeout( () => this.isRequestError = false , 2500 );     
-      });
-  }
-  
+
 
 }

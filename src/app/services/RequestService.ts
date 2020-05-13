@@ -89,16 +89,16 @@ export class RequestService {
       return localStorage.getItem('tokenID');
     }
 
-    getCams="'/rest/route/user";
-    getmyCams(){
-      const thisss ={};
+    getCams='/rest/route/user';
+    getmyCams():Observable<JSON>{
+      
       const httpOption = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
           'token': `${localStorage.getItem('tokenID')}`
         })
       }
-      return this.http.post<JSON>(`${this.getCams}`,thisss,httpOption);
+      return this.http.post<JSON>(`${this.getCams}`,'',httpOption);
     }
     
 
