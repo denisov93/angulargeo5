@@ -3,7 +3,7 @@
         <div class="left">
             <img src="../../../assets/img_avatar.png" 
             alt="user" width="100">
-            <h4>username = "username"</h4>
+            <h4>{{userI.user_name}}</h4>
              <p>Profession</p>
              <p>Ranking</p>
         </div>
@@ -37,19 +37,19 @@
               <div class="info_data">
                     <div class="data">
                       <h4>Email</h4>
-                      <p>alex@gmail.com</p>
+                      <p>{{userI.user_email}}</p>
                     </div>
                     <div class="data">
                       <h4>Phone</h4>
-                      <p>0001-213-998761</p>
+                      <p>-</p>
                     </div>
                     <div class="data">
                       <h4>City</h4>
-                      <p>Almada</p>
+                      <p>{{userI.user_place}}</p>
                     </div>
                     <div class="data">
                       <h4>Contry</h4>
-                      <p>Portugal</p>
+                      <p>{{userI.user_country}}</p>
                     </div>
                </div>
             </div>
