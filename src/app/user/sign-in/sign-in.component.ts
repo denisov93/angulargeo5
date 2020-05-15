@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RequestService } from '../../services/RequestService';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import{ PersoneComponent } from '../../person/persone/persone.component';
 
 
 @Component({
@@ -12,10 +13,11 @@ import { Router } from '@angular/router';
 export class SignInComponent implements OnInit {
   isLoginError : boolean = false;
 
-  constructor(private request:RequestService,private router : Router) { }
+  constructor(private request:RequestService,private router : Router, private person:PersoneComponent) { }
 
   ngOnInit(): void {
    // this.request.ping();
+
   }
   OnSubmit(userName,Password){
     const body={
@@ -28,7 +30,9 @@ export class SignInComponent implements OnInit {
      localStorage.setItem('username',userName);
      localStorage.setItem('tokenID',data);
 
-     setTimeout( () => this.router.navigate(['/person']) , 200 );     
+     this.person.getPersoneInfo();
+     this.person.savePersone();
+     setTimeout( () => this.router.navigate(['/person']) , 300 );     
     
    },
    (err : HttpErrorResponse)=>{
