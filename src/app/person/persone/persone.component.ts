@@ -4,6 +4,7 @@ import { RequestService } from 'src/app/services/RequestService';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import {User} from 'src/app/models/User';
+import { username } from 'src/app/models/username';
 
 @Component({
   selector: 'app-persone',
@@ -17,10 +18,18 @@ export class PersoneComponent implements OnInit {
 
   constructor(private req: RequestService) { }
 
-  ngOnInit(): void {  }
+  ngOnInit(): void { 
+    this.loadPersone(); 
+  }
 
   getPersoneInfo(){
-    this.req.getUserInfo().subscribe(
+    var us = localStorage.getItem("username");
+    console.log(us);
+    const body = new username();
+    body.username = us;
+    console.log(body);
+    
+    this.req.getUserInfo(body).subscribe(
   
       (data : any )=>{
         
@@ -36,6 +45,8 @@ export class PersoneComponent implements OnInit {
           this.userI.user_place = data.user_place;
         if(data.user_country == ""){this.userI.user_country = "-";}
           else this.userI.user_country = data.user_country;
+
+          this.savePersone(); 
       },
 
       (err : HttpErrorResponse)=>{
@@ -46,8 +57,9 @@ export class PersoneComponent implements OnInit {
 
   loadPersone(){
     const st = localStorage.getItem("userInfo");
-    if(st==null){
+    if(st=="{}" || st==null){
       this.getPersoneInfo();
+      setTimeout( ()=> 200);
     }
     else this.userI = JSON.parse(st);
   }

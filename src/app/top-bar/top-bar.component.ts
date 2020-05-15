@@ -27,7 +27,9 @@ export class TopBarComponent implements OnInit {
     });
 */
 localStorage.removeItem('tokenID');
-
+localStorage.removeItem('username');
+localStorage.removeItem('userInfo');
+localStorage.removeItem('myDirections'); 
 setTimeout( () => this.router.navigate(['/home']) , 200 );     
     
   }

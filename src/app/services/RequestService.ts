@@ -86,15 +86,14 @@ export class RequestService {
     }
 
     getUser = '/rest/user/get';
-    getUserInfo():Observable<JSON>{
-      
+    getUserInfo(body):Observable<JSON>{
       const httpOption = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
           'token': `${localStorage.getItem('tokenID')}`
         })
       }
-      return this.http.post<JSON>(`${this.getUser}`,'',httpOption);
+      return this.http.post<JSON>(`${this.getUser}`,body,httpOption);
     }
     
     getJwtToken() {
@@ -103,14 +102,18 @@ export class RequestService {
 
     getCams='/rest/route/user';
     getmyCams():Observable<JSON>{
-      
+      const uname = localStorage.getItem('username');
+      const body={
+        "username":uname
+      }
+      console.log(uname);
       const httpOption = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
           'token': `${localStorage.getItem('tokenID')}`
         })
       }
-      return this.http.post<JSON>(`${this.getCams}`,'',httpOption);
+      return this.http.post<JSON>(`${this.getCams}`,body,httpOption);
     }
     
 

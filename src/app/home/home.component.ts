@@ -10,6 +10,8 @@ import { RequestService } from '../services/RequestService';
 })
 export class HomeComponent implements OnInit {
   l: string;
+  isImageLoading: boolean;
+  imageToShow: string | ArrayBuffer;
   constructor( public translate: TranslateService ,private req: RequestService ) {
     translate.addLangs(['pt','en']);
    }
@@ -18,9 +20,9 @@ export class HomeComponent implements OnInit {
    public cam 
    public bg
    public serra
-
   ngOnInit(): void {
 
+    
 
     this.l = localStorage.getItem('language');
     if(this.l===null) this.l='pt';
