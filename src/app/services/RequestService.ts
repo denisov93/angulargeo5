@@ -84,6 +84,18 @@ export class RequestService {
     userRegist(body):Observable<JSON>{ 
       return this.http.post<JSON>(`${this.todosUrl}${this.userReg}`,body,httpOptions);
     }
+
+    getUser = '/rest/user/get';
+    getUserInfo():Observable<JSON>{
+      
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.getUser}`,'',httpOption);
+    }
     
     getJwtToken() {
       return localStorage.getItem('tokenID');
