@@ -10,13 +10,16 @@
   body{
      position: absolute;     
      background: linear-gradient(to top, var(--bg-primary), transparent);
-     width: 90%;     
+     border-bottom-right-radius: 5px;
+     border-bottom-left-radius: 5px;
+     width: 80vw;     
      color: gray;
+     z-index: 10;
   }
   
   .blog{
     position: absolute;
-    margin-top: 38rem;
+    margin-top: 600px;
     background-color:transparent;
   }
 
@@ -26,15 +29,15 @@
     margin-left: 3rem;
     left: 55%;
     transform: translate(-50%,-50%);
-    width: 80%;
-    height: 100%;
+    width: 80vw;
+    height: 100vh;
     display: flex;
   }
   
   .wrapper .leftcard{
     margin-top: 8.5rem;
-    width: 30%;
-    height: 70%;
+    width: 30vw;
+    height: 70vh;
     background: linear-gradient(to right,#48D1CC,#008080);
     padding: 30px 25px;
     border-top-left-radius: 5px;
@@ -59,7 +62,7 @@
 
   .wrapper .midlecard{
     margin-top: 8.5rem;
-    width: 30%;
+    width: 30vw;
     height: 70%;
     background: linear-gradient(to right,#48D1CC,#008080);
     padding: 30px 25px;
@@ -83,8 +86,8 @@
 
   .wrapper .rigthcard{
     margin-top: 8.5rem;
-    width: 30%;
-    height: 70%;
+    width: 30vw;
+    height: 70vh;
     background: linear-gradient(to right,#48D1CC,#008080);
     padding: 30px 25px;
     border-top-right-radius: 5px;
