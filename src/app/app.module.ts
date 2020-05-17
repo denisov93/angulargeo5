@@ -68,7 +68,7 @@ import { AboutusComponent} from './aboutus/aboutus.component';
     FontAwesomeModule,
     SimplebarAngularModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBY1VATzvx85tm56FL0C4Agf_gojmbE_XI', //'AIzaSyDaxjTT7ejDx8ykQs7UU3_fuKnPLIIztjo',
+      apiKey: 'AIzaSyDaxjTT7ejDx8ykQs7UU3_fuKnPLIIztjo', //'AIzaSyBY1VATzvx85tm56FL0C4Agf_gojmbE_XI'
       libraries: ['places', 'drawing', 'geometry'],
     }),
     AgmDirectionModule,

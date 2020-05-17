@@ -24,6 +24,7 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 section:before{
@@ -94,12 +95,12 @@ section:after{
 #img{
     position: absolute;
     top: 0;
-    right: 0;
-    width: 100vw;
-    height: 100vh;
+    left: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     pointer-events: none;
-    opacity: 90%;
+    opacity: 100%;
 }
 
 #Serra-Arrabida{

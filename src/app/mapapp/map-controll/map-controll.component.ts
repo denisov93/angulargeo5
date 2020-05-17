@@ -127,7 +127,7 @@ createImageFromBlob(image: Blob) {
 
 
   getInfosOfPoint(){
-    const urlSpls = 'http://maps.googleapis.com/maps/api/staticmap?center='+`${this.map.latitudeM}`+','+`${this.map.longitudeM}`+'&zoom=16&size=1x1&maptype=roadmap&sensor=false&key=AIzaSyBY1VATzvx85tm56FL0C4Agf_gojmbE_XI'
+    const urlSpls = 'https://maps.googleapis.com/maps/api/staticmap?center='+`${this.map.latitudeM}`+','+`${this.map.longitudeM}`+'&zoom=16&size=1x1&maptype=roadmap&sensor=false&key=AIzaSyDaxjTT7ejDx8ykQs7UU3_fuKnPLIIztjo'
 
     this.isImageLoading = true;
     this.req.getInfosOfPoint(urlSpls).subscribe(
