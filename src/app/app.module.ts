@@ -32,7 +32,7 @@ import { CaminhoComponent } from './mapapp/caminho/caminho.component';
 import { MapControllComponent } from './mapapp/map-controll/map-controll.component';
 import { DirectionComponent } from './mapapp/caminho/direction/direction.component';
 import { AboutusComponent} from './aboutus/aboutus.component';
-
+import { ImageComponent } from './home/images';
 
 @NgModule({
   declarations: [
@@ -55,7 +55,8 @@ import { AboutusComponent} from './aboutus/aboutus.component';
     GalleryComponent,
     RockTrophyComponent,
     SettingsComponent,
-    AboutusComponent
+    AboutusComponent,
+    ImageComponent
     ],
   imports: [
     BrowserModule,
@@ -68,7 +69,7 @@ import { AboutusComponent} from './aboutus/aboutus.component';
     FontAwesomeModule,
     SimplebarAngularModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDaxjTT7ejDx8ykQs7UU3_fuKnPLIIztjo', //'AIzaSyBY1VATzvx85tm56FL0C4Agf_gojmbE_XI'
+      apiKey: 'AIzaSyBY1VATzvx85tm56FL0C4Agf_gojmbE_XI',//'AIzaSyDaxjTT7ejDx8ykQs7UU3_fuKnPLIIztjo',// 
       libraries: ['places', 'drawing', 'geometry'],
     }),
     AgmDirectionModule,

@@ -20,10 +20,16 @@
        <input class="input" type="password" #Password ngModel name="Password" placeholder="{{'Password'|translate}}" required>
     </div>
   <p></p>
-         <div class="form-btn">
+       
+         <div class="form-btn" *ngIf="!isLoginError">
            <button class="btn" [disabled]="!loginForm.valid"  type="submit">{{'SignIn' | translate}}</button>
          </div>
-         <br>
+       
+         
+         <div class="form-btn" *ngIf="isLoginError">
+          <button class="btn btn2" [disabled]="false"  type="submit">{{'SignIn' | translate}}</button>
+         </div>
+         <br> 
  </form>
 </div>
 </div>

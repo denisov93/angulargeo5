@@ -36,6 +36,7 @@ export class SignUpComponent implements OnInit {
    },
    (err : HttpErrorResponse)=>{
      this.isRegError = true;
+     setTimeout(()=>this.isRegError = false,1000);
    });
   }else{
     console.log('error on logIn');

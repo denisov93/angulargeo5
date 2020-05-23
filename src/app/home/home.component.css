@@ -16,7 +16,7 @@ body{
     
 }
 
-section{
+.section{
     position: relative;
     width: 100vw;
     height: 100vh;
@@ -27,7 +27,7 @@ section{
     
 }
 
-section:before{
+.section:before{
     content: '';
     position: absolute;
     bottom: 0;
@@ -37,7 +37,7 @@ section:before{
     z-index: 10000;
 }
 
-section:after{
+.section:after{
     content: '';
     position: absolute;
     top: 0;
@@ -47,7 +47,15 @@ section:after{
     z-index: 10000;
     mix-blend-mode: color;
 }
-
+.thing{
+    position: relative;
+    width: 100vw;
+    height: 50vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 #bg{
     position: absolute;

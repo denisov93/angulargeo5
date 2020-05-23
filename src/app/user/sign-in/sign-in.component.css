@@ -132,4 +132,6 @@ html {
   .btn:hover {
     background-color: var(--bg-secondary);
   }
+
+  .btn2 {background-color: var(--bg-error); }
   

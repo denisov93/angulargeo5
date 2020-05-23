@@ -34,6 +34,7 @@ export class SignInComponent implements OnInit {
    },
    (err : HttpErrorResponse)=>{
      this.isLoginError = true;
+     setTimeout(()=>this.isLoginError = false,1000);
      console.log(err);
    });
   

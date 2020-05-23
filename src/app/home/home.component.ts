@@ -41,4 +41,9 @@ export class HomeComponent implements OnInit {
     this.translate.use(lang);
     this.translate.setDefaultLang(lang);
   }
+
+  public slides = [
+    { src: "./assets/1024.jpg" },
+  ];
+  
 }

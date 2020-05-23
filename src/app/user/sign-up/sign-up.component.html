@@ -32,9 +32,12 @@
           <input class="input" type="password" #Confirmation ngModel name="confirmation" placeholder="{{'ConfirmP'|translate}}"required>                   
         </div>
         <p></p>
-    <div class="form-btn">
+    <div class="form-btn" *ngIf="!isRegError">
     <button class="btn" [disabled]="!registForm.valid" type="submit">{{'Submit' | translate}}</button>
     </div>
+    <div class="form-btn" *ngIf="isRegError">
+      <button class="btn btn2" [disabled]="!registForm.valid" type="submit">{{'Submit' | translate}}</button>
+      </div>
     <br>      
 </form>
 </div>
