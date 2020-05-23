@@ -40,8 +40,10 @@
                         <button id="new" class="btn btn-success" (click)="definirCaminho()" >{{'New'|translate}}</button>
                     </div>
                     
-                </div>
+                </div><br>
                 
+                <app-formpoliline></app-formpoliline>
+                <br>
                 <div *ngIf="!newDefInc && !newDef1">
                     <div class="row" *ngIf="!newDefInc">
                         <div class="alert alert-primary" role="alert">

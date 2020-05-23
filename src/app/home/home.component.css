@@ -19,7 +19,7 @@ body{
 .section{
     position: relative;
     width: 100vw;
-    height: 100vh;
+    height: 20vh;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -47,15 +47,7 @@ body{
     z-index: 10000;
     mix-blend-mode: color;
 }
-.thing{
-    position: relative;
-    width: 100vw;
-    height: 50vh;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 #bg{
     position: absolute;

@@ -33,6 +33,7 @@ import { MapControllComponent } from './mapapp/map-controll/map-controll.compone
 import { DirectionComponent } from './mapapp/caminho/direction/direction.component';
 import { AboutusComponent} from './aboutus/aboutus.component';
 import { ImageComponent } from './home/images';
+import { FormpolilineComponent } from './mapapp/formpoliline/formpoliline.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { ImageComponent } from './home/images';
     RockTrophyComponent,
     SettingsComponent,
     AboutusComponent,
-    ImageComponent
+    ImageComponent,
+    FormpolilineComponent
     ],
   imports: [
     BrowserModule,
