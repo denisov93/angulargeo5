@@ -5,15 +5,9 @@ import { TranslateService } from '@ngx-translate/core';
     selector: 'image-home',
     styleUrls: ['./home.component.css'],
     template: `
-    <div class="section">
-    <picture>
-    <source media="(min-width: 1280px)" srcset="./assets/1024.jpg">
-    <source media="(min-width: 900px)" srcset="./assets/bg.jpg">
-    <source media="(min-width: 600px)" srcset="./assets/img_avatar.png">
-    <img id="img"  alt="" src = './assets/img_avatar.png' >
- 
-  </picture>
-  <div id = "text"><h2 id= "text2">GeoPlaces</h2></div>
+    <div class="subComp">
+    
+    <carousel [slides]="slides"></carousel> 
   </div >
     `
   })
@@ -21,6 +15,11 @@ import { TranslateService } from '@ngx-translate/core';
     constructor(public translate: TranslateService){
 
     }
-  
+    public slides = [
+      { src: "https://s1.1zoom.me/big0/703/Planets_Trees_Night_576489_1280x800.jpg" },
+      { src: "https://s1.1zoom.me/big0/324/USA_Coast_Oregon_coast_sea_Crag_Trees_576509_1280x791.jpg" },
+      { src: "https://s1.1zoom.me/big0/205/Greece_Sunrises_and_sunsets_Coast_Korfu_Crag_Rays_575551_1280x853.jpg" },
+      { src: "https://s1.1zoom.me/big0/307/Forests_Autumn_Trees_Rays_of_light_575453_1280x720.jpg" }
+    ];
       
   }

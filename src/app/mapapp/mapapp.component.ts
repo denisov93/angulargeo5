@@ -57,19 +57,6 @@ export class MapappComponent implements OnInit {
     this.translate.addLangs(['pt','en']); 
     this.translate.setDefaultLang(localStorage.getItem('language'));
     
-    this.dirWaysPollyP = JSON.parse(localStorage.getItem("mySpecialDir"));
-
-    this.dirWaysPollyP.forEach(
-      (th:any[])=>
-      {
-        this.cc.push(
-          {
-            latitude: parseFloat(th[1]),
-            longitude: parseFloat(th[0])
-          }
-        );
-      }
-    );
     
     this.str = localStorage.getItem("onMainPage");
 
@@ -400,9 +387,25 @@ public markerOptions = {
 }
 
 
-dirWaysPollyP = [
-         
-];
+dirWaysPollyP = [   ]; // [{},....]
+
+dirPolygon = [ //[ [{},..], [{},..], ... ]
+  [
+  { lat: 41.31205930960196, lng: -8.431586001851201 },
+  { lat: 41.324436296340245, lng: -8.184393619038701 },
+  { lat: 41.19332735045345, lng: -8.174780581929326 },
+  { lat: 41.179891902397955, lng: -8.404120181538701 }
+  ], 
+  [
+  { lat: 0, lng: 15 },
+  { lat: 0, lng: 20 },
+  { lat: 5, lng: 20 },
+  { lat: 5, lng: 15 },
+  { lat: 0, lng: 15 }
+  ]
+]
+  ;
+
 }
 export class randomImages {
       id : number;

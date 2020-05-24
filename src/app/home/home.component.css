@@ -19,14 +19,18 @@ body{
 .section{
     position: relative;
     width: 100vw;
-    height: 20vh;
+    height: 100vh;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     
 }
-
+.subComp{
+    background-color: white;
+    top:0;
+    height: 30vh;
+}
 .section:before{
     content: '';
     position: absolute;
