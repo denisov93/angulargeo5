@@ -1,5 +1,5 @@
 <div class="middle">
-  <div class="maincomp">
+  <div class="maincomp" *ngIf="!isRegError">
       <ul class="tabs  primary-nav">
           <li class="tabs__item">
               <a class="tabs__link" [routerLink]="'/signin'"routerLinkActive='active'>{{'SignIn' | translate}}</a>
@@ -32,16 +32,16 @@
           <input class="input" type="password" #Confirmation ngModel name="confirmation" placeholder="{{'ConfirmP'|translate}}"required>                   
         </div>
         <p></p>
-    <div class="form-btn" *ngIf="!isRegError">
+    <div class="form-btn">
     <button class="btn" [disabled]="!registForm.valid" type="submit">{{'Submit' | translate}}</button>
     </div>
-    <div class="form-btn" *ngIf="isRegError">
-      <button class="btn btn2" [disabled]="!registForm.valid" type="submit">{{'Submit' | translate}}</button>
-      </div>
+    
     <br>      
 </form>
 </div>
 </div>
 </div>
-            
+<div class="maincomp" *ngIf="isRegError">
+  <load-comp></load-comp>
+</div>         
 </div>

@@ -23,6 +23,7 @@ export class SignInComponent implements OnInit {
       username:userName,
       password:Password
     }
+    this.isLoginError = true;
     this.request.userAuthentication(body).subscribe((data : any)=>{
      console.log(data);
      

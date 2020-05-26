@@ -34,6 +34,7 @@ import { DirectionComponent } from './mapapp/caminho/direction/direction.compone
 import { AboutusComponent} from './aboutus/aboutus.component';
 import { ImageComponent } from './home/images';
 import { FormpolilineComponent } from './mapapp/formpoliline/formpoliline.component';
+import { LoadDummyComponent } from './models/loaddummy';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { FormpolilineComponent } from './mapapp/formpoliline/formpoliline.compon
     SettingsComponent,
     AboutusComponent,
     ImageComponent,
-    FormpolilineComponent
+    FormpolilineComponent,
+    LoadDummyComponent
     ],
   imports: [
     BrowserModule,

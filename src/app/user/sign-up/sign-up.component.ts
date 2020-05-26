@@ -28,11 +28,25 @@ export class SignUpComponent implements OnInit {
       password:Password,
       email:Email
     }
-    
+    this.isRegError = true;
     this.request.userRegist(body).subscribe((data : any)=>{
      console.log(data);
-     localStorage.setItem('username',data.username);
-     this.router.navigate(['/home']);
+     const mm ={
+      username:UserName,
+      password:Password,
+     }
+     this.request.userAuthentication(mm).subscribe((data : any)=>{
+      
+      localStorage.setItem('username',body.username); 
+      localStorage.setItem('tokenID',data);
+ 
+      setTimeout( () => this.router.navigate(['/person']) , 300 );     
+     
+    },(err : HttpErrorResponse)=>{ 
+      this.isRegError = true;
+     setTimeout(()=>this.isRegError = false,1000);
+     });
+     
    },
    (err : HttpErrorResponse)=>{
      this.isRegError = true;

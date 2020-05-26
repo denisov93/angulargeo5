@@ -1,5 +1,5 @@
 <div class="middle">
-  <div class="maincomp">
+  <div class="maincomp" *ngIf="!isLoginError">
       <ul class="tabs  primary-nav">
           <li class="tabs__item">
               <a class="tabs__link" [routerLink]="'/signin'"routerLinkActive='active'>{{'SignIn' | translate}}</a>
@@ -21,18 +21,22 @@
     </div>
   <p></p>
        
-         <div class="form-btn" *ngIf="!isLoginError">
+         <div class="form-btn">
            <button class="btn" [disabled]="!loginForm.valid"  type="submit">{{'SignIn' | translate}}</button>
          </div>
-       
-         
          <div class="form-btn" *ngIf="isLoginError">
-          <button class="btn btn2" [disabled]="false"  type="submit">{{'SignIn' | translate}}</button>
-         </div>
+          <load-comp></load-comp>
+        
+        </div>      
+        
          <br> 
  </form>
+ 
 </div>
 </div>
 </div>
-            
+
+<div class="maincomp"   *ngIf="isLoginError">
+  <load-comp></load-comp>
+</div>       
 </div>
