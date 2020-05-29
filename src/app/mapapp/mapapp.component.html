@@ -124,6 +124,7 @@
         </agm-info-window>
         
         <agm-marker 
+        [animation]="'DROP'"
         *ngIf="showMarker"
         [latitude]="latitudeM" 
         [longitude]="longitudeM"
@@ -147,7 +148,7 @@
             <agm-polyline-point  *ngFor="let point of cc" [latitude]="point.latitude" [longitude]="point.longitude">
             </agm-polyline-point>
         </agm-polyline>
-        <agm-marker *ngFor="let point of cc" [latitude]="cc[0].latitude" [longitude]="cc[0].longitude" [markerDraggable]="false" (markerClick)="clickedMarker(infowindow)" [visible]=show>       
+        <agm-marker *ngFor="let point of cc" [latitude]="cc[0].latitude" label="s" [longitude]="cc[0].longitude" [markerDraggable]="false" (markerClick)="clickedMarker(infowindow)" [visible]=show>       
             <agm-info-window [disableAutoPan]="true" #infowindow>
                 <strong>Trilho Castrejo</strong><br>
                 <img src="https://s0.wklcdn.com/image_18/563863/17514776/11043738Master.jpg" width="200px" height="200px">

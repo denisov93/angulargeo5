@@ -25,7 +25,11 @@ export class HomeComponent implements OnInit {
     
 
     this.l = localStorage.getItem('language');
-    if(this.l===null) this.l='pt';
+    if(this.l==null){
+      this.l='pt';
+    } 
+
+    localStorage.setItem('language',this.l);
 
     this.translate.setDefaultLang(this.l);
 

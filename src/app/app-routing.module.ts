@@ -33,7 +33,9 @@ const routes: Routes = [
   ]
 
   },
-
+  {
+    path :'user',component : UserComponent
+  },
   {
     path :'signup',component : TopBarComponent,
     children :[{ path : '',component: SignUpComponent }]

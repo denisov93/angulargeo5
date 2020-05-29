@@ -1,76 +1,51 @@
-
-
 .middle{
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    list-style: none;
-    text-decoration: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  list-style: none;
+  text-decoration: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
-.body{
-    width: 100%;
-    height: 50%;
-    overflow: hidden;
-    background-color: var(--bg-third);
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    text-align: center;
+.i-card{
+  border-radius: 5px 40px 5px 40px;
+  background: #BADA55;
+	border: 1px solid rgb(153, 179, 69);
+	width: 100%;
+	max-width: 600px;
+  margin: auto;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
-/**
- * Tabs object.
- *
- * 1. Tables (kinda) for layout!
- * 2. This is the magic bit; make all children occupy equal width.
- * 3. Required to make the tabs fill their container.
- * 4. Make each tab pack up horizontally.
- * 5. Ensure the hit area covers the whole tab.
- */
- .tabs {
-    margin:  0;
-    padding: 0;
-    list-style: none;
-    display: table; /* [1] */
-    table-layout: fixed; /* [2] */
-    width: 100%; /* [3] */
+.input{
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 16px;
+  border-radius: 5px 40px 5px 40px;
+  line-height: 1.2;
+  padding: 0 35px 0 35px;
+  position: relative;
+  height: 30px;
+	border: 1px solid rgb(153, 179, 69);
 }
 
-    .tabs__item {
-        display: table-cell; /* [4] */
-    }
-
-        .tabs__link {
-            display: block; /* [5] */
-        }
-
-
-/**
- * Primary nav. Extends `.tabs`.
- *
- * 1. Stop tabs’ corners leaking out beyond our 4px round.
- */
-.primary-nav {
-    text-align: center;
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
-    overflow: hidden; /* [1] */
+.btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 35px 0 35px;
+  width: 100%;
+  height: 40px;
+  background-color:#03a9f4;
+  border-radius: 5px 40px 5px 40px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  font-family: sans-serif;
+  font-size: 16px;
+  color: #fff;
 }
 
-        .primary-nav a {
-            padding: 1em;
-            background-color: var(--bg-primary);
-            color: #fff;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .primary-nav a:hover {
-            background-color: var(--bg-secondary);
-        }
-html {
-    font: 0.75em/1.5 sans-serif;
+.btn:hover {
+  background-color: #e91e63;
 }
-

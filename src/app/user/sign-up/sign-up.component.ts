@@ -33,7 +33,7 @@ export class SignUpComponent implements OnInit {
      console.log(data);
      const mm ={
       username:UserName,
-      password:Password,
+      password:Password
      }
      this.request.userAuthentication(mm).subscribe((data : any)=>{
       

@@ -16,31 +16,27 @@ import { latLon } from '../models/latLon';
 })
 
 export class MapappComponent implements OnInit {
-  maptype:String  
-  latitude: number
-  longitude: number
-  zoom:number;
-  previous
-  Options
-  public show: boolean = false
+  maptype:String; latitude: number; longitude: number; zoom:number; l: string;previous ; Options ;
+   public show: boolean = false;
   srt: any;
-  latitudeM: number;
-  longitudeM: number;
+  latitudeM: number; longitudeM: number;
   showMarker:boolean = false;
   imagesRandom:randomImages[];
   onMainPage:boolean;
-  str;
-  formDir ;
+  str; formDir ;
   public infoOptionLat: any
   public infoOptionLng: any
  
   public show2: boolean = false;
+
+
   constructor(
     private formBuilder:FormBuilder,
     private req:RequestService,  
     public translate: TranslateService
   )
   {  
+    
       this.formDir = new FormGroup(
         {
           travelMode: new FormControl("WALKING"),
@@ -54,9 +50,14 @@ export class MapappComponent implements OnInit {
   ccOF:boolean = false;
   ngOnInit(): void {
     this.setCurrentLocation();
-    this.translate.addLangs(['pt','en']); 
-    this.translate.setDefaultLang(localStorage.getItem('language'));
     
+   
+    this.l = localStorage.getItem('language');
+    if(this.l==null){
+      this.l='pt';
+    } 
+
+    localStorage.setItem('language',this.l);
     
     this.str = localStorage.getItem("onMainPage");
 
@@ -69,7 +70,8 @@ export class MapappComponent implements OnInit {
 
     this.loadDirections();
     this.getDirection();
-    
+   
+    this.translate.setDefaultLang(localStorage.getItem('language'));
    // this.getDirection();
    // this.req.getTodos().subscribe(reqw => {
    //   this.imagesRandom = reqw;
