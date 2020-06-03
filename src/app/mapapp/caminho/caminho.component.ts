@@ -25,9 +25,7 @@ export class CaminhoComponent implements OnInit {
   
   public displayCaminho: boolean = true;
 
-  toggleDisplay(){
-    this.displayCaminho = !this.displayCaminho;
-  }
+ 
 
   deleteDir(direction:Direction){
     this.directions = this.directions.filter(tr => tr !== direction);
@@ -38,6 +36,8 @@ export class CaminhoComponent implements OnInit {
     this.t.saveDirections();
 
   }
+
+ 
   getAllMyRoutes(){
     this.req.getmyCams().subscribe(
   
@@ -58,7 +58,8 @@ export class CaminhoComponent implements OnInit {
       lat: parseFloat(  element.origin.lat.valueOf()) ,
       lng: parseFloat(  element.origin.lng.valueOf())
     };
-    
+    mf.title = element.title;
+    mf.description = element.description;
     
       var arr: [{location:{lat:number,lng:number}}] = [{location:{lat:0,lng:0}}];
       

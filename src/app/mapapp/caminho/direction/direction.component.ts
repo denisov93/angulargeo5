@@ -31,6 +31,7 @@ export class DirectionComponent implements OnInit {
     this.direction.visible = !this.direction.visible;
   }
 
+
   addtoFavorites(direction:Direction){
     var dir = new Direction();
     dir.id = direction.id;

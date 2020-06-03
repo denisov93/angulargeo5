@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, ViewChild, Output, EventEmitter} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./formpoliline.component.css']
 })
 export class FormpolilineComponent{
-  
+  @Output() newDirectionAdded: EventEmitter<boolean> = new EventEmitter();
   @ViewChild('labelImport')
   labelImport: ElementRef;
 
@@ -53,10 +53,12 @@ export class FormpolilineComponent{
       localStorage.setItem("mySpecialDir",JSON.stringify(orderedWtoSpace));
       
     };
-
+    
     reader.readAsText(this.fileToUpload);
     
-    setTimeout(()=>this.router.navigate(['/map']) ,300);
+    this.newDirectionAdded.emit(true);
+
+        
   }
 
 }

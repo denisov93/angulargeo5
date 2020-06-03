@@ -80,9 +80,13 @@ export class RequestService {
       return this.http.post<JSON>(`${this.todosUrl}${this.userlogout}`,token,httpOptions);
     }
 
-    userReg='/rest/register';
+    userReg='/rest/register/confirm';
     userRegist(body):Observable<JSON>{ 
       return this.http.post<JSON>(`${this.todosUrl}${this.userReg}`,body,httpOptions);
+    }
+    activateAcc='/rest/user/activateAccount';
+    userActAcc(body):Observable<JSON>{
+      return this.http.post<JSON>(`${this.todosUrl}${this.activateAcc}`,body,httpOptions);
     }
 
     getUser = '/rest/user/get';

@@ -1,6 +1,7 @@
 <ngb-accordion [closeOthers]="true">
-    <ngb-panel >
+    <ngb-panel>
         <ng-template ngbPanelHeader>
+            {{direction.title}}
                 <button ngbPanelToggle class="btn btn-sm btn-outline-primary ml-2" (click)="showHide()" >Show | Hide</button>
                 <button type="button" class="btn btn-sm btn-outline-danger ml-2" (click)="delete(direction)">Delete</button>
         </ng-template>

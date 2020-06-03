@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, NgZone ,Renderer2, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone ,Renderer2, ComponentFactoryResolver, Output, EventEmitter } from '@angular/core';
 import { AgmCoreModule, MapsAPILoader, MouseEvent, AgmMap } from '@agm/core';
 import { Url } from 'url';
 import { RequestService } from '../services/RequestService';
@@ -7,6 +7,8 @@ import { NgForm,FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Direction } from '../models/Direction';
 import { DirectionWhithWaypoints } from '../models/DirectionWithWaypoints';
 import { latLon } from '../models/latLon';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -16,6 +18,8 @@ import { latLon } from '../models/latLon';
 })
 
 export class MapappComponent implements OnInit {
+  @Output() newMF: EventEmitter<Direction> = new EventEmitter();
+
   maptype:String; latitude: number; longitude: number; zoom:number; l: string;previous ; Options ;
    public show: boolean = false;
   srt: any;
@@ -31,8 +35,7 @@ export class MapappComponent implements OnInit {
 
 
   constructor(
-    private formBuilder:FormBuilder,
-    private req:RequestService,  
+    private router : Router,
     public translate: TranslateService
   )
   {  
@@ -164,7 +167,7 @@ private setCurrentLocation() {
   const posMLat = localStorage.getItem("posMLat");
   const posMLng = localStorage.getItem("posMLng");
   if(posMLat==null){
-  if ('geolocation' in navigator) {
+ /* if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition((position) => {
       this.latitude = position.coords.latitude;
       this.longitude = position.coords.longitude;
@@ -173,7 +176,15 @@ private setCurrentLocation() {
 
       this.zoom = 15;
     });
-  }
+  }else { 
+    */
+      this.latitude = 38.660109;
+      this.longitude = -9.203209;
+      this.latitudeM = 38.660109;
+      this.longitudeM = -9.203209;
+
+      this.zoom = 15;
+  
 } else{
   this.latitude = parseFloat(posMLat);
   this.longitude = parseFloat(posMLng);
@@ -213,15 +224,39 @@ definirCaminho(){
   
 }
 //Def way 2nd part
-definirC1(){
-    
+Title = "";
+Description = "";
+definirC1(Title,Description){
+  this.Title = Title;
+  this.Description = Description;
     this.origin = { lat: this.latitudeM, lng: this.longitudeM};
+    this.markers.push(
+      {
+      latitude:this.latitudeM,
+      longitude:this.longitudeM,
+      info:`Start at ${this.latitudeM} and ${this.longitudeM}`,
+      label:"S",
+      iconUrl:"http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+     }
+    );
     this.newDef1=true;
   
 }
 
 definirC2(){
+
   this.destination = { lat: this.latitudeM, lng: this.longitudeM };
+  this.markers.push(
+    {
+    latitude:this.latitudeM,
+    longitude:this.longitudeM,
+    info:`Finish at ${this.latitudeM} and ${this.longitudeM}`,
+    label:"F",
+    iconUrl:"http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+    opacity:0.6,
+    zIndex:0.2
+   }
+  );
   this.newDef2 = true;
 }
 
@@ -234,12 +269,25 @@ definirC2WayP(){
       lng: this.longitudeM
     }
   }
+
+  this.markers.push(
+    {
+    latitude:this.latitudeM,
+    longitude:this.longitudeM,
+    info:`this marker is at ${this.latitudeM} and ${this.longitudeM}`,
+    label:"I",
+    iconUrl:"http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+    opacity:0.6,
+    zIndex:0.2
+   }
+  );
   
+
   this.waypoints.push(mf);
 
   this.wayPushed = true;
   this.anyWayP = true;
-  setTimeout(()=>this.wayPushed=false,600);
+  setTimeout(()=>this.wayPushed=false,800);
 }
 
 create_UUID(){
@@ -252,7 +300,7 @@ create_UUID(){
   return uuid;
 }
 
-anyWaypoints(){
+finalizeSetDir(){
 var mf;
 if(this.anyWayP){
    mf = new DirectionWhithWaypoints();
@@ -262,24 +310,30 @@ if(this.anyWayP){
 }
    
   mf.username = localStorage.getItem("username");
-  mf.title = "test_Title";
-  mf.description = "test_Description";
+  
+  mf.title = this.Title;
+  mf.description = this.Description;
+
   mf.travelMode="WALKING";
   mf.origin = this.origin;
   mf.destination = this.destination;
   mf.id = this.create_UUID();
   mf.type = this.anyWayP;
+  mf.visible = false;
 
-  console.log(mf.id);
-
-  
+  console.log(mf);
+ 
  this.waywayway.push(mf);
  
-
  this.saveDirections();
-
   
  this.abortChanges();
+
+ this.ChangeOnMainPageF();
+
+ this.router.navigate(['/map/caminho']);
+
+ 
 
 }
 
@@ -326,7 +380,12 @@ onSubmit(myForm){
  this.abortChanges();
 }
 
-
+newDirectionAdded(b:boolean){
+  if(b){
+    
+    this.showDirection();
+  }
+}
 
 public waywayway: Direction[];
 /*

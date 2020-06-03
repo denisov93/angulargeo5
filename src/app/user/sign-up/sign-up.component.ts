@@ -2,7 +2,6 @@ import { Component, OnInit ,NgModule} from '@angular/core';
 import { RequestService } from '../../services/RequestService';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { SimplebarAngularModule } from 'simplebar-angular';
 
 
 @Component({
@@ -30,23 +29,12 @@ export class SignUpComponent implements OnInit {
     }
     this.isRegError = true;
     this.request.userRegist(body).subscribe((data : any)=>{
-     console.log(data);
-     const mm ={
-      username:UserName,
-      password:Password
-     }
-     this.request.userAuthentication(mm).subscribe((data : any)=>{
-      
+     
       localStorage.setItem('username',body.username); 
-      localStorage.setItem('tokenID',data);
- 
-      setTimeout( () => this.router.navigate(['/person']) , 300 );     
-     
-    },(err : HttpErrorResponse)=>{ 
-      this.isRegError = true;
-     setTimeout(()=>this.isRegError = false,1000);
-     });
-     
+      localStorage.setItem('password',body.password);
+
+      setTimeout( () => this.router.navigate(['/user']) , 300 );
+
    },
    (err : HttpErrorResponse)=>{
      this.isRegError = true;
