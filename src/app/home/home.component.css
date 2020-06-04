@@ -234,3 +234,19 @@ html {
     background-color: yellow;
     border-radius: 50px;
 }
+
+ /* Small screens */
+ @media only screen and (max-width: 650px) {
+    .maincomp {
+        margin-left: 1rem;
+        padding: 1rem;
+      }
+ }
+
+  /* Large screens */
+ @media only screen and (min-width: 650px) {
+    .maincomp {
+        margin-left: 6rem;
+        padding: 1rem;
+      }
+  }

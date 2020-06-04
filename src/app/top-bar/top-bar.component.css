@@ -184,6 +184,21 @@
     .maincomp {
       margin: 0;
     }
+    .backbtn{
+      z-index: 10001;
+    }
+    .backbtn {
+        width: 2rem;
+        position: fixed;
+        top: 1rem;
+        left: 3rem;
+        font-family: sans-serif;
+        background-color: var(--bg-primary);
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    }
+    .backbtn svg {
+      transform: rotate(-180deg);
+    }
   }
   
   /* Large screens */
@@ -193,7 +208,9 @@
       width: 6rem;
       height: 100vh;
     }
-  
+    .backbtn{
+      display: none;
+    }
     .navbar:hover {
       width: 16rem;
     }
