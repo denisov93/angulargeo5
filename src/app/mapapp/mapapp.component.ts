@@ -252,9 +252,7 @@ definirC2(){
     longitude:this.longitudeM,
     info:`Finish at ${this.latitudeM} and ${this.longitudeM}`,
     label:"F",
-    iconUrl:"http://maps.google.com/mapfiles/ms/icons/red-dot.png",
-    opacity:0.6,
-    zIndex:0.2
+    iconUrl:"http://maps.google.com/mapfiles/ms/icons/red-dot.png"
    }
   );
   this.newDef2 = true;
@@ -276,9 +274,8 @@ definirC2WayP(){
     longitude:this.longitudeM,
     info:`this marker is at ${this.latitudeM} and ${this.longitudeM}`,
     label:"I",
-    iconUrl:"http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
-    opacity:0.6,
-    zIndex:0.2
+    iconUrl:"http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+    
    }
   );
   

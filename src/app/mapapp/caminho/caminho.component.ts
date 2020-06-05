@@ -58,6 +58,19 @@ export class CaminhoComponent implements OnInit {
       lat: parseFloat(  element.origin.lat.valueOf()) ,
       lng: parseFloat(  element.origin.lng.valueOf())
     };
+    this.t.markers.push(
+      {
+        latitude:element.origin.lat.valueOf(),
+        longitude:element.origin.lng.valueOf(),
+        info:`- Title: ${element.title} \n
+        -Description: ${element.description}`,
+        label:"S",
+        iconUrl:"../../../assets/blue-dot.png",
+        opacity:0.6,
+        zIndex:0.2
+       }
+    );
+
     mf.title = element.title;
     mf.description = element.description;
     

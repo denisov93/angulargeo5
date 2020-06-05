@@ -50,9 +50,15 @@
                             <div class="alert alert-primary" role="alert">
                                 {{'MapStartP'|translate}}<strong>{{'MapSReady'|translate}}</strong>
                             </div>
+                            <div class="row">
                             <div class="form-btn">
                             <button  class="btn btn-success" [disabled]="!mForm.valid" type="submit">{{'Set'|translate}}</button>
                             </div>
+                            
+                            <div class="form-btn">
+                                <button  class="btn btn-danger" (click)="abortChanges()">{{'Delete'|translate}}</button>
+                            </div>
+                        </div>
                         </div><br>
                     </form> 
                 </div>
@@ -78,7 +84,7 @@
                         <strong>{{'SetStartP'|translate}} {{origin.lat}} && {{origin.lng}} {{'SetDest'|translate}} {{destination.lat}}&& {{destination.lng}} {{'CreatP'|translate}}</strong>
                     </div>
                     <button  class="btn btn-success" (click)="finalizeSetDir()" >{{'Create'|translate}}</button>
-                    <button  class="btn btn-danger" (click)="abortChanges()" >{{'Set'|translate}}</button>
+                    <button  class="btn btn-danger" (click)="abortChanges()" >{{'Delete'|translate}}</button>
                 </div>    
         </div>
     </div>            
@@ -102,6 +108,7 @@
         [disableAutoPan]="true" 
         [isOpen]="show2"
         >
+        <app-map-cam-info></app-map-cam-info>
         </agm-info-window>
         
         <agm-marker 
@@ -120,8 +127,7 @@
         [markerDraggable]="false" 
         (markerClick)="clickedMarker(infowindow)"
         iconUrl = "{{marker.iconUrl}}"
-        zIndex = "{{marker.zIndex}}"
-        opacity = "{{marker.opacity}}"
+        
         >       
             <agm-info-window [disableAutoPan]="true" #infowindow>{{marker.info}}</agm-info-window>
         </agm-marker>

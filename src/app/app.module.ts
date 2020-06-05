@@ -35,6 +35,7 @@ import { AboutusComponent} from './aboutus/aboutus.component';
 import { ImageComponent } from './home/images';
 import { FormpolilineComponent } from './mapapp/formpoliline/formpoliline.component';
 import { LoadDummyComponent } from './models/loaddummy';
+import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { LoadDummyComponent } from './models/loaddummy';
     AboutusComponent,
     ImageComponent,
     FormpolilineComponent,
-    LoadDummyComponent
+    LoadDummyComponent,
+    MapCamInfoComponent
     ],
   imports: [
     BrowserModule,
