@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-map-cam-info',
   templateUrl: './map-cam-info.component.html',
@@ -9,7 +10,8 @@ export class MapCamInfoComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit() {
+		
+    }
 
 }
