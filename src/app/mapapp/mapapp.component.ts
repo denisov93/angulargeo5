@@ -183,7 +183,7 @@ private setCurrentLocation() {
       this.latitudeM = 38.660109;
       this.longitudeM = -9.203209;
 
-      this.zoom = 15;
+      this.zoom = 8;
   
 } else{
   this.latitude = parseFloat(posMLat);
@@ -191,7 +191,7 @@ private setCurrentLocation() {
   this.latitudeM = parseFloat(posMLat);
   this.longitudeM = parseFloat(posMLng);
 
-  this.zoom = 15;
+  this.zoom = 8;
 
   }
 }
@@ -419,6 +419,7 @@ markers = [
  // {latitude: 38.657849552573595, longitude: -9.177789709716588,info:'this is 1'}, 
   //{latitude: 38.6494375039336, longitude: -9.163289687782079,info:'this is 2'},
  // {latitude: 38.66250759275842, longitude: -9.160076401382238,info:'this is 3'}
+ 
 ]  
 public slides = [
   { src: "https://s1.1zoom.me/big0/703/Planets_Trees_Night_576489_1280x800.jpg" },
@@ -464,6 +465,86 @@ dirPolygon = [ //[ [{},..], [{},..], ... ]
 ]
   ;
 
+reservaNatural = [
+  {
+    title:"Paisagem Protegida da Arriba Fóssil da Costa de Caparica",
+    coord:{lat:41.3698,"lg":7.81768},
+    },
+    {
+    title:"Parque Natural da Arrábida", 
+    coord:{lat:38.468341,lng:-9.064629},
+    },
+    {
+    title:"Reserva Natural do Estuário do Sado",
+    coord:{lat:38.526465,lng:-8.803120},
+    },
+    {
+    title:"Reserva Natural do Estuário do Tejo",
+    coord:{lat:38.827208,lng:-8.988728},
+    },
+    {
+    title:"Parque Natural de Sintra-Cascais",
+    coord:{lat:38.793941,lng:-9.434548},
+    },
+    {
+    title:"Parque Natural do Sudoeste Alentejano e Costa Vicentina",
+    coord:{lat:37.456909,lng:-8.790526},
+    },
+    {
+    title:"Parque Natural do Vale do Guadiana",
+    coord:{lat:37.645547,lng:-7.668150},
+    },
+    {
+    title:"Parque Natural da Serra de São Mamede",
+    coord:{lat:39.310489,lng:-7.410112},
+    },
+    {
+    title:"Reserva Natural do Paul do Boquilobo",
+    coord:{lat:39.389310,lng:-8.539366},
+    },
+    {
+    title:"Reserva Natural do Paul de Arzila",
+    coord:{lat:40.182975,lng:-8.548877},
+    },
+    {
+    title:"Serra da Estrela Natural Park",
+    coord:{lat:40.330232,lng:-7.627111},
+    },
+    {
+    title:"Reserva Natural da Serra da Malcata",
+    coord:{lat:40.276118,lng:-7.030297},
+    },
+    {
+    title:"Parque Natural do Douro Internacional",
+    coord:{lat:41.271091,lng:-6.652391},
+    },
+    {
+    title:"Parque Natural do Alvão",
+    coord:{lat:41.367130,lng:-7.820801},
+    },
+    {
+    title:"Parque Natural do Litoral Norte",
+    coord:{lat:41.523038,lng:-8.791700},
+    },
+    {
+    title:"Parque Nacional Peneda-Gerês",
+    coord:{lat:41.839496,lng:-8.242081},
+    },
+    {
+    title:"Parque natural de Montesinho",
+    coord:{lat:41.905205,lng:-6.862013},
+    },
+    {
+    title:"Parque Natural das Serras de Aire e Candeeiros",
+    coord:{lat:39.502818,lng:-8.812173},
+    },
+    {
+    title:"Parque Natural da Madeira",
+    coord:{lat:32.757373,lng:-16.995811},
+    }
+];
+
+ 
 }
 export class randomImages {
       id : number;

@@ -109,7 +109,7 @@ export class MapControllComponent implements OnInit {
       this.getInfosOfPoint();
       this.wayPoints.push( 
       {
-      lat: this.map.latitudeM ,
+      lat: this.map.latitudeM,
       lng: this.map.longitudeM 
     }
     );

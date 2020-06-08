@@ -126,12 +126,22 @@
         [longitude]="marker.longitude" 
         [markerDraggable]="false" 
         (markerClick)="clickedMarker(infowindow)"
-        iconUrl = "{{marker.iconUrl}}"
-        
+        iconUrl = "{{marker.iconUrl}}"   
         >       
             <agm-info-window [disableAutoPan]="true" #infowindow>{{marker.info}}</agm-info-window>
         </agm-marker>
-            
+        
+        <agm-marker 
+        *ngFor="let res of reservaNatural"
+        [latitude]="res.coord.lat" 
+        [longitude]="res.coord.lng" 
+        [markerDraggable]="false" 
+        (markerClick)="clickedMarker(infowindow)"
+        iconUrl = "../assets/tree_pinlet-2-medium.png"   
+        >       
+            <agm-info-window [disableAutoPan]="true" #infowindow>{{res.title}}</agm-info-window>
+        </agm-marker>
+
         <agm-direction #defWay *ngFor="let way of waywayway" [travelMode]="way.travelMode" [origin]="way.origin" [destination]="way.destination" [waypoints]="way.waypoints" [visible]="way.visible">
         
         </agm-direction>
