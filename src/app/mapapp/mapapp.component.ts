@@ -1,14 +1,14 @@
-import { Component, OnInit, ViewChild, ElementRef, NgZone ,Renderer2, ComponentFactoryResolver, Output, EventEmitter } from '@angular/core';
-import { AgmCoreModule, MapsAPILoader, MouseEvent, AgmMap } from '@agm/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone ,Renderer2, ComponentFactoryResolver, Output, EventEmitter, Input } from '@angular/core';
+import { AgmCoreModule, MapsAPILoader, MouseEvent, AgmMap, AgmMarker } from '@agm/core';
 import { Url } from 'url';
-import { RequestService } from '../services/RequestService';
 import { TranslateService } from '@ngx-translate/core';
 import { NgForm,FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Direction } from '../models/Direction';
 import { DirectionWhithWaypoints } from '../models/DirectionWithWaypoints';
-import { latLon } from '../models/latLon';
 import { Router } from '@angular/router';
-
+import {  HostListener } from '@angular/core';
+import { InfoWindow } from '@agm/core/services/google-maps-types';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Component({
@@ -19,7 +19,8 @@ import { Router } from '@angular/router';
 
 export class MapappComponent implements OnInit {
   @Output() newMF: EventEmitter<Direction> = new EventEmitter();
-
+  @Output() showHide: EventEmitter<String> = new EventEmitter();
+  
   maptype:String; latitude: number; longitude: number; zoom:number; l: string;previous ; Options ;
    public show: boolean = false;
   srt: any;
@@ -30,13 +31,16 @@ export class MapappComponent implements OnInit {
   str; formDir ;
   public infoOptionLat: any
   public infoOptionLng: any
- 
+  
+  public thisInfoW: InfoWindow = undefined;
   public show2: boolean = false;
-
+  
+  private messageSource = new BehaviorSubject('default message');
+  currentMessage = this.messageSource.asObservable();
 
   constructor(
     private router : Router,
-    public translate: TranslateService
+    public translate: TranslateService,
   )
   {  
     
@@ -54,7 +58,6 @@ export class MapappComponent implements OnInit {
   ngOnInit(): void {
     this.setCurrentLocation();
     
-   
     this.l = localStorage.getItem('language');
     if(this.l==null){
       this.l='pt';
@@ -81,7 +84,7 @@ export class MapappComponent implements OnInit {
       //reqw.forEach(randomImages, index: number, array: randomImages[])
    //   console.log(reqw);
    // });
-   
+  
   }
 
   showHMarker($event: MouseEvent){
@@ -96,6 +99,13 @@ export class MapappComponent implements OnInit {
   public removeDirection(){
     this.show = false
   }
+
+  hideRoutes(){
+    this.waywayway.map(
+      tr=> tr.visible=false
+    );
+  }
+  
   public showDirection(){
     this.dirWaysPollyP = JSON.parse(localStorage.getItem("mySpecialDir"));
    
@@ -132,7 +142,20 @@ export class MapappComponent implements OnInit {
     this.previous = infowindow;
   }
 
-  
+  clickedDirection(DirMrk:AgmMarker){    
+    var v = DirMrk.id.toString();
+    this.hideRoutes();
+    
+    this.messageSource.next(v);
+     
+    this.ChangeOnMainPageF();
+   
+    this.router.navigate(['/map/caminho']);
+    
+  }
+
+
+
   ChangeOnMainPageT(){
     localStorage.setItem("onMainPage","true");
     this.onMainPage = true;
@@ -298,6 +321,7 @@ create_UUID(){
 }
 
 finalizeSetDir(){
+this.markers = [];  
 var mf;
 if(this.anyWayP){
    mf = new DirectionWhithWaypoints();

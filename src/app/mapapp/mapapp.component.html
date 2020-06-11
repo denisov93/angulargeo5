@@ -1,4 +1,5 @@
 <div>
+   <!-- <div class="sous" #myPanel ></div>-->
 <div class="mainBarCompBox">  
 <div class="mainBarComp">
     <div class="subComp">
@@ -108,7 +109,7 @@
         [disableAutoPan]="true" 
         [isOpen]="show2"
         >
-        <app-map-cam-info></app-map-cam-info>
+        <app-map-cam-info (hideRoute)="hideRoutes()"></app-map-cam-info>
         </agm-info-window>
         
         <agm-marker 
@@ -139,12 +140,28 @@
         (markerClick)="clickedMarker(infowindow)"
         iconUrl = "../assets/tree_pinlet-2-medium.png"   
         >       
-            <agm-info-window [disableAutoPan]="true" #infowindow>{{res.title}}</agm-info-window>
+            <agm-info-window [disableAutoPan]="true" #infowindow >{{res.title}}</agm-info-window>
         </agm-marker>
 
-        <agm-direction #defWay *ngFor="let way of waywayway" [travelMode]="way.travelMode" [origin]="way.origin" [destination]="way.destination" [waypoints]="way.waypoints" [visible]="way.visible">
-        
+        <agm-marker
+        #DirMrk 
+        *ngFor="let marker of waywayway"
+        [id]="marker.id"
+        [latitude]="marker.origin.lat" 
+        [longitude]="marker.origin.lng" 
+        [markerDraggable]="false"
+        [visible]="!marker.visible" 
+        (markerClick)="clickedDirection(DirMrk)"
+        iconUrl = "../assets/hiking_pinlet-2-medium.png"   
+        >       
+        </agm-marker>
+
+        <agm-direction #defWay id="defWay" *ngFor="let way of waywayway" [infoWindow]="thisInfoW" [travelMode]="way.travelMode" [origin]="way.origin" [destination]="way.destination" [waypoints]="way.waypoints" [visible]="way.visible">
+
         </agm-direction>
+        
+            
+       
 
         <agm-polyline  [strokeColor]="'red'" *ngIf="newPolly">
             <agm-polyline-point  *ngFor="let marker of dirWaysP" [latitude]="marker.lat" [longitude]="marker.lng">

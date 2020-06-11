@@ -1,7 +1,10 @@
-import { Component, OnInit ,Input, EventEmitter, Output} from '@angular/core';
+import { Component, OnInit ,Input, EventEmitter, Output, Directive} from '@angular/core';
 import { RequestService } from '../../../services/RequestService';
 import { Direction } from '../../../models/Direction';
 import { HttpErrorResponse } from '@angular/common/http';
+import {  HostListener } from '@angular/core';
+import { MapappComponent } from '../../mapapp.component';
+
 
 @Component({
   selector: 'app-direction',
@@ -12,10 +15,23 @@ export class DirectionComponent implements OnInit {
   @Input() direction : Direction
   @Output() deleteDir: EventEmitter<Direction> = new EventEmitter();
   isRequestError: boolean = false;
+  activeIds: string[] = [];
+  dirId:string;
 
-  constructor( private req: RequestService ) { }
-
+  constructor(private rr:MapappComponent, private req: RequestService ) { }
+  
   ngOnInit(): void {
+    this.rr.currentMessage.subscribe(
+      dirId=>{
+        if(dirId==this.direction.id){
+          this.dirId=dirId;
+          this.activeIds = ["id12"];
+          this.showHide();
+        }
+         
+      }
+      
+      );
   }
   setClasses(){
     let classes = {
@@ -27,10 +43,15 @@ export class DirectionComponent implements OnInit {
   delete(direction){
     this.deleteDir.emit(direction);
   }
+
   showHide(){
     this.direction.visible = !this.direction.visible;
   }
-
+ 
+  showHide1(){ 
+    console.log("Fered");
+    
+  }
 
   addtoFavorites(direction:Direction){
     var dir = new Direction();

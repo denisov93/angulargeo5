@@ -22,10 +22,11 @@ export class CaminhoComponent implements OnInit {
     this.directions = this.t.waywayway;    
   }
 
+  showHide1(){ 
+    console.log("Fered");
+    
+  }
   
-  public displayCaminho: boolean = true;
-
- 
 
   deleteDir(direction:Direction){
     this.directions = this.directions.filter(tr => tr !== direction);

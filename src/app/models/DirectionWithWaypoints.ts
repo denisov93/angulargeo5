@@ -1,6 +1,7 @@
 import {latLon} from './latLon'
 
 export class DirectionWhithWaypoints{
+    id:String
     username:String
     title:String
     description:String
