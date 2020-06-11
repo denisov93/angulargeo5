@@ -143,9 +143,14 @@ export class MapappComponent implements OnInit {
   }
 
   clickedDirection(DirMrk:AgmMarker){    
-    var v = DirMrk.id.toString();
-    this.hideRoutes();
+    console.log("entrou em ClickDir");
     
+    var v = DirMrk.id.toString();
+
+    console.log(v);
+    this.hideRoutes();
+    setTimeout(()=>100);
+        
     this.messageSource.next(v);
      
     this.ChangeOnMainPageF();

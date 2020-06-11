@@ -44,6 +44,8 @@ import { ImageComponent } from './home/images';
 import { FormpolilineComponent } from './mapapp/formpoliline/formpoliline.component';
 import { LoadDummyComponent } from './models/loaddummy';
 import { AdminDefaultModule } from './layouts/admin-default/admin-default.module';
+import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 @NgModule({
   declarations: [
@@ -101,7 +103,10 @@ import { AdminDefaultModule } from './layouts/admin-default/admin-default.module
       }
     }),
     BrowserAnimationsModule,
-    AdminDefaultModule
+    AdminDefaultModule,
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbLayoutModule,
+    NbEvaIconsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
