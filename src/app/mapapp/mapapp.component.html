@@ -153,7 +153,7 @@
         [visible]="!marker.visible" 
         (markerClick)="clickedDirection(DirMrk)"
         iconUrl = "../assets/hiking_pinlet-2-medium.png"   
-        >       
+        >      
         </agm-marker>
 
         <agm-direction #defWay id="defWay" *ngFor="let way of waywayway" [infoWindow]="thisInfoW" [travelMode]="way.travelMode" [origin]="way.origin" [destination]="way.destination" [waypoints]="way.waypoints" [visible]="way.visible">

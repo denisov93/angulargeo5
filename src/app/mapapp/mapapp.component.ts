@@ -147,10 +147,9 @@ export class MapappComponent implements OnInit {
     
     var v = DirMrk.id.toString();
 
-    console.log(v);
+    console.log();
     this.hideRoutes();
-    setTimeout(()=>100);
-        
+    
     this.messageSource.next(v);
      
     this.ChangeOnMainPageF();
