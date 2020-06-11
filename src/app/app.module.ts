@@ -46,7 +46,7 @@ import { LoadDummyComponent } from './models/loaddummy';
 import { AdminDefaultModule } from './layouts/admin-default/admin-default.module';
 import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-
+import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,7 +71,8 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     AboutusComponent,
     ImageComponent,
     FormpolilineComponent,
-    LoadDummyComponent
+    LoadDummyComponent,
+    MapCamInfoComponent
     ],
   imports: [
     BrowserModule,
