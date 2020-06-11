@@ -1,19 +1,31 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { HttpClientModule,HttpClient } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { JwtModule } from "@auth0/angular-jwt";
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
+
+import { AgmCoreModule } from '@agm/core';
+import { AgmDirectionModule } from 'agm-direction';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { TopBarComponent } from './top-bar/top-bar.component';
 import { SimplebarAngularModule } from 'simplebar-angular';
-import { AgmCoreModule } from '@agm/core';
+
+import { ParallaxDirective } from './home/parallax.directive';
+import { CarouselComponent } from './carousel/carousel.component';
+
 import { MapappComponent } from './mapapp/mapapp.component';
 import { HomeComponent } from './home/home.component';
-import { ParallaxDirective } from './home/parallax.directive';
 import { UserComponent } from './user/user.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
@@ -22,10 +34,6 @@ import { SettingsComponent } from './person/persone/settings/settings.component'
 import { RoutsComponent } from './person/persone/routs/routs.component';
 import { GalleryComponent } from './person/persone/gallery/gallery.component';
 import { RockTrophyComponent } from './person/persone/rock-trophy/rock-trophy.component';
-import { JwtModule } from "@auth0/angular-jwt";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CarouselComponent } from './carousel/carousel.component';
-import { AgmDirectionModule } from 'agm-direction';
 import { CommunityMainComponent } from './community-main/community-main.component';
 import { PostItemComponent } from './community-main/post-item/post-item.component';
 import { CaminhoComponent } from './mapapp/caminho/caminho.component';
@@ -35,7 +43,7 @@ import { AboutusComponent} from './aboutus/aboutus.component';
 import { ImageComponent } from './home/images';
 import { FormpolilineComponent } from './mapapp/formpoliline/formpoliline.component';
 import { LoadDummyComponent } from './models/loaddummy';
-import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.component';
+import { AdminDefaultModule } from './layouts/admin-default/admin-default.module';
 
 @NgModule({
   declarations: [
@@ -61,8 +69,7 @@ import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.componen
     AboutusComponent,
     ImageComponent,
     FormpolilineComponent,
-    LoadDummyComponent,
-    MapCamInfoComponent
+    LoadDummyComponent
     ],
   imports: [
     BrowserModule,
@@ -93,7 +100,8 @@ import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.componen
         deps: [HttpClient]
       }
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AdminDefaultModule
   ],
   providers: [],
   bootstrap: [AppComponent]

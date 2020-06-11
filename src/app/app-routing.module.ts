@@ -16,6 +16,12 @@ import { MapControllComponent } from './mapapp/map-controll/map-controll.compone
 import { CommunityMainComponent } from './community-main/community-main.component';
 import { CaminhoComponent } from './mapapp/caminho/caminho.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
+import { AdminDefaultComponent } from './layouts/admin-default/admin-default.component';
+import { DashboardComponent } from './admin-modules/dashboard/dashboard.component';
+import { InfosComponent } from './admin-modules/infos/infos.component';
+import { AdminManagementComponent } from './admin-modules/admin-management/admin-management.component';
+import { UserManagementComponent } from './admin-modules/user-management/user-management.component';
+import { MapManagementComponent } from './admin-modules/map-management/map-management.component';
 
 const routes: Routes = [
 
@@ -45,6 +51,15 @@ const routes: Routes = [
     path :'signin',component : TopBarComponent,
     children :[{ path : '',component: SignInComponent }]
   }, 
+
+  {path: 'admin',component : AdminDefaultComponent,
+  children:[{path : '',component : DashboardComponent},
+            {path : 'userReports', component: InfosComponent},
+            {path : 'adminTools', component: AdminManagementComponent},
+            {path : 'userTools', component: UserManagementComponent},
+            {path : 'mapTools', component: MapManagementComponent}
+           ]
+  },
 
   {path:'person',component : TopBarComponent,
   children:[{path : '',component:PersoneComponent, canActivate:[AuthGuard]}]},
