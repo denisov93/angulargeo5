@@ -22,6 +22,7 @@ import { InfosComponent } from './admin-modules/infos/infos.component';
 import { AdminManagementComponent } from './admin-modules/admin-management/admin-management.component';
 import { UserManagementComponent } from './admin-modules/user-management/user-management.component';
 import { MapManagementComponent } from './admin-modules/map-management/map-management.component';
+import { AdminSettingsComponent } from './admin-modules/admin-settings/admin-settings.component';
 
 const routes: Routes = [
 
@@ -57,7 +58,8 @@ const routes: Routes = [
             {path : 'userReports', component: InfosComponent},
             {path : 'adminTools', component: AdminManagementComponent},
             {path : 'userTools', component: UserManagementComponent},
-            {path : 'mapTools', component: MapManagementComponent}
+            {path : 'mapTools', component: MapManagementComponent},
+            {path: 'settings', component: AdminSettingsComponent}
            ]
   },
 

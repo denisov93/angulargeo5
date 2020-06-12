@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule,HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { JwtModule } from "@auth0/angular-jwt";
 
@@ -24,6 +26,20 @@ import { SimplebarAngularModule } from 'simplebar-angular';
 import { ParallaxDirective } from './home/parallax.directive';
 import { CarouselComponent } from './carousel/carousel.component';
 
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
+import { NbThemeModule } from '@nebular/theme';
+import { NbSidebarModule, NbLayoutModule, NbCardModule } from '@nebular/theme';
+
 import { MapappComponent } from './mapapp/mapapp.component';
 import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
@@ -44,9 +60,7 @@ import { ImageComponent } from './home/images';
 import { FormpolilineComponent } from './mapapp/formpoliline/formpoliline.component';
 import { LoadDummyComponent } from './models/loaddummy';
 import { AdminDefaultModule } from './layouts/admin-default/admin-default.module';
-import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,8 +85,7 @@ import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.componen
     AboutusComponent,
     ImageComponent,
     FormpolilineComponent,
-    LoadDummyComponent,
-    MapCamInfoComponent
+    LoadDummyComponent
     ],
   imports: [
     BrowserModule,
@@ -80,6 +93,7 @@ import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.componen
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
+    NgSelectModule,
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
@@ -105,9 +119,20 @@ import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.componen
     }),
     BrowserAnimationsModule,
     AdminDefaultModule,
-    NbThemeModule.forRoot({ name: 'default' }),
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTabsModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NbSidebarModule,
     NbLayoutModule,
-    NbEvaIconsModule
+    NbCardModule,
+    NbThemeModule.forRoot({ name: 'default' }),
   ],
   providers: [],
   bootstrap: [AppComponent]
