@@ -34,6 +34,7 @@ import { AdminManagementComponent } from 'src/app/admin-modules/admin-management
 import { UserManagementComponent } from 'src/app/admin-modules/user-management/user-management.component';
 import { MapManagementComponent } from 'src/app/admin-modules/map-management/map-management.component';
 import { AdminSettingsComponent } from 'src/app/admin-modules/admin-settings/admin-settings.component'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { AdminSettingsComponent } from 'src/app/admin-modules/admin-settings/adm
   imports: [
     CommonModule,
     RouterModule,
-    //BrowserAnimationsModule,
+    BrowserAnimationsModule,
     AdminModule,
     MatSidenavModule,
     MatDividerModule,

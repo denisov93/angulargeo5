@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 
-<<<<<<< HEAD
-=======
-
->>>>>>> b1d53beff3f51517d054584a006d8a8a7d9be663
 @Component({
   selector: 'app-admin-management',
   templateUrl: './admin-management.component.html',

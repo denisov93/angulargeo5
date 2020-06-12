@@ -32,6 +32,7 @@
     "@nebular/eva-icons": "5.1.0",
     "@nebular/theme": "^5.1.0",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
+    "@ng-select/ng-select": "^4.0.0",
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
     "@tmcw/togeojson": "^4.0.0",

@@ -60,6 +60,7 @@ import { ImageComponent } from './home/images';
 import { FormpolilineComponent } from './mapapp/formpoliline/formpoliline.component';
 import { LoadDummyComponent } from './models/loaddummy';
 import { AdminDefaultModule } from './layouts/admin-default/admin-default.module';
+import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { AdminDefaultModule } from './layouts/admin-default/admin-default.module
     AboutusComponent,
     ImageComponent,
     FormpolilineComponent,
-    LoadDummyComponent
+    LoadDummyComponent,
+    MapCamInfoComponent,
     ],
   imports: [
     BrowserModule,
@@ -99,6 +101,7 @@ import { AdminDefaultModule } from './layouts/admin-default/admin-default.module
     FontAwesomeModule,
     SimplebarAngularModule,
     MatNativeDateModule,
+    
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBY1VATzvx85tm56FL0C4Agf_gojmbE_XI',//'AIzaSyDaxjTT7ejDx8ykQs7UU3_fuKnPLIIztjo',// 
       libraries: ['places', 'drawing', 'geometry'],
