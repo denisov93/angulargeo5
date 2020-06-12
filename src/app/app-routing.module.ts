@@ -64,19 +64,13 @@ const routes: Routes = [
   },
 
   {path:'person',component : TopBarComponent,
-  children:[{path : '',component:PersoneComponent, canActivate:[AuthGuard]}]},
+  children:[{path : '',component:PersoneComponent, canActivate:[AuthGuard]},
+            {path : 'settings',component : SettingsComponent, canActivate:[AuthGuard]},
+            {path : 'routs',component : RoutsComponent,canActivate:[AuthGuard]},
+            {path : 'gallery',component : GalleryComponent,canActivate:[AuthGuard]},
+            {path : 'rocktrophy',component :  RockTrophyComponent,canActivate:[AuthGuard]},
+]},
 
-  {path: 'person-settings',component : TopBarComponent,
-  children:[{path : '',component : SettingsComponent}]},
-
-  {path: 'person-routs',component : TopBarComponent,
-  children:[{path : '',component : RoutsComponent}]},
-
-  {path: 'person-gallery',component : TopBarComponent,
-  children:[{path : '',component : GalleryComponent}]},
-
-  {path: 'person-rocktrophy',component : TopBarComponent,
-  children:[{path : '',component :  RockTrophyComponent}]},
 
   {path: 'aboutus',component : TopBarComponent,
   children:[{path : '',component : AboutusComponent}]},

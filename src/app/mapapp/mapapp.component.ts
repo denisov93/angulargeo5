@@ -143,11 +143,9 @@ export class MapappComponent implements OnInit {
   }
 
   clickedDirection(DirMrk:AgmMarker){    
-    console.log("entrou em ClickDir");
-    
+     
     var v = DirMrk.id.toString();
 
-    console.log();
     this.hideRoutes();
     
     this.messageSource.next(v);
@@ -175,6 +173,7 @@ export class MapappComponent implements OnInit {
       this.waywayway = [];
     }
     else this.waywayway = JSON.parse(st);
+
   }
   saveDirections(){
     localStorage.setItem("myDirections", JSON.stringify(this.waywayway));
