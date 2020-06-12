@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-import {MatSelectModule} from '@angular/material/select';
+
+
 @Component({
   selector: 'app-admin-management',
   templateUrl: './admin-management.component.html',
@@ -8,8 +9,9 @@ import {MatSelectModule} from '@angular/material/select';
 })
 export class AdminManagementComponent implements OnInit {
 
+  //Validators...
   email = new FormControl('', [Validators.required, Validators.email]);
-  firstName = new FormControl('',[Validators.required]);
+  name = new FormControl('',[Validators.required]);
   lastName = new FormControl('',[Validators.required]);
   username = new FormControl('',[Validators.required]);
   street = new FormControl('',[Validators.required]);
@@ -17,11 +19,13 @@ export class AdminManagementComponent implements OnInit {
   place = new FormControl('',[Validators.required]);
   city = new FormControl('',[Validators.required]);
   country = new FormControl('',[Validators.required]);
+  roleControl = new FormControl('',[Validators.required]);
 
+  //Birthday:
   date = new FormControl(new Date());
-  serializedDate = new FormControl((new Date()).toISOString());
+  serializedDate = new FormControl((new Date()).toISOString());  
 
-  selected = '';
+  selectedValue: string;
 
   constructor() { }
 
@@ -35,18 +39,11 @@ export class AdminManagementComponent implements OnInit {
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
-  getFirstNErrorMessage() {
-    if(this.firstName.hasError('required')){
-      return 'You must enter a first name';
+  getNameErrorMessage() {
+    if(this.name.hasError('required')){
+      return 'You must enter a name (First and Last)';
     }
-    //return this.firstName.hasError('firstName') ? 'Not a valid First Name' : '';
-  }
-
-  getLastNErrorMessage() {
-    if(this.lastName.hasError('required')){
-      return 'You must enter a last name';
-    }
-    return this.lastName.hasError('lastName') ? 'Not a valid Last Name' : '';
+    //return this.name.hasError('name') ? 'Not a valid name (First and Last)' : '';
   }
 
   getUNErrorMessage(){

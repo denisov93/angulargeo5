@@ -46,3 +46,11 @@ nb-card-body {
 .demo-items {
     flex: 1 0 33%;
 }
+.mat-select {
+  width: 250px ;
+  padding: 10px;
+}
+
+.cdk-overlay-container {
+  z-index: 1050 !important;
+}
