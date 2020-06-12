@@ -10,40 +10,40 @@
               <nb-card-body>
                 <h4>Admin Name:</h4>
                 <div class="full-name-inputs">
-
+                  
                   <mat-form-field appearance="simple">
-                    <mat-label>Enter your first name</mat-label>
-                    <input matInput [formControl]="firstName" required>
-                    <mat-error *ngIf="firstName.invalid">{{getFirstNErrorMessage}}</mat-error>
+                    <mat-label>Enter your name</mat-label>
+                    <input matInput [formControl]="name" required>
+                    <mat-error *ngIf="name.invalid">{{getNameErrorMessage()}}</mat-error>
                   </mat-form-field>
-
-                  <mat-form-field appearance="simple">
-                    <mat-label>Enter your last name</mat-label>
-                    <input matInput [formControl]="lastName" required>
-                    <mat-error *ngIf="lastName.invalid">{{getLastNErrorMessage()}}</mat-error>
-                  </mat-form-field>
-                </div>
-
-                <div class="other-inputs">
 
                   <mat-form-field appearance="simple">
                     <mat-label>Enter your username</mat-label>
                     <input matInput [formControl]="username" required>
                     <mat-error *ngIf="username.invalid">{{getUNErrorMessage()}}</mat-error>
                   </mat-form-field>
+                </div>
 
-                  <h4>Birthday</h4>
+                <div class="other-inputs">                  
 
+                  <h4>Birthday</h4>      
+                  
+<<<<<<< HEAD
                   
                   
-                  
+=======
+>>>>>>> b1d53beff3f51517d054584a006d8a8a7d9be663
                   <mat-form-field appearance = "simple" color="accent">
-                    <mat-label>Inherited calendar color</mat-label>
+                    <mat-label>Set your birthday</mat-label>
                     <input matInput [matDatepicker]="picker1">
                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
                   </mat-form-field>
+<<<<<<< HEAD
                  
+=======
+
+>>>>>>> b1d53beff3f51517d054584a006d8a8a7d9be663
                 </div>
 
                 <div class="email-container">
@@ -101,17 +101,17 @@
               <nb-card-header>Role</nb-card-header>
               <nb-card-body>
                 <div>
+                  
                   <mat-form-field>
                     <mat-label>Select a role</mat-label>
-                    <mat-select [(value)]="selected">
+                    <mat-select [(value)] = "selectedValue">
                       <mat-option>None</mat-option>
-                      <mat-option value="BO">Super User</mat-option>
-                      <mat-option value="BOM">Community Moderator</mat-option>
-                      <mat-option value="BOP">Routs Moderator</mat-option>
+                      <mat-option value = "BO">Super Admin</mat-option>
+                      <mat-option value = "BOM">Comunity Moderator</mat-option>
+                      <mat-option value = "BOP">Routes Admin</mat-option>
                     </mat-select>
                   </mat-form-field>
-                
-                  <p>You selected: {{selected}}</p>
+                  <!-- <p>You selected: {{selectedValue}}</p> -->
                 </div>
               </nb-card-body>
             </nb-card>

@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {FullscreenOverlayContainer, OverlayContainer} from '@angular/cdk/overlay';
 
 import { NbThemeModule } from '@nebular/theme';
 import { NbSidebarModule, NbLayoutModule, NbCardModule } from '@nebular/theme';
+
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
@@ -21,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { AdminDefaultComponent } from './admin-default.component';
 import { DashboardComponent } from 'src/app/admin-modules/dashboard/dashboard.component';
@@ -30,6 +33,7 @@ import { DashboardService } from 'src/app/services/dashboard.service';
 import { AdminManagementComponent } from 'src/app/admin-modules/admin-management/admin-management.component';
 import { UserManagementComponent } from 'src/app/admin-modules/user-management/user-management.component';
 import { MapManagementComponent } from 'src/app/admin-modules/map-management/map-management.component';
+import { AdminSettingsComponent } from 'src/app/admin-modules/admin-settings/admin-settings.component'
 
 @NgModule({
   declarations: [
@@ -38,12 +42,13 @@ import { MapManagementComponent } from 'src/app/admin-modules/map-management/map
     InfosComponent,
     AdminManagementComponent,
     UserManagementComponent,
-    MapManagementComponent
+    MapManagementComponent,
+    AdminSettingsComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    BrowserAnimationsModule,
+    //BrowserAnimationsModule,
     AdminModule,
     MatSidenavModule,
     MatDividerModule,
@@ -58,15 +63,19 @@ import { MapManagementComponent } from 'src/app/admin-modules/map-management/map
     MatCheckboxModule,
     MatChipsModule,
     MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule,
     ReactiveFormsModule,    
     FlexLayoutModule,
+    NgSelectModule,
     NbLayoutModule,
     NbSidebarModule,
     NbCardModule,
     NbThemeModule.forRoot({ name: 'default' })
   ],
   providers: [
-    DashboardService
+    DashboardService,
+    {provide: OverlayContainer, useClass: FullscreenOverlayContainer}
   ]
 })
 export class AdminDefaultModule { }
