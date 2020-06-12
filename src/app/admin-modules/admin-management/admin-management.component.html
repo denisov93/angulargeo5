@@ -36,14 +36,14 @@
 
                   
                   
-                  <!--
+                  
                   <mat-form-field appearance = "simple" color="accent">
                     <mat-label>Inherited calendar color</mat-label>
                     <input matInput [matDatepicker]="picker1">
                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
                   </mat-form-field>
-                  -->
+                 
                 </div>
 
                 <div class="email-container">
@@ -122,6 +122,13 @@
   <mat-tab label="Permissions Management">  
       <ng-template matTabContent>
         Apresentar as opções de gestão de admins.
-      </ng-template>         
+      
+                        
+        <mat-form-field class="example-full-width">
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <button mat-raised-button (click)="picker.open()">Open</button>
+        </ng-template>  
   </mat-tab>
 </mat-tab-group>

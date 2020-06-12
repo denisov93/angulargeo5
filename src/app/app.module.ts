@@ -47,6 +47,8 @@ import { AdminDefaultModule } from './layouts/admin-default/admin-default.module
 import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.component';
+import { MatNativeDateModule } from '@angular/material/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,6 +86,7 @@ import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.componen
     ReactiveFormsModule,
     FontAwesomeModule,
     SimplebarAngularModule,
+    MatNativeDateModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBY1VATzvx85tm56FL0C4Agf_gojmbE_XI',//'AIzaSyDaxjTT7ejDx8ykQs7UU3_fuKnPLIIztjo',// 
       libraries: ['places', 'drawing', 'geometry'],
@@ -107,7 +110,8 @@ import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.componen
     AdminDefaultModule,
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
-    NbEvaIconsModule
+    NbEvaIconsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
