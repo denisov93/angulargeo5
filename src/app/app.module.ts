@@ -61,6 +61,7 @@ import { FormpolilineComponent } from './mapapp/formpoliline/formpoliline.compon
 import { LoadDummyComponent } from './models/loaddummy';
 import { AdminDefaultModule } from './layouts/admin-default/admin-default.module';
 import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.component';
+import { OverlayContainer, FullscreenOverlayContainer } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -138,7 +139,9 @@ import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.componen
     NbCardModule,
     NbThemeModule.forRoot({ name: 'default' }),
   ],
-  providers: [],
+  providers: [
+    {provide: OverlayContainer, useClass: FullscreenOverlayContainer}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
