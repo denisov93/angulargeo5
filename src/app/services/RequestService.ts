@@ -36,10 +36,6 @@ export class RequestService {
 
 
     constructor(private http:HttpClient) {
-      
-      if( window.location.origin == "http://localhost:4200"){
-        this.todosUrl = "https://apdc-geoproj.ey.r.appspot.com";
-      }
      
      }
 
