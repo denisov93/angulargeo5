@@ -1,1 +1,68 @@
-<p>settings works!</p>
+<nb-card>
+    <nb-card-header><h2><b>User Settings:</b></h2></nb-card-header>
+    <nb-card-body>
+      <h3>Update User Info:</h3>
+      <div class="full-name-inputs">
+        
+        <mat-form-field appearance="simple">
+          <mat-label>Enter your name update</mat-label>
+          <input matInput placeholder="Show the previous name stored">
+        </mat-form-field>
+        
+      </div>
+
+      <div class="other-inputs">                  
+
+        <h4>Birthday</h4>      
+        
+        <mat-form-field appearance = "simple" color="blue">
+          <mat-label>Enter your Birthday update</mat-label>
+          <input matInput [matDatepicker]="picker1">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+      </div>
+
+      <div class="email-container">
+        <h4>Email:</h4>
+        <mat-form-field appearance="simple">
+          <mat-label>Enter your new email</mat-label>
+          <input matInput placeholder="Show the previous email stored">
+        </mat-form-field>
+      </div>
+
+      <h4>Address Info</h4>
+      <div class="adress-inputs">
+        <mat-form-field appearance="simple">
+          <mat-label>Enter your new address street</mat-label>
+          <input matInput placeholder="Show the previous street stored">
+        </mat-form-field>
+
+        <mat-form-field appearance="simple">
+          <mat-label>Enter your new address Zip-Code</mat-label>
+          <input matInput placeholder="Show the previous zip-code stored">
+        </mat-form-field>
+      </div>
+
+      <div class="adress-inputs">
+        <mat-form-field appearance="simple">
+          <mat-label>Enter your new address place</mat-label>
+          <input matInput placeholder="Show the previous place stored">
+        </mat-form-field>
+
+        <mat-form-field appearance="simple">
+          <mat-label>Enter your new address city</mat-label>
+          <input matInput placeholder="Show the previous city stored">
+        </mat-form-field>
+      </div>
+
+      <div class="adress-inputs">
+        <mat-form-field appearance="simple">
+          <mat-label>Enter your new address country</mat-label>
+          <input matInput placeholder="Show the previous country stored">
+        </mat-form-field>
+      </div>
+
+    </nb-card-body>
+  </nb-card>
