@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  ViewEncapsulation } from '@angular/core';
 
 import { RequestService } from 'src/app/services/RequestService';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -9,7 +9,8 @@ import { username } from 'src/app/models/username';
 @Component({
   selector: 'app-persone',
   templateUrl: './persone.component.html',
-  styleUrls: ['./persone.component.scss']
+  styleUrls: ['./persone.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PersoneComponent implements OnInit {
 
