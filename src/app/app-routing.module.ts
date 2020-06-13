@@ -7,10 +7,6 @@ import { UserComponent } from './user/user.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { PersoneComponent } from './person/persone/persone.component';
-import { SettingsComponent } from './person/persone/settings/settings.component';
-import { RoutsComponent } from './person/persone/routs/routs.component';
-import { GalleryComponent } from './person/persone/gallery/gallery.component';
-import { RockTrophyComponent } from './person/persone/rock-trophy/rock-trophy.component';
 import { AuthGuard } from './auth/auth.guard';
 import { MapControllComponent } from './mapapp/map-controll/map-controll.component';
 import { CommunityMainComponent } from './community-main/community-main.component';
@@ -23,6 +19,7 @@ import { AdminManagementComponent } from './admin-modules/admin-management/admin
 import { UserManagementComponent } from './admin-modules/user-management/user-management.component';
 import { MapManagementComponent } from './admin-modules/map-management/map-management.component';
 import { AdminSettingsComponent } from './admin-modules/admin-settings/admin-settings.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
 
@@ -64,13 +61,12 @@ const routes: Routes = [
   },
 
   {path:'person',component : TopBarComponent,
-  children:[{path : '',component:PersoneComponent, canActivate:[AuthGuard]},
-            {path : 'settings',component : SettingsComponent, canActivate:[AuthGuard]},
-            {path : 'routs',component : RoutsComponent,canActivate:[AuthGuard]},
-            {path : 'gallery',component : GalleryComponent,canActivate:[AuthGuard]},
-            {path : 'rocktrophy',component :  RockTrophyComponent,canActivate:[AuthGuard]},
-]},
+  children:[{path : '',component:PersoneComponent, canActivate:[AuthGuard]}
+  ]},
 
+  {path:'profile', component: TopBarComponent,
+    children:[{path:'', component:ProfileComponent}]
+  },
 
   {path: 'aboutus',component : TopBarComponent,
   children:[{path : '',component : AboutusComponent}]},

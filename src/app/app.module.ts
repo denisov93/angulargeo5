@@ -36,6 +36,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { NbThemeModule } from '@nebular/theme';
 import { NbSidebarModule, NbLayoutModule, NbCardModule } from '@nebular/theme';
@@ -62,6 +65,7 @@ import { LoadDummyComponent } from './models/loaddummy';
 import { AdminDefaultModule } from './layouts/admin-default/admin-default.module';
 import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.component';
 import { OverlayContainer, FullscreenOverlayContainer } from '@angular/cdk/overlay';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +93,7 @@ import { OverlayContainer, FullscreenOverlayContainer } from '@angular/cdk/overl
     FormpolilineComponent,
     LoadDummyComponent,
     MapCamInfoComponent,
+    ProfileComponent,
     ],
   imports: [
     BrowserModule,
@@ -101,7 +106,6 @@ import { OverlayContainer, FullscreenOverlayContainer } from '@angular/cdk/overl
     ReactiveFormsModule,
     FontAwesomeModule,
     SimplebarAngularModule,
-    MatNativeDateModule,
     
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBY1VATzvx85tm56FL0C4Agf_gojmbE_XI',//'AIzaSyDaxjTT7ejDx8ykQs7UU3_fuKnPLIIztjo',// 
@@ -134,6 +138,9 @@ import { OverlayContainer, FullscreenOverlayContainer } from '@angular/cdk/overl
     MatChipsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatDividerModule,
+    MatIconModule,
+    MatGridListModule,
     NbSidebarModule,
     NbLayoutModule,
     NbCardModule,
