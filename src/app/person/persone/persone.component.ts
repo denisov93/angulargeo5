@@ -9,7 +9,7 @@ import { username } from 'src/app/models/username';
 @Component({
   selector: 'app-persone',
   templateUrl: './persone.component.html',
-  styleUrls: ['./persone.component.css']
+  styleUrls: ['./persone.component.scss']
 })
 export class PersoneComponent implements OnInit {
 
