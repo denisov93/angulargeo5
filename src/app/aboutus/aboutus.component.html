@@ -1,36 +1,38 @@
-<div class="wrapper">
-    <body>
-        <h1>{{'GeoFiveSolutions'|translate}}</h1>
-        <p>{{'AboutUsIntro1' | translate}}</p>
-        <p>{{'AboutUsIntro2' | translate}}</p>
-    </body>
+<mat-card class="aboutus-card">
+    <mat-card-header>
+      <div mat-card-avatar class="aboutus-header-image"></div>
+      <mat-card-title>{{'GeoFiveSolutions'|translate}}</mat-card-title>
+      <mat-card-subtitle>{{'Team10'|translate}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="../../assets/Geo5S-logo.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+        <body>
+            <p>{{'AboutUsIntro1' | translate}}</p>
+            <p>{{'AboutUsIntro2' | translate}}</p>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h4>{{'Android' | translate}}</h4>
+                    <p>André Oliveira</p>
+                    <p>Edson Sousa</p>
+                    <p>AndroidStudio</p>
+                     
+                </div>
 
-    <div class="leftcard">
-        <img src="https://hostit.host/images/solutions-server.png" 
-        alt="user" width="100">
-        <h4>{{'Server' | translate}}</h4>
-         <p>Alexandre Mendes</p>
-         <p>GoogleAppEngine</p>        
-    </div>
-    <div class="midlecard">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Angular_full_color_logo.svg" 
-        alt="user" width="100">
-        <h4>{{'Angular' | translate}}</h4>
-         <p>Alexander Denisov</p>
-         <p>Sara Trafaria</p>
-         <p>Angular, TS</p>
-        
-    </div>
-    <div class="rigthcard">
-        <img src="https://miro.medium.com/max/1142/1*zxewA7bZ_RN6lVolYVmbUA.png" 
-        alt="user" width="100">
-        <h4>{{'Android' | translate}}</h4>
-         <p>André Oliveira</p>
-         <p>Edson Sousa</p>
-         <p>AndroidStudio</p>
-         <p></p>        
-    </div>
-    <div class = "blog">
-        <p>{{'Blogge'|translate}}</p><a href="https://geo5solutions.blogspot.com/" > {{'Here'| translate}}</a>
-    </div>
-</div>
+                <div class="col-lg-6">
+                    <h4>{{'Angular' | translate}}</h4>
+                    <p>Alexander Denisov</p>
+                    <p>Sara Trafaria</p>
+                    <p>Angular, TS</p>
+                </div>
+            </div> 
+            <div class="col-lg-7">
+                <h4>{{'Server' | translate}}</h4>
+                <p>Alexandre Mendes</p>
+                <p>GoogleAppEngine</p>
+            </div>     
+        </body>
+    </mat-card-content>
+    <mat-card-actions>
+        <a href="https://geo5solutions.blogspot.com/" >{{'Blogge'|translate}}</a>     
+    </mat-card-actions>
+  </mat-card>
