@@ -19,7 +19,7 @@ import { AdminManagementComponent } from './admin-modules/admin-management/admin
 import { UserManagementComponent } from './admin-modules/user-management/user-management.component';
 import { MapManagementComponent } from './admin-modules/map-management/map-management.component';
 import { AdminSettingsComponent } from './admin-modules/admin-settings/admin-settings.component';
-import { ProfileComponent } from './profile/profile.component';
+
 
 const routes: Routes = [
 
@@ -35,8 +35,8 @@ const routes: Routes = [
   {path:'caminho',component : CaminhoComponent , pathMatch:'full'},
   {path:'control',component : MapControllComponent , pathMatch:'full'}
   ]
-
   },
+  
   {
     path :'user',component : UserComponent
   },
@@ -64,9 +64,6 @@ const routes: Routes = [
   children:[{path : '',component:PersoneComponent, canActivate:[AuthGuard]}
   ]},
 
-  {path:'profile', component: TopBarComponent,
-    children:[{path:'', component:ProfileComponent}]
-  },
 
   {path: 'aboutus',component : TopBarComponent,
   children:[{path : '',component : AboutusComponent}]},

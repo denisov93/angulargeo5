@@ -65,7 +65,7 @@ import { LoadDummyComponent } from './models/loaddummy';
 import { AdminDefaultModule } from './layouts/admin-default/admin-default.module';
 import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.component';
 import { OverlayContainer, FullscreenOverlayContainer } from '@angular/cdk/overlay';
-import { ProfileComponent } from './profile/profile.component';
+
 
 @NgModule({
   declarations: [
@@ -93,7 +93,6 @@ import { ProfileComponent } from './profile/profile.component';
     FormpolilineComponent,
     LoadDummyComponent,
     MapCamInfoComponent,
-    ProfileComponent,
     ],
   imports: [
     BrowserModule,
