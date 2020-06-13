@@ -38,6 +38,9 @@ export class MapappComponent implements OnInit {
   private messageSource = new BehaviorSubject('default message');
   currentMessage = this.messageSource.asObservable();
 
+  private messageSourceClose = new BehaviorSubject('default message');
+  currentMessageClose = this.messageSourceClose.asObservable();
+
   constructor(
     private router : Router,
     public translate: TranslateService,
@@ -102,7 +105,10 @@ export class MapappComponent implements OnInit {
 
   hideRoutes(){
     this.waywayway.map(
-      tr=> tr.visible=false
+      tr=>  {
+       // tr.visible = false;
+        this.messageSourceClose.next(tr.id.toString());
+      }
     );
   }
   
@@ -146,8 +152,10 @@ export class MapappComponent implements OnInit {
      
     var v = DirMrk.id.toString();
 
-    this.hideRoutes();
-    
+   
+      this.hideRoutes();
+      
+   
     this.messageSource.next(v);
      
     this.ChangeOnMainPageF();
@@ -410,7 +418,41 @@ newDirectionAdded(b:boolean){
     this.showDirection();
   }
 }
+public showNaturalReserve(){
+  this.dirWaysPollyP = JSON.parse(localStorage.getItem("ShowNaturalP"));
+ this.cc = [];
+ 
+  setTimeout(()=>{
+  this.dirWaysPollyP.forEach(
+    (th:any[])=>
+    {
+      
+      this.cc.push(
+        {
+          lat: parseFloat(th[1]),
+          lng: parseFloat(th[0])
+        }
+      );}
+    
+  );
+  
+  this.dirPolygon.push(this.cc);
 
+  this.show = true 
+  
+   this.latitude = this.cc[0].lat;
+   this.longitude = this.cc[0].lng;     
+
+  },
+   600);
+  
+}
+newNatResevreAdded(b:boolean){
+  if(b){
+    
+    this.showNaturalReserve();
+  }
+}
 public waywayway: Direction[];
 /*
 public waywayway = [
@@ -477,17 +519,7 @@ dirWaysPollyP = [   ]; // [{},....]
 
 dirPolygon = [ //[ [{},..], [{},..], ... ]
   [
-  { lat: 41.31205930960196, lng: -8.431586001851201 },
-  { lat: 41.324436296340245, lng: -8.184393619038701 },
-  { lat: 41.19332735045345, lng: -8.174780581929326 },
-  { lat: 41.179891902397955, lng: -8.404120181538701 }
-  ], 
-  [
-  { lat: 0, lng: 15 },
-  { lat: 0, lng: 20 },
-  { lat: 5, lng: 20 },
-  { lat: 5, lng: 15 },
-  { lat: 0, lng: 15 }
+  
   ]
 ]
   ;

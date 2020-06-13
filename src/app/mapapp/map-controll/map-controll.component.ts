@@ -5,7 +5,8 @@ import { MapappComponent } from '../mapapp.component';
 import { DirectionWhithWaypoints } from 'src/app/models/DirectionWithWaypoints';
 
 import { latLon } from 'src/app/models/latLon';
-
+import { ElementRef, ViewChild} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 @Component({
   selector: 'app-map-controll',
   templateUrl: './map-controll.component.html',
@@ -32,11 +33,61 @@ export class MapControllComponent implements OnInit {
   public wayPoints: latLon[]= [];
   public onWater:boolean ;
 
-  constructor(private req: RequestService ,private map: MapappComponent) {
-   }
+  @Output() newNatResevreAdded: EventEmitter<boolean> = new EventEmitter();
+  @ViewChild('labelImport')
+  labelImport: ElementRef;
 
-  ngOnInit(){
+  formImport: FormGroup;
+  fileToUpload: File = null;
+
+  constructor(private map:MapappComponent,private req:RequestService) {
+    this.formImport = new FormGroup({
+      importFile: new FormControl('', Validators.required)
+    });
+  }
+  ngOnInit(): void {
+    //throw new Error("Method not implemented.");
+  }
+
   
+  onFileChange(files: FileList) {
+    this.labelImport.nativeElement.innerText = Array.from(files)
+      .map(f => f.name)
+      .join(', ');
+    this.fileToUpload = files.item(0);
+  }
+
+
+  import(): void {
+    var ss = '';
+ 
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      ss = event.target.result.toString();
+      var start = ss.lastIndexOf("<coordinates>");
+      var end = ss.lastIndexOf("</coordinates>");
+      var smore = ss.slice(start,end);
+      
+      var startn = smore.indexOf("-");
+      var allmixup = smore.slice(startn);
+      var ordered = [];
+      
+      ordered = allmixup.split(' ');
+      var orderedWtoSpace = [];
+      ordered.forEach(element => { 
+          orderedWtoSpace.push(element.trim().split(","));
+      });
+      orderedWtoSpace.pop();
+      
+      
+      localStorage.setItem("ShowNaturalP",JSON.stringify(orderedWtoSpace));
+      
+    };
+    
+    reader.readAsText(this.fileToUpload);
+    
+    this.map.newNatResevreAdded(true);
+        
   }
  
   arr: any;

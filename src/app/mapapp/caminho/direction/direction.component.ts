@@ -26,11 +26,21 @@ export class DirectionComponent implements OnInit {
         if(dirId==this.direction.id){
           this.dirId=dirId;
           this.activeIds = ["id12"];
-          this.showHide();
+          this.direction.visible = true;
         }
          
       }
       
+      );
+      this.rr.currentMessageClose.subscribe(
+        dirId=>{
+          if(dirId==this.direction.id){
+            this.dirId=dirId;
+            this.activeIds = [];
+            this.direction.visible = false;
+          }
+           
+        }
       );
   }
   setClasses(){
