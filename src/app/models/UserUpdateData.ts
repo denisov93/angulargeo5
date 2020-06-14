@@ -1,8 +1,8 @@
 export class UserUpdateData{
-    userUp_name: String
-    userUp_email: String
-    userUp_password: String   
-    userUp_street: String
-    userUp_place: String
-    userUp_country: String
+    user_name: String
+    user_email: String
+    user_password: String   
+    user_street: String
+    user_place: String
+    user_country: String
 }
