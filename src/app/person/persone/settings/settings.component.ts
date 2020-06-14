@@ -136,9 +136,18 @@ export class SettingsComponent {
       this.userUpNoPass.user_country = this.userInput.user_country;
     }
 
+
     //Escolha do servico para fazer update
     if(this.userInput.user_password == null){
-      this.request.upUserNPInfo(this.userUpNoPass).subscribe(
+      var body = {
+        name: this.userInput.user_name,
+        email: this.userInput.user_email,
+        
+        street: this.userInput.user_street,
+        place: this.userInput.user_place,
+        country: this.userInput.user_country
+      }
+      this.request.upUserNPInfo(body).subscribe(
        (data)=> {
                   this.saveUpdate();
                 },(err : HttpErrorResponse)=>{
@@ -150,8 +159,16 @@ export class SettingsComponent {
       );
     }
     //Need password update
-    else{      
-      this.request.updateUserInfo(this.userInput).subscribe(
+    else{ 
+      var body = {
+        name: this.userInput.user_name,
+        email: this.userInput.user_email,
+        
+        street: this.userInput.user_street,
+        place: this.userInput.user_place,
+        country: this.userInput.user_country
+      }     
+      this.request.updateUserInfo(body).subscribe(
         (data)=>{
                   this.saveUpdate();
                 },(err : HttpErrorResponse)=>{
