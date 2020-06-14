@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-aboutus',
-  templateUrl: './cenas.html',
+  templateUrl: './aboutus.component.html',
   styleUrls: ['./aboutus.component.scss']
 })
 
