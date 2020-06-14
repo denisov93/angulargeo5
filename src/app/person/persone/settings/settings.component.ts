@@ -26,8 +26,6 @@ export class SettingsComponent {
   placeControl = new FormControl('',[Validators.required, this.checkPlaceAndCountry]);
   countryControl = new FormControl('',[Validators.required, this.checkPlaceAndCountry]);
 
-  buttonControl:boolean = false;
-
   constructor(private request: RequestService) { }
 
   // User Stored in the local storage.
@@ -93,53 +91,53 @@ export class SettingsComponent {
     //Verificacao de campos introduzidos
     //Os campos que nao foram preenchidos ou seja nao existe atualizacao a fazer vamos buscar o valor 'a localstore...
     //Se existir alteracao guardamos na variavel da datastore para depois a actualizarmos
-    if(this.userInput.userUp_name == ""){
-      this.userInput.userUp_name = this.userI.user_name;
-      this.userUpNoPass.userUp_name = this.userI.user_name;
+    if(this.userInput.user_name == ""){
+      this.userInput.user_name = this.userI.user_name;
+      this.userUpNoPass.user_name = this.userI.user_name;
     }
     else{
-      this.userI.user_name = this.userInput.userUp_name;
-      this.userUpNoPass.userUp_name = this.userInput.userUp_name;
+      this.userI.user_name = this.userInput.user_name;
+      this.userUpNoPass.user_name = this.userInput.user_name;
     }
 
-    if(this.userInput.userUp_email == ""){
-      this.userInput.userUp_email = this.userI.user_email;
-      this.userUpNoPass.userUp_email = this.userI.user_email;
+    if(this.userInput.user_email == ""){
+      this.userInput.user_email = this.userI.user_email;
+      this.userUpNoPass.user_email = this.userI.user_email;
     }
     else{
-      this.userI.user_email = this.userInput.userUp_email;
-      this.userUpNoPass.userUp_email = this.userInput.userUp_email;
+      this.userI.user_email = this.userInput.user_email;
+      this.userUpNoPass.user_email = this.userInput.user_email;
     }
 
-    if(this.userInput.userUp_street == ""){
-      this.userInput.userUp_street = this.userI.user_street;
-      this.userUpNoPass.userUp_street = this.userI.user_street;
+    if(this.userInput.user_street == ""){
+      this.userInput.user_street = this.userI.user_street;
+      this.userUpNoPass.user_street = this.userI.user_street;
     }
     else{
-      this.userI.user_street = this.userInput.userUp_street;
-      this.userUpNoPass.userUp_street = this.userInput.userUp_street;
+      this.userI.user_street = this.userInput.user_street;
+      this.userUpNoPass.user_street = this.userInput.user_street;
     }
 
-    if(this.userInput.userUp_place == ""){
-      this.userInput.userUp_place = this.userI.user_place;
-      this.userUpNoPass.userUp_place = this.userI.user_place;
+    if(this.userInput.user_place == ""){
+      this.userInput.user_place = this.userI.user_place;
+      this.userUpNoPass.user_place = this.userI.user_place;
     }
     else{
-      this.userI.user_place = this.userInput.userUp_place;
-      this.userUpNoPass.userUp_place = this.userInput.userUp_place;
+      this.userI.user_place = this.userInput.user_place;
+      this.userUpNoPass.user_place = this.userInput.user_place;
     }
 
-    if(this.userInput.userUp_country==""){
-      this.userInput.userUp_country = this.userI.user_country;
-      this.userUpNoPass.userUp_country = this.userI.user_country;
+    if(this.userInput.user_country==""){
+      this.userInput.user_country = this.userI.user_country;
+      this.userUpNoPass.user_country = this.userI.user_country;
     }
     else{
-      this.userI.user_country = this.userInput.userUp_country;
-      this.userUpNoPass.userUp_country = this.userInput.userUp_country;
+      this.userI.user_country = this.userInput.user_country;
+      this.userUpNoPass.user_country = this.userInput.user_country;
     }
 
     //Escolha do servico para fazer update
-    if(this.userInput.userUp_password == ""){
+    if(this.userInput.user_password == ""){
       this.request.upUserNPInfo(this.userUpNoPass).subscribe(
        (data)=> {
                   this.saveUpdate();
