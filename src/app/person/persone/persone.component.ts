@@ -5,6 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import {User} from 'src/app/models/User';
 import { username } from 'src/app/models/username';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-persone',
@@ -16,11 +17,13 @@ export class PersoneComponent implements OnInit {
 
   isUInfoError: boolean = false;
   userI: User = new User();  
+  index:any;
 
   constructor(private req: RequestService) { }
 
   ngOnInit(): void { 
     this.loadPersone(); 
+    this.index = JSON.parse(localStorage.getItem("ProfileTabIdx"));
   }
 
   getPersoneInfo(){
@@ -68,4 +71,9 @@ export class PersoneComponent implements OnInit {
   savePersone(){
     localStorage.setItem("userInfo", JSON.stringify(this.userI));
   }
+
+  tabChanged(tabChangeEvent: MatTabChangeEvent): void {
+    localStorage.setItem("ProfileTabIdx", JSON.stringify(tabChangeEvent.index));
+  }
+  
 }
