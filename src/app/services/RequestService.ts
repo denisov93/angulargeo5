@@ -95,6 +95,28 @@ export class RequestService {
       }
       return this.http.post<JSON>(`${this.getUser}`,body,httpOption);
     }
+
+    updateUser = '/rest/update';
+    updateUserInfo(body):Observable<JSON>{
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.updateUser}`,body,httpOption);
+    }
+
+    upUserNP = 'rest/update/v2';
+    upUserNPInfo(body):Observable<JSON>{
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.upUserNPInfo}`,body,httpOption);
+    }
     
     getJwtToken() {
       return localStorage.getItem('tokenID');
