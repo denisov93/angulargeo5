@@ -91,7 +91,7 @@ export class SettingsComponent {
     //Verificacao de campos introduzidos
     //Os campos que nao foram preenchidos ou seja nao existe atualizacao a fazer vamos buscar o valor 'a localstore...
     //Se existir alteracao guardamos na variavel da datastore para depois a actualizarmos
-    if(this.userInput.user_name == ""){
+    if(this.userInput.user_name == null){
       this.userInput.user_name = this.userI.user_name;
       this.userUpNoPass.user_name = this.userI.user_name;
     }
@@ -100,7 +100,7 @@ export class SettingsComponent {
       this.userUpNoPass.user_name = this.userInput.user_name;
     }
 
-    if(this.userInput.user_email == ""){
+    if(this.userInput.user_email == null){
       this.userInput.user_email = this.userI.user_email;
       this.userUpNoPass.user_email = this.userI.user_email;
     }
@@ -109,7 +109,7 @@ export class SettingsComponent {
       this.userUpNoPass.user_email = this.userInput.user_email;
     }
 
-    if(this.userInput.user_street == ""){
+    if(this.userInput.user_street == null){
       this.userInput.user_street = this.userI.user_street;
       this.userUpNoPass.user_street = this.userI.user_street;
     }
@@ -118,7 +118,7 @@ export class SettingsComponent {
       this.userUpNoPass.user_street = this.userInput.user_street;
     }
 
-    if(this.userInput.user_place == ""){
+    if(this.userInput.user_place == null){
       this.userInput.user_place = this.userI.user_place;
       this.userUpNoPass.user_place = this.userI.user_place;
     }
@@ -127,7 +127,7 @@ export class SettingsComponent {
       this.userUpNoPass.user_place = this.userInput.user_place;
     }
 
-    if(this.userInput.user_country==""){
+    if(this.userInput.user_country==null){
       this.userInput.user_country = this.userI.user_country;
       this.userUpNoPass.user_country = this.userI.user_country;
     }
@@ -137,7 +137,7 @@ export class SettingsComponent {
     }
 
     //Escolha do servico para fazer update
-    if(this.userInput.user_password == ""){
+    if(this.userInput.user_password == null){
       this.request.upUserNPInfo(this.userUpNoPass).subscribe(
        (data)=> {
                   this.saveUpdate();

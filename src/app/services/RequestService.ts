@@ -115,7 +115,7 @@ export class RequestService {
           'token': `${localStorage.getItem('tokenID')}`
         })
       }
-      return this.http.post<JSON>(`${this.upUserNPInfo}`,body,httpOption);
+      return this.http.post<JSON>(`${this.upUserNP}`,body,httpOption);
     }
     
     getJwtToken() {
