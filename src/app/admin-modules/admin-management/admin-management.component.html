@@ -1,6 +1,8 @@
 <mat-tab-group>
   <mat-tab label="Add New Admin"> 
       <ng-template matTabContent>
+        <div *ngIf="!isRequestError && !isRequestOK" >
+        <form (ngSubmit)="onSubmit()">
         <h3>Admin Info</h3>
 
         <div class="row">
@@ -8,6 +10,8 @@
             <nb-card>
               <nb-card-header></nb-card-header>
               <nb-card-body>
+                
+
                 <h4>Admin Name:</h4>
                 <div class="full-name-inputs">
                   
@@ -22,6 +26,13 @@
                     <input matInput [formControl]="username" required>
                     <mat-error *ngIf="username.invalid">{{getUNErrorMessage()}}</mat-error>
                   </mat-form-field>
+
+                  <mat-form-field appearance="simple">
+                    <mat-label>Enter your Password</mat-label>
+                    <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+                    <i matSuffix class="material-icons " (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</i>
+                    <mat-error *ngIf="password.invalid">{{getPSErrorMessage()}}</mat-error>
+                </mat-form-field>
                 </div>
 
                 <div class="other-inputs">                  
@@ -101,12 +112,24 @@
                       <mat-option value = "BOP">Routes Admin</mat-option>
                     </mat-select>
                   </mat-form-field>
-                  <!-- <p>You selected: {{selectedValue}}</p> -->
+                  
                 </div>
               </nb-card-body>
             </nb-card>
           </div>
-        </div>        
+        </div>
+        <p>
+          <button mat-raised-button color="primary" type="submit" [disabled]="  !(selectedValue!=null && country.valid && city.valid && place.valid && zipcode.valid && street.valid && username.valid && name.valid && email.valid)">Submit</button>
+      </p>            
+      <p></p>
+      </form>
+    </div>
+    <div *ngIf="isRequestError">
+        <img src="../../../assets/errors.png" alt="Errors">
+    </div>
+    <div *ngIf="isRequestOK">
+      <img src="../../../assets/success.jpg" alt="OK">
+    </div>        
       </ng-template>        
   </mat-tab>
   <mat-tab label="Permissions Management">  

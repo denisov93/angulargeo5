@@ -527,7 +527,7 @@ dirPolygon = [ //[ [{},..], [{},..], ... ]
 reservaNatural = [
   {
     title:"Paisagem Protegida da Arriba Fóssil da Costa de Caparica",
-    coord:{lat:41.3698,lng:7.81768},
+    coord:{lat:38.56092,lng:-9.188507},
     },
     {
     title:"Parque Natural da Arrábida", 

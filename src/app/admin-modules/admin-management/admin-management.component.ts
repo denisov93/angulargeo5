@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-
+import {MatIconModule} from '@angular/material/icon';
+import { RequestService } from 'src/app/services/RequestService';
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-admin-management',
   templateUrl: './admin-management.component.html',
@@ -9,9 +11,11 @@ import {FormControl, Validators} from '@angular/forms';
 export class AdminManagementComponent implements OnInit {
 
   //Validators...
-  email = new FormControl('', [Validators.required, Validators.email]);
+  email = new FormControl('', [Validators.required]);
   name = new FormControl('',[Validators.required]);
+  password = new FormControl('',[Validators.required]);
   lastName = new FormControl('',[Validators.required]);
+  
   username = new FormControl('',[Validators.required]);
   street = new FormControl('',[Validators.required]);
   zipcode = new FormControl('',[Validators.required]);
@@ -25,8 +29,10 @@ export class AdminManagementComponent implements OnInit {
   serializedDate = new FormControl((new Date()).toISOString());  
 
   selectedValue: string;
-
-  constructor() { }
+  hide = true;
+  isRequestError:boolean = false;
+  isRequestOK:boolean = false;
+  constructor(private request: RequestService) { }
 
   ngOnInit(): void {  }
 
@@ -36,6 +42,12 @@ export class AdminManagementComponent implements OnInit {
     }
 
     return this.email.hasError('email') ? 'Not a valid email' : '';
+  }
+
+  getPSErrorMessage(){
+    if(this.password.hasError('required')){
+      return 'You must enter password';
+    }
   }
 
   getNameErrorMessage() {
@@ -87,4 +99,27 @@ export class AdminManagementComponent implements OnInit {
     return this.country.hasError('country') ? 'Not a valid country' : '';
 
   }
+
+  onSubmit(){
+   const userData={
+      username : this.username.value,
+			name : this.name.value,
+			email : this.email.value,
+			password : this.password.value,
+			street : this.street.value,
+			place : this.place.value,
+			country : this.country.value,
+    }
+
+    this.request.registerAdmins(userData,this.roleControl.value).subscribe(
+      (data:any)=>{
+        this.isRequestOK = true;
+        setTimeout( () => this.isRequestOK = false , 2500 );
+      },(err : HttpErrorResponse)=>{
+        this.isRequestError = true;
+        setTimeout( () => this.isRequestError = false , 2500 );
+      }
+    );
+  }
+
 }

@@ -123,6 +123,8 @@
 
         <agm-marker 
         *ngFor="let marker of markers"
+        [animation]="'BOUNCE'"
+        [zIndex]="0.2"
         [latitude]="marker.latitude" 
         [longitude]="marker.longitude" 
         [markerDraggable]="false" 

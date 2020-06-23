@@ -65,7 +65,7 @@ import { LoadDummyComponent } from './models/loaddummy';
 import { AdminDefaultModule } from './layouts/admin-default/admin-default.module';
 import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.component';
 import { OverlayContainer, FullscreenOverlayContainer } from '@angular/cdk/overlay';
-
+import { NgxPaginationModule } from 'ngx-pagination'
 
 @NgModule({
   declarations: [
@@ -105,7 +105,7 @@ import { OverlayContainer, FullscreenOverlayContainer } from '@angular/cdk/overl
     ReactiveFormsModule,
     FontAwesomeModule,
     SimplebarAngularModule,
-    
+    NgxPaginationModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBY1VATzvx85tm56FL0C4Agf_gojmbE_XI',//'AIzaSyDaxjTT7ejDx8ykQs7UU3_fuKnPLIIztjo',// 
       libraries: ['places', 'drawing', 'geometry'],

@@ -137,11 +137,45 @@ export class RequestService {
       }
       return this.http.post<JSON>(`${this.getCams}`,body,httpOption);
     }
-    
+    getCamsWSearch = '/rest/route/searchActive';
+    searchWithKeyword(body):Observable<JSON>{
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.getCamsWSearch}`,body,httpOption);
+    }
 
     getInfosOfPoint(urlSpls):Observable<Blob>{
       return this.http.get( urlSpls , { responseType: 'blob' });
     }
 
+    admintype = '';
+    registerAdmins(body,type:string):Observable<JSON>{
+      switch(type){
+        case "BO":{
+          this.admintype = '/rest/backOffice/addBO'
+          break;
+        }
+        case "BOM":{
+          this.admintype = '/rest/backOffice/addBOM'
+          break;
+        }
+        case "BOP":{
+          this.admintype = '/rest/backOffice/addBOP'
+          break;
+        }
+      }
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
 
+      return this.http.post<JSON>(`${this.admintype}`,body,httpOption);
+
+    }
 }
