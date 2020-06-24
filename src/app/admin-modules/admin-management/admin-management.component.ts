@@ -3,6 +3,7 @@ import {FormControl, Validators} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import { RequestService } from 'src/app/services/RequestService';
 import { HttpErrorResponse } from '@angular/common/http';
+import { JitEvaluator } from '@angular/compiler';
 @Component({
   selector: 'app-admin-management',
   templateUrl: './admin-management.component.html',
@@ -101,25 +102,63 @@ export class AdminManagementComponent implements OnInit {
   }
 
   onSubmit(){
-   const userData={
-      username : this.username.value,
-			name : this.name.value,
-			email : this.email.value,
-			password : this.password.value,
-			street : this.street.value,
-			place : this.place.value,
-			country : this.country.value,
+   const body={
+      username: this.username.value.toString(),
+			name: this.name.value.toString(),
+			email: this.email.value.toString(),
+			password: this.password.value.toString(),
+			street: this.street.value.toString(),
+			place: this.place.value.toString(),
+			country: this.country.value.toString()
     }
 
-    this.request.registerAdmins(userData,this.roleControl.value).subscribe(
-      (data:any)=>{
+    if(this.selectedValue == "BO"){
+      this.boSubmit(body);
+    }
+    if(this.selectedValue == "BOM"){
+      this.bomSubmit(body);
+    }
+    if(this.selectedValue == "BOP"){
+      this.bopSubmit(body);
+    }
+  }
+
+  boSubmit(body: { username: any; name: any; email: any; password: any; street: any; place: any; country: any; }) {
+    this.request.boRegAdmin(body).subscribe(
+      (data)=>{
         this.isRequestOK = true;
-        setTimeout( () => this.isRequestOK = false , 2500 );
+        
+        setTimeout(()=> this.isRequestOK = false,2500);
       },(err : HttpErrorResponse)=>{
         this.isRequestError = true;
         setTimeout( () => this.isRequestError = false , 2500 );
       }
     );
+  }
+  
+  bomSubmit(body: { username: any; name: any; email: any; password: any; street: any; place: any; country: any; }) {
+    this.request.bomRegAdmin(body).subscribe(
+      (data)=>{
+        this.isRequestOK = true;
+        
+        setTimeout(()=> this.isRequestOK = false,2500);
+      },(err : HttpErrorResponse)=>{
+        this.isRequestError = true;
+        setTimeout( () => this.isRequestError = false , 2500 );
+      });
+  }
+  
+  bopSubmit(body: { username: any; name: any; email: any; password: any; street: any; place: any; country: any; }) {
+    this.request.bopRegAdmin(body).subscribe(
+      (data)=>{
+        this.isRequestOK = true;
+        
+        setTimeout(()=> this.isRequestOK = false,2500);
+      },(err : HttpErrorResponse)=>{
+        this.isRequestError = true;
+        setTimeout( () => this.isRequestError = false , 2500 );
+      }
+      );
   }
 
 }

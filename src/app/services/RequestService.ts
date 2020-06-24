@@ -151,31 +151,37 @@ export class RequestService {
     getInfosOfPoint(urlSpls):Observable<Blob>{
       return this.http.get( urlSpls , { responseType: 'blob' });
     }
-
-    admintype = '';
-    registerAdmins(body,type:string):Observable<JSON>{
-      switch(type){
-        case "BO":{
-          this.admintype = '/rest/backOffice/addBO'
-          break;
-        }
-        case "BOM":{
-          this.admintype = '/rest/backOffice/addBOM'
-          break;
-        }
-        case "BOP":{
-          this.admintype = '/rest/backOffice/addBOP'
-          break;
-        }
-      }
+    
+    admintypebo = '/rest/backOffice/addBO';
+    boRegAdmin(body){
       const httpOption = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
           'token': `${localStorage.getItem('tokenID')}`
         })
       }
-
-      return this.http.post<JSON>(`${this.admintype}`,body,httpOption);
-
+      return this.http.post<JSON>(`${this.admintypebo}`,body,httpOption);
     }
+
+    admintypebom = '/rest/backOffice/addBOM';
+    bomRegAdmin(body){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.admintypebom}`,body,httpOption);
+    }
+    admintypebop = '/rest/backOffice/addBOP';
+    bopRegAdmin(body){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.admintypebop}`,body,httpOption);
+    }
+
 }
