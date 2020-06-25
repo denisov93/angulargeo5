@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import {  HostListener } from '@angular/core';
 import { InfoWindow } from '@agm/core/services/google-maps-types';
 import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -44,6 +45,7 @@ export class MapappComponent implements OnInit {
   constructor(
     private router : Router,
     public translate: TranslateService,
+    private http:HttpClient
   )
   {  
     
@@ -58,7 +60,11 @@ export class MapappComponent implements OnInit {
   }
   cc = [];
   ccOF:boolean = false;
+
+
+
   ngOnInit(): void {
+  
     this.setCurrentLocation();
     
     this.l = localStorage.getItem('language');
@@ -87,7 +93,6 @@ export class MapappComponent implements OnInit {
       //reqw.forEach(randomImages, index: number, array: randomImages[])
    //   console.log(reqw);
    // });
-  
   }
 
   showHMarker($event: MouseEvent){
@@ -418,41 +423,7 @@ newDirectionAdded(b:boolean){
     this.showDirection();
   }
 }
-public showNaturalReserve(){
-  this.dirWaysPollyP = JSON.parse(localStorage.getItem("ShowNaturalP"));
- this.cc = [];
- 
-  setTimeout(()=>{
-  this.dirWaysPollyP.forEach(
-    (th:any[])=>
-    {
-      
-      this.cc.push(
-        {
-          lat: parseFloat(th[1]),
-          lng: parseFloat(th[0])
-        }
-      );}
-    
-  );
-  
-  this.dirPolygon.push(this.cc);
 
-  this.show = true 
-  
-   this.latitude = this.cc[0].lat;
-   this.longitude = this.cc[0].lng;     
-
-  },
-   600);
-  
-}
-newNatResevreAdded(b:boolean){
-  if(b){
-    
-    this.showNaturalReserve();
-  }
-}
 public waywayway: Direction[];
 /*
 public waywayway = [

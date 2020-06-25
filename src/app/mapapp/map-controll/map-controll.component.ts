@@ -62,31 +62,36 @@ export class MapControllComponent implements OnInit {
     var ss = '';
  
     const reader = new FileReader();
-    reader.onload = function(event) {
-      ss = event.target.result.toString();
-      var start = ss.lastIndexOf("<coordinates>");
-      var end = ss.lastIndexOf("</coordinates>");
-      var smore = ss.slice(start,end);
-      
-      var startn = smore.indexOf("-");
-      var allmixup = smore.slice(startn);
-      var ordered = [];
-      
-      ordered = allmixup.split(' ');
-      var orderedWtoSpace = [];
-      ordered.forEach(element => { 
-          orderedWtoSpace.push(element.trim().split(","));
-      });
-      orderedWtoSpace.pop();
-      
-      
-      localStorage.setItem("ShowNaturalP",JSON.stringify(orderedWtoSpace));
-      
-    };
-    
+  
+    this.map.show=false;
+    this.map.dirPolygon = [];
     reader.readAsText(this.fileToUpload);
     
-    this.map.newNatResevreAdded(true);
+    reader.onloadend = () =>{
+      ss = reader.result.toString();
+
+      var parser = new DOMParser();
+      var xmlDoc = parser.parseFromString(ss,"text/xml");
+      
+      var ordered = [];
+      
+      ordered = xmlDoc.getElementsByTagName("coordinates")[0].childNodes[0].nodeValue.toString().split(' '); //allmixup.split(' ');
+      var orderedWtoSpace = [];
+      
+      ordered.forEach(element => { 
+        var a = element.split(",");
+        orderedWtoSpace.push(
+          {
+          lat: parseFloat(a[1]),
+          lng: parseFloat(a[0])
+          }
+          );
+      });
+      
+      this.map.dirPolygon.push(orderedWtoSpace);
+      
+      this.map.show = true;
+    } 
         
   }
  
