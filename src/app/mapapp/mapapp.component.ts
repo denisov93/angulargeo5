@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone ,Renderer2, ComponentFactoryResolver, Output, EventEmitter, Input } from '@angular/core';
-import { AgmCoreModule, MapsAPILoader, MouseEvent, AgmMap, AgmMarker } from '@agm/core';
+import { AgmCoreModule, MapsAPILoader, MouseEvent, AgmMap, AgmMarker, AgmPolygon } from '@agm/core';
 import { Url } from 'url';
 import { TranslateService } from '@ngx-translate/core';
 import { NgForm,FormBuilder, FormGroup, FormControl } from '@angular/forms';
@@ -10,6 +10,7 @@ import {  HostListener } from '@angular/core';
 import { InfoWindow } from '@agm/core/services/google-maps-types';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { element } from 'protractor';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class MapappComponent implements OnInit {
   
   maptype:String; latitude: number; longitude: number; zoom:number; l: string;previous ; Options ;
    public show: boolean = false;
+  // public active:boolean = false;
   srt: any;
   latitudeM: number; longitudeM: number;
   showMarker:boolean = false;
@@ -41,14 +43,18 @@ export class MapappComponent implements OnInit {
 
   private messageSourceClose = new BehaviorSubject('default message');
   currentMessageClose = this.messageSourceClose.asObservable();
-
+  
+  explore=false;
+  hide = false;
+  parques = null; 
+  parser = new DOMParser();
+  xmlDoc = null;
   constructor(
     private router : Router,
     public translate: TranslateService,
     private http:HttpClient
   )
   {  
-    
       this.formDir = new FormGroup(
         {
           travelMode: new FormControl("WALKING"),
@@ -57,6 +63,14 @@ export class MapappComponent implements OnInit {
           visible: new FormControl(true)
         }
       );
+      this.http.get('assets/parques.kml', { responseType: 'text' })
+      .subscribe(data => {
+        this.parques = data;
+        this.xmlDoc = this.parser.parseFromString(this.parques,"text/xml");
+        
+      })
+      ; 
+      
   }
   cc = [];
   ccOF:boolean = false;
@@ -94,6 +108,103 @@ export class MapappComponent implements OnInit {
    //   console.log(reqw);
    // });
   }
+  
+  map: any;
+  mapReady(event: any) {
+    this.map = event;
+    this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(document.getElementById('Settings'));
+    this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(document.getElementById('Markings'));   
+    this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(document.getElementById('Explore')); 
+  }  
+
+  hideShowMarkers(){
+    this.reservaNatural=[];
+    this.previous = null;
+    if(!this.hide){
+      
+      this.xmlDoc.getElementsByTagName("Placemark").forEach((element :XMLDocument)=> {
+        var name='';
+        var coord=null;     
+        element.childNodes.forEach((e:ChildNode) =>{
+    
+          if(e.nodeName == "name"){ 
+           // console.log(e.textContent)
+            name = e.textContent;
+          } 
+          if(e.nodeName == "MultiGeometry"){ 
+           // console.log(e.textContent)
+            var arr = e.textContent.toString().split(' ');
+            var ele = arr.map(e=> e.split(",") );
+    
+            coord={
+              lat: parseFloat(ele[0][1]),
+              lng: parseFloat(ele[0][0])
+            } 
+          }
+        });
+        if(name!='' && coord!=null){
+          this.reservaNatural.push({
+            coord:coord,
+            title: name
+          });
+         }
+      });
+    }
+    this.hide = !this.hide
+    
+  }
+  hideShowRoutes(){
+    this.explore = !this.explore;
+  }
+
+  
+  otherMarkers = [];
+  showZones(){
+    if (this.previous) {
+      this.previous.close();
+      this.previous = null;
+    }
+    
+    if(this.show ){
+      this.show = false;
+     // this.active = false;
+      this.dirPolygon = [];  
+    }
+    else{
+    this.show = false;
+  //  this.active = false;
+    this.dirPolygon = [];
+    
+
+      var count = this.xmlDoc.getElementsByTagName("coordinates").length;
+
+      var ordered = [];
+      for(var i=0;i< count;i++){
+      ordered = this.xmlDoc.getElementsByTagName("coordinates")[i].childNodes[0].nodeValue.toString().split(' ');
+      var orderedWtoSpace = [];
+     
+      
+      
+      ordered.forEach(element => { 
+        var a = element.split(",");
+        orderedWtoSpace.push(
+          {
+          lat: parseFloat(a[1]),
+          lng: parseFloat(a[0])
+          }
+          );
+      });
+      
+      this.dirPolygon.push(orderedWtoSpace);
+    }
+    this.show = true;
+  }
+  }
+
+  clikedPoly($event:MouseEvent,poly:AgmPolygon){
+    console.log(this.xmlDoc.getElement);
+  }
+
 
   showHMarker($event: MouseEvent){
     this.latitudeM = $event.coords.lat;
@@ -146,6 +257,7 @@ export class MapappComponent implements OnInit {
   }
   
 
+
   clickedMarker(infowindow) {
     if (this.previous) {
         this.previous.close();
@@ -153,15 +265,50 @@ export class MapappComponent implements OnInit {
     this.previous = infowindow;
   }
 
-  clickedDirection(DirMrk:AgmMarker){    
-     
-    var v = DirMrk.id.toString();
+  clickedMarkerZone(infowindow,name){
+    
+    this.show = false;
+ //   this.active = false;
+    this.dirPolygon = [];
+   // console.log("Entrou Aqui---->")
+    this.clickedMarker(infowindow);
+    
+    var orderedWtoSpace = [];
+    
+    this.xmlDoc.getElementsByTagName("Placemark").forEach((element :XMLDocument)=> {
+
+      element.childNodes.forEach(
+        (e:ChildNode) =>{
+        if(e.textContent == name){
+          var res = element.children[3].textContent.split(' ');
+          //console.log(res);
+          res.map(
+            e=>{
+              var a = e.split(',');
+              orderedWtoSpace.push(
+                {
+                lat: parseFloat(a[1]),
+                lng: parseFloat(a[0])
+                }
+                );
+            }
+          );
+        }
+       });
+      })
+      this.dirPolygon.push(orderedWtoSpace);
+      this.show = true;
+  }
+
+  clickedDirection(DirMrk){    
+     console.log(DirMrk.__ngContext__[21])
+    var v = DirMrk.__ngContext__[21];
 
    
       this.hideRoutes();
       
    
-    this.messageSource.next(v);
+    this.messageSource.next(v.toString());
      
     this.ChangeOnMainPageF();
    
@@ -175,6 +322,7 @@ export class MapappComponent implements OnInit {
     localStorage.setItem("onMainPage","true");
     this.onMainPage = true;
   }
+
   ChangeOnMainPageF(){
     localStorage.setItem("onMainPage","false");
     this.onMainPage = false;

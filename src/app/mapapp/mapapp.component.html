@@ -17,9 +17,9 @@
             <li class="nav-item" (click)="ChangeOnMainPageF()">
               <a class="nav-link" [routerLink]="[ '/map/caminho']">{{'Routs'|translate}}</a>
             </li>
-            <li class="nav-item" (click)="ChangeOnMainPageF()">
+            <!--<li class="nav-item" (click)="ChangeOnMainPageF()">
               <a class="nav-link" [routerLink]="[ '/map/control']">{{'Controllers'|translate}} </a>
-            </li>
+            </li>-->
           </ul>
         </div>
         <router-outlet></router-outlet>
@@ -28,12 +28,21 @@
         <div class="card-body">
             <div class="card-body">                          
                 <div *ngIf="newDefInc && !newDef1">
-                    <div class="row">
-                    <div class="col">
-                        <button id="new" class="btn btn-success" (click)="definirCaminho()" >{{'New'|translate}}</button>
-                    </div>   
-                    </div><br>
-                <app-formpoliline (newDirectionAdded)="newDirectionAdded($event)"></app-formpoliline>
+                    
+                    <div class="card">
+                        <div class="card-header">New Route </div>
+                        <div class="card-body">
+                          <p>
+                        Create routes is easy you can watch <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">this</a> totorial of how to do it
+                      </p>
+                      <div class="row">
+                        <div class="col">
+                            <button id="new" class="btn btn-success" (click)="definirCaminho()" >{{'New'|translate}}</button>
+                        </div>   
+                        </div><br>    
+                        </div>
+                      </div>
+                <!--<app-formpoliline (newDirectionAdded)="newDirectionAdded($event)"></app-formpoliline>-->
                 </div>
                 <br>
                 <div *ngIf="!newDefInc && !newDef1" >
@@ -93,6 +102,7 @@
 </div>  
     <agm-map
     #map
+    (mapReady)="mapReady($event)"
     [mapTypeControl]='true'
     [latitude]="latitude" 
     [longitude]="longitude" 
@@ -100,8 +110,16 @@
     [disableDoubleClickZoom]="true"
     (mapDblClick) ="showHMarker($event)"    
     (mapRightClick)="getOptions($event,infoWindowOption)"
-    
     >
+    <button id="Settings" mat-fab color="warn" (click)="showZones()">
+        <mat-icon aria-hidden="true">map</mat-icon>
+    </button>
+    <button id="Markings" mat-fab color="primary" >
+        <mat-icon aria-hidden="true" (click)="hideShowMarkers()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <button id="Explore" mat-fab color="warn" >
+        <mat-icon aria-hidden="true" (click)="hideShowRoutes()">{{explore ? 'explore_off' : 'explore'}}</mat-icon>
+    </button>
         <agm-info-window
         #infoWindowOption
         [latitude]="infoOptionLat" 
@@ -139,12 +157,13 @@
         [latitude]="res.coord.lat" 
         [longitude]="res.coord.lng" 
         [markerDraggable]="false" 
-        (markerClick)="clickedMarker(infowindow)"
+        (markerClick)="clickedMarkerZone(infowindow,res.title)"
+        [visible]="hide"
         iconUrl = "../assets/tree_pinlet-2-medium.png"   
         >       
             <agm-info-window [disableAutoPan]="true" #infowindow >{{res.title}}</agm-info-window>
         </agm-marker>
-
+        <div *ngIf="explore">
         <agm-marker
         #DirMrk 
         *ngFor="let marker of waywayway"
@@ -153,11 +172,11 @@
         [longitude]="marker.origin.lng" 
         [markerDraggable]="false"
         [visible]="!marker.visible" 
-        (markerClick)="clickedDirection(DirMrk)"
+        (markerClick)="clickedDirection($event)"
         iconUrl = "../assets/hiking_pinlet-2-medium.png"   
-        >      
+        >    
         </agm-marker>
-
+        </div>
         <agm-direction #defWay id="defWay" *ngFor="let way of waywayway" [infoWindow]="thisInfoW" [travelMode]="way.travelMode" [origin]="way.origin" [destination]="way.destination" [waypoints]="way.waypoints" [visible]="way.visible">
 
         </agm-direction>
@@ -179,8 +198,8 @@
                 <img src="https://s0.wklcdn.com/image_18/563863/17514776/11043738Master.jpg" width="200px" height="200px">
                 </agm-info-window>
         </agm-marker>
-        <agm-polygon *ngIf="show" [paths]="dirPolygon" [editable]=false [fillColor]="'green'" [strokeColor]="'green'">
-
+        <agm-polygon #poly (polyClick)="clikedPoly($event,poly)" [visible]="(show )" [paths]="dirPolygon" [editable]=false [fillColor]="'green'" [strokeColor]="'green'" >
+           
         </agm-polygon>
     </agm-map>
 

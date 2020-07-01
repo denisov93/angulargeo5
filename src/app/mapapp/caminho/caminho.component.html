@@ -41,7 +41,7 @@
     <div *ngIf="totalRecords > 0">
         <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"> </pagination-controls>
     </div>
-</div>
+
 <div class="row" *ngIf="searchWord">
     <div class="col"></div>
     <div class="alert alert-info" role="alert"> <strong>{{'RFavFailLoad'|translate}}</strong> </div>
@@ -52,5 +52,5 @@
     <div class="alert alert-danger" role="alert"> <strong>Must Have at least 4 letters</strong> </div>
     <div class="col"></div>
 </div>
-
+</div>
 </div>

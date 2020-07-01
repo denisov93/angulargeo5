@@ -6,6 +6,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import {User} from 'src/app/models/User';
 import { username } from 'src/app/models/username';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-persone',
@@ -19,19 +21,29 @@ export class PersoneComponent implements OnInit {
   userI: User = new User();  
   index:any;
 
-  constructor(private req: RequestService) { }
+  constructor(private req: RequestService,public jwtHelper: JwtHelperService,private router:Router) { }
 
   ngOnInit(): void { 
     this.loadPersone(); 
     this.index = JSON.parse(localStorage.getItem("ProfileTabIdx"));
+
+    const helper = new JwtHelperService();    
+    // const decodedToken = helper.decodeToken(localStorage.getItem('tokenID'));
+     //console.log(decodedToken);
+     var date = new Date();
+    // console.log(date.getMilliseconds()+1000*60*60);
+     if(this.jwtHelper.isTokenExpired(localStorage.getItem('tokenID'),date.getMilliseconds())){
+       localStorage.removeItem('tokenID');
+       this.router.navigate(['/signin']);
+     }
   }
 
   getPersoneInfo(){
     var us = localStorage.getItem("username");
-    console.log(us);
+ //   console.log(us);
     const body = new username();
     body.username = us;
-    console.log(body);
+  //  console.log(body);
     
     this.req.getUserInfo(body).subscribe(
   

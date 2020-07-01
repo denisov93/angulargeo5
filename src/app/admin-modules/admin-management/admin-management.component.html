@@ -5,12 +5,20 @@
         <form (ngSubmit)="onSubmit()">
         <h3>Admin Info</h3>
 
-        <div class="row">
-          <div class="col-lg-6">
+       
             <nb-card>
               <nb-card-header></nb-card-header>
               <nb-card-body>
-                
+                <h4>Role:</h4>
+                <mat-form-field>
+                  <mat-label>Select a role</mat-label>
+                  <mat-select [(value)] = "selectedValue">
+                    <mat-option>None</mat-option>
+                    <mat-option value = "BO">Super Admin</mat-option>
+                    <mat-option value = "BOM">Comunity Moderator</mat-option>
+                    <mat-option value = "BOP">Routes Admin</mat-option>
+                  </mat-select>
+                </mat-form-field>
 
                 <h4>Admin Name:</h4>
                 <div class="full-name-inputs">
@@ -95,29 +103,7 @@
 
               </nb-card-body>
             </nb-card>
-          </div>
-        
-          <div class="col-lg-6">        
-            <nb-card>
-              <nb-card-header>Role</nb-card-header>
-              <nb-card-body>
-                <div>
-                  
-                  <mat-form-field>
-                    <mat-label>Select a role</mat-label>
-                    <mat-select [(value)] = "selectedValue">
-                      <mat-option>None</mat-option>
-                      <mat-option value = "BO">Super Admin</mat-option>
-                      <mat-option value = "BOM">Comunity Moderator</mat-option>
-                      <mat-option value = "BOP">Routes Admin</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                  
-                </div>
-              </nb-card-body>
-            </nb-card>
-          </div>
-        </div>
+      
         <p>
           <button mat-raised-button color="primary" type="submit" [disabled]="  !(selectedValue!=null && country.valid && city.valid && place.valid && zipcode.valid && street.valid && username.valid && name.valid && email.valid)">Submit</button>
       </p>            

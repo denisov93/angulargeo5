@@ -25,12 +25,17 @@ export class SignInComponent implements OnInit {
     }
     this.isLoginError = true;
     this.request.userAuthentication(body).subscribe((data : any)=>{
-     console.log(data);
+    // console.log(data);
      
      localStorage.setItem('username',body.username); 
      localStorage.setItem('tokenID',data);
 
-     setTimeout( () => this.router.navigate(['/person']) , 300 );     
+    
+
+     setTimeout( () => {
+       
+      this.router.navigate(['/person']) 
+    }, 300 );     
     
    },
    (err : HttpErrorResponse)=>{

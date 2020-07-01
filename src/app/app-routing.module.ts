@@ -8,6 +8,7 @@ import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { PersoneComponent } from './person/persone/persone.component';
 import { AuthGuard } from './auth/auth.guard';
+import { AuthGuardAdmin } from './auth/authguardadmin';
 import { MapControllComponent } from './mapapp/map-controll/map-controll.component';
 import { CommunityMainComponent } from './community-main/community-main.component';
 import { CaminhoComponent } from './mapapp/caminho/caminho.component';
@@ -50,7 +51,7 @@ const routes: Routes = [
     children :[{ path : '',component: SignInComponent }]
   }, 
 
-  {path: 'admin',component : AdminDefaultComponent,
+  {path: 'admin',component : AdminDefaultComponent, canActivate:[AuthGuardAdmin],
   children:[{path : '',component : DashboardComponent},
             {path : 'userReports', component: InfosComponent},
             {path : 'adminTools', component: AdminManagementComponent},

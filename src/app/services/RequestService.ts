@@ -65,10 +65,19 @@ export class RequestService {
     }
 
     userlogin='/rest/login';
-    userAuthentication(body):Observable<JSON>{  
-      
-      
+    userAuthentication(body):Observable<JSON>{   
       return this.http.post<JSON>(`${this.todosUrl}${this.userlogin}`,body,httpOptions);
+    }
+
+    refToken='/rest/user/refreshToken';
+    refreshToken(){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.getUser}`,'',httpOption);
     }
 
     userlogout='/rest/logout';
@@ -121,6 +130,17 @@ export class RequestService {
     getJwtToken() {
       return localStorage.getItem('tokenID');
     }
+
+    getAdminConf(){
+      var u = localStorage.getItem('userInfo');
+      if(u!=null){
+        if(JSON.parse(u).user_role != 'User'){
+          return true;
+        }
+      }
+      return false;
+    }
+
 
     getCams='/rest/route/user';
     getmyCams():Observable<JSON>{

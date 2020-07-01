@@ -72,10 +72,11 @@ export class MapControllComponent implements OnInit {
 
       var parser = new DOMParser();
       var xmlDoc = parser.parseFromString(ss,"text/xml");
-      
+      var count = xmlDoc.getElementsByTagName("coordinates").length;
+
       var ordered = [];
-      
-      ordered = xmlDoc.getElementsByTagName("coordinates")[0].childNodes[0].nodeValue.toString().split(' '); //allmixup.split(' ');
+      for(var i=0;i< count;i++){
+      ordered = xmlDoc.getElementsByTagName("coordinates")[i].childNodes[0].nodeValue.toString().split(' '); //allmixup.split(' ');
       var orderedWtoSpace = [];
       
       ordered.forEach(element => { 
@@ -89,7 +90,7 @@ export class MapControllComponent implements OnInit {
       });
       
       this.map.dirPolygon.push(orderedWtoSpace);
-      
+    }
       this.map.show = true;
     } 
         

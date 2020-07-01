@@ -43,7 +43,7 @@ export class CaminhoComponent implements OnInit {
 
   searchWithKeyword(word){
 
-    if(word.value.length > 4){
+    if(word.value.length >= 4){
      
     const body={
       search:word.value
@@ -109,7 +109,8 @@ export class CaminhoComponent implements OnInit {
           lat: parseFloat(  element.origin.lat.valueOf()) ,
           lng: parseFloat(  element.origin.lng.valueOf())
         };
-        
+        ms.id = this.t.create_UUID();
+
         this.t.waywayway.push(ms);
         }
         
@@ -212,7 +213,8 @@ export class CaminhoComponent implements OnInit {
       lat: parseFloat(  element.origin.lat.valueOf()) ,
       lng: parseFloat(  element.origin.lng.valueOf())
     };
-    
+    ms.id = this.t.create_UUID();
+
     this.t.waywayway.push(ms);
     }
     

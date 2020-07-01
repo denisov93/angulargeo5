@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule,HttpClient } from '@angular/common/http';
+import { HttpClientModule,HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
@@ -66,6 +66,7 @@ import { AdminDefaultModule } from './layouts/admin-default/admin-default.module
 import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.component';
 import { OverlayContainer, FullscreenOverlayContainer } from '@angular/cdk/overlay';
 import { NgxPaginationModule } from 'ngx-pagination'
+import { Interceptor } from './services/Interceptor';
 
 @NgModule({
   declarations: [
@@ -114,8 +115,8 @@ import { NgxPaginationModule } from 'ngx-pagination'
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ["http://localhost:4200/person/"],
-        blacklistedRoutes: ["http://localhost:4200/map/"]
+        whitelistedDomains: [],
+        blacklistedRoutes: []
       }
     }),
     TranslateModule.forRoot({
@@ -146,6 +147,7 @@ import { NgxPaginationModule } from 'ngx-pagination'
     NbThemeModule.forRoot({ name: 'default' }),
   ],
   providers: [
+   // {provide: HTTP_INTERCEPTORS,useClass: Interceptor,multi:true },
     {provide: OverlayContainer, useClass: FullscreenOverlayContainer}
   ],
   bootstrap: [AppComponent]
