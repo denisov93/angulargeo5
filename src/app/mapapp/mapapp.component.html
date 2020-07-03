@@ -93,6 +93,8 @@
                     <div class="alert alert-success" role="alert">
                         <strong>{{'SetStartP'|translate}} {{origin.lat}} && {{origin.lng}} {{'SetDest'|translate}} {{destination.lat}}&& {{destination.lng}} {{'CreatP'|translate}}</strong>
                     </div>
+                    <app-formpoliline (newImagesAdded)="newImagesAdded($event)"></app-formpoliline>
+
                     <button  class="btn btn-success" (click)="finalizeSetDir()" >{{'Create'|translate}}</button>
                     <button  class="btn btn-danger" (click)="abortChanges()" >{{'Delete'|translate}}</button>
                 </div>    
@@ -152,7 +154,9 @@
         (markerClick)="clickedMarker(infowindow)"
         iconUrl = "{{marker.iconUrl}}"   
         >       
-            <agm-info-window [disableAutoPan]="true" #infowindow>{{marker.info}}</agm-info-window>
+            <agm-info-window [disableAutoPan]="true" #infowindow>
+                {{marker.info}}
+            </agm-info-window>
         </agm-marker>
         
         <agm-marker 

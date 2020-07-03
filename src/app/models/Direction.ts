@@ -19,4 +19,5 @@ export class Direction{
     ]
     visible:boolean
     type:boolean
+    images:any[]
 }

@@ -515,6 +515,7 @@ if(this.anyWayP){
   mf.id = this.create_UUID();
   mf.type = this.anyWayP;
   mf.visible = false;
+  mf.images = this.filesToUpload;
 
   console.log(mf);
  
@@ -548,6 +549,7 @@ abortChanges(){
   this.newDef1=false;
   this.newDef2=false;
   this.markers=[];
+  
 }
 
 onSubmit(myForm){
@@ -584,6 +586,20 @@ newDirectionAdded(b:boolean){
 }
 
 public waywayway: Direction[];
+
+
+
+///////////////////Submiting files
+
+filesToUpload: any[] = null;
+
+newImagesAdded(arr:any[]){
+  console.log(arr);
+  this.filesToUpload = arr;
+}
+
+
+
 /*
 public waywayway = [
 {

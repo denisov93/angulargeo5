@@ -10,8 +10,18 @@
             
             <div [ngClass]="setClasses()" *ngIf="!isRequestError">
                     <p> {{direction.description}} </p>
+                    <div class="container">
+                        <div class="row" *ngFor="let item of direction.images">    
+                          <div class="col">   
+                            <img [src]="item">
+                          </div>
+                        </div>  
+                      </div>
+
+                    <!--
                     <p> It starts in Coordinates: {{direction.origin.lat}} & {{direction.origin.lng}}</p>
                     <p>And end in Coordinates: {{direction.destination.lat}} & {{direction.destination.lng}}</p>
+                    -->
                     <button type="button" class="btn btn-primary"(click)="addtoFavorites(direction)" >Add To Favorites</button>
                          
             </div>
