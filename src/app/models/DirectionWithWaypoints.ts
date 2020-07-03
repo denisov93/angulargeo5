@@ -20,7 +20,8 @@ export class DirectionWhithWaypoints{
         { 
             lat:number
             lng:number
-        } 
+        },
+        stopover: false, 
     }
     visible:boolean
 }

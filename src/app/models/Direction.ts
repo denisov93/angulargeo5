@@ -13,7 +13,8 @@ export class Direction{
         { 
             lat:number
             lng:number
-        }
+        },
+        stopover: false,
     } 
     ]
     visible:boolean

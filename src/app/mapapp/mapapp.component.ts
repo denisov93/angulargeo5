@@ -410,6 +410,13 @@ definirCaminho(){
   setTimeout( () => this.newDefInc =false ,500);
   
 }
+mbounce=true;
+bounceAction(){
+  this.mbounce = false;
+  setTimeout(
+    ()=> this.mbounce=true,1000
+  );
+}
 //Def way 2nd part
 Title = "";
 Description = "";
@@ -427,7 +434,7 @@ definirC1(Title,Description){
      }
     );
     this.newDef1=true;
-  
+  this.bounceAction();
 }
 
 definirC2(){
@@ -443,6 +450,7 @@ definirC2(){
    }
   );
   this.newDef2 = true;
+  this.bounceAction();
 }
 
 wayPushed:boolean=false;
@@ -452,7 +460,8 @@ definirC2WayP(){
     location: {
       lat: this.latitudeM, 
       lng: this.longitudeM
-    }
+    },
+    stopover: false,
   }
 
   this.markers.push(
@@ -461,8 +470,8 @@ definirC2WayP(){
     longitude:this.longitudeM,
     info:`this marker is at ${this.latitudeM} and ${this.longitudeM}`,
     label:"I",
-    iconUrl:"http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-    
+    iconUrl:"http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+    stopover: false,
    }
   );
   
@@ -472,6 +481,7 @@ definirC2WayP(){
   this.wayPushed = true;
   this.anyWayP = true;
   setTimeout(()=>this.wayPushed=false,800);
+  this.bounceAction();
 }
 
 create_UUID(){
@@ -537,6 +547,7 @@ abortChanges(){
   this.newDefInc=true
   this.newDef1=false;
   this.newDef2=false;
+  this.markers=[];
 }
 
 onSubmit(myForm){
@@ -624,14 +635,21 @@ public renderOptions = {
 
 public markerOptions = {
   origin: {
-      icon: {url: '../../assets/svg/flag-checkered-solid.svg' // atençao svg alterado para width="50" height="50"
-    }
+    infoWindow: 'Origin.',
+    icon: '../../assets/dirPoint.png',
   },
   destination: {
-      icon: { }
-     
+    infoWindow: 'Destination',
+    icon:'../../assets/dirPoint.png'
   },
-}
+  waypoints: {
+    infoWindow: `<h4>A<h4>
+    <a href='http://google.com' target='_blank'>A</a>
+    `,
+    icon: '../../assets/dirPoint.png',
+    stopover: false,
+  },
+};
 
 
 dirWaysPollyP = [   ]; // [{},....]

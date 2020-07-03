@@ -73,7 +73,7 @@ export class CaminhoComponent implements OnInit {
         mf.title = element.title;
         mf.description = element.description;
         
-          var arr: [{location:{lat:number,lng:number}}] = [{location:{lat:0,lng:0}}];
+          var arr: [{location:{lat:number,lng:number},stopover: false,}] = [{location:{lat:0,lng:0},stopover: false}];
           
     
           for(var i = 0;i<element.intermidiatePoints.length;i++){
@@ -81,7 +81,9 @@ export class CaminhoComponent implements OnInit {
             arr[i] = 
             {location:{
               lat: parseFloat(element.intermidiatePoints[i].lat),
-              lng: parseFloat(element.intermidiatePoints[i].lng)} 
+              lng: parseFloat(element.intermidiatePoints[i].lng)
+            },
+            stopover: false 
             };
     
           }
@@ -90,7 +92,8 @@ export class CaminhoComponent implements OnInit {
             { 
                 lat:0,
                 lng:0
-            }
+            },
+            stopover: false,
           }];
           mf.waypoints = arr; 
           
@@ -177,7 +180,7 @@ export class CaminhoComponent implements OnInit {
     mf.title = element.title;
     mf.description = element.description;
     
-      var arr: [{location:{lat:number,lng:number}}] = [{location:{lat:0,lng:0}}];
+      var arr: [{location:{lat:number,lng:number},stopover: false,}] = [{location:{lat:0,lng:0},stopover: false,}];
       
 
       for(var i = 0;i<element.intermidiatePoints.length;i++){
@@ -185,7 +188,8 @@ export class CaminhoComponent implements OnInit {
         arr[i] = 
         {location:{
           lat: parseFloat(element.intermidiatePoints[i].lat),
-          lng: parseFloat(element.intermidiatePoints[i].lng)} 
+          lng: parseFloat(element.intermidiatePoints[i].lng)},
+          stopover: false, 
         };
 
       }
@@ -194,7 +198,8 @@ export class CaminhoComponent implements OnInit {
         { 
             lat:0,
             lng:0
-        }
+        },
+        stopover: false,
       }];
       mf.waypoints = arr; 
       

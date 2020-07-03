@@ -46,7 +46,8 @@ export class DirectionComponent implements OnInit {
   setClasses(){
     let classes = {
         direction: true,
-        'visible': this.direction.visible
+        'visible': this.direction.visible,
+        stopover: false
     }
     return classes
   }
