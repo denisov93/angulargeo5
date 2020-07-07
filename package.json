@@ -41,6 +41,7 @@
     "angular2-jwt": "^0.2.3",
     "bootstrap": "^4.4.1",
     "canvasjs": "^1.8.3",
+    "email-existence": "^0.1.6",
     "eva-icons": "^1.1.2",
     "highcharts": "^8.1.1",
     "highcharts-angular": "^2.4.0",

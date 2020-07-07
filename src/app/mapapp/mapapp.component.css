@@ -27,6 +27,18 @@ agm-map {
   right:0;
 }
 
+.notfadeBox{
+  opacity: 1
+}
+
+.fadeBox{
+  background-color: black;
+  content:"";
+  pointer-events: none;
+  z-index:100;
+  opacity: .5
+}
+
     /* Small screens */
     @media only screen and (max-width: 650px) {
       agm-map {

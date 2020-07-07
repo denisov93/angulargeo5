@@ -2,6 +2,7 @@ import {Component, ElementRef, ViewChild, Output, EventEmitter} from '@angular/c
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { promise } from 'protractor';
+import { RequestService } from 'src/app/services/RequestService';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class FormpolilineComponent{
   filesToUpload: FileList = null;
   filetoUpload: File = null;
    
-  constructor(private router:Router) {
+  constructor(private router:Router,private req:RequestService) {
     this.formImport = new FormGroup({
       importFile: new FormControl('', Validators.required)
     });
@@ -37,7 +38,7 @@ export class FormpolilineComponent{
   images:any[];
 
   importImages():void{
-    
+
     var reader = new FileReader();
     this.imagePath = this.filesToUpload;
 
@@ -52,6 +53,7 @@ export class FormpolilineComponent{
       this.images = data;
       this.imageSend = true;
       this.newImagesAdded.emit(this.images);
+      
   });
   }
 }

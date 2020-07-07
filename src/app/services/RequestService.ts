@@ -6,6 +6,7 @@ import { randomImages } from '../mapapp/mapapp.component'; //lixo
 import { Direction } from '../models/Direction';
 import { Data } from '@angular/router';
 import { Url } from 'url';
+import { JwtHelperService } from '@auth0/angular-jwt';
 const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -34,9 +35,9 @@ export class RequestService {
     todosLimit = '?_limit=5';
     forecast:string = '';
 
-
-    constructor(private http:HttpClient) {
-     
+    helper
+    constructor(private http:HttpClient,public jwtHelper: JwtHelperService) {
+       this.helper = new JwtHelperService(); 
      }
 
      addToFav = '/rest/route/submit';
@@ -203,5 +204,44 @@ export class RequestService {
       }
       return this.http.post<JSON>(`${this.admintypebop}`,body,httpOption);
     }
+
+    simUpload='/rest/storage/upload'
+    simplUpload(body){
+      const decodedToken = this.helper.decodeToken(localStorage.getItem('tokenID'));
+     
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type':'image/jpeg',
+          'token': `${localStorage.getItem('tokenID')}`
+      })
+    }
+    return this.http.post<JSON>(`${this.simUpload}`,body);
+    }
+    
+    
+    uploadPho = '/rest/storage/upload/user/'
+    uploadPhoto(body){
+      const decodedToken = this.helper.decodeToken(localStorage.getItem('tokenID'));
+     
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type':'image/jpeg',
+          'token': `${localStorage.getItem('tokenID')}`
+      })
+    }
+    return this.http.post<JSON>(`${this.uploadPho}${decodedToken.token.username}`,body,httpOption);
+    }
+
+    getUserProfPic(body){
+      const decodedToken = this.helper.decodeToken(localStorage.getItem('tokenID'));
+     
+      const httpOption = {
+        headers: new HttpHeaders({
+          'token': `${localStorage.getItem('tokenID')}`
+      })
+    }
+    return this.http.post<JSON>(`${''}`,body,httpOption);
+    }
+
 
 }

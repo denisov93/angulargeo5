@@ -20,6 +20,7 @@ export class SignUpComponent implements OnInit {
   key = <any>'';
   
   OnSubmit(UserName,Name,Email,Password,Confirmation){
+  
     if(Password===Confirmation){
     const body={
       username:UserName,

@@ -4,6 +4,7 @@ import { Direction } from '../../../models/Direction';
 import { HttpErrorResponse } from '@angular/common/http';
 import {  HostListener } from '@angular/core';
 import { MapappComponent } from '../../mapapp.component';
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -17,8 +18,15 @@ export class DirectionComponent implements OnInit {
   isRequestError: boolean = false;
   activeIds: string[] = [];
   dirId:string;
+  images
 
-  constructor(private rr:MapappComponent, private req: RequestService ) { }
+  constructor(private rr:MapappComponent, private req: RequestService, config: NgbCarouselConfig) {
+    // customize default values of carousels used by this component tree
+    config.interval = 60000;
+    config.wrap = false;
+    config.keyboard = false;
+    config.pauseOnHover = false;
+  }
   
   ngOnInit(): void {
     this.rr.currentMessage.subscribe(
@@ -42,12 +50,14 @@ export class DirectionComponent implements OnInit {
            
         }
       );
+     
+      this.images = this.direction.images;
   }
   setClasses(){
     let classes = {
         direction: true,
         'visible': this.direction.visible,
-        stopover: false
+        stopover: false,
     }
     return classes
   }
