@@ -17,6 +17,7 @@ export class SettingsComponent {
   isRequestError: boolean = false;
 
   //Validators...
+  photoControl = new FormControl('', [Validators.required]);
   emailControl = new FormControl('', [Validators.required, Validators.email]);
   nameControl = new FormControl('',[Validators.required, this.checkName]);
   birthdayControl = new FormControl('',[Validators.required]);
@@ -86,7 +87,8 @@ export class SettingsComponent {
   onSubmit(){
 
     //Para ja' esta' a funcionar como debug para nos XD...
-    alert("Thanks for update you're info Data: "+ JSON.stringify(this.userInput));
+    //alert("Thanks for update you're info Data: "+ JSON.stringify(this.userInput));
+    alert("Os seus dados foram actualizados com sucesso!");
 
     //Verificacao de campos introduzidos
     //Os campos que nao foram preenchidos ou seja nao existe atualizacao a fazer vamos buscar o valor 'a localstore...
@@ -185,5 +187,10 @@ export class SettingsComponent {
   saveUpdate(){
     localStorage.setItem("userInfo", JSON.stringify(this.userI));    
     localStorage.setItem("ProfileTabIdx", "0");
+  }
+
+   //Implementar para guardar a imagem o utilizador no servidor...
+   onFileChange(event){
+
   }
 }

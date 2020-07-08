@@ -5,7 +5,11 @@
   transform: translate(-50%,-50%);
   width: 50vw;
   background-color: lightseagreen;
-
+  .mat-card-header{
+    background-image: none;
+    width: 100%;
+    height: 10%;
+  }
   mat-card-image{
   
     width:20%;
@@ -19,19 +23,9 @@
   background-position: center;
 }
 
-.col-lg-7{
-  left:20%;
-}
 
 mat-card-content{
   body{
     background-color: lightseagreen;
-  }
-  padding-left: 10px;
-  .row{
-    transform: translate(6vw,0);
-  }
-  .col-lg-7{
-    transform: translate(6vw,0);
   }
 }
