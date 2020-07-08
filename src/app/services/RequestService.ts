@@ -232,7 +232,7 @@ export class RequestService {
     return this.http.post<JSON>(`${this.uploadPho}${decodedToken.token.username}`,body,httpOption);
     }
 
-    getUserProfPic(body){
+    getUserProfPic(){
       const decodedToken = this.helper.decodeToken(localStorage.getItem('tokenID'));
      
       const httpOption = {
@@ -240,7 +240,7 @@ export class RequestService {
           'token': `${localStorage.getItem('tokenID')}`
       })
     }
-    return this.http.post<JSON>(`${''}`,body,httpOption);
+    return this.http.post<JSON>(`${''}`,httpOption);
     }
 
 

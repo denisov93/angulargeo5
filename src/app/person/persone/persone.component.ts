@@ -20,6 +20,7 @@ export class PersoneComponent implements OnInit {
   isUInfoError: boolean = false;
   userI: User = new User();  
   index:any;
+  public picSrc = 'https://storage.cloud.google.com/apdc-geoproj.appspot.com/';
 
   constructor(private req: RequestService,public jwtHelper: JwtHelperService,private router:Router) { }
 
@@ -71,10 +72,22 @@ export class PersoneComponent implements OnInit {
     );
   }
 
+  getPersoneProPic(){
+
+    this.req.getUserProfPic().subscribe(
+      (data:any)=>{
+        this.picSrc = this.picSrc + `${data.file_name}`;
+      }
+    );
+
+
+  }
+
   loadPersone(){
     const st = localStorage.getItem("userInfo");
     if(st=="{}" || st==null){
       this.getPersoneInfo();
+      this.getPersoneProPic();
       setTimeout( ()=> 200);
     }
     else this.userI = JSON.parse(st);
