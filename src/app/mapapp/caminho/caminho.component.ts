@@ -175,7 +175,7 @@ export class CaminhoComponent implements OnInit {
       lng: parseFloat(  element.origin.lng.valueOf())
     };
     
-    mf.id = this.t.create_UUID();
+    mf.id = localStorage.getItem("username") + this.t.create_UUID();
 
     mf.title = element.title;
     mf.description = element.description;

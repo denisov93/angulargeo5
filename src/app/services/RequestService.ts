@@ -232,6 +232,7 @@ export class RequestService {
     return this.http.post<JSON>(`${this.uploadPho}${decodedToken.token.username}`,body,httpOption);
     }
 
+    userPict='/rest/user/'
     getUserProfPic(){
       const decodedToken = this.helper.decodeToken(localStorage.getItem('tokenID'));
      
@@ -239,8 +240,10 @@ export class RequestService {
         headers: new HttpHeaders({
           'token': `${localStorage.getItem('tokenID')}`
       })
+      
     }
-    return this.http.post<JSON>(`${''}`,httpOption);
+   // console.log(`${this.userPict}${decodedToken.token.username}${'/picture'}`);
+    return this.http.post<JSON>(`${this.userPict}${decodedToken.token.username}${'/picture'}`,'',httpOption);
     }
 
 
