@@ -60,6 +60,16 @@ export class RequestService {
       );
     }
 
+    getImagesFromURL(uri){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.get(uri);
+    }
+
     userLogs='/rest/login/user';
     getlogs( me : any ):Observable<string[]>{
         return this.http.post<string[]>(`${this.todosUrl}${this.userLogs}`,me,httpOptions);
