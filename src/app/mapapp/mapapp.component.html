@@ -159,6 +159,38 @@
             </agm-info-window>
         </agm-marker>
         
+        <agm-marker
+        [latitude]="37.079360" 
+        [longitude]="-8.668662" 
+        [markerDraggable]="false" 
+        (markerClick)="clickedMarker(infowindow)"
+        iconUrl = "../../assets/blue.png"
+        >
+            <agm-info-window [disableAutoPan]="true" #infowindow >
+                <mat-tab-group>
+                    <mat-tab label="Titulo">
+                        <nb-card>
+                            <nb-card-header>
+                                <h2><b>Lagos-Portimão "Areias vermelhas"</b></h2>
+                            </nb-card-header>
+                            <nb-card-body>
+                                Morfologia litoral na Formação carbonatada de Lagos-Portimão (Miocénico marinho) com "Areias vermelhas" do Pliocénico, no topo das arribas
+                            </nb-card-body>
+                        </nb-card>   
+                    </mat-tab>
+                    <mat-tab label="Carta Geologica"> 
+                        <object data="http://geoportal.lneg.pt/geoportal/egeo/DownloadCartas/images/52-A.pdf" type="application/pdf">
+                        </object>    
+                    </mat-tab>
+                    <mat-tab label="Noticia Explicativa"> 
+                        <object data="http://geoportal.lneg.pt/geoportal/egeo/DownloadCartas/noticias/52-A.pdf" type="application/pdf">
+                        </object> 
+                    </mat-tab>
+                  </mat-tab-group>
+            </agm-info-window>
+        </agm-marker>
+
+
         <agm-marker 
         *ngFor="let res of reservaNatural"
         [latitude]="res.coord.lat" 

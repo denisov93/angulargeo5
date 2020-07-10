@@ -15,14 +15,14 @@
                             <ngb-carousel >
                                 <ng-template *ngFor="let item of images" ngbSlide>
                                   <div class="picsum-img-wrapper">
-                                    <img [src]="item" alt="Random first slide">
+                                    <img  class="imagesize" [src]="item" alt="Random first slide">
                                   </div>
                                   
                                 </ng-template>
                                 
                               </ngb-carousel>  
                       </div>
-                    </div>
+                </div>
                     <!--
                     <p> It starts in Coordinates: {{direction.origin.lat}} & {{direction.origin.lng}}</p>
                     <p>And end in Coordinates: {{direction.destination.lat}} & {{direction.destination.lng}}</p>

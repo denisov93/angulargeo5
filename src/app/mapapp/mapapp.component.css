@@ -3,6 +3,15 @@ agm-map {
   height: 100vh;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
   }
+  
+  iframe,
+  object,
+  embed {
+    height: 600px;
+    width: 600px;
+    overflow: hidden;
+  }
+
 
 .mainBarComp {
     width: 25vw;

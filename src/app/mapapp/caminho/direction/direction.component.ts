@@ -27,7 +27,12 @@ export class DirectionComponent implements OnInit {
     config.keyboard = false;
     config.pauseOnHover = false;
   }
-  
+
+  imagesize:any;
+  bigImage(){
+    this.imagesize = "smt"
+  }
+
   ngOnInit(): void {
     this.rr.currentMessage.subscribe(
       dirId=>{

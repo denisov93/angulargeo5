@@ -11,6 +11,7 @@ import { InfoWindow } from '@agm/core/services/google-maps-types';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { element } from 'protractor';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 
 @Component({
@@ -75,7 +76,10 @@ export class MapappComponent implements OnInit {
   cc = [];
   ccOF:boolean = false;
 
-
+  index:any;
+  tabChanged(tabChangeEvent: MatTabChangeEvent): void {
+    localStorage.setItem("ProfileTabIdx", JSON.stringify(tabChangeEvent.index));
+  }
 
   ngOnInit(): void {
   

@@ -20,7 +20,7 @@ export class PersoneComponent implements OnInit {
   isUInfoError: boolean = false;
   userI: User = new User();  
   index:any;
-  picSrc = 'https://storage.cloud.google.com/apdc-geoproj.appspot.com/';
+  picSrc :any ;
 
 
   constructor(private req: RequestService,public jwtHelper: JwtHelperService,private router:Router) { }
@@ -79,7 +79,8 @@ export class PersoneComponent implements OnInit {
     this.req.getUserProfPic().subscribe(
       (data:any)=>{
         console.log(data);
-        this.picSrc = this.picSrc + data.file_name;
+        this.picSrc = 'https://storage.cloud.google.com/apdc-geoproj.appspot.com/' + data.file_name;
+        localStorage.setItem("picSrc",this.picSrc);
         console.log(this.picSrc)
       },
       (err : HttpErrorResponse)=>{
@@ -97,10 +98,14 @@ export class PersoneComponent implements OnInit {
     
     if(st=="{}" || st==null){
       this.getPersoneInfo();
-      this.getPersoneProPic();  
-      setTimeout( ()=> 200);
+      
     }
     else this.userI = JSON.parse(st);
+
+    this.picSrc = localStorage.getItem(this.picSrc)
+    if(this.picSrc==""|| this.picSrc=="{}"||this.picSrc==null) this.getPersoneProPic();
+
+    setTimeout( ()=> 200);
   }
 
   savePersone(){
