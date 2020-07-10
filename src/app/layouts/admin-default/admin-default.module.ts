@@ -35,6 +35,7 @@ import { UserManagementComponent } from 'src/app/admin-modules/user-management/u
 import { MapManagementComponent } from 'src/app/admin-modules/map-management/map-management.component';
 import { AdminSettingsComponent } from 'src/app/admin-modules/admin-settings/admin-settings.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NbLayoutModule,
     NbSidebarModule,
     NbCardModule,
-    NbThemeModule.forRoot({ name: 'default' })
+    NbThemeModule.forRoot({ name: 'default' }),
+    AgmCoreModule
   ],
   providers: [
     DashboardService,

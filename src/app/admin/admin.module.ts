@@ -19,6 +19,7 @@ import { AreaComponent } from './widgets/area/area.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { StatsCardComponent } from './widgets/stats-card/stats-card.component';
 import { PieComponent } from './widgets/pie/pie.component';
+import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { PieComponent } from './widgets/pie/pie.component';
     RouterModule,
     HighchartsChartModule,
     MatDatepickerModule,
+    AgmCoreModule
   ],
   exports: [
     HeaderComponent,

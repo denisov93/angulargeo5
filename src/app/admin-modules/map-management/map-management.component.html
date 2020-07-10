@@ -58,7 +58,76 @@
 
     <mat-tab label="Add GeoStop">  
         <ng-template matTabContent>
-            Apresentar o formulario para adicionar GeoStop.
+          <br>
+          <div class="container"> 
+            <div class="row">
+              <div class="col-6">
+              <mat-tab-group>
+                <mat-tab label="Set Location">  
+                  <ng-template matTabContent>
+              
+              
+                <h2> Use one of Functions You prefere:</h2>
+                <mat-divider></mat-divider>
+                <h3>1-> Drag Pinlet on Map</h3>
+                <mat-divider></mat-divider>
+                <h3>OR 2-> Find Place where to Start</h3>
+                <div class="full-name-inputs">          
+                  <mat-form-field appearance="simple">
+                  <mat-label>Place Name</mat-label>
+                  <input type="text" matInput #inputPlace placeholder="Lisboa" id="place">             
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit" (click)="getlatLng(inputPlace)">Search</button>          
+                </div>
+                <mat-divider></mat-divider>
+                <h3>OR 3-> Lat Lng format</h3>
+                <mat-form-field appearance="simple">
+                  <mat-label>Latitude</mat-label>
+                  <input type="text" matInput #Latitude placeholder="Latitude" id="Latitude">             
+                </mat-form-field>
+                <mat-form-field appearance="simple">
+                  <mat-label>Longitude</mat-label>
+                  <input type="text" matInput #Longitude placeholder="Longitude" id="Longitude">             
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit" (click)="getlatLngF(Latitude,Longitude)">Search</button>
+                <mat-divider></mat-divider>
+              
+                  </ng-template></mat-tab>
+                  <mat-tab label="Add Images">  
+                    <ng-template matTabContent>
+                      <form novalidate [formGroup]="formImport">
+                        <div class="input-group mb-3">
+                      
+                      <div class="custom-file">
+                        <input type="file" accept=".png,.jpg" multiple="multiple" class="custom-file-input" formControlName="importFile" id="importFile" (change)="onFileChangeS($event.target.files)" >
+                                      <label class="custom-file-label" #labelImport for="importFile"><i class="fas fa-search"></i> Choose images</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <button class="btn btn-outline-secondary" type="button" (click)="importImages()"><i class="fas fa-file-import"></i> Submit
+                                      </button>
+                    </div>
+                      </form>
+                      <div class="container">
+                        <div class="row" *ngFor="let item of images">    
+                          <div class="col" *ngIf="imageSend">   
+                            <img [src]="item" *ngIf="imgURL">
+                          </div>
+                        </div>  
+                      </div>
+                    </ng-template>
+                  </mat-tab>
+            </mat-tab-group>
+              </div>
+
+                <div class="col-6">  
+                <agm-map #map [latitude]="latitude" [longitude]="longitude">
+
+                  <agm-marker id="marker" [latitude]="latitudeM" [longitude]="longitudeM" [markerDraggable]="true" (drag)="markerDragEnd($event)"></agm-marker>
+                </agm-map>   
+                </div>
+            </div>
+          </div>
         </ng-template>         
     </mat-tab>
 </mat-tab-group>
