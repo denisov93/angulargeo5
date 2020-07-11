@@ -48,6 +48,11 @@ agm-map {
   opacity: .5
 }
 
+.littleThing{
+  transform: rotateY(-30);
+}
+
+
     /* Small screens */
     @media only screen and (max-width: 650px) {
       agm-map {

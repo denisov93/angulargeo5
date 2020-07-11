@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AgmCoreModule ,MouseEvent, LatLng} from '@agm/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { numberFormat } from 'highcharts';
+import Utm from 'geodesy/utm.js';
+import Dms from 'geodesy/dms.js';
 
 @Component({
   selector: 'app-map-management',
@@ -41,7 +43,7 @@ export class MapManagementComponent {
 
   ngOnInit(): void {
     this.setCurrentLocation();
-
+    
 
   }
   onFileChange(files: FileList) {
@@ -141,6 +143,7 @@ export class MapManagementComponent {
     localStorage.setItem("posMLng",this.longitudeM.toString()); 
   }
   getlatLngF(Latitude,Longitude){
+
     if(Latitude!=null&&Longitude!=null){
      
     this.latitudeM = Latitude.value;
@@ -150,6 +153,20 @@ export class MapManagementComponent {
     localStorage.setItem("posMLat",this.latitudeM.toString());
     localStorage.setItem("posMLng",this.longitudeM.toString());
     }
+  }
+
+  getLatLngDms(N,W){
+    
+    const Ndms = Dms.parse(N.value);
+    const Wdms = Dms.parse(W.value);
+
+    this.latitudeM = Ndms;
+    this.longitudeM = Wdms;
+    this.latitude = Ndms;
+    this.longitude = Wdms;  
+    localStorage.setItem("posMLat",this.latitudeM.toString());
+    localStorage.setItem("posMLng",this.longitudeM.toString());
+
   }
 
   getlatLng($event){
@@ -210,7 +227,7 @@ export class MapManagementComponent {
     window.alert("Submited!");
    
     var toS:toSend ={
-      images: this.filesToUpload,
+      images: this.filesToUpload[0],
       title:this.title,
       description:this.description,
       location:{
@@ -221,17 +238,37 @@ export class MapManagementComponent {
    
     console.log(toS);
   }
+
+  newInfoNotice( Title, Description, GeoMapLink, ExplicativeNotice){
+    if(Title!=null && Description!=null && GeoMapLink!=null && ExplicativeNotice!=null){
+      var th = {
+        title: Title.value,
+        description: Description.value,
+        mapL: GeoMapLink.value,
+        mapExp: ExplicativeNotice.value,
+        location:{
+          lat:this.latitudeM,
+          lng:this.longitudeM
+        }
+      }
+
+      console.log(th);
+
+    }
+  }
+
+
 }
 export interface toSend{
   
-    images: FileList,
+    images: File,
     title:string,
     description:string,
     location:{
        lat:number,
        lng:number
     }
-     
+
 }
 
 

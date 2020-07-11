@@ -118,7 +118,8 @@ export class MapappComponent implements OnInit {
     this.map = event;
     this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(document.getElementById('Settings'));
     this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(document.getElementById('Markings'));   
-    this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(document.getElementById('Explore')); 
+    this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(document.getElementById('Explore'));
+    this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(document.getElementById('Curiosity')); 
   }  
 
   hideShowMarkers(){
