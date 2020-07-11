@@ -22,6 +22,15 @@ export class MapManagementComponent {
   formImport: FormGroup;
   fileToUpload: File = null;
 
+  titleDesc:FormGroup;
+  title :string;
+  description: string;
+
+
+  markerDragable = true;
+  descriptionChanged = true;
+  imagesAddedtoSend = true;
+
   latitude: number; longitude:number; latitudeM: number; longitudeM: number; zoom:number;
 
   constructor(private router:Router) {
@@ -104,13 +113,32 @@ export class MapManagementComponent {
   
     }
   }
+
+  markerDragableChange(){    
+    this.markerDragable = !this.markerDragable;
+    console.log("changed to "+this.markerDragable)
+  }
+
+  descriptionChange(){
+    this.descriptionChanged = !this.descriptionChanged;
+    console.log("changed to "+this.descriptionChanged)
+  }
+
+  imagesAddedtoSendChange(){
+    this.imagesAddedtoSend = !this.imagesAddedtoSend;
+    console.log("changed to "+this.imagesAddedtoSend)
+  }
+
+  setTitDesc(Title,Description){
+    this.title = Title.value;
+    this.description = Description.value;
+  }
+
   markerDragEnd($event: MouseEvent) {
     this.latitudeM = $event.coords.lat;
     this.longitudeM = $event.coords.lng;
     localStorage.setItem("posMLat",this.latitudeM.toString());
-    localStorage.setItem("posMLng",this.longitudeM.toString());
-
-   
+    localStorage.setItem("posMLng",this.longitudeM.toString()); 
   }
   getlatLngF(Latitude,Longitude){
     if(Latitude!=null&&Longitude!=null){
@@ -176,7 +204,37 @@ export class MapManagementComponent {
       
   });
   }
+
+
+  SubmitGeoStop(){
+    window.alert("Submited!");
+   
+    var toS:toSend ={
+      images: this.filesToUpload,
+      title:this.title,
+      description:this.description,
+      location:{
+        lat:this.latitudeM,
+        lng:this.longitudeM
+      }
+    }
+   
+    console.log(toS);
+  }
 }
+export interface toSend{
+  
+    images: FileList,
+    title:string,
+    description:string,
+    location:{
+       lat:number,
+       lng:number
+    }
+     
+}
+
+
 export async function fileListToBase64(fileList) {
   // create function which return resolved promise
   // with data:base64 string
