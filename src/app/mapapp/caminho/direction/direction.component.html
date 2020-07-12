@@ -15,12 +15,10 @@
                             <ngb-carousel >
                                 <ng-template *ngFor="let item of images" ngbSlide>
                                   <div class="picsum-img-wrapper">
-                                    <img  class="imagesize" [src]="item" alt="Random first slide">
+                                    <img  (click)="bigImage()" [src]="item" alt="Random first slide">
                                   </div>
-                                  
-                                </ng-template>
-                                
-                              </ngb-carousel>  
+                                </ng-template>    
+                            </ngb-carousel>  
                       </div>
                 </div>
                     <!--
@@ -29,7 +27,7 @@
                     -->
                     <button type="button" class="btn btn-primary"(click)="addtoFavorites(direction)" >Add To Favorites</button>
                          
-            </div>
+            </div>  
             <div *ngIf="isRequestError">
                 <div class="alert alert-danger" role="alert">
                     <strong>Failed add to Favorites</strong>
