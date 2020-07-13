@@ -27,7 +27,13 @@ export class DirectionComponent implements OnInit {
     config.keyboard = false;
     config.pauseOnHover = false;
   }
-  
+
+  imagesize = false;
+  bigImage(){
+    this.imagesize = true;
+    this.rr.showImageCarosel(this.images);
+  }
+
   ngOnInit(): void {
     this.rr.currentMessage.subscribe(
       dirId=>{
@@ -52,6 +58,7 @@ export class DirectionComponent implements OnInit {
       );
      
       this.images = this.direction.images;
+      
   }
   setClasses(){
     let classes = {

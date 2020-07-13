@@ -98,9 +98,9 @@
                     <button  class="btn btn-success" (click)="finalizeSetDir()" >{{'Create'|translate}}</button>
                     <button  class="btn btn-danger" (click)="abortChanges()" >{{'Delete'|translate}}</button>
                 </div>    
-        </div>
-    </div>            
-</div>
+            </div>
+        </div>            
+    </div>
 </div>  
     <agm-map
     #map
@@ -125,7 +125,15 @@
     <button id="Explore" mat-fab color="warn" >
         <mat-icon aria-hidden="true" (click)="hideShowRoutes()">directions_walk</mat-icon>
     </button>
-        <agm-info-window
+    <button id="Curiosity" mat-fab color="primary">
+        <mat-icon aria-hidden="true" (click)="showHideCuriosity()" >priority_high</mat-icon>
+    </button>
+    <button id="GeoSpot" mat-fab color="warn">
+        <mat-icon aria-hidden="true" (click)="showHideGeoSpots()" >tour</mat-icon>
+    </button>
+
+
+    <agm-info-window
         #infoWindowOption
         [latitude]="infoOptionLat" 
         [longitude]="infoOptionLng"  
@@ -159,6 +167,55 @@
             </agm-info-window>
         </agm-marker>
         
+        <agm-marker
+        *ngIf="curiosities"
+        [latitude]="40.383039" 
+        [longitude]="-7.671747" 
+        [markerDraggable]="false" 
+        (markerClick)="clickedMarker(infowindow)"
+        iconUrl = "../../assets/marker_orange!.png"
+        >
+            <agm-info-window [disableAutoPan]="true" #infowindow >
+                <mat-tab-group>
+                    <mat-tab label="Titulo">
+                        
+                        <nb-card>
+                            <nb-card-header>
+                                <h2><b>Caos de blocos</b></h2>
+                            </nb-card-header>
+                            <nb-card-body>
+                                <h3>Caos de blocos nos granitos da Serra da Estrela (v.g. Coitada)</h3>
+                            </nb-card-body>
+                        </nb-card>
+                        <div class="row">
+                            <div class="col">
+                                <p>Todo material é fornecido pelo Professor José Carlos Kullberg e Sociedade Portuguesa de Geologia</p>
+                                <p>Alguns Materiais têm Direitos reservados pelo que sua utilização só é permitida no Ambito de disciplina "APDC fct unl di" para fim de realização de projecto</p>
+                            </div>
+                            <div class="col">
+                                <img src="../../assets/102446480_1367359616767697_9002739442305204224_n.png" height="300px">
+                            </div>
+                        </div>
+   
+                    </mat-tab>
+                    <mat-tab label="Imagens">
+                        <div class="subComp">
+                        <carousel id="2" [slides]="demos"></carousel>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Carta Geologica"> 
+                        <object data="https://geoportal.lneg.pt/geoportal/egeo/DownloadCartas/images/20-B.pdf" type="application/pdf">
+                        </object>    
+                    </mat-tab>
+                    <mat-tab label="Noticia Explicativa"> 
+                        <object data="https://geoportal.lneg.pt/geoportal/egeo/DownloadCartas/noticias/20-B.pdf" type="application/pdf">
+                        </object> 
+                    </mat-tab>
+                  </mat-tab-group>
+            </agm-info-window>
+        </agm-marker>
+
+
         <agm-marker 
         *ngFor="let res of reservaNatural"
         [latitude]="res.coord.lat" 
@@ -219,5 +276,15 @@
            
         </agm-polygon>
     </agm-map>
+
+</div>
+
+    <ngb-carousel class="modal" *ngIf="imagesFlag">
+        <ng-template *ngFor="let item of images" ngbSlide>
+        <div class="picsum-img-wrapper">
+            <img class="modal-content" (click)="hideImages()" [src]="item" alt="Random first slide">
+        </div>
+        </ng-template>    
+    </ngb-carousel>
 
 </div>

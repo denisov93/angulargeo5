@@ -11,6 +11,7 @@ import { InfoWindow } from '@agm/core/services/google-maps-types';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { element } from 'protractor';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 
 @Component({
@@ -75,7 +76,10 @@ export class MapappComponent implements OnInit {
   cc = [];
   ccOF:boolean = false;
 
-
+  index:any;
+  tabChanged(tabChangeEvent: MatTabChangeEvent): void {
+    localStorage.setItem("ProfileTabIdx", JSON.stringify(tabChangeEvent.index));
+  }
 
   ngOnInit(): void {
   
@@ -90,7 +94,7 @@ export class MapappComponent implements OnInit {
     
     this.str = localStorage.getItem("onMainPage");
 
-    if( this.srt === null || this.str =="true"){
+    if( this.srt == null || this.str =="true" || this.srt == ""){
       this.ChangeOnMainPageT();
     }
     else{
@@ -114,8 +118,37 @@ export class MapappComponent implements OnInit {
     this.map = event;
     this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(document.getElementById('Settings'));
     this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(document.getElementById('Markings'));   
-    this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(document.getElementById('Explore')); 
+    this.map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(document.getElementById('Explore'));
+    this.map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(document.getElementById('Curiosity'));
+    this.map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(document.getElementById('GeoSpot')); 
   }  
+
+  dummy(){
+    window.alert('HEY');
+  }
+
+  geoSp = false;
+  showHideGeoSpots(){
+    this.geoSp = !this.geoSp;
+  }
+
+  curiosities=false;
+  showHideCuriosity(){
+    this.curiosities = !this.curiosities;
+  }
+
+
+  images;
+  imagesFlag = false;
+  showImageCarosel(images){
+    this.images = images;
+    this.imagesFlag = true;
+  }
+
+  hideImages(){
+    this.imagesFlag = false;
+    this.images = null;
+  }
 
   hideShowMarkers(){
     this.reservaNatural=[];
@@ -643,7 +676,9 @@ public slides = [
   { src: "https://s1.1zoom.me/big0/307/Forests_Autumn_Trees_Rays_of_light_575453_1280x720.jpg" }
 ];
 
-
+public demos = [
+  {src: "https://storage.cloud.google.com/apdc-geoproj.appspot.com/SE_JCK_6.JPG"}
+];
 
 public renderOptions = {
   suppressMarkers: true,

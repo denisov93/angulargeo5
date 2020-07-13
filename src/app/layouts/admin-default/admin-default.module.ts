@@ -34,7 +34,10 @@ import { AdminManagementComponent } from 'src/app/admin-modules/admin-management
 import { UserManagementComponent } from 'src/app/admin-modules/user-management/user-management.component';
 import { MapManagementComponent } from 'src/app/admin-modules/map-management/map-management.component';
 import { AdminSettingsComponent } from 'src/app/admin-modules/admin-settings/admin-settings.component'
+import { QuizzesComponent } from '../../admin-modules/map-management/quizzes/quizzes.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AdminManagementComponent,
     UserManagementComponent,
     MapManagementComponent,
-    AdminSettingsComponent
+    AdminSettingsComponent,
+    QuizzesComponent
   ],
   imports: [
     CommonModule,
@@ -72,7 +76,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NbLayoutModule,
     NbSidebarModule,
     NbCardModule,
-    NbThemeModule.forRoot({ name: 'default' })
+    NbThemeModule.forRoot({ name: 'default' }),
+    AgmCoreModule
   ],
   providers: [
     DashboardService,

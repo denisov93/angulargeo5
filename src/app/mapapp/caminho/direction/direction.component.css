@@ -4,3 +4,14 @@ img{
     height:auto;
     width:auto;
 }
+
+.smt{
+    position: relative;
+    z-index: 100000;
+    width:800px;
+    max-height: 600px;
+    top:0;
+    left:0;
+    transform: translate(-50,-50);
+}
+
