@@ -39,6 +39,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 
 import { NbThemeModule } from '@nebular/theme';
 import { NbSidebarModule, NbLayoutModule, NbCardModule } from '@nebular/theme';
@@ -144,6 +146,8 @@ import { Interceptor } from './services/Interceptor';
     NbSidebarModule,
     NbLayoutModule,
     NbCardModule,
+    MatPaginatorModule,
+    MatTableModule,
     NbThemeModule.forRoot({ name: 'default' }),
   ],
   providers: [
