@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
+
+
 @Component({
   selector: 'app-quizzes',
   templateUrl: './quizzes.component.html',
@@ -18,6 +20,8 @@ export class QuizzesComponent implements OnInit {
   ngOnInit(): void {
     this.dynamicForm = this.formBuilder.group({
       numberOfQuestions: ['', Validators.required],
+      quizzIntro : ['', Validators.required],
+      quizzKW : ['', Validators.required],
       questions: new FormArray([])
     });
   }
@@ -70,6 +74,7 @@ export class QuizzesComponent implements OnInit {
     // clear errors and reset ticket fields
     this.submitted = false;
     this.q.reset();
+    this.dynamicForm.reset();
   }
 
 }

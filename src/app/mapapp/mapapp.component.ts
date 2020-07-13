@@ -94,7 +94,7 @@ export class MapappComponent implements OnInit {
     
     this.str = localStorage.getItem("onMainPage");
 
-    if( this.srt === null || this.str =="true"){
+    if( this.srt == null || this.str =="true" || this.srt == ""){
       this.ChangeOnMainPageT();
     }
     else{

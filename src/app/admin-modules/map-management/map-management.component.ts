@@ -27,7 +27,7 @@ export class MapManagementComponent {
   titleDesc:FormGroup;
   title :string;
   description: string;
-
+  Tags:string;
 
   markerDragable = true;
   descriptionChanged = true;
@@ -131,9 +131,11 @@ export class MapManagementComponent {
     console.log("changed to "+this.imagesAddedtoSend)
   }
 
-  setTitDesc(Title,Description){
+  
+  setTitDesc(Title,Description,Tags){
     this.title = Title.value;
     this.description = Description.value;
+    this.Tags = Tags;
   }
 
   markerDragEnd($event: MouseEvent) {
@@ -230,6 +232,7 @@ export class MapManagementComponent {
       images: this.filesToUpload[0],
       title:this.title,
       description:this.description,
+      tags: this.Tags,
       location:{
         lat:this.latitudeM,
         lng:this.longitudeM
@@ -249,7 +252,8 @@ export class MapManagementComponent {
         location:{
           lat:this.latitudeM,
           lng:this.longitudeM
-        }
+        },
+        img: this.imgURL
       }
 
       console.log(th);
@@ -264,6 +268,7 @@ export interface toSend{
     images: File,
     title:string,
     description:string,
+    tags:string,
     location:{
        lat:number,
        lng:number
