@@ -51,6 +51,16 @@ export class RequestService {
       }
       return this.http.post<JSON>(`${this.addToFav}`,direction,httpOption);
      }
+     addRoutePho="/storage/upload/route/"; //{routeid}"
+     addRoutePhoto(body){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.addToFav}`,body,httpOption);
+     }
 
 
     ping() {

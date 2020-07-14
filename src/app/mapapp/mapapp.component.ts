@@ -84,7 +84,8 @@ export class MapappComponent implements OnInit {
   ngOnInit(): void {
   
     this.setCurrentLocation();
-    
+    this.str = localStorage.getItem("onMainPage");
+
     this.l = localStorage.getItem('language');
     if(this.l==null){
       this.l='pt';
@@ -92,13 +93,12 @@ export class MapappComponent implements OnInit {
 
     localStorage.setItem('language',this.l);
     
-    this.str = localStorage.getItem("onMainPage");
-
-    if( this.srt == null || this.str =="true" || this.srt == ""){
-      this.ChangeOnMainPageT();
+    
+    if( this.str =="false" ){
+      this.ChangeOnMainPageF();
     }
     else{
-      this.ChangeOnMainPageF();
+      this.ChangeOnMainPageT();      
     }
 
     this.loadDirections();
@@ -123,9 +123,6 @@ export class MapappComponent implements OnInit {
     this.map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(document.getElementById('GeoSpot')); 
   }  
 
-  dummy(){
-    window.alert('HEY');
-  }
 
   geoSp = false;
   showHideGeoSpots(){
@@ -354,6 +351,7 @@ export class MapappComponent implements OnInit {
   ChangeOnMainPageT(){
     localStorage.setItem("onMainPage","true");
     this.onMainPage = true;
+    if(this.waywayway != null) { this.hideRoutes() }
   }
 
   ChangeOnMainPageF(){
@@ -549,6 +547,7 @@ if(this.anyWayP){
   mf.type = this.anyWayP;
   mf.visible = false;
   mf.images = this.filesToUpload;
+  mf.isTracked = false;
 
   console.log(mf);
  
@@ -670,10 +669,9 @@ markers = [
  
 ]  
 public slides = [
-  { src: "https://s1.1zoom.me/big0/703/Planets_Trees_Night_576489_1280x800.jpg" },
-  { src: "https://s1.1zoom.me/big0/324/USA_Coast_Oregon_coast_sea_Crag_Trees_576509_1280x791.jpg" },
-  { src: "https://s1.1zoom.me/big0/205/Greece_Sunrises_and_sunsets_Coast_Korfu_Crag_Rays_575551_1280x853.jpg" },
-  { src: "https://s1.1zoom.me/big0/307/Forests_Autumn_Trees_Rays_of_light_575453_1280x720.jpg" }
+  { src: "https://storage.cloud.google.com/apdc-geoproj.appspot.com/SE_JCK_6.JPG" },
+  { src: "https://storage.cloud.google.com/apdc-geoproj.appspot.com/SE_JCK_45.JPG" }
+
 ];
 
 public demos = [

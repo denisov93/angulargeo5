@@ -9,4 +9,5 @@ export class User{
     user_place: String
     user_country: String
     active_account: Boolean
+    user_birthday: String
 }

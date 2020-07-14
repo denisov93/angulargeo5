@@ -90,7 +90,7 @@ export class DirectionComponent implements OnInit {
     dir.title = direction.title;
     dir.travelMode = direction.travelMode;
     dir.username = direction.username;
-    
+    dir.isTracked = false;
     
     if(direction.type){
       dir.intermidiatePoints = [];
@@ -99,10 +99,12 @@ export class DirectionComponent implements OnInit {
       }
     }
     
-    console.log(dir);
+    //console.log(dir);
     this.req.addToFovorites(dir).subscribe(
       (data : any)=>{
         
+
+
         console.log("Dir Added");
       },
       (err : HttpErrorResponse)=>{

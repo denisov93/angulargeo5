@@ -63,7 +63,9 @@ export class PersoneComponent implements OnInit {
           this.userI.user_place = data.user_place;
         if(data.user_country == ""){this.userI.user_country = "-";}
           else this.userI.user_country = data.user_country;
-
+        if(data.userI.user_birthday == ""){this.userI.user_birthday ="-"}
+          else this.userI.user_birthday = data.user_birthday; 
+        
           this.savePersone(); 
       },
 

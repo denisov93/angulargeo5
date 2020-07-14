@@ -42,7 +42,7 @@ export class CaminhoComponent implements OnInit {
   
 
   searchWithKeyword(word){
-
+   
     if(word.value.length >= 4){
      
     const body={
@@ -51,10 +51,10 @@ export class CaminhoComponent implements OnInit {
 
     this.req.searchWithKeyword(body).subscribe(
       (data:any)=>{
-       
-        data.forEach( (element: Etty) => {
-        
-        if(element.type){  
+       console.log(data);
+        data.forEach( (element: any) => {
+        console.log("recebi isto "+ element);
+        if(element.intermidiatePoints != null){  
         const mf = new Direction();
         mf.travelMode = "WALKING";
         mf.destination = 
@@ -122,7 +122,7 @@ export class CaminhoComponent implements OnInit {
       
         this.t.saveDirections();
         this.searchWord = true;
-        setTimeout(()=>{this.searchWord = false; word.value ="" },10);
+        setTimeout(()=>{this.searchWord = false; word.value ="" },100);
     },
       (err : HttpErrorResponse)=>{
       
@@ -161,7 +161,7 @@ export class CaminhoComponent implements OnInit {
     
     data.forEach( (element: Etty) => {
     
-    if(element.type){  
+    if(element.intermidiatePoints!=null){  
     const mf = new Direction();
     mf.travelMode = "WALKING";
     mf.destination = 

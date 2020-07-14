@@ -21,7 +21,6 @@ import { UserManagementComponent } from './admin-modules/user-management/user-ma
 import { MapManagementComponent } from './admin-modules/map-management/map-management.component';
 import { AdminSettingsComponent } from './admin-modules/admin-settings/admin-settings.component';
 
-
 const routes: Routes = [
 
   {path: 'home',component : TopBarComponent,
