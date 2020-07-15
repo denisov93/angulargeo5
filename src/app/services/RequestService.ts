@@ -51,17 +51,26 @@ export class RequestService {
       }
       return this.http.post<JSON>(`${this.addToFav}`,direction,httpOption);
      }
-     addRoutePho="/storage/upload/route/"; //{routeid}"
-     addRoutePhoto(body){
+     addRoutePho="/rest/storage/upload/route/"; //{routeid}"
+     addRoutePhoto(id,body,type){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': type,
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.addRoutePho}${id}`,body,httpOption);
+     }
+     getRouteP="/rest/route/";
+     getRoutePhotos(id){
       const httpOption = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
           'token': `${localStorage.getItem('tokenID')}`
         })
       }
-      return this.http.post<JSON>(`${this.addToFav}`,body,httpOption);
+      return this.http.post<any[]>(`${this.getRouteP}${id}${"/pictures"}`,'',httpOption);
      }
-
 
     ping() {
       this.http.get("http://example.com/api/things").subscribe(

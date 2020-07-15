@@ -11,7 +11,7 @@ import { RequestService } from 'src/app/services/RequestService';
   styleUrls: ['./formpoliline.component.css']
 })
 export class FormpolilineComponent{
-  @Output() newImagesAdded: EventEmitter<any[]> = new EventEmitter();
+  @Output() newImagesAdded: EventEmitter<FileList> = new EventEmitter();
   @ViewChild('labelImport')
   labelImport: ElementRef;
   imageSend = false;
@@ -52,7 +52,7 @@ export class FormpolilineComponent{
     arrayOfBase64.then(data => {
       this.images = data;
       this.imageSend = true;
-      this.newImagesAdded.emit(this.images);
+      this.newImagesAdded.emit(this.filesToUpload);
       
   });
   }

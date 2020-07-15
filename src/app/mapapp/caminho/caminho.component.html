@@ -38,7 +38,7 @@
     (deleteDir)=deleteDir($event)
     >
     </app-direction>
-    <div *ngIf="totalRecords > 0">
+    <div >
         <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"> </pagination-controls>
     </div>
 

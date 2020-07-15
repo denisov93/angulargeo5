@@ -24,5 +24,5 @@ export class DirectionWhithWaypoints{
         stopover: false, 
     }
     visible:boolean
-    images:any[]
+    images:FileList
 }

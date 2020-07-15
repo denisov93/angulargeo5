@@ -68,7 +68,7 @@ export class CaminhoComponent implements OnInit {
           lng: parseFloat(  element.origin.lng.valueOf())
         };
         
-        mf.id = this.t.create_UUID();
+        mf.id = element.id;
     
         mf.title = element.title;
         mf.description = element.description;
@@ -112,7 +112,7 @@ export class CaminhoComponent implements OnInit {
           lat: parseFloat(  element.origin.lat.valueOf()) ,
           lng: parseFloat(  element.origin.lng.valueOf())
         };
-        ms.id = this.t.create_UUID();
+        ms.id = element.id;
 
         this.t.waywayway.push(ms);
         }
@@ -157,82 +157,91 @@ export class CaminhoComponent implements OnInit {
   getAllMyRoutes(){
     this.req.getmyCams().subscribe(
   
-    (data : any )=>{
-    
-    data.forEach( (element: Etty) => {
-    
-    if(element.intermidiatePoints!=null){  
-    const mf = new Direction();
-    mf.travelMode = "WALKING";
-    mf.destination = 
-    {
-      lat: parseFloat(  element.destination.lat.valueOf() ),
-      lng: parseFloat(  element.destination.lng.valueOf())
-    };
-    mf.origin = 
-    {
-      lat: parseFloat(  element.origin.lat.valueOf()) ,
-      lng: parseFloat(  element.origin.lng.valueOf())
-    };
-    
-    mf.id = localStorage.getItem("username") + this.t.create_UUID();
-
-    mf.title = element.title;
-    mf.description = element.description;
-    
-      var arr: [{location:{lat:number,lng:number},stopover: false,}] = [{location:{lat:0,lng:0},stopover: false,}];
+      (data : any )=>{
       
+      data.forEach( (element: any) => {
 
-      for(var i = 0;i<element.intermidiatePoints.length;i++){
+      const mf = new Direction();
+      mf.travelMode = "WALKING";
+      mf.destination = 
+      {
+        lat: parseFloat(  element.destination.lat.valueOf() ),
+        lng: parseFloat(  element.destination.lng.valueOf())
+      };
+      mf.origin = 
+      {
+        lat: parseFloat(  element.origin.lat.valueOf()) ,
+        lng: parseFloat(  element.origin.lng.valueOf())
+      };
+      
+      mf.id = element.id ;
+
+      mf.title = element.title;
+      mf.description = element.description;
+
+      if(element.intermidiatePoints==[]){  
+      
+        var arr: [{location:{lat:number,lng:number},stopover: false,}] = [{location:{lat:0,lng:0},stopover: false,}];
         
-        arr[i] = 
-        {location:{
-          lat: parseFloat(element.intermidiatePoints[i].lat),
-          lng: parseFloat(element.intermidiatePoints[i].lng)},
-          stopover: false, 
-        };
 
+        for(var i = 0;i<element.intermidiatePoints.length;i++){
+          
+          arr[i] = 
+          {location:
+            {
+            lat: parseFloat(element.intermidiatePoints[i].lat),
+            lng: parseFloat(element.intermidiatePoints[i].lng)
+            },
+            stopover: false, 
+          };
+
+        }
+        mf.waypoints = [{
+          location:
+          { 
+              lat:0,
+              lng:0
+          },
+          stopover: false,
+        }];
+        mf.waypoints = arr; 
+ 
       }
-      mf.waypoints = [{
-        location:
-        { 
-            lat:0,
-            lng:0
-        },
-        stopover: false,
-      }];
-      mf.waypoints = arr; 
       
-     this.t.waywayway.push(mf);
-    }
-    else{
-      const ms = new Direction();
-      ms.travelMode = "WALKING";
-      ms.destination = 
-    {
-      lat: parseFloat(  element.destination.lat.valueOf() ),
-      lng: parseFloat(  element.destination.lng.valueOf())
-    };
-    ms.origin = 
-    {
-      lat: parseFloat(  element.origin.lat.valueOf()) ,
-      lng: parseFloat(  element.origin.lng.valueOf())
-    };
-    ms.id = this.t.create_UUID();
+      mf.imagesS = [];
+      this.req.getRoutePhotos(mf.id).subscribe(
+        res  => {
+          
+          res.map(
+            a=> {
+              
+              var sr = "https://storage.cloud.google.com/apdc-geoproj.appspot.com/"+a.properties.file_name.value;
+              mf.imagesS.push(sr);
+              console.log(sr);
+            }
+          );
+        },
+        (err : HttpErrorResponse)=>{
+        console.log(err);
+        } 
+      );
 
-    this.t.waywayway.push(ms);
-    }
-    
-    
-    });
+
+      this.t.waywayway.push(mf);
+
+
+      this.t.saveDirections();
+      this.loadingFav = true;
+      setTimeout(()=>this.loadingFav = false,1000);
+      },
+      (err : HttpErrorResponse)=>{
+      this.isFavError = true;
+      });
+      },
+      (err : HttpErrorResponse)=>{
+        this.isFavError = true;
+      });
   
-    this.t.saveDirections();
-    this.loadingFav = true;
-    setTimeout(()=>this.loadingFav = false,1000);
-},
-(err : HttpErrorResponse)=>{
- this.isFavError = true;
-});
-}
+  }
 
 }

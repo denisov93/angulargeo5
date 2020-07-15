@@ -19,6 +19,7 @@ export class Direction{
     ]
     visible:boolean
     type:boolean
-    images:any[]
+    images:FileList
     isTracked:boolean
+    imagesS:any[]
 }

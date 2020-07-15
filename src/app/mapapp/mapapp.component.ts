@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, NgZone ,Renderer2, ComponentFactoryResolver, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone ,Renderer2, ComponentFactoryResolver, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
 import { AgmCoreModule, MapsAPILoader, MouseEvent, AgmMap, AgmMarker, AgmPolygon } from '@agm/core';
 import { Url } from 'url';
 import { TranslateService } from '@ngx-translate/core';
@@ -20,7 +20,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
   styleUrls: ['./mapapp.component.css']
 })
 
-export class MapappComponent implements OnInit {
+export class MapappComponent implements OnInit,OnDestroy {
   @Output() newMF: EventEmitter<Direction> = new EventEmitter();
   @Output() showHide: EventEmitter<String> = new EventEmitter();
   
@@ -73,6 +73,12 @@ export class MapappComponent implements OnInit {
       ; 
       
   }
+
+  ngOnDestroy(): void {
+    this.waywayway=[];
+    this.saveDirections();
+  }
+  
   cc = [];
   ccOF:boolean = false;
 
@@ -331,7 +337,7 @@ export class MapappComponent implements OnInit {
   }
 
   clickedDirection(DirMrk){    
-     console.log(DirMrk.__ngContext__[21])
+    // console.log(DirMrk.__ngContext__[21])
     var v = DirMrk.__ngContext__[21];
 
    
@@ -549,7 +555,7 @@ if(this.anyWayP){
   mf.images = this.filesToUpload;
   mf.isTracked = false;
 
-  console.log(mf);
+  //console.log(mf);
  
  this.waywayway.push(mf);
  
@@ -623,10 +629,10 @@ public waywayway: Direction[];
 
 ///////////////////Submiting files
 
-filesToUpload: any[] = null;
+filesToUpload: FileList = null;
 
-newImagesAdded(arr:any[]){
-  console.log(arr);
+newImagesAdded(arr:FileList){
+  //console.log(arr);
   this.filesToUpload = arr;
 }
 
