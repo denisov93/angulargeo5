@@ -1,8 +1,10 @@
 import { Component} from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { UserUpNPData } from 'src/app/models/UserUpNPData';
 import { User } from 'src/app/models/User';
-import { Validators, FormControl } from '@angular/forms';
 import { RequestService } from 'src/app/services/RequestService';
 import { UserUpdateData } from 'src/app/models/UserUpdateData';
 
@@ -15,7 +17,7 @@ export class AdminSettingsComponent {
 
   userInput = new UserUpdateData();
   isRequestError: boolean = false;
-
+  
   //Validators...
   emailControl = new FormControl('', [Validators.required, Validators.email]);
   nameControl = new FormControl('',[Validators.required, this.checkName]);
@@ -26,7 +28,9 @@ export class AdminSettingsComponent {
   placeControl = new FormControl('',[Validators.required, this.checkPlaceAndCountry]);
   countryControl = new FormControl('',[Validators.required, this.checkPlaceAndCountry]);
 
-  constructor(private request: RequestService) { }
+  constructor(private request: RequestService, private router : Router) { }
+
+  ngOnInit(): void { }
 
   // User Stored in the local storage.
   userI: User = JSON.parse(localStorage.getItem('userInfo'));
@@ -58,87 +62,78 @@ export class AdminSettingsComponent {
     let placeCheck = /^(?=.*[a-z])(?=.*[A-Z])(?=.{3,25})/;
     return (!placeCheck.test(enteredPlace) && enteredPlace) ? { 'requirements': true } : null;
   }
-
-  getErrorMessage(){
-
-    if (this.emailControl.hasError('email')) {
-      return 'Your email update is not valid.';
-    }
-    if(this.nameControl.hasError('requirements')){
-      return 'Your name update is not valid. Your name must have at least 3 letters.';
-    }
-    if(this.passControl.hasError('requirements')){
-      return 'Password needs to be at least eight characters, one uppercase letter and one number.';
-    }
-    if(this.streetControl.hasError('requirements')){
-      return 'Your street update is not valid. The street name must have at least eight characters and one uppercase letter.';
-    }
-    if(this.zipcodeControl.hasError('requirements')){
-      return 'Your zip-code update is not valid. Format valid xxxx-xxx (just numbers)';
-    }
-    if(this.placeControl.hasError('requirements')){
-      return 'Your City update is not valid. The City must have a name between 3-25 characters and one uppercase letter';
-    }
-    if(this.countryControl.hasError('requirements')){
-      return 'Your Country update is not valid. The Country must have a name between 3-25 characters and one uppercase letter';
-    }
-  }
+ 
   onSubmit(){
 
     //Para ja' esta' a funcionar como debug para nos XD...
-    alert("Thanks for update you're info Data: "+ JSON.stringify(this.userInput));
+    //alert("Thanks for update you're info Data: "+ JSON.stringify(this.userInput));
+    alert("Os seus dados foram actualizados com sucesso! Information updated successfully!");
 
     //Verificacao de campos introduzidos
     //Os campos que nao foram preenchidos ou seja nao existe atualizacao a fazer vamos buscar o valor 'a localstore...
     //Se existir alteracao guardamos na variavel da datastore para depois a actualizarmos
-    if(this.userInput.user_name == ""){
+    if(this.userInput.user_name == null){
       this.userInput.user_name = this.userI.user_name;
-      this.userUpNoPass.user_name = this.userI.user_name;
     }
     else{
       this.userI.user_name = this.userInput.user_name;
-      this.userUpNoPass.user_name = this.userInput.user_name;
     }
 
-    if(this.userInput.user_email == ""){
+    if(this.userInput.user_email == null){
       this.userInput.user_email = this.userI.user_email;
-      this.userUpNoPass.user_email = this.userI.user_email;
     }
     else{
       this.userI.user_email = this.userInput.user_email;
-      this.userUpNoPass.user_email = this.userInput.user_email;
     }
 
-    if(this.userInput.user_street == ""){
+    if(this.userInput.user_street == null){
       this.userInput.user_street = this.userI.user_street;
-      this.userUpNoPass.user_street = this.userI.user_street;
     }
     else{
       this.userI.user_street = this.userInput.user_street;
-      this.userUpNoPass.user_street = this.userInput.user_street;
     }
 
-    if(this.userInput.user_place == ""){
+    if(this.userInput.user_place == null){
       this.userInput.user_place = this.userI.user_place;
-      this.userUpNoPass.user_place = this.userI.user_place;
     }
     else{
       this.userI.user_place = this.userInput.user_place;
-      this.userUpNoPass.user_place = this.userInput.user_place;
     }
 
-    if(this.userInput.user_country==""){
+    if(this.userInput.user_country==null){
       this.userInput.user_country = this.userI.user_country;
-      this.userUpNoPass.user_country = this.userI.user_country;
     }
     else{
       this.userI.user_country = this.userInput.user_country;
-      this.userUpNoPass.user_country = this.userInput.user_country;
     }
 
+    if(this.userInput.user_birthday == null){
+      this.userInput.user_birthday = this.userI.user_birthday;
+    }
+    else{
+      this.userI.user_birthday = this.userInput.user_birthday;
+    }
+
+    if(this.userInput.user_zip_code == null){
+      this.userInput.user_zip_code = this.userI.user_zip_code;
+    }
+    else{
+      this.userI.user_zip_code = this.userInput.user_zip_code;
+    }
+
+    var body;
     //Escolha do servico para fazer update
-    if(this.userInput.user_password == ""){
-      this.request.upUserNPInfo(this.userUpNoPass).subscribe(
+    if(this.userInput.user_password == null){
+      body = {
+        name: this.userInput.user_name,
+        email: this.userInput.user_email,        
+        street: this.userInput.user_street,
+        place: this.userInput.user_place,
+        country: this.userInput.user_country,
+        birthday: this.userInput.user_birthday,
+        zip_code: this.userInput.user_zip_code,
+      }
+      this.request.upUserNPInfo(body).subscribe(
        (data)=> {
                   this.saveUpdate();
                 },(err : HttpErrorResponse)=>{
@@ -150,8 +145,18 @@ export class AdminSettingsComponent {
       );
     }
     //Need password update
-    else{      
-      this.request.updateUserInfo(this.userInput).subscribe(
+    else{ 
+      body = {
+        name: this.userInput.user_name,
+        email: this.userInput.user_email,
+        password: this.userInput.user_password,
+        street: this.userInput.user_street,
+        place: this.userInput.user_place,
+        country: this.userInput.user_country,
+        birthday: this.userInput.user_birthday,
+        zip_code: this.userInput.user_zip_code
+      }     
+      this.request.updateUserInfo(body).subscribe(
         (data)=>{
                   this.saveUpdate();
                 },(err : HttpErrorResponse)=>{
@@ -162,11 +167,42 @@ export class AdminSettingsComponent {
                 }
       );
     }
-
   }
 
   saveUpdate(){
     localStorage.setItem("userInfo", JSON.stringify(this.userI));    
   }
 
+  //Para apagar (inativa) a conta do utilizador.
+
+  onDelete(){
+
+    alert("A sua conta foi eliminada com sucesso! Esperamos que volte em breve! Your account was deleted successfully!");
+
+    var body = {
+      username: localStorage.getItem('username')
+    }
+
+    this.request.userMakeAccInact(body).subscribe(
+      (data)=>{
+        this.deleteUserInfo();
+        setTimeout( () => this.router.navigate(['/admin/dashboard']) , 200 ); 
+      },(err : HttpErrorResponse)=>{
+        this.isRequestError = true;
+        setTimeout( () => this.isRequestError = false , 2500 );
+        }
+    );
+  }
+
+  deleteUserInfo(){    
+    localStorage.removeItem('tokenID');
+    localStorage.removeItem('username');
+    localStorage.removeItem('userInfo');
+    localStorage.removeItem('myDirections'); 
+  }
+
+  onCancel(){
+    //setTimeout( () => this.router.navigate(['/home']) , 0.01 );
+    setTimeout( () => this.router.navigate(['/admin/dashboard']) , 100 );
+  }
 }
