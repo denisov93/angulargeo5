@@ -3,9 +3,8 @@
   <mat-card-header>      
       <img src = {{picSrc}}>
       <mat-card-title>{{userI.user_username}}</mat-card-title>
-      <!-- Ranking classification
       <mat-card-subtitle>Ranking</mat-card-subtitle>
-      -->
+      
   </mat-card-header>  
   
   <mat-divider></mat-divider>
@@ -16,27 +15,26 @@
 
               <ng-template mat-tab-label>
                   <mat-icon class="tab-icon">perm_identity</mat-icon>
-                  {{'About'| translate}}
+                  About
               </ng-template>
               <!-- Content tab -->
               <nb-card class = "user-card">
                 <nb-card-header>
-                  <h2><b>{{'ProfileInfo'| translate}}</b></h2>
+                  <h2><b>Personal Information:</b></h2>
                   <mat-divider></mat-divider>
                 </nb-card-header>
                 <nb-card-body>
                   <div class="row">
                     <div class="col-lg-6">
-                      <h4><u>{{'Name'| translate}}</u> {{userI.user_name}}</h4>
-                      <h4><u>{{'Email'| translate}}</u> {{userI.user_email}}</h4>
-                      <h4><u>{{'Birthday'| translate}}</u> {{userI.user_birthday}}</h4>
+                      <h4><u>Name:</u> {{userI.user_name}}</h4>
+                      <h4><u>Email:</u> {{userI.user_email}}</h4>
+                      <h4><u>Birthday:</u> {{userI.user_birthday}}</h4>
                     </div>
 
                     <div class="col-lg-6">
-                      <h4><u>{{'Street'| translate}}</u> {{userI.user_street}}</h4>
-                      <h4><u>{{'City'| translate}}</u> {{userI.user_place}}</h4>                
-                      <h4><u>{{'Country'| translate}}</u>{{userI.user_country}}</h4>
-                      <h4><u>{{'ZipCode'| translate}}</u>{{userI.user_zip_code}}</h4>
+                      <h4><u>Street:</u> {{userI.user_street}}</h4>
+                      <h4><u>City:</u> {{userI.user_place}}</h4>                
+                      <h4><u>Country:</u>{{userI.user_country}}</h4>
                     </div>
                   </div>
                 </nb-card-body>
@@ -51,14 +49,14 @@
               </ng-template>
               <nb-card class = "routes-card">
                 <nb-card-header>
-                  <h2><b>{{'RoutsInfo'| translate}}</b></h2>
+                  <h2><b>Routes Resume:</b></h2>
                   <mat-divider></mat-divider>
                 </nb-card-header>
                 <nb-card-body>
                   <div class="row">
                     <div class="col-lg-6">
-                      <h4><u>{{'NRouts'| translate}}</u></h4>
-                      <h4><u>{{'RoutsP'| translate}}</u></h4>
+                      <h4><u>Number of Routes:</u></h4>
+                      <h4><u>Avarage difficulty of routs:</u></h4>
                     </div>
 
                     <div class="col-lg-6">
@@ -74,7 +72,7 @@
           <mat-tab>
               <ng-template mat-tab-label>
                   <mat-icon class="tab-icon">insert_photo</mat-icon>
-                  {{'Gallary' | translate }}
+                  {{'Gallery' | translate }}
               </ng-template>
               <!-- Gallery page -->
               <app-gallery></app-gallery>
@@ -90,7 +88,7 @@
           <mat-tab>
               <ng-template mat-tab-label>
                   <mat-icon class="tab-icon">settings</mat-icon>
-                  {{'Settings'| translate}}
+                  Settings
               </ng-template>
               <!-- Settings Page -->
               <app-settings></app-settings>

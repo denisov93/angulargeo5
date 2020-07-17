@@ -4,6 +4,4 @@ export class UserUpNPData{
     user_street: String
     user_place: String
     user_country: String
-    user_birthday: String
-    user_zip_code: String
 }

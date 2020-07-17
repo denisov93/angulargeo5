@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -12,21 +11,11 @@ import { TranslateService } from '@ngx-translate/core';
 export class AdminDefaultComponent implements OnInit {
 
   sideBarOpen = true;
-  l: string;
 
-  constructor(private router:Router,public jwtHelper: JwtHelperService, public translate: TranslateService) { 
-    translate.addLangs(['pt','en']);
-  }
+  constructor(private router:Router,public jwtHelper: JwtHelperService ) { }
 
   ngOnInit(): void {
 
-    this.l = localStorage.getItem('language');
-    if(this.l==null){
-      this.l='pt';
-    } 
-
-    localStorage.setItem('language',this.l);
-    this.translate.setDefaultLang(this.l);
 
     const helper = new JwtHelperService();    
    // const decodedToken = helper.decodeToken(localStorage.getItem('tokenID'));
@@ -41,4 +30,5 @@ export class AdminDefaultComponent implements OnInit {
   sideBarToggler($event: any) {
     this.sideBarOpen = !this.sideBarOpen;
   }
+
 }

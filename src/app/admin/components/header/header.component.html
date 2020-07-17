@@ -4,7 +4,7 @@
             <mat-icon>menu</mat-icon>
         </button>
 
-        <span>{{'GeoPlaces-Admin'|translate}}</span>
+        <span>GeoPlaces-Admin</span>
 
         <div fxFlex fxLayout = "row" fxLayoutAlign = "flex-end">
             <ul fxLayout = "row" fxLayoutGap = "20px">
@@ -23,17 +23,13 @@
                         <mat-icon>more_vert</mat-icon>
                     </button>
                     <mat-menu #menu = "matMenu">
-                        <button mat-menu-item routerLink = "/home">
-                            <mat-icon>home</mat-icon>
-                            {{'Home'|translate}}
-                        </button>
-                        <button mat-menu-item routerLink = "/personAd">
+                        <button mat-menu-item routerLink = "/person">
                             <mat-icon>person_outline</mat-icon>
-                            {{'Profile'|translate}}
+                            Profile
                         </button>
-                        <button mat-menu-item (click)="logOut()">
+                        <button mat-menu-item>
                             <mat-icon>exit_to_app</mat-icon>
-                            {{'Exit'|translate}}
+                            Sign out
                         </button>
                     </mat-menu>                   
                 </li>

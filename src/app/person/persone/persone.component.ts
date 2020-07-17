@@ -1,13 +1,13 @@
 import { Component, OnInit,  ViewEncapsulation } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { MatTabChangeEvent } from '@angular/material/tabs';
 
 import { RequestService } from 'src/app/services/RequestService';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import {User} from 'src/app/models/User';
 import { username } from 'src/app/models/username';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-persone',
@@ -62,14 +62,10 @@ export class PersoneComponent implements OnInit {
         else
           this.userI.user_place = data.user_place;
         if(data.user_country == ""){this.userI.user_country = "-";}
-        else this.userI.user_country = data.user_country;
-
-        if(data.user_birthday == ""){this.userI.user_birthday = "-";}
-        else this.userI.user_birthday = data.user_birthday;
-
-        if(data.user_zip_code == ""){this.userI.user_zip_code = "-";}
-        else this.userI.user_zip_code = data.user_zip_code;
-
+          else this.userI.user_country = data.user_country;
+        if(data.userI.user_birthday == ""){this.userI.user_birthday ="-"}
+          else this.userI.user_birthday = data.user_birthday; 
+        
           this.savePersone(); 
       },
 

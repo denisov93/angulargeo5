@@ -1,14 +1,17 @@
 <mat-tab-group>
-    <mat-tab label="{{'RateUser'|translate}}"> 
+    <mat-tab label="Community Penalization"> 
         <ng-template matTabContent>
-            <h3>{{'RateUserInt'|translate}}</h3>
-            <app-rate-user></app-rate-user>
+            Apresentar as penalizações discutidas mais tarde.
         </ng-template>        
     </mat-tab>
-    <mat-tab label="{{'DeleteUser'|translate}}"> 
+    <mat-tab label="Evaluate User"> 
         <ng-template matTabContent>
-            <h3>{{'InactUsers'|translate}}</h3>
-           <app-delete-user></app-delete-user>
-        </ng-template>   
-    </mat-tab>     
+            Apresentar as opções para actualizar os rankings dos users.
+        </ng-template>        
+    </mat-tab>
+    <mat-tab label="Delete User">  
+        <ng-template matTabContent>
+            Apresentar o formulario para eliminar um utilizador.
+        </ng-template>         
+    </mat-tab>
 </mat-tab-group>

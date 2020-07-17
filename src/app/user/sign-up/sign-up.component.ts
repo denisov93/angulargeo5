@@ -1,9 +1,8 @@
-//import { Component, OnInit ,NgModule} from '@angular/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,NgModule} from '@angular/core';
+import { RequestService } from '../../services/RequestService';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { RequestService } from '../../services/RequestService';
 
 @Component({
   selector: 'app-sign-up',

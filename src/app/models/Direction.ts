@@ -7,17 +7,12 @@ export class Direction{
     origin: {lat: number, lng: number}
     destination:{lat: number,lng: number}
     intermidiatePoints: {lat: number,lng: number}[]
-    waypoints: [
-        {
-        location:
-        { 
-            lat:number
-            lng:number
-        },
-        stopover: false,
-    } 
+    waypoints: any[
+        
     ]
     visible:boolean
     type:boolean
-    images:any[]
+    images:FileList
+    isTracked:boolean
+    imagesS:any[]
 }

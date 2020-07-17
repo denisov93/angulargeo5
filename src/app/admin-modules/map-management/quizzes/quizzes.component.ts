@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
+
+
 @Component({
   selector: 'app-quizzes',
   templateUrl: './quizzes.component.html',
@@ -69,7 +71,7 @@ export class QuizzesComponent implements OnInit {
   }
 
   onClear() {
-    // clear errors and reset quizze fields
+    // clear errors and reset ticket fields
     this.submitted = false;
     this.q.reset();
     this.dynamicForm.reset();

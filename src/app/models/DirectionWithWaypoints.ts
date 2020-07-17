@@ -1,5 +1,3 @@
-import {latLon} from './latLon'
-
 export class DirectionWhithWaypoints{
     id:String
     username:String
@@ -8,21 +6,11 @@ export class DirectionWhithWaypoints{
     travelMode:String
     origin: {lat: number, lng: number}
     destination:{lat: number,lng: number}
-    intermidiatePoints: {
-        location:
-        { 
-            lat:number
-            lng:number
-        } 
-    }
-    waypoints: {
-        location:
-        { 
-            lat:number
-            lng:number
-        },
-        stopover: false, 
-    }
+    intermidiatePoints: {lat: number,lng: number}[]
+    
     visible:boolean
-    images:any[]
+    type:boolean
+    images:FileList
+    isTracked:boolean
+    imagesS:any[]
 }
