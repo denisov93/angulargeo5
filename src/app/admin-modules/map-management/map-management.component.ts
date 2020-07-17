@@ -1,11 +1,12 @@
 import {Component, ElementRef, ViewChild, Output, EventEmitter} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-import { AgmCoreModule ,MouseEvent, LatLng} from '@agm/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { numberFormat } from 'highcharts';
-import Utm from 'geodesy/utm.js';
-import Dms from 'geodesy/dms.js';
+import { MouseEvent, LatLng} from '@agm/core';
+//import { AgmCoreModule ,MouseEvent, LatLng} from '@agm/core';
+//import { BrowserModule } from '@angular/platform-browser';
+//import { numberFormat } from 'highcharts';
+//import  Utm  from 'geodesy/utm.js';
+import  Dms  from 'geodesy/dms.js';
 
 @Component({
   selector: 'app-map-management',

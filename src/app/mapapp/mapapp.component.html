@@ -30,10 +30,10 @@
                 <div *ngIf="newDefInc && !newDef1">
                     
                     <div class="card">
-                        <div class="card-header">{{'NewRoute'|translate}}</div>
+                        <div class="card-header">New Route </div>
                         <div class="card-body">
                           <p>
-                            {{'crRoutes'|translate}} <a href="https://www.google.com">{{'this'|translate}}</a> {{'tutOfHowto'|translate}}
+                        Create routes is easy you can watch <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">this</a> totorial of how to do it
                       </p>
                       <div class="row">
                         <div class="col">
@@ -48,13 +48,13 @@
                 <div *ngIf="!newDefInc && !newDef1" >
                     <form #mForm="ngForm" (ngSubmit)="definirC1(Title.value,Description.value)">         
                         <div>
-                              <label for="Title">{{'TitleofRoute' | translate}}</label>
-                              <input type="text" class="form-control" #Title ngModel name="Title" id="Title" aria-describedby="TitleHelp" placeholder="{{'EnterTitle'|translate}}" required>
-                              <small id="TitleHelp" class="form-text text-muted">{{'Titleclue'| translate}}</small>
+                              <label for="Title">Title of Route</label>
+                              <input type="text" class="form-control" #Title ngModel name="Title" id="Title" aria-describedby="TitleHelp" placeholder="Enter Title" required>
+                              <small id="TitleHelp" class="form-text text-muted">Enter small consice title</small>
                         </div>
                         <div class="form-group">
-                              <label for="Description">{{'BriefDescription'|translate}}</label>
-                              <textarea class="form-control" #Description ngModel name="Description" id="Description" rows="3" placeholder="{{'SomeText'|translate}}" required></textarea>
+                              <label for="Description">Brief Description</label>
+                              <textarea class="form-control" #Description ngModel name="Description" id="Description" rows="3" placeholder="Some Text Here" required></textarea>
                         </div>
                         <div>
                             <div class="alert alert-primary" role="alert">
@@ -74,16 +74,15 @@
                 </div>
                 <div *ngIf="!newDefInc && newDef1 && !newDef2">
                     <div class="alert alert-success" role="alert">
-                        <strong>{{'SetStartP'|translate}}</strong><br>  {{'MapSReady'|translate}}
+                        <strong>{{'SetStartP'|translate}} {{origin.lat}} && {{origin.lng}}</strong>  {{'MapSReady'|translate}}
+                    </div>
+                    <div class="col">
+                        <button  class="btn btn-success" (click)="definirC2()" >{{'Set'|translate}}</button>
                     </div>
                     <div class="alert alert-primary" role="alert">
                             <strong>{{'SetWayPointU1'|translate}}</strong> {{'SetWayPointU2'|translate}}
                     </div>
-                    <p>    
-                    <button  class="btn btn-primary" (click)="definirC2WayP()" >{{'SetWayP'|translate}}<br></button>
-                </p>   
-                    <button  class="btn btn-success" (click)="definirC2()" >{{'Set'|translate}}</button>
-                
+                        <button  class="btn btn-primary" (click)="definirC2WayP()" >{{'SetWayP'|translate}}<br></button>
                     <div *ngIf="wayPushed">
                             <div class="alert alert-success" role="alert">
                                 <strong>{{'PointAdd'|translate}}</strong>
@@ -92,11 +91,10 @@
                 </div>
                 <div *ngIf="!newDefInc && newDef1 && newDef2">
                     <div class="alert alert-success" role="alert">
-                        <strong>{{'SetStartP'|translate}} <br>
-                            {{'CreatP'|translate}}</strong>
+                        <strong>{{'SetStartP'|translate}} {{origin.lat}} && {{origin.lng}} {{'SetDest'|translate}} {{destination.lat}}&& {{destination.lng}} {{'CreatP'|translate}}</strong>
                     </div>
                     <app-formpoliline (newImagesAdded)="newImagesAdded($event)"></app-formpoliline>
-                    <br>
+
                     <button  class="btn btn-success" (click)="finalizeSetDir()" >{{'Create'|translate}}</button>
                     <button  class="btn btn-danger" (click)="abortChanges()" >{{'Delete'|translate}}</button>
                 </div>    
@@ -170,7 +168,7 @@
         </agm-marker>
         
         <agm-marker
-        [visible]="curiosities"
+        *ngIf="curiosities"
         [latitude]="40.383039" 
         [longitude]="-7.671747" 
         [markerDraggable]="false" 
@@ -216,31 +214,7 @@
                   </mat-tab-group>
             </agm-info-window>
         </agm-marker>
-        
-        <agm-marker
-        [visible]="geoSp"
-        [latitude]="38.893476" 
-        [longitude]="-8.731703" 
-        [markerDraggable]="false" 
-        (markerClick)="clickedMarker(infowindow)"
-        iconUrl = "../../assets/red-dot.png"
-        >
-        <agm-info-window [disableAutoPan]="true" #infowindow >
-            <nb-card>
-                <nb-card-header>
-                    <h2><b>Caos de blocos</b></h2>
-                </nb-card-header>
-                <nb-card-body>
-                    <h3>Caos de blocos nos granitos da Serra da Estrela (v.g. Coitada)</h3>
-                    <br>
 
-                    <div class="subComp">
-                        <carousel id="2" [slides]="demosGeoS"></carousel>
-                    </div>
-                </nb-card-body>
-            </nb-card>
-        </agm-info-window>
-        </agm-marker>
 
         <agm-marker 
         *ngFor="let res of reservaNatural"
@@ -278,6 +252,7 @@
             [waypoints]="way.waypoints" 
             [destination]="way.destination" 
             [visible]="way.visible">
+
         </agm-direction>
         
             
@@ -308,13 +283,6 @@
         <ng-template *ngFor="let item of images" ngbSlide>
         <div class="picsum-img-wrapper">
             <img class="modal-content" (click)="hideImages()" [src]="item" alt="Random first slide">
-        </div>
-        </ng-template>    
-    </ngb-carousel>
-    <ngb-carousel class="modal" *ngIf="urisImFlag">
-        <ng-template *ngFor="let itemd of urisIm" ngbSlide>
-        <div class="picsum-img-wrapper">
-            <img class="modal-content" (click)="hideImages()" [src]="itemd" alt="Random first slide">
         </div>
         </ng-template>    
     </ngb-carousel>

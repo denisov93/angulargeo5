@@ -1,12 +1,13 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { RequestService } from 'src/app/services/RequestService';
-import { HttpErrorResponse } from '@angular/common/http';
-import { MapappComponent } from '../mapapp.component';
-import { DirectionWhithWaypoints } from 'src/app/models/DirectionWithWaypoints';
-
-import { latLon } from 'src/app/models/latLon';
 import { ElementRef, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+//import { HttpErrorResponse } from '@angular/common/http';
+
+import { MapappComponent } from '../mapapp.component';
+import { DirectionWhithWaypoints } from 'src/app/models/DirectionWithWaypoints';
+import { latLon } from 'src/app/models/latLon';
+
 @Component({
   selector: 'app-map-controll',
   templateUrl: './map-controll.component.html',

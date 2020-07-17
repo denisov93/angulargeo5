@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { Router, NavigationStart } from '@angular/router';
+
+import { Subscription } from 'rxjs';
 
 export let browserRefresh = false;
 

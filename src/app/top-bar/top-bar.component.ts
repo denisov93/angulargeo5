@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RequestService } from '../services/RequestService';
 import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
+//import { HttpErrorResponse } from '@angular/common/http';
+
+import { RequestService } from '../services/RequestService';
 
 @Component({
   selector: 'app-top-bar',
@@ -26,11 +27,11 @@ export class TopBarComponent implements OnInit {
       this.isLogOutError = true;
     });
 */
-localStorage.removeItem('tokenID');
-localStorage.removeItem('username');
-localStorage.removeItem('userInfo');
-localStorage.removeItem('myDirections'); 
-setTimeout( () => this.router.navigate(['/home']) , 200 );     
+    localStorage.removeItem('tokenID');
+    localStorage.removeItem('username');
+    localStorage.removeItem('userInfo');
+    localStorage.removeItem('myDirections'); 
+    setTimeout( () => this.router.navigate(['/home']) , 200 );     
     
   }
 

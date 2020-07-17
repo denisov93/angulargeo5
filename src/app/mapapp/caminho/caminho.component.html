@@ -5,7 +5,7 @@
                 <button class="btn btn-outline-success" (click)="getAllMyRoutes()" >{{'RoutFav'|translate}}</button>
             </div>
             <div class="col">
-            <button class="btn btn-outline-danger" (click)="delAll()" >{{'Csearch'|translate}}</button>
+            <button class="btn btn-outline-danger" (click)="delAll()" >Limpar Pesquisa</button>
             </div>
         </div>    
    <br>
@@ -38,7 +38,7 @@
     (deleteDir)=deleteDir($event)
     >
     </app-direction>
-    <div >
+    <div *ngIf="totalRecords > 0">
         <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"> </pagination-controls>
     </div>
 

@@ -1,7 +1,7 @@
 import {Component, ElementRef, ViewChild, Output, EventEmitter} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-import { promise } from 'protractor';
+//import { promise } from 'protractor';
 import { RequestService } from 'src/app/services/RequestService';
 
 
@@ -11,7 +11,7 @@ import { RequestService } from 'src/app/services/RequestService';
   styleUrls: ['./formpoliline.component.css']
 })
 export class FormpolilineComponent{
-  @Output() newImagesAdded: EventEmitter<FileList> = new EventEmitter();
+  @Output() newImagesAdded: EventEmitter<any[]> = new EventEmitter();
   @ViewChild('labelImport')
   labelImport: ElementRef;
   imageSend = false;
@@ -52,7 +52,7 @@ export class FormpolilineComponent{
     arrayOfBase64.then(data => {
       this.images = data;
       this.imageSend = true;
-      this.newImagesAdded.emit(this.filesToUpload);
+      this.newImagesAdded.emit(this.images);
       
   });
   }

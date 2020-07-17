@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule,HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+//import { HttpClientModule,HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule,HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
@@ -67,8 +68,9 @@ import { LoadDummyComponent } from './models/loaddummy';
 import { AdminDefaultModule } from './layouts/admin-default/admin-default.module';
 import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.component';
 import { OverlayContainer, FullscreenOverlayContainer } from '@angular/cdk/overlay';
-import { NgxPaginationModule } from 'ngx-pagination'
-import { Interceptor } from './services/Interceptor';
+import { NgxPaginationModule } from 'ngx-pagination';
+
+//import { Interceptor } from './services/Interceptor';
 
 @NgModule({
   declarations: [
