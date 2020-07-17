@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -20,6 +22,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { StatsCardComponent } from './widgets/stats-card/stats-card.component';
 import { PieComponent } from './widgets/pie/pie.component';
 import { AgmCoreModule } from '@agm/core';
+import { HttpClient } from '@angular/common/http';
 
 
 @NgModule({
@@ -44,7 +47,14 @@ import { AgmCoreModule } from '@agm/core';
     RouterModule,
     HighchartsChartModule,
     MatDatepickerModule,
-    AgmCoreModule
+    AgmCoreModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   exports: [
     HeaderComponent,
@@ -56,3 +66,8 @@ import { AgmCoreModule } from '@agm/core';
   ]
 })
 export class AdminModule { }
+
+// AOT compilation support
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

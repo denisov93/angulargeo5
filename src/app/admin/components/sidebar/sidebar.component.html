@@ -13,30 +13,30 @@
     <h2 matSubheader>Stats</h2>
     <a mat-list-item routerLinkActive = "list-item-active" routerLink = "/admin">
         <mat-icon>insert_chart_outlined</mat-icon>
-        Dashboard
+        {{'Dashboard'|translate}}
     </a>
     <a mat-list-item routerLinkActive = "list-item-active" routerLink = "/admin/userReports">
         <mat-icon>recent_actors</mat-icon>
-        Users Reports
+        {{'UsersReports'|translate}}
     </a>
 
     <mat-divider></mat-divider>
 
-    <h2 matSubheader>Management Tools</h2>
+    <h2 matSubheader>{{'ManagementTools'|translate}}</h2>
 
     <a mat-list-item routerLinkActive = "list-item-active" routerLink = "/admin/adminTools">
         <mat-icon>work_outline</mat-icon>
-        Admins Management
+        {{'AdminsManagement'|translate}}
     </a>
 
     <a mat-list-item routerLinkActive = "list-item-active" routerLink = "/admin/userTools">
         <mat-icon>supervisor_account</mat-icon>
-        User Management
+        {{'UserManagement'|translate}}
     </a>
 
     <a mat-list-item routerLinkActive = "list-item-active" routerLink = "/admin/mapTools">
         <mat-icon>map</mat-icon>
-        Map Management
+        {{'MapManagement'|translate}}
     </a>
 
 </mat-nav-list>
