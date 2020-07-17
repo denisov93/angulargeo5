@@ -7,6 +7,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Etty } from 'src/app/models/Etty';
 import { locationl } from 'src/app/models/locationl';
 import { FormGroup, FormControl } from '@angular/forms';
+import { DirectionWhithWaypoints } from 'src/app/models/DirectionWithWaypoints';
 
 @Component({
   selector: 'app-caminho',
@@ -35,11 +36,6 @@ export class CaminhoComponent implements OnInit {
    });
   }
 
-  showHide1(){ 
-    console.log("Fered");
-    
-  }
-  
 
   searchWithKeyword(word){
    
@@ -51,78 +47,14 @@ export class CaminhoComponent implements OnInit {
 
     this.req.searchWithKeyword(body).subscribe(
       (data:any)=>{
-       console.log(data);
-        data.forEach( (element: any) => {
-        console.log("recebi isto "+ element);
-        if(element.intermidiatePoints != null){  
-        const mf = new Direction();
-        mf.travelMode = "WALKING";
-        mf.destination = 
-        {
-          lat: parseFloat(  element.destination.lat.valueOf() ),
-          lng: parseFloat(  element.destination.lng.valueOf())
-        };
-        mf.origin = 
-        {
-          lat: parseFloat(  element.origin.lat.valueOf()) ,
-          lng: parseFloat(  element.origin.lng.valueOf())
-        };
-        
-        mf.id = element.id;
-    
-        mf.title = element.title;
-        mf.description = element.description;
-        
-          var arr: [{location:{lat:number,lng:number},stopover: false,}] = [{location:{lat:0,lng:0},stopover: false}];
-          
-    
-          for(var i = 0;i<element.intermidiatePoints.length;i++){
-            
-            arr[i] = 
-            {location:{
-              lat: parseFloat(element.intermidiatePoints[i].lat),
-              lng: parseFloat(element.intermidiatePoints[i].lng)
-            },
-            stopover: false 
-            };
-    
-          }
-          mf.waypoints = [{
-            location:
-            { 
-                lat:0,
-                lng:0
-            },
-            stopover: false,
-          }];
-          mf.waypoints = arr; 
-          
-         this.t.waywayway.push(mf);
-        }
-        else{
-          const ms = new Direction();
-          ms.travelMode = "WALKING";
-          ms.destination = 
-        {
-          lat: parseFloat(  element.destination.lat.valueOf() ),
-          lng: parseFloat(  element.destination.lng.valueOf())
-        };
-        ms.origin = 
-        {
-          lat: parseFloat(  element.origin.lat.valueOf()) ,
-          lng: parseFloat(  element.origin.lng.valueOf())
-        };
-        ms.id = element.id;
-
-        this.t.waywayway.push(ms);
-        }
-        
-        
+       
+        data.forEach( (element: any) => {       
+          this.processDataRo(element);
         });
       
-        this.t.saveDirections();
+        
         this.searchWord = true;
-        setTimeout(()=>{this.searchWord = false; word.value ="" },100);
+        setTimeout(()=>{this.searchWord = false; this.t.saveDirections(); word.value ="" },100);
     },
       (err : HttpErrorResponse)=>{
       
@@ -140,11 +72,9 @@ export class CaminhoComponent implements OnInit {
   deleteDir(direction:Direction){
     this.directions = this.directions.filter(tr => tr !== direction);
 
-    
     this.t.waywayway = this.directions;
 
     this.t.saveDirections();
-
   }
 
   delAll(){
@@ -156,92 +86,72 @@ export class CaminhoComponent implements OnInit {
  
   getAllMyRoutes(){
     this.req.getmyCams().subscribe(
-  
-      (data : any )=>{
-      
-      data.forEach( (element: any) => {
+      (data : any )=>{  console.log(data); 
+        data.forEach( (element: any) => {
+          this.processDataRo(element);
+          
+          this.loadingFav = true;
+          setTimeout(()=>{
+            this.loadingFav = false
+            this.t.saveDirections(); 
+          }
+            ,1000);
+      },(err : HttpErrorResponse)=>{
+        this.isFavError = true;
+        });
+      },(err : HttpErrorResponse)=>{
+        this.isFavError = true;
+        });
+  }
 
-      const mf = new Direction();
-      mf.travelMode = "WALKING";
-      mf.destination = 
-      {
+  processDataRo(element){
+    console.log(element.intermidiatePoints);
+    
+      var mf = new Direction();   
+      
+      if(element.intermidiatePoints.length != 0){
+        var arr = []; 
+        for(var i = 0;i<element.intermidiatePoints.length;i++){
+        arr[i] ={location:{
+                          lat: parseFloat(element.intermidiatePoints[i].lat),
+                          lng: parseFloat(element.intermidiatePoints[i].lng)
+                          },
+                stopover: false, 
+                };
+       
+        }
+        mf.waypoints = arr;
+      }
+    
+    var imgu = [];
+    this.req.getRoutePhotos(element.id).subscribe(
+      res  => {
+        res.map(
+          a=> {   
+            var sr = "https://storage.cloud.google.com/apdc-geoproj.appspot.com/"+a;
+            imgu.push(sr);
+          }
+        );
+
+        mf.imagesS = imgu;
+        mf.travelMode = "WALKING";
+        mf.destination = {
         lat: parseFloat(  element.destination.lat.valueOf() ),
         lng: parseFloat(  element.destination.lng.valueOf())
-      };
-      mf.origin = 
-      {
+        };
+        mf.origin = {
         lat: parseFloat(  element.origin.lat.valueOf()) ,
         lng: parseFloat(  element.origin.lng.valueOf())
-      };
-      
-      mf.id = element.id ;
-
-      mf.title = element.title;
-      mf.description = element.description;
-
-      if(element.intermidiatePoints==[]){  
-      
-        var arr: [{location:{lat:number,lng:number},stopover: false,}] = [{location:{lat:0,lng:0},stopover: false,}];
+        };
+        mf.id = element.id ;
+        mf.title = element.title;
+        mf.description = element.description;             
+        this.t.waywayway.push(mf);
+        
         
 
-        for(var i = 0;i<element.intermidiatePoints.length;i++){
-          
-          arr[i] = 
-          {location:
-            {
-            lat: parseFloat(element.intermidiatePoints[i].lat),
-            lng: parseFloat(element.intermidiatePoints[i].lng)
-            },
-            stopover: false, 
-          };
-
-        }
-        mf.waypoints = [{
-          location:
-          { 
-              lat:0,
-              lng:0
-          },
-          stopover: false,
-        }];
-        mf.waypoints = arr; 
- 
-      }
-      
-      mf.imagesS = [];
-      this.req.getRoutePhotos(mf.id).subscribe(
-        res  => {
-          
-          res.map(
-            a=> {
-              
-              var sr = "https://storage.cloud.google.com/apdc-geoproj.appspot.com/"+a.properties.file_name.value;
-              mf.imagesS.push(sr);
-              console.log(sr);
-            }
-          );
-        },
-        (err : HttpErrorResponse)=>{
-        console.log(err);
-        } 
-      );
-
-
-      this.t.waywayway.push(mf);
-
-
-      this.t.saveDirections();
-      this.loadingFav = true;
-      setTimeout(()=>this.loadingFav = false,1000);
-      },
-      (err : HttpErrorResponse)=>{
-      this.isFavError = true;
-      });
-      },
-      (err : HttpErrorResponse)=>{
-        this.isFavError = true;
-      });
-  
+      },(err : HttpErrorResponse)=>{ console.log(err); });
+    
   }
 
 }

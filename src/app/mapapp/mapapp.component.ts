@@ -20,7 +20,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
   styleUrls: ['./mapapp.component.css']
 })
 
-export class MapappComponent implements OnInit,OnDestroy {
+export class MapappComponent implements OnInit{
   @Output() newMF: EventEmitter<Direction> = new EventEmitter();
   @Output() showHide: EventEmitter<String> = new EventEmitter();
   
@@ -74,10 +74,6 @@ export class MapappComponent implements OnInit,OnDestroy {
       
   }
 
-  ngOnDestroy(): void {
-    this.waywayway=[];
-    this.saveDirections();
-  }
   
   cc = [];
   ccOF:boolean = false;
@@ -148,8 +144,17 @@ export class MapappComponent implements OnInit,OnDestroy {
     this.imagesFlag = true;
   }
 
+  urisIm;
+  urisImFlag= false;
+  showImageCar(uriImg){
+    this.urisIm = uriImg;
+    this.urisImFlag = true;
+  }
+
   hideImages(){
     this.imagesFlag = false;
+    this.urisImFlag = false;
+    this.urisIm = null;
     this.images = null;
   }
 
@@ -623,8 +628,8 @@ newDirectionAdded(b:boolean){
   }
 }
 
-public waywayway: Direction[];
-
+public waywayway: any[];
+public waywaywayW: DirectionWhithWaypoints[];
 
 
 ///////////////////Submiting files
@@ -681,6 +686,10 @@ public slides = [
 ];
 
 public demos = [
+  {src: "https://storage.cloud.google.com/apdc-geoproj.appspot.com/SE_JCK_6.JPG"}
+];
+
+public demosGeoS = [
   {src: "https://storage.cloud.google.com/apdc-geoproj.appspot.com/SE_JCK_6.JPG"}
 ];
 

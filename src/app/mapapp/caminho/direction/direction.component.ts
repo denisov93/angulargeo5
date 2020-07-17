@@ -19,6 +19,7 @@ export class DirectionComponent implements OnInit {
   activeIds: string[] = [];
   dirId:string;
   images
+  imagesS
   flag= false;
   constructor(private rr:MapappComponent, private req: RequestService, config: NgbCarouselConfig) {
     // customize default values of carousels used by this component tree
@@ -30,11 +31,17 @@ export class DirectionComponent implements OnInit {
 
   imagesize = false;
   bigImage(){
-    this.imagesize = true;
+    this.imagesize = true; 
     this.rr.showImageCarosel(this.images);
   }
 
+  bidImageS(){
+    this.imagesize = true; 
+    this.rr.showImageCar(this.imagesS);
+  }
+
   ngOnInit(): void {
+    
     this.rr.currentMessage.subscribe(
       dirId=>{
         if(dirId==this.direction.id){
@@ -56,16 +63,21 @@ export class DirectionComponent implements OnInit {
            
         }
       );
-      var a;
-      if(this.direction.images != null){
-         a = this.direction.images;
-      }else  a = this.direction.imagesS 
+    
+      var as = [{location: {lat: 0, lng: 0},stopover: false}]
+      var loca = this.direction.origin;
+      
 
-      const arrayOfBase64 = fileListToBase64(a);
+      if(this.direction.images != null){ 
+   
+      const arrayOfBase64 = fileListToBase64(this.direction.images);
       arrayOfBase64.then(data => {
       this.flag = true;  
-      this.images = data;
+      this.images = data;    
       });
+      }else{
+        this.imagesS = this.direction.imagesS 
+      }
   }
 
   setClasses(){
@@ -113,10 +125,6 @@ export class DirectionComponent implements OnInit {
     this.direction.visible = !this.direction.visible;
   }
  
-  showHide1(){ 
-    console.log("Fered");
-    
-  }
 
   addtoFavorites(direction:Direction){
     var dir = new Direction();
