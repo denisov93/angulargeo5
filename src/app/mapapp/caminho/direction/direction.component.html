@@ -1,9 +1,9 @@
 <ngb-accordion [activeIds]="activeIds">
     <ngb-panel id="id12">
         <ng-template ngbPanelHeader>
-            {{direction.title}}
-                <button ngbPanelToggle class="btn btn-sm btn-outline-primary ml-2" (click)="showHide()">Show | Hide</button>
-                <button type="button" class="btn btn-sm btn-outline-danger ml-2" (click)="delete(direction)">Delete</button>
+            <p>{{direction.title}}</p>
+                <button ngbPanelToggle class="btn btn-sm btn-outline-primary ml-2" (click)="showHide()">{{'S|H'|translate}}</button>
+                <button type="button" class="btn btn-sm btn-outline-danger ml-2" (click)="delete(direction)">{{'Delete'|translate}}</button>
         </ng-template>
 
         <ng-template ngbPanelContent>
@@ -20,17 +20,26 @@
                                 </ng-template>    
                             </ngb-carousel>  
                       </div>
+                      <div class="row">    
+                        <ngb-carousel >
+                            <ng-template *ngFor="let items of imagesS " ngbSlide>
+                              <div class="picsum-img-wrapper">
+                                <img  (click)="bidImageS()" [src]="items" alt="Random first slide">
+                              </div>
+                            </ng-template>    
+                        </ngb-carousel>  
+                  </div>
                 </div>
                     <!--
                     <p> It starts in Coordinates: {{direction.origin.lat}} & {{direction.origin.lng}}</p>
                     <p>And end in Coordinates: {{direction.destination.lat}} & {{direction.destination.lng}}</p>
                     -->
-                    <button type="button" class="btn btn-primary"(click)="addtoFavorites(direction)" >Add To Favorites</button>
+                    <button type="button" class="btn btn-primary"(click)="addtoFavorites(direction)" >{{'AddFav'|translate}}</button>
                          
             </div>  
             <div *ngIf="isRequestError">
                 <div class="alert alert-danger" role="alert">
-                    <strong>Failed add to Favorites</strong>
+                    <strong>{{'AddFavFail'|translate}}</strong>
                 </div>
             </div>
 

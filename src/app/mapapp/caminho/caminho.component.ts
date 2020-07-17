@@ -5,8 +5,9 @@ import { Direction } from '../../models/Direction';
 import { RequestService } from 'src/app/services/RequestService';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Etty } from 'src/app/models/Etty';
-//import { locationl } from 'src/app/models/locationl';
+import { locationl } from 'src/app/models/locationl';
 import { FormGroup, FormControl } from '@angular/forms';
+import { DirectionWhithWaypoints } from 'src/app/models/DirectionWithWaypoints';
 
 @Component({
   selector: 'app-caminho',
@@ -35,14 +36,9 @@ export class CaminhoComponent implements OnInit {
    });
   }
 
-  showHide1(){ 
-    console.log("Fered");
-    
-  }
-  
 
   searchWithKeyword(word){
-
+   
     if(word.value.length >= 4){
      
     const body={
@@ -52,77 +48,13 @@ export class CaminhoComponent implements OnInit {
     this.req.searchWithKeyword(body).subscribe(
       (data:any)=>{
        
-        data.forEach( (element: Etty) => {
-        
-        if(element.type){  
-        const mf = new Direction();
-        mf.travelMode = "WALKING";
-        mf.destination = 
-        {
-          lat: parseFloat(  element.destination.lat.valueOf() ),
-          lng: parseFloat(  element.destination.lng.valueOf())
-        };
-        mf.origin = 
-        {
-          lat: parseFloat(  element.origin.lat.valueOf()) ,
-          lng: parseFloat(  element.origin.lng.valueOf())
-        };
-        
-        mf.id = this.t.create_UUID();
-    
-        mf.title = element.title;
-        mf.description = element.description;
-        
-          var arr: [{location:{lat:number,lng:number},stopover: false,}] = [{location:{lat:0,lng:0},stopover: false}];
-          
-    
-          for(var i = 0;i<element.intermidiatePoints.length;i++){
-            
-            arr[i] = 
-            {location:{
-              lat: parseFloat(element.intermidiatePoints[i].lat),
-              lng: parseFloat(element.intermidiatePoints[i].lng)
-            },
-            stopover: false 
-            };
-    
-          }
-          mf.waypoints = [{
-            location:
-            { 
-                lat:0,
-                lng:0
-            },
-            stopover: false,
-          }];
-          mf.waypoints = arr; 
-          
-         this.t.waywayway.push(mf);
-        }
-        else{
-          const ms = new Direction();
-          ms.travelMode = "WALKING";
-          ms.destination = 
-        {
-          lat: parseFloat(  element.destination.lat.valueOf() ),
-          lng: parseFloat(  element.destination.lng.valueOf())
-        };
-        ms.origin = 
-        {
-          lat: parseFloat(  element.origin.lat.valueOf()) ,
-          lng: parseFloat(  element.origin.lng.valueOf())
-        };
-        ms.id = this.t.create_UUID();
-
-        this.t.waywayway.push(ms);
-        }
-        
-        
+        data.forEach( (element: any) => {       
+          this.processDataRo(element);
         });
       
-        this.t.saveDirections();
+        
         this.searchWord = true;
-        setTimeout(()=>{this.searchWord = false; word.value ="" },10);
+        setTimeout(()=>{this.searchWord = false; this.t.saveDirections(); word.value ="" },100);
     },
       (err : HttpErrorResponse)=>{
       
@@ -140,11 +72,9 @@ export class CaminhoComponent implements OnInit {
   deleteDir(direction:Direction){
     this.directions = this.directions.filter(tr => tr !== direction);
 
-    
     this.t.waywayway = this.directions;
 
     this.t.saveDirections();
-
   }
 
   delAll(){
@@ -156,83 +86,72 @@ export class CaminhoComponent implements OnInit {
  
   getAllMyRoutes(){
     this.req.getmyCams().subscribe(
-  
-    (data : any )=>{
-    
-    data.forEach( (element: Etty) => {
-    
-    if(element.type){  
-    const mf = new Direction();
-    mf.travelMode = "WALKING";
-    mf.destination = 
-    {
-      lat: parseFloat(  element.destination.lat.valueOf() ),
-      lng: parseFloat(  element.destination.lng.valueOf())
-    };
-    mf.origin = 
-    {
-      lat: parseFloat(  element.origin.lat.valueOf()) ,
-      lng: parseFloat(  element.origin.lng.valueOf())
-    };
-    
-    mf.id = localStorage.getItem("username") + this.t.create_UUID();
+      (data : any )=>{  console.log(data); 
+        data.forEach( (element: any) => {
+          this.processDataRo(element);
+          
+          this.loadingFav = true;
+          setTimeout(()=>{
+            this.loadingFav = false
+            this.t.saveDirections(); 
+          }
+            ,1000);
+      },(err : HttpErrorResponse)=>{
+        this.isFavError = true;
+        });
+      },(err : HttpErrorResponse)=>{
+        this.isFavError = true;
+        });
+  }
 
-    mf.title = element.title;
-    mf.description = element.description;
+  processDataRo(element){
+    console.log(element.intermidiatePoints);
     
-      var arr: [{location:{lat:number,lng:number},stopover: false,}] = [{location:{lat:0,lng:0},stopover: false,}];
+      var mf = new Direction();   
       
-
-      for(var i = 0;i<element.intermidiatePoints.length;i++){
-        
-        arr[i] = 
-        {location:{
-          lat: parseFloat(element.intermidiatePoints[i].lat),
-          lng: parseFloat(element.intermidiatePoints[i].lng)},
-          stopover: false, 
-        };
-
+      if(element.intermidiatePoints.length != 0){
+        var arr = []; 
+        for(var i = 0;i<element.intermidiatePoints.length;i++){
+        arr[i] ={location:{
+                          lat: parseFloat(element.intermidiatePoints[i].lat),
+                          lng: parseFloat(element.intermidiatePoints[i].lng)
+                          },
+                stopover: false, 
+                };
+       
+        }
+        mf.waypoints = arr;
       }
-      mf.waypoints = [{
-        location:
-        { 
-            lat:0,
-            lng:0
-        },
-        stopover: false,
-      }];
-      mf.waypoints = arr; 
-      
-     this.t.waywayway.push(mf);
-    }
-    else{
-      const ms = new Direction();
-      ms.travelMode = "WALKING";
-      ms.destination = 
-    {
-      lat: parseFloat(  element.destination.lat.valueOf() ),
-      lng: parseFloat(  element.destination.lng.valueOf())
-    };
-    ms.origin = 
-    {
-      lat: parseFloat(  element.origin.lat.valueOf()) ,
-      lng: parseFloat(  element.origin.lng.valueOf())
-    };
-    ms.id = this.t.create_UUID();
+    
+    var imgu = [];
+    this.req.getRoutePhotos(element.id).subscribe(
+      res  => {
+        res.map(
+          a=> {   
+            var sr = "https://storage.cloud.google.com/apdc-geoproj.appspot.com/"+a;
+            imgu.push(sr);
+          }
+        );
 
-    this.t.waywayway.push(ms);
-    }
+        mf.imagesS = imgu;
+        mf.travelMode = "WALKING";
+        mf.destination = {
+        lat: parseFloat(  element.destination.lat.valueOf() ),
+        lng: parseFloat(  element.destination.lng.valueOf())
+        };
+        mf.origin = {
+        lat: parseFloat(  element.origin.lat.valueOf()) ,
+        lng: parseFloat(  element.origin.lng.valueOf())
+        };
+        mf.id = element.id ;
+        mf.title = element.title;
+        mf.description = element.description;             
+        this.t.waywayway.push(mf);
+        
+        
+
+      },(err : HttpErrorResponse)=>{ console.log(err); });
     
-    
-    });
-  
-    this.t.saveDirections();
-    this.loadingFav = true;
-    setTimeout(()=>this.loadingFav = false,1000);
-},
-(err : HttpErrorResponse)=>{
- this.isFavError = true;
-});
-}
+  }
 
 }

@@ -1,23 +1,18 @@
-//import { Component, OnInit, ViewChild, ElementRef, NgZone ,Renderer2, ComponentFactoryResolver, Output, EventEmitter, Input } from '@angular/core';
-//import { AgmCoreModule, MapsAPILoader, MouseEvent, AgmMap, AgmMarker, AgmPolygon } from '@agm/core';
-//import { NgForm,FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { MouseEvent, AgmPolygon } from '@agm/core';
-import { TranslateService } from '@ngx-translate/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
-import { InfoWindow } from '@agm/core/services/google-maps-types';
-import { HttpClient } from '@angular/common/http';
-import { MatTabChangeEvent } from '@angular/material/tabs';
-
-//import {  HostListener } from '@angular/core';
-
-import { BehaviorSubject } from 'rxjs';
+import { Component, OnInit, ViewChild, ElementRef, NgZone ,Renderer2, ComponentFactoryResolver, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
+import { AgmCoreModule, MapsAPILoader, MouseEvent, AgmMap, AgmMarker, AgmPolygon } from '@agm/core';
 import { Url } from 'url';
-//import { element } from 'protractor';
-
+import { TranslateService } from '@ngx-translate/core';
+import { NgForm,FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Direction } from '../models/Direction';
 import { DirectionWhithWaypoints } from '../models/DirectionWithWaypoints';
+import { Router } from '@angular/router';
+import {  HostListener } from '@angular/core';
+import { InfoWindow } from '@agm/core/services/google-maps-types';
+import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { element } from 'protractor';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+
 
 @Component({
   selector: 'app-mapapp',
@@ -25,7 +20,7 @@ import { DirectionWhithWaypoints } from '../models/DirectionWithWaypoints';
   styleUrls: ['./mapapp.component.css']
 })
 
-export class MapappComponent implements OnInit {
+export class MapappComponent implements OnInit{
   @Output() newMF: EventEmitter<Direction> = new EventEmitter();
   @Output() showHide: EventEmitter<String> = new EventEmitter();
   
@@ -78,6 +73,8 @@ export class MapappComponent implements OnInit {
       ; 
       
   }
+
+  
   cc = [];
   ccOF:boolean = false;
 
@@ -89,7 +86,8 @@ export class MapappComponent implements OnInit {
   ngOnInit(): void {
   
     this.setCurrentLocation();
-    
+    this.str = localStorage.getItem("onMainPage");
+
     this.l = localStorage.getItem('language');
     if(this.l==null){
       this.l='pt';
@@ -97,13 +95,12 @@ export class MapappComponent implements OnInit {
 
     localStorage.setItem('language',this.l);
     
-    this.str = localStorage.getItem("onMainPage");
-
-    if( this.srt == null || this.str =="true" || this.srt == ""){
-      this.ChangeOnMainPageT();
+    
+    if( this.str =="false" ){
+      this.ChangeOnMainPageF();
     }
     else{
-      this.ChangeOnMainPageF();
+      this.ChangeOnMainPageT();      
     }
 
     this.loadDirections();
@@ -128,9 +125,6 @@ export class MapappComponent implements OnInit {
     this.map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(document.getElementById('GeoSpot')); 
   }  
 
-  dummy(){
-    window.alert('HEY');
-  }
 
   geoSp = false;
   showHideGeoSpots(){
@@ -150,8 +144,17 @@ export class MapappComponent implements OnInit {
     this.imagesFlag = true;
   }
 
+  urisIm;
+  urisImFlag= false;
+  showImageCar(uriImg){
+    this.urisIm = uriImg;
+    this.urisImFlag = true;
+  }
+
   hideImages(){
     this.imagesFlag = false;
+    this.urisImFlag = false;
+    this.urisIm = null;
     this.images = null;
   }
 
@@ -339,7 +342,7 @@ export class MapappComponent implements OnInit {
   }
 
   clickedDirection(DirMrk){    
-     console.log(DirMrk.__ngContext__[21])
+    // console.log(DirMrk.__ngContext__[21])
     var v = DirMrk.__ngContext__[21];
 
    
@@ -359,6 +362,7 @@ export class MapappComponent implements OnInit {
   ChangeOnMainPageT(){
     localStorage.setItem("onMainPage","true");
     this.onMainPage = true;
+    if(this.waywayway != null) { this.hideRoutes() }
   }
 
   ChangeOnMainPageF(){
@@ -554,8 +558,9 @@ if(this.anyWayP){
   mf.type = this.anyWayP;
   mf.visible = false;
   mf.images = this.filesToUpload;
+  mf.isTracked = false;
 
-  console.log(mf);
+  //console.log(mf);
  
  this.waywayway.push(mf);
  
@@ -623,16 +628,16 @@ newDirectionAdded(b:boolean){
   }
 }
 
-public waywayway: Direction[];
-
+public waywayway: any[];
+public waywaywayW: DirectionWhithWaypoints[];
 
 
 ///////////////////Submiting files
 
-filesToUpload: any[] = null;
+filesToUpload: FileList = null;
 
-newImagesAdded(arr:any[]){
-  console.log(arr);
+newImagesAdded(arr:FileList){
+  //console.log(arr);
   this.filesToUpload = arr;
 }
 
@@ -675,13 +680,16 @@ markers = [
  
 ]  
 public slides = [
-  { src: "https://s1.1zoom.me/big0/703/Planets_Trees_Night_576489_1280x800.jpg" },
-  { src: "https://s1.1zoom.me/big0/324/USA_Coast_Oregon_coast_sea_Crag_Trees_576509_1280x791.jpg" },
-  { src: "https://s1.1zoom.me/big0/205/Greece_Sunrises_and_sunsets_Coast_Korfu_Crag_Rays_575551_1280x853.jpg" },
-  { src: "https://s1.1zoom.me/big0/307/Forests_Autumn_Trees_Rays_of_light_575453_1280x720.jpg" }
+  { src: "https://storage.cloud.google.com/apdc-geoproj.appspot.com/SE_JCK_6.JPG" },
+  { src: "https://storage.cloud.google.com/apdc-geoproj.appspot.com/SE_JCK_45.JPG" }
+
 ];
 
 public demos = [
+  {src: "https://storage.cloud.google.com/apdc-geoproj.appspot.com/SE_JCK_6.JPG"}
+];
+
+public demosGeoS = [
   {src: "https://storage.cloud.google.com/apdc-geoproj.appspot.com/SE_JCK_6.JPG"}
 ];
 

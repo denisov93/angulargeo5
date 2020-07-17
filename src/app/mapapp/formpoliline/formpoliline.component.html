@@ -1,19 +1,19 @@
 <div class="card" >
-    <div class="card-header">Add Images!</div>
+    <div class="card-header">{{'cImage'|translate}}!</div>
     <div class="card-body">
       <p>
-    Create images is easy you can watch <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">this</a> totorial of how to do it
+        {{'imgEasey'|translate}} <a href="https://www.google.com">{{'this'|translate}}</a> {{'tutOfHowto'|translate}}
   </p>
     <form novalidate [formGroup]="formImport">
       <div class="input-group mb-3">
     
     <div class="custom-file">
       <input type="file" accept=".png,.jpg" multiple="multiple" class="custom-file-input" formControlName="importFile" id="importFile" (change)="onFileChange($event.target.files)" >
-                    <label class="custom-file-label" #labelImport for="importFile"><i class="fas fa-search"></i> Choose images</label>
+                    <label class="custom-file-label" #labelImport for="importFile"><i class="fas fa-search"></i> {{'cImage'|translate}}</label>
     </div>
   </div>
   <div class="form-group">
-    <button class="btn btn-outline-secondary" type="button" (click)="importImages()"><i class="fas fa-file-import"></i> Submit
+    <button class="btn btn-outline-secondary" type="button" (click)="importImages()"><i class="fas fa-file-import"></i> {{'Submit'|translate}}
                     </button>
   </div>
     </form>
