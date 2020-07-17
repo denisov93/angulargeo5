@@ -4,11 +4,13 @@ import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {FullscreenOverlayContainer, OverlayContainer} from '@angular/cdk/overlay';
 
-import { NbThemeModule } from '@nebular/theme';
-import { NbSidebarModule, NbLayoutModule, NbCardModule } from '@nebular/theme';
+//import { NbThemeModule } from '@nebular/theme';
+import { NbThemeModule, NbSidebarModule, NbLayoutModule, NbCardModule } from '@nebular/theme';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
@@ -35,9 +37,13 @@ import { UserManagementComponent } from 'src/app/admin-modules/user-management/u
 import { MapManagementComponent } from 'src/app/admin-modules/map-management/map-management.component';
 import { AdminSettingsComponent } from 'src/app/admin-modules/admin-settings/admin-settings.component'
 import { QuizzesComponent } from '../../admin-modules/map-management/quizzes/quizzes.component';
+import { PermissionManComponent } from '../../admin-modules/admin-management/permission-man/permission-man.component'
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
+import { HttpClient } from '@angular/common/http';
+import { RateUserComponent } from 'src/app/admin-modules/user-management/rate-user/rate-user.component';
+import { DeleteUserComponent } from 'src/app/admin-modules/user-management/delete-user/delete-user.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +54,10 @@ import { AgmCoreModule } from '@agm/core';
     UserManagementComponent,
     MapManagementComponent,
     AdminSettingsComponent,
-    QuizzesComponent
+    QuizzesComponent,
+    PermissionManComponent,
+    RateUserComponent,
+    DeleteUserComponent
   ],
   imports: [
     CommonModule,
@@ -77,7 +86,14 @@ import { AgmCoreModule } from '@agm/core';
     NbSidebarModule,
     NbCardModule,
     NbThemeModule.forRoot({ name: 'default' }),
-    AgmCoreModule
+    AgmCoreModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     DashboardService,
@@ -85,3 +101,9 @@ import { AgmCoreModule } from '@agm/core';
   ]
 })
 export class AdminDefaultModule { }
+
+// AOT compilation support
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+  
