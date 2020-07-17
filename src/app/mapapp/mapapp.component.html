@@ -172,7 +172,7 @@
         <agm-marker
         *ngFor="let item of infoNotice"
         [visible]="curiosities"
-        [latitude]="item.data.location.lan" 
+        [latitude]="item.data.location.lat" 
         [longitude]="item.data.location.lng" 
         [markerDraggable]="false" 
         (markerClick)="clickedMarker(infowindow)"
@@ -207,11 +207,11 @@
                         </div>
                     </mat-tab>
                     <mat-tab label="Carta Geologica"> 
-                        <object data="item.data.mapLink" type="application/pdf">
+                        <object data="{{item.data.mapLink}}" type="application/pdf">
                         </object>    
                     </mat-tab>
                     <mat-tab label="Noticia Explicativa"> 
-                        <object data="item.data.noticeLink" type="application/pdf">
+                        <object data="{{item.data.noticeLink}}" type="application/pdf">
                         </object> 
                     </mat-tab>
                   </mat-tab-group>

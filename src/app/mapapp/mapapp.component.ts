@@ -274,12 +274,12 @@ export class MapappComponent implements OnInit{
   infoNotice = [];
   getInformations(){
     this.req.getActiveInfoRes().subscribe(
-      data=>{ console.log();
+      data=>{ console.log(data);
         data.forEach(
           info =>{
             var img = [];
             this.req.getInfosPhotos(info.title).subscribe(
-              imArr =>{
+              imArr =>{ console.log(imArr);
                 imArr.map(
                   a=>{
                     var sr = { src: "https://storage.cloud.google.com/apdc-geoproj.appspot.com/"+a };
