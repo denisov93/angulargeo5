@@ -189,7 +189,7 @@ export class SettingsComponent {
     var body = {
       username: localStorage.getItem('username')
     }
-
+/*
     this.request.userMakeAccInact(body).subscribe(
       (data)=>{
         this.deleteUserInfo();
@@ -198,7 +198,7 @@ export class SettingsComponent {
         this.isRequestError = true;
         setTimeout( () => this.isRequestError = false , 2500 );
         }
-    );
+    );*/
   }
 
   deleteUserInfo(){    

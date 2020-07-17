@@ -170,9 +170,10 @@
         </agm-marker>
         
         <agm-marker
+        *ngFor="let item of infoNotice"
         [visible]="curiosities"
-        [latitude]="40.383039" 
-        [longitude]="-7.671747" 
+        [latitude]="item.data.location.lan" 
+        [longitude]="item.data.location.lng" 
         [markerDraggable]="false" 
         (markerClick)="clickedMarker(infowindow)"
         iconUrl = "../../assets/marker_orange!.png"
@@ -183,15 +184,15 @@
                         
                         <nb-card>
                             <nb-card-header>
-                                <h2><b>Caos de blocos</b></h2>
+                                <h2><b>{{item.data.title}}</b></h2>
                             </nb-card-header>
                             <nb-card-body>
-                                <h3>Caos de blocos nos granitos da Serra da Estrela (v.g. Coitada)</h3>
+                                <h3>{{item.data.description}}</h3>
                             </nb-card-body>
                         </nb-card>
                         <div class="row">
                             <div class="col">
-                                <p>Todo material é fornecido pelo Professor José Carlos Kullberg e Sociedade Portuguesa de Geologia</p>
+                                <p>Todo material é fornecido pelo Professor José Carlos Kullberg</p>
                                 <p>Alguns Materiais têm Direitos reservados pelo que sua utilização só é permitida no Ambito de disciplina "APDC fct unl di" para fim de realização de projecto</p>
                             </div>
                             <div class="col">
@@ -202,15 +203,15 @@
                     </mat-tab>
                     <mat-tab label="Imagens">
                         <div class="subComp">
-                        <carousel id="2" [slides]="demos"></carousel>
+                        <carousel id="2" [slides]="item.img"></carousel>
                         </div>
                     </mat-tab>
                     <mat-tab label="Carta Geologica"> 
-                        <object data="https://geoportal.lneg.pt/geoportal/egeo/DownloadCartas/images/20-B.pdf" type="application/pdf">
+                        <object data="item.data.mapLink" type="application/pdf">
                         </object>    
                     </mat-tab>
                     <mat-tab label="Noticia Explicativa"> 
-                        <object data="https://geoportal.lneg.pt/geoportal/egeo/DownloadCartas/noticias/20-B.pdf" type="application/pdf">
+                        <object data="item.data.noticeLink" type="application/pdf">
                         </object> 
                     </mat-tab>
                   </mat-tab-group>
@@ -218,24 +219,26 @@
         </agm-marker>
         
         <agm-marker
+        *ngFor="let item of geoSpots"
         [visible]="geoSp"
-        [latitude]="38.893476" 
-        [longitude]="-8.731703" 
+        [latitude]="item.data.location.lat" 
+        [longitude]="item.data.location.lng" 
         [markerDraggable]="false" 
         (markerClick)="clickedMarker(infowindow)"
-        iconUrl = "../../assets/red-dot.png"
+        iconUrl = "../../assets/geoMarker.png"
         >
         <agm-info-window [disableAutoPan]="true" #infowindow >
             <nb-card>
                 <nb-card-header>
-                    <h2><b>Caos de blocos</b></h2>
+                    <h2><b>{{item.data.geoSpotName}}</b></h2>
                 </nb-card-header>
                 <nb-card-body>
-                    <h3>Caos de blocos nos granitos da Serra da Estrela (v.g. Coitada)</h3>
+                    <h3>{{item.data.description}}</h3>
                     <br>
-
+                    <h4>#{{item.data.tags}}</h4>
+                    <br>
                     <div class="subComp">
-                        <carousel id="2" [slides]="demosGeoS"></carousel>
+                        <carousel id="2" [slides]="item.img"></carousel>
                     </div>
                 </nb-card-body>
             </nb-card>

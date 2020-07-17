@@ -7,6 +7,8 @@ import { MouseEvent, LatLng} from '@agm/core';
 //import { numberFormat } from 'highcharts';
 //import  Utm  from 'geodesy/utm.js';
 import  Dms  from 'geodesy/dms.js';
+import { RequestService } from 'src/app/services/RequestService';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-map-management',
@@ -36,7 +38,7 @@ export class MapManagementComponent {
 
   latitude: number; longitude:number; latitudeM: number; longitudeM: number; zoom:number;
 
-  constructor(private router:Router) {
+  constructor(private router:Router , private req:RequestService) {
     this.formImport = new FormGroup({
       importFile: new FormControl('', Validators.required)
     });
@@ -136,7 +138,7 @@ export class MapManagementComponent {
   setTitDesc(Title,Description,Tags){
     this.title = Title.value;
     this.description = Description.value;
-    this.Tags = Tags;
+    this.Tags = Tags.value;
   }
 
   markerDragEnd($event: MouseEvent) {
@@ -227,11 +229,12 @@ export class MapManagementComponent {
 
 
   SubmitGeoStop(){
-    window.alert("Submited!");
+    
    
+    //var images = this.filesToUpload[0];
+
     var toS:toSend ={
-      images: this.filesToUpload[0],
-      title:this.title,
+      geoSpotName:this.title,
       description:this.description,
       tags: this.Tags,
       location:{
@@ -240,6 +243,29 @@ export class MapManagementComponent {
       }
     }
    
+    this.req.submitGeoSpot(toS).subscribe(
+      data=>{
+        var i = 0;
+        while(i<this.filesToUpload.length){
+    
+        try{
+        this.req.addGeoSpotPhoto(this.title,this.filesToUpload[i],this.filesToUpload[i].type).subscribe(
+          (data)=>{
+            console.log("image ok "+i);
+          },
+          (err : HttpErrorResponse)=>{
+            window.alert("Imagens nao adicionados!  Images Not Added!");
+            console.log(err);
+          });
+        }catch(err){ }
+          i++;
+        }
+
+        window.alert("GeoSpot Adicionado!  GeoSpot Added!");
+      },
+      (err : HttpErrorResponse)=>{ window.alert("Não Adicionado!   Not Added!") }
+    );
+
     console.log(toS);
   }
 
@@ -248,14 +274,33 @@ export class MapManagementComponent {
       var th = {
         title: Title.value,
         description: Description.value,
-        mapL: GeoMapLink.value,
-        mapExp: ExplicativeNotice.value,
+        mapLink: GeoMapLink.value,
+        noticeLink: ExplicativeNotice.value,
         location:{
           lat:this.latitudeM,
           lng:this.longitudeM
-        },
-        img: this.imgURL
+        } 
       }
+
+      this.req.submitInfoRes(th).subscribe(
+        data=>{
+          var i = 0;
+        while(i<this.filesToUpload.length){
+    
+        try{
+        this.req.addInfoResPhoto(Title.value,this.filesToUpload[i],this.filesToUpload[i].type).subscribe(
+          (data)=>{
+            console.log("image ok "+i);
+          },
+          (err : HttpErrorResponse)=>{
+            window.alert("Imagens nao adicionados!  Images Not Added!");
+            console.log(err);
+          });
+        }catch(err){ }
+          i++;
+        }
+        }
+      );
 
       console.log(th);
 
@@ -265,9 +310,7 @@ export class MapManagementComponent {
 
 }
 export interface toSend{
-  
-    images: File,
-    title:string,
+    geoSpotName:string,
     description:string,
     tags:string,
     location:{

@@ -1,15 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
-
-import { Direction } from '../models/Direction';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {NgForm} from '@angular/forms';
 import { randomImages } from '../mapapp/mapapp.component'; //lixo
-//import {NgForm} from '@angular/forms';
-//import { Data } from '@angular/router';
-//import { Url } from 'url';
-
+import { Direction } from '../models/Direction';
+import { Data } from '@angular/router';
+import { Url } from 'url';
+import { JwtHelperService } from '@auth0/angular-jwt';
 const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -54,13 +51,125 @@ export class RequestService {
       }
       return this.http.post<JSON>(`${this.addToFav}`,direction,httpOption);
      }
+     addRoutePho="/rest/storage/upload/route/"; //{routeid}"
+     addRoutePhoto(id,body,type){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': type,
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.addRoutePho}${id}`,body,httpOption);
+     }
+     getRouteP="/rest/route/";
+     getRoutePhotos(id){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<any[]>(`${this.getRouteP}${id}${"/pictures"}`,'',httpOption);
+     }
 
 
-    ping() {
-      this.http.get("http://example.com/api/things").subscribe(
-        data => console.log(data),
-        err => console.log(err)
-      );
+     ///////////////GEOSPOT////////////////////////
+    geoSC = "/rest/geoSpot/submit";
+    submitGeoSpot(body){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.geoSC}`,body,httpOption);
+    }
+
+    getGeo = "/rest/geoSpot/listActive";
+    getActiveGeoSpots(){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<any[]>(`${this.getGeo}`,'',httpOption);
+    }
+
+    geoImage="/rest/storage/upload/geoSpot/";
+    addGeoSpotPhoto(nome,body,type){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': type,
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.geoImage}${nome}`,body,httpOption);
+     }
+     getgeoSpotP="/rest/geoSpot/"  //{geoSpotName}/pictures"
+     getgeoSpotPhotos(nome){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<any[]>(`${this.getgeoSpotP}${nome}${'/pictures'}`,'',httpOption);
+     }
+
+///////////////////////////InfoNotices/////////////////////
+    infoResPath = "/rest/info/submit";
+    submitInfoRes(body){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.infoResPath}`,body,httpOption);
+    }
+
+    infoResPhotos = "/rest/storage/upload/info/"//infoname
+    addInfoResPhoto(nome,body,type){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': type,
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.infoResPhotos}${nome}`,body,httpOption);
+    }
+
+    getInfoRes = "/rest/info/listActive"
+    getActiveInfoRes(){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<any[]>(`${this.getInfoRes}`,'',httpOption);
+    }
+
+    getInfoPhoto = "/rest/info/";//nome/pictures
+    getInfosPhotos(nome){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<any[]>(`${this.getInfoPhoto}${nome}${'/pictures'}`,'',httpOption);
+    }
+
+    getImagesFromURL(uri){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.get(uri);
     }
 
     userLogs='/rest/login/user';
@@ -93,15 +202,9 @@ export class RequestService {
     userRegist(body):Observable<JSON>{ 
       return this.http.post<JSON>(`${this.todosUrl}${this.userReg}`,body,httpOptions);
     }
-
     activateAcc='/rest/user/activateAccount';
     userActAcc(body):Observable<JSON>{
       return this.http.post<JSON>(`${this.todosUrl}${this.activateAcc}`,body,httpOptions);
-    }
-
-    makeAccInactive='/rest//makeAccountInactive';
-    userMakeAccInact(body):Observable<JSON>{   
-      return this.http.post<JSON>(`${this.todosUrl}${this.makeAccInactive}`,body,httpOptions);
     }
 
     getUser = '/rest/user/get';
@@ -151,6 +254,7 @@ export class RequestService {
       return false;
     }
 
+
     getCams='/rest/route/user';
     getmyCams():Observable<JSON>{
       const uname = localStorage.getItem('username');
@@ -166,7 +270,6 @@ export class RequestService {
       }
       return this.http.post<JSON>(`${this.getCams}`,body,httpOption);
     }
-
     getCamsWSearch = '/rest/route/searchActive';
     searchWithKeyword(body):Observable<JSON>{
       const httpOption = {
@@ -203,7 +306,6 @@ export class RequestService {
       }
       return this.http.post<JSON>(`${this.admintypebom}`,body,httpOption);
     }
-    
     admintypebop = '/rest/backOffice/addBOP';
     bopRegAdmin(body){
       const httpOption = {

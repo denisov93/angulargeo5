@@ -182,7 +182,7 @@ export class AdminSettingsComponent {
     var body = {
       username: localStorage.getItem('username')
     }
-
+  /*
     this.request.userMakeAccInact(body).subscribe(
       (data)=>{
         this.deleteUserInfo();
@@ -191,7 +191,7 @@ export class AdminSettingsComponent {
         this.isRequestError = true;
         setTimeout( () => this.isRequestError = false , 2500 );
         }
-    );
+    );*/
   }
 
   deleteUserInfo(){    
