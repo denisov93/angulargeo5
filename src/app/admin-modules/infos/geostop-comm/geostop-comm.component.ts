@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FormControl, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { RequestService } from 'src/app/services/RequestService';
 
 export interface GeoCommentElement {
   geoCommId: string;
@@ -31,9 +32,15 @@ export class GeostopCommComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private router : Router) { }
+  constructor(private router : Router, private req: RequestService ) { }
 
   ngOnInit(): void {
+
+    this.req.getAllActiveCommentGeo().subscribe(
+      
+    );
+
+
     this.dataSource.paginator = this.paginator;
   }
 
