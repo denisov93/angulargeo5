@@ -133,11 +133,16 @@ export class MapappComponent implements OnInit{
 
   geoSp = false;
   showHideGeoSpots(){
+    var toc = localStorage.getItem("tokenID");
+    if(!toc){ window.alert("Tem de Iniciar Sessão Para utilizar esta funcionalidade")}
     this.geoSp = !this.geoSp;
   }
 
   curiosities=false;
   showHideCuriosity(){
+    var toc = localStorage.getItem("tokenID");
+    if(!toc){ window.alert("Tem de Iniciar Sessão Para utilizar esta funcionalidade")}
+
     this.curiosities = !this.curiosities;
   }
 
@@ -755,11 +760,11 @@ public renderOptions = {
 public markerOptions = {
   origin: {
     infoWindow: 'Origin.',
-    icon: '../../assets/dirPoint.png',
+    icon: '../../assets/startmarker.png',
   },
   destination: {
     infoWindow: 'Destination',
-    icon:'../../assets/dirPoint.png'
+    icon:'../../assets/finishmarker.png'
   },
   waypoints: {
     infoWindow: `<h4>A<h4>

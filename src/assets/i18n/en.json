@@ -169,6 +169,7 @@
 
     "AddQuizz": "AddQuizz",
     "CreateQuizz":"Create a new Quizze",
+    "QuizzeTitle":"Title of the Quizze",
     "QuizzeIntro":"Quizze Introduction",
     "QuizzeWIntro":"Writte an Intro for the new Quizze",
     "QuizzeTags":"Quizze Tags",

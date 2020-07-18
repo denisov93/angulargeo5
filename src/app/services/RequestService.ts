@@ -163,6 +163,21 @@ export class RequestService {
       return this.http.post<any[]>(`${this.getInfoPhoto}${nome}${'/pictures'}`,'',httpOption);
     }
 
+///////////////////////////////Quizzes///////////////////
+    submitQuizzUri="/rest/quizz/submit";
+    submitQuizze(body){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<any[]>(`${this.submitQuizzUri}`,body,httpOption);
+    }
+
+
+
+
     getImagesFromURL(uri){
       const httpOption = {
         headers: new HttpHeaders({

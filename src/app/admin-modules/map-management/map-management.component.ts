@@ -56,34 +56,8 @@ export class MapManagementComponent {
     this.fileToUpload = files.item(0);
   }
 
-
-  import(): void {
-    var ss = '';
- 
-    const reader = new FileReader();
-    reader.onload = function(event) {
-      ss = event.target.result.toString();
-      var start = ss.lastIndexOf("<coordinates>");
-      var end = ss.lastIndexOf("</coordinates>");
-      var smore = ss.slice(start,end);
-      var startn = smore.indexOf("-");
-      var allmixup = smore.slice(startn);
-      var ordered = [];
-      
-      ordered = allmixup.split('\n');
-      var orderedWtoSpace = [];
-      ordered.forEach(element => { 
-          orderedWtoSpace.push(element.trim().split(","));
-      });
-      orderedWtoSpace.pop();
-      localStorage.setItem("mySpecialDir",JSON.stringify(orderedWtoSpace));
-      
-    };
+  import(){
     
-    reader.readAsText(this.fileToUpload);
-    
-    this.newDirectionAdded.emit(true);
-       
   }
 
 

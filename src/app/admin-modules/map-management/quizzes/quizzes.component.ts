@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { RequestService } from 'src/app/services/RequestService';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-quizzes',
@@ -10,14 +12,16 @@ export class QuizzesComponent implements OnInit {
 
   dynamicForm: FormGroup;
   submitted = false;
+  quizzTitle: String;
   quizzIntro: String;
   quizzKW: String;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private req: RequestService) { }
 
   ngOnInit(): void {
     this.dynamicForm = this.formBuilder.group({
       numberOfQuestions: ['', Validators.required],
+      quizzTitle:['',Validators.required],
       quizzIntro : ['', Validators.required],
       quizzKW : ['', Validators.required],
       questions: new FormArray([])
@@ -33,7 +37,8 @@ export class QuizzesComponent implements OnInit {
     if (this.q.length < numberOfQuestions) {
         for (let i = this.q.length; i < numberOfQuestions; i++) {
             this.q.push(this.formBuilder.group({
-              questionTxt: ['', Validators.required],
+              number:(i+1).toString(),
+              question: ['', Validators.required],
               rightAnswer: ['', Validators.required],
               wrongAnswer1: ['', Validators.required],
               wrongAnswer2: ['', Validators.required],
@@ -50,15 +55,27 @@ export class QuizzesComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
+    var sbt ={
+    title: this.quizzTitle,
+		description: this.quizzIntro,
+		keywords: this.quizzKW,
+		questions: this.q.value
+    }
+    console.log(sbt);
+
     // stop here if form is invalid
     if (this.dynamicForm.invalid) {
         return;
     }
 
-    //Falta construir o objecto e mandar para o servidor...
+    this.req.submitQuizze(sbt).subscribe(
+      data=>{
+        alert('SUCCESS!! You have created a new quizze!! :-)\n\n' );
+      },(err : HttpErrorResponse)=>{}
+    );
 
     // display form values on success
-    alert('SUCCESS!! You have created a new quizze!! :-)\n\n' + JSON.stringify(this.dynamicForm.value, null, 4));
+  
   }
 
   onReset() {

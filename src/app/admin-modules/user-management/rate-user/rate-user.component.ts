@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { FormControl, Validators } from '@angular/forms';
+import { RequestService } from 'src/app/services/RequestService';
 
 export interface RateUserElement {
   rateUsername: string;
@@ -40,9 +41,11 @@ export class RateUserComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor() { }
+  constructor(private req: RequestService) { }
 
   ngOnInit(): void {
+    
+
     this.dataSource.paginator = this.paginator;
   }
 
