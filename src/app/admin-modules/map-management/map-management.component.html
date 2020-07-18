@@ -1,22 +1,22 @@
 <mat-tab-group>
-    <mat-tab label="Add Route"> 
+    <mat-tab label="{{'RoutFileAdd'|translate}}"> 
         <ng-template matTabContent>
             <div class="card">
-                <div class="card-header">New Route from file</div>
+                <div class="card-header">{{'RouteFile'|translate}}</div>
                 <div class="card-body">
                   <p>
-                Create routes is easy you can watch <a href="https://www.youtube.com/watch?v=g9j5UzxEhEM">this</a> totorial of how to do it
+               {{'RouteFileInfo'|translate}} <a href="https://www.youtube.com/watch?v=g9j5UzxEhEM">{{'this'|translate}}</a> {{'RouteTot'|translate}}
               </p>
                 <form novalidate [formGroup]="formImport">
                   <div class="input-group mb-3">
                 
                 <div class="custom-file">
                   <input type="file" accept=".kml,.gpx" class="custom-file-input" formControlName="importFile" id="importFile" (change)="onFileChange($event.target.files)" >
-                                <label class="custom-file-label" #labelImport for="importFile"><i class="fas fa-search"></i> Choose file</label>
+                                <label class="custom-file-label" #labelImport for="importFile"><i class="fas fa-search"></i> {{'RouteCFile'|translate}}</label>
                 </div>
               </div>
               <div class="form-group">
-                <button class="btn btn-outline-secondary" type="button" (click)="import()"><i class="fas fa-file-import"></i> Submit
+                <button class="btn btn-outline-secondary" type="button" (click)="import()"><i class="fas fa-file-import"></i> {{'Submit'|translate}}
                                 </button>
               </div>
                 </form>
@@ -26,37 +26,33 @@
     </mat-tab>
 
 
-    <mat-tab label="Add Natural Reserve"> 
+    <mat-tab label="{{'AddNReserve'|translate}}"> 
       <ng-template matTabContent>
           <div class="card">
-            <div class="card-header">New Natural Reserve from file</div>
+            <div class="card-header">{{'NaturalRFile'|translate}}</div>
             <div class="card-body">
               <p>
-            Create routes is easy you can watch <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">this</a> totorial of how to do it
+            {{'NaturalFileInfo'|translate}} <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">{{'this'|translate}}</a> {{'RouteTot'|translate}}
           </p>
             <form novalidate [formGroup]="formImport">
               <div class="input-group mb-3">
             
             <div class="custom-file">
               <input type="file" accept=".kml,.gpx" class="custom-file-input" formControlName="importFile" id="importFile" (change)="onFileChange($event.target.files)" >
-                            <label class="custom-file-label" #labelImport for="importFile"><i class="fas fa-search"></i> Choose file</label>
+                            <label class="custom-file-label" #labelImport for="importFile"><i class="fas fa-search"></i> {{'RouteCFile'|translate}}</label>
             </div>
           </div>
           <div class="form-group">
-            <button class="btn btn-outline-secondary" type="button" (click)="import()"><i class="fas fa-file-import"></i> Submit
+            <button class="btn btn-outline-secondary" type="button" (click)="import()"><i class="fas fa-file-import"></i> {{'Submit'|translate}}
                             </button>
           </div>
             </form>
             </div>
           </div>
       </ng-template>
-    </mat-tab>    
-  
-  
+    </mat-tab>   
 
-
-
-    <mat-tab label="Add GeoStop">  
+    <mat-tab label="{{'AddGeoStop'|translate}}">  
         <ng-template matTabContent>
           <br>
           <div class="container"> 
@@ -66,45 +62,45 @@
 
                 <mat-tab label="Set Description"> 
                   <ng-template matTabContent>
-                    <h2> Write title and description</h2>
+                    <h2> {{'GeoStopTD'|translate}}</h2>
                     <mat-divider></mat-divider>
                     <form class="example-form">
                       <mat-form-field class="example-full-width">
-                        <mat-label>Title</mat-label>
+                        <mat-label>{{'Title'|translate}}</mat-label>
                         <input #Title matInput placeholder="Ex. Some title" >
                       </mat-form-field>
                       <br>
                       <mat-form-field class="example-full-width">
-                        <mat-label>Description</mat-label>
+                        <mat-label>{{'Description'|translate}}</mat-label>
                         <textarea #Description matInput placeholder="Ex. Few words about geoStop"></textarea>
-                      </mat-form-field>,
+                      </mat-form-field>
                       <mat-form-field class="example-full-width">
-                        <mat-label>Tags</mat-label>
+                        <mat-label>{{'Tags'|translate}}</mat-label>
                         <textarea #Tags matInput placeholder="Ex. Arenito,Fossil,Granito..."></textarea>
                       </mat-form-field>
                     </form>
                     <mat-divider></mat-divider>
-                    <button mat-raised-button color="primary" type="submit" [disabled]="!descriptionChanged" (click)="setTitDesc(Title,Description,Tags)">SetText</button>
+                    <button mat-raised-button color="primary" type="submit" [disabled]="!descriptionChanged" (click)="setTitDesc(Title,Description,Tags)">{{'SetText'|translate}}</button>
                 
                   </ng-template>
                 </mat-tab>
 
-                <mat-tab label="Set Location">  
+                <mat-tab label="{{'SetLocation'|translate}}">  
                   <ng-template matTabContent>
-                <h2> Use one of Functions You prefere:</h2>
+                <h2> {{'FGeoStLoc'|translate}}</h2>
                 <mat-divider></mat-divider>
-                <h3>1-> Drag Pinlet on Map</h3>
+                <h3>{{'GeoStPin'|translate}}</h3>
                 <mat-divider></mat-divider>
-                <h3>OR 2-> Find Place where to Start</h3>
+                <h3>{{'GeoStF2'|translate}}</h3>
                 <div class="full-name-inputs">          
                   <mat-form-field appearance="simple">
-                  <mat-label>Place Name</mat-label>
+                  <mat-label>{{'PlaceName'|translate}}</mat-label>
                   <input type="text" matInput #inputPlace placeholder="Lisboa" id="place">             
                 </mat-form-field>
-                <button mat-raised-button color="primary" type="submit" [disabled]="!markerDragable" (click)="getlatLng(inputPlace)">Search</button>          
+                <button mat-raised-button color="primary" type="submit" [disabled]="!markerDragable" (click)="getlatLng(inputPlace)">{{'Search'|translate}}</button>          
                 </div>
                 <mat-divider></mat-divider>
-                <h3>OR 3-> Lat Lng format</h3>
+                <h3>{{'GeoStF3'|translate}}</h3>
                 <mat-form-field appearance="simple">
                   <mat-label>Latitude</mat-label>
                   <input type="text" matInput #Latitude placeholder="Ex. 37.079458" id="Latitude">             
@@ -113,35 +109,35 @@
                   <mat-label>Longitude</mat-label>
                   <input type="text" matInput #Longitude placeholder="Ex. -8.668619" id="Longitude">             
                 </mat-form-field>
-                <button mat-raised-button color="primary" type="submit" [disabled]="!markerDragable" (click)="getlatLngF(Latitude,Longitude)">Search</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!markerDragable" (click)="getlatLngF(Latitude,Longitude)">{{'Search'|translate}}</button>
                 <mat-divider></mat-divider>
-                <h3>OR 3-> Dms format</h3>
+                <h3>{{'GeoStF4'|translate}}</h3>
                 <mat-form-field appearance="simple">
-                  <mat-label>Coordinates Dms format North</mat-label>
+                  <mat-label>{{'DMSNorth'|translate}}</mat-label>
                   <input type="text" matInput #N placeholder="N" id="N">             
                 </mat-form-field>
                 <mat-form-field appearance="simple">
-                  <mat-label>Coordinates Dms format West</mat-label>
+                  <mat-label>{{'DMSWest'|translate}}</mat-label>
                   <input type="text" matInput #W placeholder="W" id="W">             
                 </mat-form-field>
-                <button mat-raised-button color="primary" type="submit" [disabled]="!markerDragable" (click)="getLatLngDms(N,W)">Search</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!markerDragable" (click)="getLatLngDms(N,W)">{{'Search'|translate}}</button>
                 <br>
                 <mat-divider></mat-divider>
                 <br>
                 
                   </ng-template></mat-tab>
 
-                  <mat-tab label="Add Images">  
+                  <mat-tab label="{{'AddImages'|translate}}">  
                     <ng-template matTabContent>
                       <form novalidate [formGroup]="formImport">
                         <div class="input-group mb-3">
                       <div class="custom-file">
                         <input type="file" accept=".png,.jpg" multiple="multiple" class="custom-file-input" formControlName="importFile" id="importFile" (change)="onFileChangeS($event.target.files)" >
-                                      <label class="custom-file-label" #labelImport for="importFile"><i class="fas fa-search"></i> Choose images</label>
+                                      <label class="custom-file-label" #labelImport for="importFile"><i class="fas fa-search"></i>{{'GeoCImages'|translate}}</label>
                       </div>
                     </div>
                     <div class="form-group">
-                      <button mat-raised-button color="primary" type="submit" [disabled]="!imagesAddedtoSend" (click)="importImages()"> Submit</button>
+                      <button mat-raised-button color="primary" type="submit" [disabled]="!imagesAddedtoSend" (click)="importImages()"> {{'Submit'|translate}}</button>
                     </div>
                       </form>
                       <div class="container">
@@ -168,16 +164,16 @@
           <div class="container">
             <div class="row">
               <div class="col">
-                <mat-checkbox class="example-margin" (checked)="!descriptionChanged" (click)="descriptionChange()">Yes i have written Description!</mat-checkbox>
+                <mat-checkbox class="example-margin" (checked)="!descriptionChanged" (click)="descriptionChange()">{{'DescCheck'|translate}}</mat-checkbox>
                 <br>
-                <mat-checkbox class="example-margin"  (checked)="!markerDragable" (click)="markerDragableChange()">Yes i have Chosen marker Location!</mat-checkbox>
+                <mat-checkbox class="example-margin"  (checked)="!markerDragable" (click)="markerDragableChange()">{{'MarkerCheck'|translate}}</mat-checkbox>
                 <br>
-                <mat-checkbox class="example-margin"  (checked)="!imagesAddedtoSend" (click)="imagesAddedtoSendChange()">Yes i have Chosen Images!</mat-checkbox>
+                <mat-checkbox class="example-margin"  (checked)="!imagesAddedtoSend" (click)="imagesAddedtoSendChange()">{{'ImagesCheck'|translate}}</mat-checkbox>
               </div>
               <div class="col">
-                <h2>When you write all fields you can submit this geoStop</h2>
+                <h2>{{'GeoStFields'|translate}}</h2>
                 <br>
-                <button mat-raised-button color="primary" [disabled]="(descriptionChanged || markerDragable || imagesAddedtoSend)" type="submit" (click)="SubmitGeoStop()">Submit</button>
+                <button mat-raised-button color="primary" [disabled]="(descriptionChanged || markerDragable || imagesAddedtoSend)" type="submit" (click)="SubmitGeoStop()">{{'Submit'|translate}}</button>
               </div>
               <div class="col"></div>
             </div>
@@ -185,30 +181,30 @@
         </ng-template>         
     </mat-tab>
 
-    <mat-tab label="Add New informative Content"> 
+    <mat-tab label="{{'NInfoContent'|translate}}"> 
       <ng-template matTabContent>
         <br>
         <div class="container"> 
           <div class="row">
             <div class="col-6">
-              <h2> Geo Materials</h2>
+              <h2> {{'GeoMat'|translate}}</h2>
               <mat-divider></mat-divider>
               <form class="example-form">
                 <mat-form-field class="example-full-width">
-                  <mat-label>Title</mat-label>
+                  <mat-label>{{'Title'|translate}}</mat-label>
                   <input #Title matInput placeholder="Ex. Some title" >
                 </mat-form-field>
                 <br>
                 <mat-form-field class="example-full-width">
-                  <mat-label>Description</mat-label>
+                  <mat-label>{{'Description'|translate}}</mat-label>
                   <textarea #Description matInput rows="3" placeholder="Ex. Few words about this place"></textarea>
                 </mat-form-field>
                 <mat-form-field class="example-full-width">
-                  <mat-label>Link to Geological Map</mat-label>
+                  <mat-label>{{'LinkGeoMap'|translate}}</mat-label>
                   <textarea #GeoMapLink matInput rows="3" placeholder="Url to resource map must be https://.."></textarea>
                 </mat-form-field>
                 <mat-form-field class="example-full-width">
-                  <mat-label>Link to Geological Map Explicative Notice</mat-label>
+                  <mat-label>{{'LinkGeoNotice'|translate}}</mat-label>
                   <textarea #ExplicativeNotice matInput rows="3" placeholder="Url to resource text must be https://.."></textarea>
                 </mat-form-field>
                 <br>
@@ -220,28 +216,28 @@
                   <mat-label>Longitude</mat-label>
                   <input type="text" matInput #Longitude placeholder="Ex. -8.668619" id="Longitude">             
                 </mat-form-field>
-                <button mat-raised-button color="primary" type="submit" (click)="getlatLngF(Latitude,Longitude)">Search</button>
+                <button mat-raised-button color="primary" type="submit" (click)="getlatLngF(Latitude,Longitude)">{{'Search'|translate}}</button>
                 <br>
-                <h3> OR </h3>
+                <h3> {{'OR'|translate}} </h3>
                 <br>
                 <mat-form-field appearance="simple">
-                  <mat-label>Coordinates Dms format North</mat-label>
+                  <mat-label>{{'DMSNorth'|translate}}</mat-label>
                   <input type="text" matInput #N placeholder="N" id="N">             
                 </mat-form-field>
                 <mat-form-field appearance="simple">
-                  <mat-label>Coordinates Dms format West</mat-label>
+                  <mat-label>{{'DMSWest'|translate}}</mat-label>
                   <input type="text" matInput #W placeholder="W" id="W">             
                 </mat-form-field>
-                <button mat-raised-button color="primary" type="submit"  (click)="getLatLngDms(N,W)">Search</button>
+                <button mat-raised-button color="primary" type="submit"  (click)="getLatLngDms(N,W)">{{'Search'|translate}}</button>
                 <br>
-                <h3> OR </h3>
+                <h3> {{'OR'|translate}}</h3>
                 <br>
                 <div class="full-name-inputs">          
                   <mat-form-field appearance="simple">
-                  <mat-label>Place Name</mat-label>
+                  <mat-label>{{'PlaceName'|translate}}</mat-label>
                   <input type="text" matInput #inputPlace placeholder="Lisboa" id="place">             
                 </mat-form-field>
-                <button mat-raised-button color="primary" type="submit" (click)="getlatLng(inputPlace)">Search</button>          
+                <button mat-raised-button color="primary" type="submit" (click)="getlatLng(inputPlace)">{{'Search'|translate}}</button>          
                 </div>
                 <br>
                 <mat-divider></mat-divider>
@@ -250,11 +246,11 @@
                   <div class="input-group mb-3">
                 <div class="custom-file">
                   <input type="file" accept=".png,.jpg" multiple="multiple" class="custom-file-input" formControlName="importFile" id="importFile" (change)="onFileChangeS($event.target.files)" >
-                                <label class="custom-file-label" #labelImport for="importFile"><i class="fas fa-search"></i> Choose images</label>
+                                <label class="custom-file-label" #labelImport for="importFile"><i class="fas fa-search"></i> {{'GeoCImages'|translate}}</label>
                 </div>
               </div>
               <div class="form-group">
-                <button mat-raised-button color="primary" type="submit" [disabled]="!imagesAddedtoSend" (click)="importImages()"> Submit</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!imagesAddedtoSend" (click)="importImages()"> {{'Submit'|translate}}</button>
               </div>
                 </form>
                 <div class="container">
@@ -266,7 +262,7 @@
                 </div>
                 <mat-divider></mat-divider>
                 <br><br>
-                <button mat-raised-button color="primary" (click)="newInfoNotice( Title, Description, GeoMapLink, ExplicativeNotice)" type="submit">Submit</button>
+                <button mat-raised-button color="primary" (click)="newInfoNotice( Title, Description, GeoMapLink, ExplicativeNotice)" type="submit">{{'Submit'|translate}}</button>
               </form>
             </div>
             <div class="col-6">
@@ -279,7 +275,7 @@
       </ng-template>        
   </mat-tab>
   
-  <mat-tab label="Add Quizzes">  
+  <mat-tab label="{{'AddQuizzes|translate'}}">  
       <ng-template matTabContent>
         <app-quizzes></app-quizzes>
       </ng-template>         

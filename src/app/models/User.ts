@@ -10,4 +10,5 @@ export class User{
     user_country: String
     active_account: Boolean
     user_birthday: String
+    user_zip_code: String
 }

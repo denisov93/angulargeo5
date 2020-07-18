@@ -9,9 +9,11 @@ import { Router } from '@angular/router';
 import {  HostListener } from '@angular/core';
 import { InfoWindow } from '@agm/core/services/google-maps-types';
 import { BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { element } from 'protractor';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { geoStop } from '../models/geoStop';
+import { RequestService } from '../services/RequestService';
 
 
 @Component({
@@ -53,7 +55,8 @@ export class MapappComponent implements OnInit{
   constructor(
     private router : Router,
     public translate: TranslateService,
-    private http:HttpClient
+    private http:HttpClient,
+    private req: RequestService
   )
   {  
       this.formDir = new FormGroup(
@@ -113,6 +116,8 @@ export class MapappComponent implements OnInit{
       //reqw.forEach(randomImages, index: number, array: randomImages[])
    //   console.log(reqw);
    // });
+   this.getGeoSpots();
+   this.getInformations();
   }
   
   map: any;
@@ -241,6 +246,56 @@ export class MapappComponent implements OnInit{
     this.show = true;
   }
   }
+
+  geoSpots = [];
+  getGeoSpots(){
+      this.req.getActiveGeoSpots().subscribe(
+        data=>{
+          data.forEach(
+            spot =>{
+              var img = [];
+              this.req.getgeoSpotPhotos(spot.geoSpotName).subscribe(
+                imArr =>{
+                  imArr.map(
+                    a=>{
+                      var sr = { src: "https://storage.cloud.google.com/apdc-geoproj.appspot.com/"+a };
+                      img.push(sr);
+                    }
+                  );
+                }
+              );
+            this.geoSpots.push( {data:spot,img:img} );  
+            }
+          );
+        },(err : HttpErrorResponse)=>{}
+      );
+  }
+
+  infoNotice = [];
+  getInformations(){
+    this.req.getActiveInfoRes().subscribe(
+      data=>{ console.log(data);
+        data.forEach(
+          info =>{
+            var img = [];
+            this.req.getInfosPhotos(info.title).subscribe(
+              imArr =>{ console.log(imArr);
+                imArr.map(
+                  a=>{
+                    var sr = { src: "https://storage.cloud.google.com/apdc-geoproj.appspot.com/"+a };
+                    img.push(sr);
+                  }
+                );
+              }
+            );
+          this.infoNotice.push( {data:info,img:img} );  
+          }
+        );
+      },(err : HttpErrorResponse)=>{}
+    );
+  }
+
+
 
   clikedPoly($event:MouseEvent,poly:AgmPolygon){
     console.log(this.xmlDoc.getElement);

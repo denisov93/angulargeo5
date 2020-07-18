@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RequestService } from '../services/RequestService';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
+import { RequestService } from '../services/RequestService';
 
 @Component({
   selector: 'app-user',

@@ -20,6 +20,13 @@ import { AdminManagementComponent } from './admin-modules/admin-management/admin
 import { UserManagementComponent } from './admin-modules/user-management/user-management.component';
 import { MapManagementComponent } from './admin-modules/map-management/map-management.component';
 import { AdminSettingsComponent } from './admin-modules/admin-settings/admin-settings.component';
+import { AuthGuardAdminMang } from './auth/authguardAdminMang';
+import { AuthGuardCommunity } from './auth/authguardCommunity';
+import { AuthGuardMapManag } from './auth/authguardMapManag';
+import { SettingsComponent } from './person/persone/settings/settings.component';
+import { AuthGuardUserSett } from './auth/authguardUserSett';
+import { PremErrComponent } from './premerr/premerr.component';
+
 
 const routes: Routes = [
 
@@ -50,20 +57,28 @@ const routes: Routes = [
     children :[{ path : '',component: SignInComponent }]
   }, 
 
+  
   {path: 'admin',component : AdminDefaultComponent, canActivate:[AuthGuardAdmin],
   children:[{path : '',component : DashboardComponent},
-            {path : 'userReports', component: InfosComponent},
-            {path : 'adminTools', component: AdminManagementComponent},
-            {path : 'userTools', component: UserManagementComponent},
-            {path : 'mapTools', component: MapManagementComponent},
+            {path : 'userReports', component: InfosComponent, canActivate:[AuthGuardCommunity]},
+            {path : 'adminTools', component: AdminManagementComponent, canActivate:[AuthGuardAdminMang]},
+            {path : 'userTools', component: UserManagementComponent, canActivate:[AuthGuardCommunity]},
+            {path : 'mapTools', component: MapManagementComponent, canActivate:[AuthGuardMapManag]},
             {path: 'settings', component: AdminSettingsComponent}
            ]
   },
 
+  {path:'premerror', component:PremErrComponent},
+
   {path:'person',component : TopBarComponent,
-  children:[{path : '',component:PersoneComponent, canActivate:[AuthGuard]}
+  children:[{path : '',component:PersoneComponent, canActivate:[AuthGuard]},
+            {path : 'userSettings',component:SettingsComponent, canActivate:[AuthGuardUserSett]}
   ]},
 
+  {path:'personAd',component : TopBarComponent,
+  children:[{path : '',component:PersoneComponent, canActivate:[AuthGuardAdmin]},
+            {path : 'userSettings',component:SettingsComponent, canActivate:[AuthGuardUserSett]}
+  ]},
 
   {path: 'aboutus',component : TopBarComponent,
   children:[{path : '',component : AboutusComponent}]},

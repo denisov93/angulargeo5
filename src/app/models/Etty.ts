@@ -15,5 +15,4 @@ export class Etty
       description:any
       visible:boolean
       type:boolean
-      isTracked:boolean
     }

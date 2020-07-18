@@ -72,11 +72,95 @@ export class RequestService {
       return this.http.post<any[]>(`${this.getRouteP}${id}${"/pictures"}`,'',httpOption);
      }
 
-    ping() {
-      this.http.get("http://example.com/api/things").subscribe(
-        data => console.log(data),
-        err => console.log(err)
-      );
+
+     ///////////////GEOSPOT////////////////////////
+    geoSC = "/rest/geoSpot/submit";
+    submitGeoSpot(body){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.geoSC}`,body,httpOption);
+    }
+
+    getGeo = "/rest/geoSpot/listActive";
+    getActiveGeoSpots(){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<any[]>(`${this.getGeo}`,'',httpOption);
+    }
+
+    geoImage="/rest/storage/upload/geoSpot/";
+    addGeoSpotPhoto(nome,body,type){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': type,
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.geoImage}${nome}`,body,httpOption);
+     }
+     
+     getgeoSpotP="/rest/geoSpot/"  //{geoSpotName}/pictures"
+     getgeoSpotPhotos(nome){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<any[]>(`${this.getgeoSpotP}${nome}${'/pictures'}`,'',httpOption);
+     }
+
+///////////////////////////InfoNotices/////////////////////
+    infoResPath = "/rest/info/submit";
+    submitInfoRes(body){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.infoResPath}`,body,httpOption);
+    }
+
+    infoResPhotos = "/rest/storage/upload/info/"//infoname
+    addInfoResPhoto(nome,body,type){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': type,
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.infoResPhotos}${nome}`,body,httpOption);
+    }
+
+    getInfoRes = "/rest/info/listActive"
+    getActiveInfoRes(){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<any[]>(`${this.getInfoRes}`,'',httpOption);
+    }
+
+    getInfoPhoto = "/rest/info/";//nome/pictures
+    getInfosPhotos(nome){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<any[]>(`${this.getInfoPhoto}${nome}${'/pictures'}`,'',httpOption);
     }
 
     getImagesFromURL(uri){
