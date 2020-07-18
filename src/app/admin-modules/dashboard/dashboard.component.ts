@@ -5,7 +5,6 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { RequestService } from 'src/app/services/RequestService';
 
-import { DashboardService } from 'src/app/services/dashboard.service';
 
 export interface UserElement {
   nameQ: string;

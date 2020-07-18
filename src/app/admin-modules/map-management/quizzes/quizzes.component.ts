@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
-<<<<<<< HEAD
 import { RequestService } from 'src/app/services/RequestService';
 import { HttpErrorResponse } from '@angular/common/http';
-=======
->>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
 
 @Component({
   selector: 'app-quizzes',

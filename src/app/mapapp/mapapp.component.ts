@@ -293,11 +293,7 @@ export class MapappComponent implements OnInit{
                 );
               }
             );
-<<<<<<< HEAD
           this.infoNotice.push( {data:info,img:img} );  
-=======
-          this.infoNotice.push( {data:info , map:info.mapLink ,notice:info.noticeLink ,img:img} );  
->>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
           }
         );
       },(err : HttpErrorResponse)=>{}

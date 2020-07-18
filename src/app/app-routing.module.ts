@@ -19,19 +19,12 @@ import { InfosComponent } from './admin-modules/infos/infos.component';
 import { AdminManagementComponent } from './admin-modules/admin-management/admin-management.component';
 import { UserManagementComponent } from './admin-modules/user-management/user-management.component';
 import { MapManagementComponent } from './admin-modules/map-management/map-management.component';
-<<<<<<< HEAD
-=======
-import { AdminSettingsComponent } from './admin-modules/admin-settings/admin-settings.component';
->>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
 import { AuthGuardAdminMang } from './auth/authguardAdminMang';
 import { AuthGuardCommunity } from './auth/authguardCommunity';
 import { AuthGuardMapManag } from './auth/authguardMapManag';
 import { SettingsComponent } from './person/persone/settings/settings.component';
 import { AuthGuardUserSett } from './auth/authguardUserSett';
-<<<<<<< HEAD
 import { PremErrComponent } from './premerr/premerr.component';
-=======
->>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
 
 
 const routes: Routes = [
@@ -69,12 +62,7 @@ const routes: Routes = [
             {path : 'userReports', component: InfosComponent, canActivate:[AuthGuardCommunity]},
             {path : 'adminTools', component: AdminManagementComponent, canActivate:[AuthGuardAdminMang]},
             {path : 'userTools', component: UserManagementComponent, canActivate:[AuthGuardCommunity]},
-<<<<<<< HEAD
             {path : 'mapTools', component: MapManagementComponent, canActivate:[AuthGuardMapManag]}
-=======
-            {path : 'mapTools', component: MapManagementComponent, canActivate:[AuthGuardMapManag]},
-            {path: 'settings', component: AdminSettingsComponent}
->>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
            ]
   },
 
@@ -82,20 +70,12 @@ const routes: Routes = [
 
   {path:'person',component : TopBarComponent,
   children:[{path : '',component:PersoneComponent, canActivate:[AuthGuard]},
-<<<<<<< HEAD
             {path : 'userSettings',component:SettingsComponent}
-=======
-            {path : 'userSettings',component:SettingsComponent, canActivate:[AuthGuardUserSett]}
->>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
   ]},
 
   {path:'personAd',component : TopBarComponent,
   children:[{path : '',component:PersoneComponent, canActivate:[AuthGuardAdmin]},
-<<<<<<< HEAD
             {path : 'userSettings',component:SettingsComponent}
-=======
-            {path : 'userSettings',component:SettingsComponent, canActivate:[AuthGuardUserSett]}
->>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
   ]},
 
   {path: 'aboutus',component : TopBarComponent,

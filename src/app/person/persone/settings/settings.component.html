@@ -26,16 +26,7 @@
               <div class="col-lg-6">
 
               <h3>{{'UpdateU'|translate}}</h3>
-<<<<<<< HEAD
               
-=======
-              <div class="other-inputs">
-                <div class="custom-file">
-                  <input type="file" accept=".jpg,.png" class="custom-file-input" id="importPhoto" (change)="onFileChange($event.target.files)" [formControl]="photoControl">
-                                <label class="custom-file-label" #labelImport for="importPhoto"><i class="fas fa-photo"></i> {{'ChooseP'|translate}}</label>
-                </div>
-              </div>
->>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
               <br>
               <div class="full-name-inputs">        
                   <mat-form-field appearance="simple">
@@ -124,11 +115,7 @@
               </div>
           </div>
           <p>
-<<<<<<< HEAD
               <button mat-raised-button color="primary" type="submit" [disabled]="!(nameControl.valid || birthdayControl.valid || passControl.valid || emailControl.valid || streetControl.valid || zipcodeControl.valid || placeControl.valid || countryControl.valid)">{{'Submit'|translate}}</button>
-=======
-              <button mat-raised-button color="primary" type="submit" [disabled]="!(photoControl.valid || nameControl.valid || birthdayControl.valid || passControl.valid || emailControl.valid || streetControl.valid || zipcodeControl.valid || placeControl.valid || countryControl.valid)">{{'Submit'|translate}}</button>
->>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
               <button type="button" class="btn btn-sm btn-outline-danger ml-2" (click)="onCancel()">{{'Cancel'|translate}}</button>
           </p>            
           <p></p>

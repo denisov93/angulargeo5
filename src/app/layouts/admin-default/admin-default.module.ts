@@ -43,11 +43,8 @@ import { AgmCoreModule } from '@agm/core';
 import { HttpClient } from '@angular/common/http';
 import { RateUserComponent } from 'src/app/admin-modules/user-management/rate-user/rate-user.component';
 import { DeleteUserComponent } from 'src/app/admin-modules/user-management/delete-user/delete-user.component';
-<<<<<<< HEAD
 import { GeostopCommComponent } from 'src/app/admin-modules/infos/geostop-comm/geostop-comm.component';
 import { RouteCommComponent } from 'src/app/admin-modules/infos/route-comm/route-comm.component';
-=======
->>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
 
 @NgModule({
   declarations: [
@@ -57,20 +54,12 @@ import { RouteCommComponent } from 'src/app/admin-modules/infos/route-comm/route
     AdminManagementComponent,
     UserManagementComponent,
     MapManagementComponent,
-<<<<<<< HEAD
     QuizzesComponent,
     PermissionManComponent,
     RateUserComponent,
     DeleteUserComponent,
     GeostopCommComponent,
     RouteCommComponent,
-=======
-    AdminSettingsComponent,
-    QuizzesComponent,
-    PermissionManComponent,
-    RateUserComponent,
-    DeleteUserComponent
->>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
   ],
   imports: [
     CommonModule,

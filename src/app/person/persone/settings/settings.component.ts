@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { Component, ViewChild, ElementRef} from '@angular/core';
-=======
-import { Component} from '@angular/core';
->>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
 import { FormControl, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -38,10 +34,7 @@ export class SettingsComponent {
 
   // User Stored in the local storage.
   userI: User = JSON.parse(localStorage.getItem('userInfo'));
-<<<<<<< HEAD
   imageProfile: File;
-=======
->>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
 
   checkName(control){
     let enteredName = control.value;
@@ -120,7 +113,6 @@ export class SettingsComponent {
     else{
       this.userI.user_birthday = this.userInput.user_birthday;
     }
-<<<<<<< HEAD
 
     if(this.userInput.user_zip_code == null){
       this.userInput.user_zip_code = this.userI.user_zip_code;
@@ -129,16 +121,6 @@ export class SettingsComponent {
       this.userI.user_zip_code = this.userInput.user_zip_code;
     }
 
-=======
-
-    if(this.userInput.user_zip_code == null){
-      this.userInput.user_zip_code = this.userI.user_zip_code;
-    }
-    else{
-      this.userI.user_zip_code = this.userInput.user_zip_code;
-    }
-
->>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
     var body;
     //Escolha do servico para fazer update
     if(this.userInput.user_password == null){
@@ -234,37 +216,4 @@ export class SettingsComponent {
     setTimeout( () => this.router.navigate(['/person']) , 100 );
   }
 
-  //Para apagar (inativa) a conta do utilizador.
-
-  onDelete(){
-
-    alert("A sua conta foi eliminada com sucesso! Esperamos que volte em breve! Your account was deleted successfully!");
-
-    var body = {
-      username: localStorage.getItem('username')
-    }
-/*
-    this.request.userMakeAccInact(body).subscribe(
-      (data)=>{
-        this.deleteUserInfo();
-        setTimeout( () => this.router.navigate(['/home']) , 200 ); 
-      },(err : HttpErrorResponse)=>{
-        this.isRequestError = true;
-        setTimeout( () => this.isRequestError = false , 2500 );
-        }
-    );*/
-  }
-
-  deleteUserInfo(){    
-    localStorage.removeItem('tokenID');
-    localStorage.removeItem('username');
-    localStorage.removeItem('userInfo');
-    localStorage.removeItem('myDirections'); 
-  }
-
-  onCancel(){
-    localStorage.setItem("ProfileTabIdx", "0");
-    setTimeout( () => this.router.navigate(['/home']) , 0.01 );
-    setTimeout( () => this.router.navigate(['/person']) , 100 );
-  }
 }

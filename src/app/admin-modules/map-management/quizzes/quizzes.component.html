@@ -12,21 +12,13 @@
                     </div> 
 
                     <label>{{'QuizzeIntro'|translate}}</label>
-<<<<<<< HEAD
                     <input type="text" formControlName="quizzIntro" class="form-control" [(ngModel)]="quizzIntro" [ngClass]="{ 'is-invalid': submitted && f.quizzIntro.errors }" />
-=======
-                    <input type="text" formControlName="quizzIntro" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.quizzIntro.errors }" />
->>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
                     <div *ngIf="submitted && f.quizzIntro.errors" class="invalid-feedback">
                         <div *ngIf="f.quizzIntro.errors.required">{{'QuizzeWIntro'|translate}}</div>
                     </div> 
 
                     <label>{{'QuizzeTags'|translate}}</label>
-<<<<<<< HEAD
                     <input type="text" formControlName="quizzKW" class="form-control" [(ngModel)]="quizzKW" [ngClass]="{ 'is-invalid': submitted && f.quizzKW.errors }" />
-=======
-                    <input type="text" formControlName="quizzKW" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.quizzKW.errors }" />
->>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
                     <div *ngIf="submitted && f.quizzKW.errors" class="invalid-feedback">
                         <div *ngIf="f.quizzKW.errors.required">{{'QuizzeWTags'|translate}}</div>
                     </div> 
@@ -48,15 +40,9 @@
                 <div [formGroup]="question" class="form-row">
                     
                     <label>{{'WQuestion'|translate}}</label>
-<<<<<<< HEAD
                     <input type="text" formControlName="question" class="form-control" [ngClass]="{ 'is-invalid': submitted && question.controls.question.errors }" />
                     <div *ngIf="submitted && question.controls.question.errors" class="invalid-feedback">
                         <div *ngIf="question.controls.question.errors.required">{{'EQuestion'|translate}}</div>
-=======
-                    <input type="text" formControlName="questionTxt" class="form-control" [ngClass]="{ 'is-invalid': submitted && question.controls.questionTxt.errors }" />
-                    <div *ngIf="submitted && question.controls.questionTxt.errors" class="invalid-feedback">
-                        <div *ngIf="question.controls.questionTxt.errors.required">{{'EQuestion'|translate}}</div>
->>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
                     </div> 
 
                     <label>{{'QuestionAR'|translate}}</label>

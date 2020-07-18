@@ -69,10 +69,7 @@ import { AdminDefaultModule } from './layouts/admin-default/admin-default.module
 import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.component';
 import { OverlayContainer, FullscreenOverlayContainer } from '@angular/cdk/overlay';
 import { NgxPaginationModule } from 'ngx-pagination';
-<<<<<<< HEAD
 import { PremErrComponent } from './premerr/premerr.component';
-=======
->>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
 
 //import { Interceptor } from './services/Interceptor';
 
