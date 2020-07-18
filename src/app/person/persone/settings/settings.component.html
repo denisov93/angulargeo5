@@ -4,18 +4,29 @@
     <mat-divider></mat-divider>
   </nb-card-header>
   <nb-card-body>
-      <form (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class= "col">
+          <div class="other-inputs">
+            <div class="custom-file">
+              <input type="file" accept=".jpg,.png" class="custom-file-input" id="importPhoto" (change)="onFileChange($event.target.files)" [formControl]="photoControl">
+              <label class="custom-file-label" #labelImport for="importPhoto"><i class="fas fa-photo"></i> {{'ChooseP'|translate}}</label>
+            </div>
+        </div>
+      </div>
+      <div class= "col">
+        <button mat-raised-button color="primary" type="submit" (click)="updatePhoto()" [disabled]="!photoControl.valid" >{{'Submit'|translate}}</button>
+      </div>
+    </div>
+    <br>
+    <mat-divider></mat-divider>
+    <br>
 
+      <form (ngSubmit)="onSubmit()">
           <div class="row">
               <div class="col-lg-6">
 
               <h3>{{'UpdateU'|translate}}</h3>
-              <div class="other-inputs">
-                <div class="custom-file">
-                  <input type="file" accept=".jpg,.png" class="custom-file-input" id="importPhoto" (change)="onFileChange($event.target.files)" [formControl]="photoControl">
-                                <label class="custom-file-label" #labelImport for="importPhoto"><i class="fas fa-photo"></i> {{'ChooseP'|translate}}</label>
-                </div>
-              </div>
+              
               <br>
               <div class="full-name-inputs">        
                   <mat-form-field appearance="simple">
@@ -104,7 +115,7 @@
               </div>
           </div>
           <p>
-              <button mat-raised-button color="primary" type="submit" [disabled]="!(photoControl.valid || nameControl.valid || birthdayControl.valid || passControl.valid || emailControl.valid || streetControl.valid || zipcodeControl.valid || placeControl.valid || countryControl.valid)">{{'Submit'|translate}}</button>
+              <button mat-raised-button color="primary" type="submit" [disabled]="!(nameControl.valid || birthdayControl.valid || passControl.valid || emailControl.valid || streetControl.valid || zipcodeControl.valid || placeControl.valid || countryControl.valid)">{{'Submit'|translate}}</button>
               <button type="button" class="btn btn-sm btn-outline-danger ml-2" (click)="onCancel()">{{'Cancel'|translate}}</button>
           </p>            
           <p></p>

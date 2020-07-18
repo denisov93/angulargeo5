@@ -176,7 +176,88 @@ export class RequestService {
     }
 
 
+///////////////////////////////tabelas//////////////
+    allUsersGet="/rest/user/listAllUsers";
+    getAllUsers() {
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<any[]>(`${this.allUsersGet}`,'',httpOption);
+    }
 
+
+    
+
+
+
+
+
+
+
+
+
+///////////////////////////community//////////////
+    deactivateUri = "/rest/communityModerator/makeUserInactive";
+    deactivateAccCommunity(body){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.deactivateUri}`,body,httpOption);
+    } 
+
+    activateURI = "/rest/communityModerator/makeUserActive";
+    activateAccCommunity(body){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.activateURI}`,body,httpOption);
+    }
+
+
+///////////////////////deactivate my acc/////////////
+    deactMyUri="/rest/user/makeAccountInactive"
+    deactivateMyAcc(){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.deactMyUri}`,'',httpOption);
+    }
+///////////////delete////////////////
+    inactiveU="/rest/user/listInactive"
+    getAllInactiveUsers(){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<any[]>(`${this.inactiveU}`,'',httpOption);
+    }
+
+
+    //////////////////////////GET QUIZZ////////////////////
+    getQuizzUri="/rest/quizz/listActive";
+    getAllQuizzes(){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<any[]>(`${this.getQuizzUri}`,'',httpOption);
+    }
 
     getImagesFromURL(uri){
       const httpOption = {
@@ -348,12 +429,12 @@ export class RequestService {
     
     
     uploadPho = '/rest/storage/upload/user/'
-    uploadPhoto(body){
+    uploadPhoto(body,type){
       const decodedToken = this.helper.decodeToken(localStorage.getItem('tokenID'));
      
       const httpOption = {
         headers: new HttpHeaders({
-          'Content-Type':'image/jpeg',
+          'Content-Type': type,
           'token': `${localStorage.getItem('tokenID')}`
       })
     }

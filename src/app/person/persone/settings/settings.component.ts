@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, ViewChild, ElementRef} from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -14,7 +14,8 @@ import { UserUpNPData } from 'src/app/models/UserUpNPData';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent {
-
+  @ViewChild('labelImport')
+  labelImport: ElementRef;
   userInput = new UserUpdateData();
   isRequestError: boolean = false;
 
@@ -33,6 +34,7 @@ export class SettingsComponent {
 
   // User Stored in the local storage.
   userI: User = JSON.parse(localStorage.getItem('userInfo'));
+  imageProfile: File;
 
   checkName(control){
     let enteredName = control.value;
@@ -176,31 +178,31 @@ export class SettingsComponent {
   }
 
    //Implementar para guardar a imagem o utilizador no servidor...
-   onFileChange(event){
-
+   onFileChange(file: FileList){
+    this.labelImport.nativeElement.innerText = Array.from(file)
+    .map(f => f.name);
+    this.imageProfile = file[0];
   }
+
+  updatePhoto(){
+    this.request.uploadPhoto(this.imageProfile,this.imageProfile.type).subscribe(res=>{ alert("All good enjoy you new photo!") },(err:HttpErrorResponse)=>{ console.log(err); alert("Something went wrong!"); }  );
+  }
+
+
+
 
   //Para apagar (inativa) a conta do utilizador.
 
   onDelete(){
+    this.request.deactivateMyAcc().subscribe(
+      data=>{
+        alert("A sua conta foi eliminada com sucesso! Esperamos que volte em breve! Your account was deleted successfully!");
+      },(err: HttpErrorResponse)=>{console.log(err)}
+    );
 
-    alert("A sua conta foi eliminada com sucesso! Esperamos que volte em breve! Your account was deleted successfully!");
-
-    var body = {
-      username: localStorage.getItem('username')
-    }
-/*
-    this.request.userMakeAccInact(body).subscribe(
-      (data)=>{
-        this.deleteUserInfo();
-        setTimeout( () => this.router.navigate(['/home']) , 200 ); 
-      },(err : HttpErrorResponse)=>{
-        this.isRequestError = true;
-        setTimeout( () => this.isRequestError = false , 2500 );
-        }
-    );*/
   }
 
+  
   deleteUserInfo(){    
     localStorage.removeItem('tokenID');
     localStorage.removeItem('username');

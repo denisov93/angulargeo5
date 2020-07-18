@@ -12,7 +12,7 @@ import { User } from 'src/app/models/User';
 export class SidebarComponent implements OnInit {
   isUInfoError: boolean = false;
   userI: User = new User();  
-  
+  picSrc;
 
   constructor(private req: RequestService) { }
 
@@ -54,6 +54,8 @@ export class SidebarComponent implements OnInit {
   }
 
   loadPersone(){
+    this.picSrc = localStorage.getItem("picSrc");
+    
     const st = localStorage.getItem("userInfo");
     if(st=="{}" || st==null){
       this.getPersoneInfo();

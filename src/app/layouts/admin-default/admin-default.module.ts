@@ -35,7 +35,6 @@ import { DashboardService } from 'src/app/services/dashboard.service';
 import { AdminManagementComponent } from 'src/app/admin-modules/admin-management/admin-management.component';
 import { UserManagementComponent } from 'src/app/admin-modules/user-management/user-management.component';
 import { MapManagementComponent } from 'src/app/admin-modules/map-management/map-management.component';
-import { AdminSettingsComponent } from 'src/app/admin-modules/admin-settings/admin-settings.component'
 import { QuizzesComponent } from '../../admin-modules/map-management/quizzes/quizzes.component';
 import { PermissionManComponent } from '../../admin-modules/admin-management/permission-man/permission-man.component'
 
@@ -44,6 +43,8 @@ import { AgmCoreModule } from '@agm/core';
 import { HttpClient } from '@angular/common/http';
 import { RateUserComponent } from 'src/app/admin-modules/user-management/rate-user/rate-user.component';
 import { DeleteUserComponent } from 'src/app/admin-modules/user-management/delete-user/delete-user.component';
+import { GeostopCommComponent } from 'src/app/admin-modules/infos/geostop-comm/geostop-comm.component';
+import { RouteCommComponent } from 'src/app/admin-modules/infos/route-comm/route-comm.component';
 
 @NgModule({
   declarations: [
@@ -53,11 +54,12 @@ import { DeleteUserComponent } from 'src/app/admin-modules/user-management/delet
     AdminManagementComponent,
     UserManagementComponent,
     MapManagementComponent,
-    AdminSettingsComponent,
     QuizzesComponent,
     PermissionManComponent,
     RateUserComponent,
-    DeleteUserComponent
+    DeleteUserComponent,
+    GeostopCommComponent,
+    RouteCommComponent,
   ],
   imports: [
     CommonModule,

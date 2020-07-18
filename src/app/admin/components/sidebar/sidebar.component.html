@@ -4,7 +4,7 @@
             <h2>{{userI.user_username}}</h2>
             <h4>{{userI.user_email}}</h4>
         </div>
-        <img src = "https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png" alt = "Admin Photo">
+        <img src ={{picSrc}} alt = "Admin Photo">
         <h4>{{userI.user_role}}</h4>
     </div>
 
@@ -17,7 +17,7 @@
     </a>
     <a mat-list-item routerLinkActive = "list-item-active" routerLink = "/admin/userReports">
         <mat-icon>recent_actors</mat-icon>
-        {{'UsersReports'|translate}}
+        {{'CommentsEvaluation'|translate}}
     </a>
 
     <mat-divider></mat-divider>

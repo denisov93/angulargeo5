@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminSettingsComponent } from './admin-settings.component';
+import { RouteCommComponent } from './route-comm.component';
 
-describe('SettingsComponent', () => {
-  let component: AdminSettingsComponent;
-  let fixture: ComponentFixture<AdminSettingsComponent>;
+describe('RouteCommComponent', () => {
+  let component: RouteCommComponent;
+  let fixture: ComponentFixture<RouteCommComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminSettingsComponent ]
+      declarations: [ RouteCommComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminSettingsComponent);
+    fixture = TestBed.createComponent(RouteCommComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

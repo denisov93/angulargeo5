@@ -87,7 +87,7 @@
 
     "GeoPlaces-Admin":"GeoPlaces-Admins",
     "Dashboard":"Dashboard",
-    "UsersReports":"Users Reports",
+    "CommentsEvaluation":"Comments Evaluation",
     "ManagementTools":"Management Tools",
     "AdminsManagement":"Admins Management",
     "UserManagement":"User Management",
@@ -121,13 +121,6 @@
     "PermManagement":"Permissions Management",
     "Admins":"Admins:",
     "Number":"Number",
-    "UserReportComment":"Comments reported by users:",
-    "CommentID": "CommentID",
-    "WUsername":"Writter Username",
-    "WEmail": "Writter Email",
-    "RUsername":"Reporter Username",
-    "REmail": "Reporter Email",
-    "RepComment":"Reported Comment",
     "RoutFileAdd":"Add Route",
     "RouteFile":"New Route from file",
     "RouteFileInfo":" Create routes from a file is easy you can watch ",
@@ -169,7 +162,6 @@
 
     "AddQuizz": "AddQuizz",
     "CreateQuizz":"Create a new Quizze",
-    "QuizzeTitle":"Title of the Quizze",
     "QuizzeIntro":"Quizze Introduction",
     "QuizzeWIntro":"Writte an Intro for the new Quizze",
     "QuizzeTags":"Quizze Tags",
@@ -211,6 +203,16 @@
     "InactUsers":"All Inactive Users Accounts:",
     "DeleteAllUI":"Delte all inactive users",
 
+    "GeoCommH":"GeoStops Comments",
+    "GeoId":"GeoStop ID",
+    "GeoUser":"Commenter Name",
+    "GeoName":"GeoStop Name",
+    "Comment":"Comment",
+
+    "RoutesCommH": "Routes Comments",
+    "RouteId":"Route ID",
+    "RouteName":"Route Name",
+
     "Sanction": "Evaluate and Sanction Users",
     "InactComm":"Inactivate Comment",
     "EnterIdComm":"Enter the comment id to inactivate",
@@ -219,8 +221,7 @@
     "UsernameB":"Entre the username to sanction",
     "UsernameBError":"Enter a valid username.",
     "URepNote1":"NOTE:",
-    "URepNote2":"It's possible to give negative points to bad user reporters (Escreva no campo acima o username).",
-    "URepNote3":"You can only assign negative points to one user at a time.",
+    "URepNote2":"You can only assign negative points to one user at a time.",
 
     "SignIn": "Login",
     "UserName": "Username",
@@ -280,6 +281,7 @@
     "Sat": "Satélite",     
    
     "Community": "Community",
+
 
     "AboutUS": "About us",
     "GeoFiveSolutions": "GeoFiveSolutions Team",

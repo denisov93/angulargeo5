@@ -85,7 +85,7 @@
 
     "GeoPlaces-Admin":"GeoPlaces-Administração",
     "Dashboard":"Painel de Estatísticas",
-    "UsersReports":"Denúncias de utilizadores",
+    "CommentsEvaluation":"Avaliação de Comentários",
     "ManagementTools":"Ferramentas de Administração",
     "AdminsManagement":"Gerir Administradores",
     "UserManagement":"Gerir Utilizadores",
@@ -119,13 +119,6 @@
     "PermManagement":"Gerir Permissões",
     "Admins":"Administradores:",
     "Number":"Número",
-    "UserReportComment":"Comentários denúnciados por utilizadores:",
-    "CommentID": "Identificador do Comentário",
-    "WUsername":"Username do Escritor",
-    "WEmail": "Email do Escritor",
-    "RUsername":"Username do Denunciante",
-    "REmail": "Email do Denunciante",
-    "RepComment":"Comentário denúnciado",
     "RoutFileAdd":"Adicionar Percurso",
     "RouteFile":"Criar novo percurso através de um ficheiro",
     "RouteFileInfo":" Criar um percurso através de um ficheiro é simples, veja ",
@@ -167,7 +160,6 @@
 
     "AddQuizz": "Adicionar Quizze",
     "CreateQuizz":"Criar um novo Quizze",
-    "QuizzeTitle":"Titulo do Quizze",
     "QuizzeIntro":"Introdução do Quizze",
     "QuizzeWIntro":"Escreva uma introdução para o novo Quizze",
     "QuizzeTags":"Palavras chave do Quizze",
@@ -208,6 +200,16 @@
     "RUserNameError":"Forneça um username válido.",
     "InactUsers":"Todas as contas de utilizadores inactivos:",  
     "DeleteAllUI":"Apagar todos os utilizadores inactivos.", 
+
+    "GeoCommH":"Comentários dos GeoStops",
+    "GeoId":"ID do GeoStop",
+    "GeoUser":"Nome do Comentador",
+    "GeoName":"Nome do GeoStop",
+    "Comment":"Comentário",
+
+    "RoutesCommH": "Comentários dos Percursos",
+    "RouteId":"ID do Percurso",
+    "RouteName":"Nome do Percurso",
     
     "Sanction": "Avaliar e Sancionar Utilizadores",
     "InactComm":"Desactivar Comentário",
@@ -217,8 +219,7 @@
     "UsernameB":"Escreva o username do utilizador a sancionar",
     "UsernameBError":"Escreva um username válido.",
     "URepNote1":"NOTA:",
-    "URepNote2":"Podem ser atribuidos pontos negativos a maus denunciantes (Escreva no campo acima o username).",
-    "URepNote3":"Apenas pode atribuir pontos negativos a um utilizador de cada vez.",
+    "URepNote2":"Apenas pode atribuir pontos negativos a um utilizador de cada vez.",
 
     "SignIn": "Entrar",
     "UserName": "Nome de utilizador",
@@ -275,8 +276,7 @@
     "AddFav": "Adicionar aos Meus Percursos",
     "AddFavFail": "Não foi possível adicionar o percurso aos seus Percursos.",
     "Delete": "Apagar",
-    "Sat": "Satélite",
-    
+    "Sat": "Satélite",    
 
     "Community":"Comunidade",
 
