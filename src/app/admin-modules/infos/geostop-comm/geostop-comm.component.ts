@@ -27,7 +27,7 @@ export class GeostopCommComponent implements OnInit {
   displayedColumns: string[] = ['geoCommId', 'usernameGC', 'geostopName', 'geoComment'];
 
    //Validators:
-   commentId = new FormControl('', [Validators.required]);
+   commentId = new FormControl('', [Validators.required]);y
    badUsername = new FormControl('',[Validators.required]);
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -37,7 +37,7 @@ export class GeostopCommComponent implements OnInit {
   ngOnInit(): void {
 
     this.req.getAllActiveCommentGeo().subscribe(
-      
+
     );
 
 
