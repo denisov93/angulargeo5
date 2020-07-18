@@ -288,7 +288,7 @@ export class MapappComponent implements OnInit{
                 );
               }
             );
-          this.infoNotice.push( {data:info,img:img} );  
+          this.infoNotice.push( {data:info , map:info.mapLink ,notice:info.noticeLink ,img:img} );  
           }
         );
       },(err : HttpErrorResponse)=>{}
