@@ -107,6 +107,11 @@ export class RequestService {
       return this.http.post<JSON>(`${this.geoImage}${nome}`,body,httpOption);
      }
      
+SpotPhotos(nome){
+      const <<<<<<< HEAD
+     
+=======
+>>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
      getgeoSpotP="/rest/geoSpot/"  //{geoSpotName}/pictures"
      getgeoSpotPhotos(nome){
       const httpOption = {
@@ -158,10 +163,7 @@ export class RequestService {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
           'token': `${localStorage.getItem('tokenID')}`
-        })
-      }
-      return this.http.post<any[]>(`${this.getInfoPhoto}${nome}${'/pictures'}`,'',httpOption);
-    }
+          }
 
 ///////////////////////////////Quizzes///////////////////
     submitQuizzUri="/rest/quizz/submit";
@@ -233,23 +235,10 @@ export class RequestService {
         })
       }
       return this.http.post<JSON>(`${this.deactMyUri}`,'',httpOption);
-    }
-///////////////delete////////////////
-    inactiveU="/rest/user/listInactive"
-    getAllInactiveUsers(){
-      const httpOption = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'token': `${localStorage.getItem('tokenID')}`
-        })
-      }
-      return this.http.post<any[]>(`${this.inactiveU}`,'',httpOption);
-    }
-
-
-    //////////////////////////GET QUIZZ////////////////////
-    getQuizzUri="/rest/quizz/listActive";
-    getAllQuizzes(){
+tp.post<JSON>(`${this.deactMyUri}`,'',httpOption);
+=======
+>>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
+zes(){
       const httpOption = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
@@ -283,14 +272,13 @@ export class RequestService {
     getImagesFromURL(uri){
       const httpOption = {
         headers: new HttpHeaders({
-          'Content-Type': 'application/json',
+getrouteCommentA='ation/json',
           'token': `${localStorage.getItem('tokenID')}`
         })
       }
-      return this.http.get(uri);
-    }
+      getrouteCommentA="/rest/comment/"
 
-    userLogs='/rest/login/user';
+   userLogs='/rest/login/user';
     getlogs( me : any ):Observable<string[]>{
         return this.http.post<string[]>(`${this.todosUrl}${this.userLogs}`,me,httpOptions);
     }

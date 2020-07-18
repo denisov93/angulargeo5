@@ -87,7 +87,11 @@
 
     "GeoPlaces-Admin":"GeoPlaces-Admins",
     "Dashboard":"Dashboard",
+<<<<<<< HEAD
     "CommentsEvaluation":"Comments Evaluation",
+=======
+    "UsersReports":"Users Reports",
+>>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
     "ManagementTools":"Management Tools",
     "AdminsManagement":"Admins Management",
     "UserManagement":"User Management",
@@ -121,6 +125,16 @@
     "PermManagement":"Permissions Management",
     "Admins":"Admins:",
     "Number":"Number",
+<<<<<<< HEAD
+=======
+    "UserReportComment":"Comments reported by users:",
+    "CommentID": "CommentID",
+    "WUsername":"Writter Username",
+    "WEmail": "Writter Email",
+    "RUsername":"Reporter Username",
+    "REmail": "Reporter Email",
+    "RepComment":"Reported Comment",
+>>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
     "RoutFileAdd":"Add Route",
     "RouteFile":"New Route from file",
     "RouteFileInfo":" Create routes from a file is easy you can watch ",
@@ -136,7 +150,10 @@
     "Description":"Description",
     "Tags":"Tags",
     "SetText":"Set Text",
+<<<<<<< HEAD
     "SetDescription":"Set Description",
+=======
+>>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
     "SetLocation":"Set Location",
     "FGeoStLoc":"Use one of functions you prefere:",
     "GeoStPin":"1-> Drag pinlet on map",
@@ -160,7 +177,10 @@
     "LinkGeoNotice":"Link to Geological Map Explicative Notice",
     "OR":"OR",
 
+<<<<<<< HEAD
     "AddQuizz": "AddQuizz",
+=======
+>>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
     "CreateQuizz":"Create a new Quizze",
     "QuizzeIntro":"Quizze Introduction",
     "QuizzeWIntro":"Writte an Intro for the new Quizze",
@@ -203,6 +223,7 @@
     "InactUsers":"All Inactive Users Accounts:",
     "DeleteAllUI":"Delte all inactive users",
 
+<<<<<<< HEAD
     "GeoCommH":"GeoStops Comments",
     "GeoId":"GeoStop ID",
     "GeoUser":"Commenter Name",
@@ -213,6 +234,8 @@
     "RouteId":"Route ID",
     "RouteName":"Route Name",
 
+=======
+>>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
     "Sanction": "Evaluate and Sanction Users",
     "InactComm":"Inactivate Comment",
     "EnterIdComm":"Enter the comment id to inactivate",
@@ -221,7 +244,12 @@
     "UsernameB":"Entre the username to sanction",
     "UsernameBError":"Enter a valid username.",
     "URepNote1":"NOTE:",
+<<<<<<< HEAD
     "URepNote2":"You can only assign negative points to one user at a time.",
+=======
+    "URepNote2":"It's possible to give negative points to bad user reporters (Escreva no campo acima o username).",
+    "URepNote3":"You can only assign negative points to one user at a time.",
+>>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
 
     "SignIn": "Login",
     "UserName": "Username",
@@ -272,17 +300,29 @@
     "MapPointTitle": "Point name.",
     "MapPointDescription": "Description",
     "RoutWelcome":"Welcome", 
+<<<<<<< HEAD
     "RoutFav": "Get My Routes",
     "RFavLoad": "Your Routes Loaded",
     "RFavFailLoad": "Your Routes Failed to Load.", 
     "AddFav": "Add to Your Routes",
     "AddFavFail":"Failed add to Favorites",
     "Delete": "Delete",
+=======
+    "RoutFav": "Get my favorites",
+    "RFavLoad": "Your Favorites Loaded",
+    "RFavFailLoad": "Your Favorites Failed to Load.", 
+    "AddFav": "Add to favorites",
+    "AddFavFail":"Failed add to Favorites",
+    "Delete": "Apagar",
+>>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
     "Sat": "Satélite",     
    
     "Community": "Community",
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
     "AboutUS": "About us",
     "GeoFiveSolutions": "GeoFiveSolutions Team",
     "AboutUsIntro1": "We are a team of five students from IT engineering course of Faculdade de Ciências e Tecnologias, that has as objective to let know the geological patrimony of Portugal.",
@@ -294,9 +334,13 @@
     "Android": "Android Team:",
 
     "Exit": "Exit",
+<<<<<<< HEAD
     "Allrights":"All rights reserved 2020- FCT UNL- D.I.-Team 10-Geo5Solutions",
     "ErrorNotPrem1": "If you need to see this content, please send an email to our support:",
     "ErrorNotPrem2": "geofivesolutions@gmail.com",
     "ErrorNotPrem3": "Return to the statistics page by clicking ",
     "Here2":"HERE!"
+=======
+    "Allrights":"All rights reserved 2020- FCT UNL- D.I.-Team 10-Geo5Solutions"
+>>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
 }

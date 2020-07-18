@@ -17,12 +17,20 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     if(this.request.isLoggedIn()){
 
       const decodedToken = this.helper.decodeToken(localStorage.getItem('tokenID'));
+<<<<<<< HEAD
       if(decodedToken.token.role==="User"){
         return true;
       }
       else{        
         this.router.navigate(['/admin']);
         return false;
+=======
+      if(decodedToken.token.role==="SU"||decodedToken.token.role==="BOM"||decodedToken.token.role==="BOP"){
+        this.router.navigate(['/admin']);
+      }
+      else{        
+        return true;
+>>>>>>> 0c8d70f019b46d7b1181dab50c1779fdcbffb485
       }  
       
     }
