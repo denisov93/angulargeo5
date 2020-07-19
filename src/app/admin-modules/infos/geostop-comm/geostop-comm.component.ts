@@ -43,13 +43,14 @@ export class GeostopCommComponent implements OnInit {
             arr.push({ geoCommId: e.commentID , usernameGC:e.username, geostopName:e.geoSpotName, geoComment: e.content });
           }
         );
+        if(arr==[]){
+          alert("Não existem dados para mostrar! There is no data to show!");
+        }
         this.ELEMENT_DATA = arr;
         this.dataSource = new MatTableDataSource<GeoCommentElement>(this.ELEMENT_DATA);
       },(err:HttpErrorResponse)=>{console.log(err)}
 
     );
-
-
     this.dataSource.paginator = this.paginator;
   }
 

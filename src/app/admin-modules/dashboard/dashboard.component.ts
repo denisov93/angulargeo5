@@ -55,6 +55,9 @@ export class DashboardComponent implements OnInit {
             arr.push( {nameQ: e.title, descriptionQ: e.description, keywordsQ: e.keywords, numberQ: e.questions.length,questionsQ:e.questions } );
           }
         );
+        if(arr==[]){
+          alert("Não existem dados para mostrar na tabela! There is no data to show in the table!");
+        }
         this.ELEMENT_DATA = arr;
         this.dataSource = new MatTableDataSource<UserElement>(this.ELEMENT_DATA);
         this.dataSource.paginator = this.paginator;

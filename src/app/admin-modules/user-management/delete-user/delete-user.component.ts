@@ -36,6 +36,9 @@ export class DeleteUserComponent implements OnInit {
             arr.push( {deleteUsername: e.key.path[0].name, deleteName: e.properties.user_name.value, deleteEmail: e.properties.user_email.value, deleteRole: e.properties.user_role.value} );
           }
         );
+        if(arr==[]){
+          alert("Não existem dados para mostrar! There is no data to show!");
+        }
         this.ELEMENT_DATA = arr;
         this.dataSource = new MatTableDataSource<DelUserElement>(this.ELEMENT_DATA);
         this.dataSource.paginator = this.paginator;  

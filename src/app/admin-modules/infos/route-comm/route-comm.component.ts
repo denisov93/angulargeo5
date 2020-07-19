@@ -42,6 +42,9 @@ export class RouteCommComponent implements OnInit {
             arr.push( { routeCommId: e.commentID , usernameR: e.username , routeName: e.routeID , routeComment: e.content } );
           }
         );
+        if(arr==[]){
+          alert("Não existem dados para mostrar! There is no data to show!");
+        }
         this.dataSource = new MatTableDataSource<RouteCommentElement>(this.ELEMENT_DATA);
         this.dataSource.paginator = this.paginator;
       },(err:HttpErrorResponse)=>{console.log(err)}

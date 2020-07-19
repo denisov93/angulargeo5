@@ -191,7 +191,7 @@
 
     "RateUser":"Rate User",
     "RateUserInt":"Users Rating Points:",
-    "Inactive":"Inactive Account",
+    "Active":"Active Account",
     "PositPoints":"Positive Points",
     "NegaPoints":"Negative Points",
     "InactUAcc": "Inactivate User Account",

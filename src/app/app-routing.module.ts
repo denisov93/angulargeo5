@@ -25,9 +25,12 @@ import { AuthGuardMapManag } from './auth/authguardMapManag';
 import { SettingsComponent } from './person/persone/settings/settings.component';
 import { AuthGuardUserSett } from './auth/authguardUserSett';
 import { PremErrComponent } from './premerr/premerr.component';
+import { StartPageComponent } from './start-page/start-page.component';
 
 
 const routes: Routes = [
+
+  {path: 'start', component: StartPageComponent},
 
   {path: 'home',component : TopBarComponent,
   children:[{path : '',component : HomeComponent}]},
@@ -70,20 +73,20 @@ const routes: Routes = [
 
   {path:'person',component : TopBarComponent,
   children:[{path : '',component:PersoneComponent, canActivate:[AuthGuard]},
-            {path : 'userSettings',component:SettingsComponent}
+            {path : 'userSettings',component:SettingsComponent, canActivate:[AuthGuardUserSett]}
   ]},
 
   {path:'personAd',component : TopBarComponent,
   children:[{path : '',component:PersoneComponent, canActivate:[AuthGuardAdmin]},
-            {path : 'userSettings',component:SettingsComponent}
+            {path : 'userSettings',component:SettingsComponent, canActivate:[AuthGuardUserSett]}
   ]},
 
   {path: 'aboutus',component : TopBarComponent,
   children:[{path : '',component : AboutusComponent}]},
 
-  {path :'',redirectTo:'home',pathMatch:'full'},
-  {path :'*',redirectTo:'home',pathMatch:'full'},
-  {path :'**',redirectTo:'home',pathMatch:'full'}
+  {path :'',redirectTo:'start',pathMatch:'full'},
+  {path :'*',redirectTo:'start',pathMatch:'full'},
+  {path :'**',redirectTo:'start',pathMatch:'full'}
 ];
 
 @NgModule({

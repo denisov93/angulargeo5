@@ -3,25 +3,14 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RequestService } from 'src/app/services/RequestService';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export interface UserElement {
   username: string;
   email: string;
   role: string;
 }
-
-const ELEMENT_DATA: UserElement[] =[
-  {username: 'Luis', email: 'luis@dashboard.com', role: 'User'},
-  {username: 'Manuel', email: 'manuel@dashboard.com', role: 'User'},
-  {username: 'Pedro', email: 'pedro@dashboard.com', role: 'User'},
-  {username: 'Maria', email: 'maria@dashboard.com', role: 'User'},
-  {username: 'Sara', email: 'sara@dashboard.com', role: 'Routes Admin'},  
-  {username: 'Alex', email: 'alex@dashboard.com', role: 'Routes Admin'},
-  {username: 'Edson', email: 'edson@dashboard.com', role: 'Comunity Moderator'},
-  {username: 'Andre', email: 'andre@dashboard.com', role: 'Comunity Moderator'},
-  {username: 'Alexandre', email: 'manuel@dashboard.com', role: 'Routes Admin'},
-  {username: 'GEO5Sol', email: 'geo5sol@dashboard', role: 'Super Admin'},
-];
 
 @Component({
   selector: 'app-permission-man',
@@ -30,7 +19,8 @@ const ELEMENT_DATA: UserElement[] =[
 })
 export class PermissionManComponent implements OnInit {
 
-  dataSource = new MatTableDataSource<UserElement>(ELEMENT_DATA);
+  ELEMENT_DATA: UserElement[] =[];
+  dataSource;
   displayedColumns: string[] = ['username', 'email', 'role'];
   selectedValue: string;
 
@@ -40,9 +30,28 @@ export class PermissionManComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private router : Router) { }
+  constructor(private router : Router, private req: RequestService ) { }
 
   ngOnInit(): void {
+
+    this.req.getAllActiveAdmin().subscribe(
+      data=>{
+        var arr:UserElement[]=[];
+        data.map(
+          e=>{
+            arr.push({ username: e.commentID , email:e.username, role:e.geoSpotName});
+          }
+        );
+        if(arr==[]){
+          alert("Não existem dados para mostrar! There is no data to show!");
+        }
+        this.ELEMENT_DATA = arr;
+        this.dataSource = new MatTableDataSource<UserElement>(this.ELEMENT_DATA);
+      },(err:HttpErrorResponse)=>{console.log(err)}
+
+    );
+
+
     this.dataSource.paginator = this.paginator;
   }
 

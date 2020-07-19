@@ -188,16 +188,16 @@ export class RequestService {
       return this.http.post<any[]>(`${this.allUsersGet}`,'',httpOption);
     }
 
-
-    
-
-
-
-
-
-
-
-
+    allAdminGet="/rest/backOffice//listActiveAdmins"
+    getAllActiveAdmin(){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<any[]>(`${this. allAdminGet}`,'',httpOption);
+    }
 
 ///////////////////////////community//////////////
     deactivateUri = "/rest/communityModerator/makeUserInactive";

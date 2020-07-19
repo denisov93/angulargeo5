@@ -9,7 +9,7 @@ export interface RateUserElement {
   rateUsername: string;
   rateName: string;
   rateEmail: string;
-  inactive: string;
+  active: string;
   posiPoints: number;
   negPoints: number;
 }
@@ -23,7 +23,7 @@ export class RateUserComponent implements OnInit {
   ELEMENT_DATA: RateUserElement[] = [];
 
   dataSource;
-  displayedColumns: string[] = ['rateUsername','rateName' , 'rateEmail', 'inactive','posiPoints','negPoints'];
+  displayedColumns: string[] = ['rateUsername','rateName' , 'rateEmail', 'active','posiPoints','negPoints'];
   
   userTargetI;
   userTargetA;
@@ -46,9 +46,12 @@ export class RateUserComponent implements OnInit {
             var val = "Não"
             if(e.properties.active_account.value) val="Sim";
 
-            arr.push( {rateUsername: e.key.path[0].name, rateName: e.properties.user_name.value, rateEmail: e.properties.user_email.value, inactive:val , posiPoints:0, negPoints:0} );
+            arr.push( {rateUsername: e.key.path[0].name, rateName: e.properties.user_name.value, rateEmail: e.properties.user_email.value, active:val , posiPoints:0, negPoints:0} );
           }
         );
+        if(arr==[]){
+          alert("Não existem dados para mostrar! There is no data to show!");
+        }
         this.ELEMENT_DATA = arr;
         this.dataSource = new MatTableDataSource<RateUserElement>(this.ELEMENT_DATA);
         this.dataSource.paginator = this.paginator;  
