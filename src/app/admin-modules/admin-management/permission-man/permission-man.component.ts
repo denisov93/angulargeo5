@@ -56,13 +56,14 @@ export class PermissionManComponent implements OnInit {
   }
 
   onSubmit(){
-
     const body={
        username: this.username.value.toString(),
-       email: this.email.value.toString(),
-       role: this.selectedValue
+       newRole: this.selectedValue
      }
-     alert("A função do Administrador foi atualizada! The Admin role was updated successfully!");
+     this.req.changeAdminRoleTo(body).subscribe(
+        res=>{ alert("A função do Administrador foi atualizada! The Admin role was updated successfully!"); },(err:HttpErrorResponse)=>{alert("Ups Algo correu mal")}
+     );
+     
      //Falta fazer a lig com o servidor!!
   }
 

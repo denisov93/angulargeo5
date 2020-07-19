@@ -48,22 +48,12 @@
             <p></p>
             <br>
 
-            <div class="email-container">
-                <h4>{{'AdminEmail'|translate}}</h4>
-                <mat-form-field appearance="simple">
-                <mat-label>{{'EnterAdminEmail'|translate}}</mat-label>
-                <input matInput placeholder="pat@example.com" [formControl]="email" required>
-                <mat-error *ngIf="email.invalid">{{'AdminEmailError'|translate}}</mat-error>
-                </mat-form-field>
-            </div>
-
-            <br>
 
             <mat-form-field>
                 <mat-label>{{'SelectNRole'|translate}}</mat-label>
                 <mat-select [(value)] = "selectedValue">
                 <mat-option>{{'None'|translate}}</mat-option>
-                <mat-option value = "BO">{{'SuperAdmin'|translate}}</mat-option>
+                <mat-option value = "SU">{{'SuperAdmin'|translate}}</mat-option>
                 <mat-option value = "BOM">{{'ComunityMod'|translate}}</mat-option>
                 <mat-option value = "BOP">{{'RoutesAdmin'|translate}}</mat-option>
                 </mat-select>
@@ -72,7 +62,7 @@
         </nb-card-body>
     </nb-card>
         <p>
-            <button mat-raised-button color="primary" type="submit" [disabled]="  !(selectedValue!=null && username.valid && email.valid)">{{'Submit'|translate}}</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="  !(selectedValue!=null && username.valid )">{{'Submit'|translate}}</button>
             <button type="button" class="btn btn-sm btn-outline-danger ml-2" (click)="onCancel()">{{'Cancel'|translate}}</button>
         </p>            
         <p></p>    

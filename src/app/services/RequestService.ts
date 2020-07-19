@@ -288,6 +288,21 @@ export class RequestService {
 
 
 
+    //////////////Change role////////////
+    changeAdminRoleU = "/rest/backOffice/updateRole"
+    changeAdminRoleTo(body){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.changeAdminRoleU}`,body,httpOption);
+    }
+
+
+
+
     getImagesFromURL(uri){
       const httpOption = {
         headers: new HttpHeaders({
