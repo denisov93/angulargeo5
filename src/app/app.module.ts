@@ -24,7 +24,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { SimplebarAngularModule } from 'simplebar-angular';
 
-import { ParallaxDirective } from './home/parallax.directive';
 import { CarouselComponent } from './carousel/carousel.component';
 
 import { MatCardModule } from '@angular/material/card';
@@ -62,7 +61,6 @@ import { CaminhoComponent } from './mapapp/caminho/caminho.component';
 import { MapControllComponent } from './mapapp/map-controll/map-controll.component';
 import { DirectionComponent } from './mapapp/caminho/direction/direction.component';
 import { AboutusComponent} from './aboutus/aboutus.component';
-import { ImageComponent } from './home/images';
 import { FormpolilineComponent } from './mapapp/formpoliline/formpoliline.component';
 import { LoadDummyComponent } from './models/loaddummy';
 import { AdminDefaultModule } from './layouts/admin-default/admin-default.module';
@@ -70,6 +68,7 @@ import { MapCamInfoComponent } from './mapapp/map-cam-info/map-cam-info.componen
 import { OverlayContainer, FullscreenOverlayContainer } from '@angular/cdk/overlay';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PremErrComponent } from './premerr/premerr.component';
+import { AppPageComponent } from './app-page/app-page.component';
 
 //import { Interceptor } from './services/Interceptor';
 
@@ -79,7 +78,6 @@ import { PremErrComponent } from './premerr/premerr.component';
     TopBarComponent,
     MapappComponent,
     HomeComponent,
-    ParallaxDirective,
     UserComponent,
     SignInComponent,
     SignUpComponent,
@@ -95,11 +93,11 @@ import { PremErrComponent } from './premerr/premerr.component';
     RockTrophyComponent,
     SettingsComponent,
     AboutusComponent,
-    ImageComponent,
     FormpolilineComponent,
     LoadDummyComponent,
     MapCamInfoComponent,
     PremErrComponent,
+    AppPageComponent,
     ],
   imports: [
     BrowserModule,

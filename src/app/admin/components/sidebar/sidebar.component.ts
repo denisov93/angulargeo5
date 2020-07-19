@@ -56,6 +56,9 @@ export class SidebarComponent implements OnInit {
   loadPersone(){
     this.picSrc = localStorage.getItem("picSrc");
     
+    if(this.picSrc == null){ this.picSrc = 'https://storage.cloud.google.com/apdc-geoproj.appspot.com/827cc967-51ac-488b-945b-62d400d98626'; }
+
+
     const st = localStorage.getItem("userInfo");
     if(st=="{}" || st==null){
       this.getPersoneInfo();

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,13 +7,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./start-page.component.scss']
 })
 export class StartPageComponent implements OnInit {
-
+  @ViewChild('myVideo') videoplayer: any;
   constructor(private router : Router) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {this.videoplayer.play();
   }
 
   site(){
     setTimeout( () => this.router.navigate(['/home']) , 100 );
+  }
+
+  app(){
+    setTimeout( () => this.router.navigate(['/appAndroid']) , 100 );
   }
 }

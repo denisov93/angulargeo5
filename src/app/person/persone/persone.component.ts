@@ -80,7 +80,7 @@ export class PersoneComponent implements OnInit {
   }
 
   getPersoneProPic(){
-
+ 
     this.req.getUserProfPic().subscribe(
       (data:any)=>{
         console.log(data);

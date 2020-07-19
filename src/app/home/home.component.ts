@@ -10,17 +10,12 @@ import { RequestService } from '../services/RequestService';
 })
 export class HomeComponent implements OnInit {
   l: string;
-  isImageLoading: boolean;
-  imageToShow: string | ArrayBuffer;
+ 
   constructor( public translate: TranslateService ,private req: RequestService ) {
     translate.addLangs(['pt','en']);
    }
 
-   public sol 
-   public cam 
-   public bg
-   public serra
-  ngOnInit(): void {
+    ngOnInit(): void {
 
     
 
@@ -46,8 +41,4 @@ export class HomeComponent implements OnInit {
     this.translate.setDefaultLang(lang);
   }
 
-  public slides = [
-    { src: "./assets/1024.jpg" },
-  ];
-  
 }

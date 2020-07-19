@@ -26,11 +26,14 @@ import { SettingsComponent } from './person/persone/settings/settings.component'
 import { AuthGuardUserSett } from './auth/authguardUserSett';
 import { PremErrComponent } from './premerr/premerr.component';
 import { StartPageComponent } from './start-page/start-page.component';
+import { AppPageComponent } from './app-page/app-page.component';
 
 
 const routes: Routes = [
 
   {path: 'start', component: StartPageComponent},
+
+  {path: 'appAndroid', component:AppPageComponent},
 
   {path: 'home',component : TopBarComponent,
   children:[{path : '',component : HomeComponent}]},

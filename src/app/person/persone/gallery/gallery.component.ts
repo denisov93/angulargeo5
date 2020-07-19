@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { RequestService } from 'src/app/services/RequestService';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export interface Tile {
   color: string;
-  cols: number;
-  rows: number;
-  text: string;
 }
 
 @Component({
@@ -14,16 +13,33 @@ export interface Tile {
 })
 export class GalleryComponent implements OnInit {
 
-  tiles: Tile[] = [
-    {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
-  ];
+  tiles: Tile[] = [];
 
-  constructor() { }
+  constructor(private req: RequestService) { }
 
   ngOnInit(): void {
+    this.tiles = [];
+    
+    this.req.getmyCams().subscribe(
+      (data : any )=>{ 
+        data.map( element => {
+          
+          this.req.getRoutePhotos(element.id).subscribe(
+            images=>{
+              images.map(
+                a=>{                
+                this.tiles.push(
+                  {
+                    color: "https://storage.cloud.google.com/apdc-geoproj.appspot.com/"+a
+                  }
+                );
+                }
+              );
+            }
+          );
+        });
+      },(err: HttpErrorResponse)=>{ console.log(err)}
+    );
   }
 
 }

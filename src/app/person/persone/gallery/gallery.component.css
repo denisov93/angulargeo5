@@ -12,3 +12,8 @@ nb-card-body{
     background-color: whitesmoke;
     
 }
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 100%;
+  }
