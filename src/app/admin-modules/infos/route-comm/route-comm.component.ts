@@ -3,26 +3,16 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FormControl, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { RequestService } from 'src/app/services/RequestService';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export interface RouteCommentElement {
   routeCommId: string;
   usernameR: string;
-  geostopName: string;
+  routeName: string;
   routeComment: string;
 }
 
-const ELEMENT_DATA: RouteCommentElement[] =[
-  {routeCommId: '1A', usernameR: 'Luis', geostopName: 'Gruta Mira de Aire', routeComment: '#@&!#$%!'},
-  {routeCommId: '2B', usernameR: 'Manuel', geostopName: 'Pedra da Mua', routeComment: '#@&!#$%!'},
-  {routeCommId: '3C', usernameR: 'Pedro', geostopName: 'Fojo dos Morcegos', routeComment: '#@&!#$%!'},
-  {routeCommId: '4D', usernameR: 'Maria', geostopName: 'Gruta do Frade', routeComment: '#@&!#$%!'},
-  {routeCommId: '5E', usernameR: 'Sara', geostopName: 'Peninha', routeComment: '#@&!#$%!'},  
-  {routeCommId: '6F', usernameR: 'Alex', geostopName: 'Serra de Sintra', routeComment: '#@&!#$%!'},
-  {routeCommId: '7G', usernameR: 'Edson', geostopName: 'Serra da Arrabida', routeComment: '#@&!#$%!'},
-  {routeCommId: '8H', usernameR: 'Andre', geostopName: 'Poço Iniciático', routeComment: '#@&!#$%!'},
-  {routeCommId: '9I', usernameR: 'Alexandre', geostopName: 'Padrão dos Descobrimentos', routeComment: '#@&!#$%!'},
-  {routeCommId: '10J', usernameR: 'GEO5Sol', geostopName: 'Arriba Fóssil da Arrábida', routeComment: '#@&!#$%!'},
-];
 
 @Component({
   selector: 'app-route-comm',
@@ -31,7 +21,8 @@ const ELEMENT_DATA: RouteCommentElement[] =[
 })
 export class RouteCommComponent implements OnInit {
 
-  dataSource = new MatTableDataSource<RouteCommentElement>(ELEMENT_DATA);
+  ELEMENT_DATA: RouteCommentElement[] =[];
+  dataSource;
   displayedColumns: string[] = ['routeCommId', 'usernameR', 'routeName', 'routeComment'];
 
    //Validators:
@@ -40,10 +31,22 @@ export class RouteCommComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private router : Router) { }
+  constructor(private router : Router, private req: RequestService) { }
 
   ngOnInit(): void {
-    this.dataSource.paginator = this.paginator;
+    this.req.getAllActiveCommentRoute().subscribe(
+      data=>{
+        var arr:RouteCommentElement[]=[];
+        data.map(
+          e=>{
+            arr.push( { routeCommId: e.commentID , usernameR: e.username , routeName: e.routeID , routeComment: e.content } );
+          }
+        );
+        this.dataSource = new MatTableDataSource<RouteCommentElement>(this.ELEMENT_DATA);
+        this.dataSource.paginator = this.paginator;
+      },(err:HttpErrorResponse)=>{console.log(err)}
+    );
+
   }
 
   onSubmit(){

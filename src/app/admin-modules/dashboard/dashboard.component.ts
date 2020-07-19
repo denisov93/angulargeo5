@@ -14,8 +14,6 @@ export interface UserElement {
   questionsQ:any[]
 }
 
-const ELEMENT_DATA: UserElement[] =[
-];
 
 @Component({
   selector: 'app-dashboard',
@@ -30,7 +28,7 @@ const ELEMENT_DATA: UserElement[] =[
   ],
 })
 export class DashboardComponent implements OnInit {
-  
+  ELEMENT_DATA: UserElement[] =[];  
   expandedElement:UserElement|null;
   
   bigChart = [];
@@ -50,13 +48,15 @@ export class DashboardComponent implements OnInit {
     this.pieChart = this.dashboardService.pieChart();
 
     this.req.getAllQuizzes().subscribe(
-      data=>{ console.log(data);
+      data=>{
+        var arr:UserElement[] = []; 
         data.map(
           e=>{
-            ELEMENT_DATA.push( {nameQ: e.title, descriptionQ: e.description, keywordsQ: e.keywords, numberQ: e.questions.length,questionsQ:e.questions } );
+            arr.push( {nameQ: e.title, descriptionQ: e.description, keywordsQ: e.keywords, numberQ: e.questions.length,questionsQ:e.questions } );
           }
         );
-        this.dataSource = new MatTableDataSource<UserElement>(ELEMENT_DATA);
+        this.ELEMENT_DATA = arr;
+        this.dataSource = new MatTableDataSource<UserElement>(this.ELEMENT_DATA);
         this.dataSource.paginator = this.paginator;
       }
     );

@@ -12,9 +12,6 @@ export interface DelUserElement {
   deleteRole:string
 }
 
-const ELEMENT_DATA: DelUserElement[] =[
- 
-];
 
 @Component({
   selector: 'app-delete-user',
@@ -22,6 +19,7 @@ const ELEMENT_DATA: DelUserElement[] =[
   styleUrls: ['./delete-user.component.scss']
 })
 export class DeleteUserComponent implements OnInit {
+  ELEMENT_DATA: DelUserElement[] =[];
   dataSource;
   displayedColumns: string[] = ['deleteUsername', 'deleteName', 'deleteEmail', 'deleteRole'];
 
@@ -32,13 +30,14 @@ export class DeleteUserComponent implements OnInit {
   ngOnInit(): void {
     this.req.getAllInactiveUsers().subscribe(
       data=>{
-        console.log(data);
+        var arr:DelUserElement[]=[];
         data.map(
           e=>{
-            ELEMENT_DATA.push( {deleteUsername: e.key.path[0].name, deleteName: e.properties.user_name.value, deleteEmail: e.properties.user_email.value, deleteRole: e.properties.user_role.value} );
+            arr.push( {deleteUsername: e.key.path[0].name, deleteName: e.properties.user_name.value, deleteEmail: e.properties.user_email.value, deleteRole: e.properties.user_role.value} );
           }
         );
-        this.dataSource = new MatTableDataSource<DelUserElement>(ELEMENT_DATA);
+        this.ELEMENT_DATA = arr;
+        this.dataSource = new MatTableDataSource<DelUserElement>(this.ELEMENT_DATA);
         this.dataSource.paginator = this.paginator;  
       },(err:HttpErrorResponse)=>{console.log(err)}
     );

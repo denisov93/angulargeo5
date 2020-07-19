@@ -4,6 +4,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { RequestService } from 'src/app/services/RequestService';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export interface GeoCommentElement {
   geoCommId: string;
@@ -12,9 +13,6 @@ export interface GeoCommentElement {
   geoComment: string;
 }
 
-const ELEMENT_DATA: GeoCommentElement[] =[
-  
-];
 
 @Component({
   selector: 'app-geostop-comm',
@@ -23,7 +21,8 @@ const ELEMENT_DATA: GeoCommentElement[] =[
 })
 export class GeostopCommComponent implements OnInit {
 
-  dataSource = new MatTableDataSource<GeoCommentElement>(ELEMENT_DATA);
+  ELEMENT_DATA: GeoCommentElement[] =[];
+  dataSource;
   displayedColumns: string[] = ['geoCommId', 'usernameGC', 'geostopName', 'geoComment'];
 
    //Validators:
@@ -37,6 +36,16 @@ export class GeostopCommComponent implements OnInit {
   ngOnInit(): void {
 
     this.req.getAllActiveCommentGeo().subscribe(
+      data=>{
+        var arr:GeoCommentElement[]=[];
+        data.map(
+          e=>{
+            arr.push({ geoCommId: e.commentID , usernameGC:e.username, geostopName:e.geoSpotName, geoComment: e.content });
+          }
+        );
+        this.ELEMENT_DATA = arr;
+        this.dataSource = new MatTableDataSource<GeoCommentElement>(this.ELEMENT_DATA);
+      },(err:HttpErrorResponse)=>{console.log(err)}
 
     );
 

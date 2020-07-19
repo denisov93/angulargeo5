@@ -14,15 +14,13 @@ export interface RateUserElement {
   negPoints: number;
 }
 
-const ELEMENT_DATA: RateUserElement[] = [
-];
-
 @Component({
   selector: 'app-rate-user',
   templateUrl: './rate-user.component.html',
   styleUrls: ['./rate-user.component.scss']
 })
 export class RateUserComponent implements OnInit {
+  ELEMENT_DATA: RateUserElement[] = [];
 
   dataSource;
   displayedColumns: string[] = ['rateUsername','rateName' , 'rateEmail', 'inactive','posiPoints','negPoints'];
@@ -41,17 +39,18 @@ export class RateUserComponent implements OnInit {
   ngOnInit(): void {
     this.req.getAllUsers().subscribe(
       data=>{
-        console.log(data);
+        var arr: RateUserElement[]=[];
         data.map(
           e=>{
 
             var val = "Não"
             if(e.properties.active_account.value) val="Sim";
 
-            ELEMENT_DATA.push( {rateUsername: e.key.path[0].name, rateName: e.properties.user_name.value, rateEmail: e.properties.user_email.value, inactive:val , posiPoints:0, negPoints:0} );
+            arr.push( {rateUsername: e.key.path[0].name, rateName: e.properties.user_name.value, rateEmail: e.properties.user_email.value, inactive:val , posiPoints:0, negPoints:0} );
           }
         );
-        this.dataSource = new MatTableDataSource<RateUserElement>(ELEMENT_DATA);
+        this.ELEMENT_DATA = arr;
+        this.dataSource = new MatTableDataSource<RateUserElement>(this.ELEMENT_DATA);
         this.dataSource.paginator = this.paginator;  
       },(err:HttpErrorResponse)=>{console.log(err)}
     );

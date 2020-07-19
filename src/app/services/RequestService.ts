@@ -262,7 +262,7 @@ export class RequestService {
 
 
     /////////////////////////Get active geo Cooments/////////////////////
-    getgeoCommentsA="/rest/comment/route/listActive";
+    getgeoCommentsA="/rest/comment/geoSpot/listActive";
     getAllActiveCommentGeo(){
       const httpOption = {
         headers: new HttpHeaders({
@@ -275,8 +275,16 @@ export class RequestService {
 
 
     ////////////////Get active route Comments////////////
-    getrouteCommentA="/rest/comment/"
-
+    getRouteCommentA="/rest/comment/route/listActive"
+    getAllActiveCommentRoute(){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<any[]>(`${this.getRouteCommentA}`,'',httpOption);
+    }
 
 
 
