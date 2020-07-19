@@ -10,7 +10,7 @@ export class StartPageComponent implements OnInit {
   @ViewChild('myVideo') videoplayer: any;
   constructor(private router : Router) { }
 
-  ngOnInit(): void {this.videoplayer.play();
+  ngOnInit(): void {
   }
 
   site(){

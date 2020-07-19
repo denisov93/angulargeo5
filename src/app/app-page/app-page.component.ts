@@ -14,7 +14,7 @@ export class AppPageComponent implements OnInit {
   
 
   ngOnInit(): void {
-   this.videoplayer.play();
+  
   }
 
   site(){
