@@ -118,6 +118,17 @@ export class RequestService {
       return this.http.post<any[]>(`${this.getgeoSpotP}${nome}${'/pictures'}`,'',httpOption);
      }
 
+     geoDelComm="/rest/communityModerator/makeRouteCommentInactive/"
+     deactivateGeoComment(id){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.geoDelComm}${id}`,'',httpOption);
+     }
+
 ///////////////////////////InfoNotices/////////////////////
     infoResPath = "/rest/info/submit";
     submitInfoRes(body){
@@ -286,6 +297,16 @@ export class RequestService {
       return this.http.post<any[]>(`${this.getRouteCommentA}`,'',httpOption);
     }
 
+    dectRouteComm="/rest/communityModerator/makeRouteCommentInactive/"
+    deactivateRouteComment(id){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.dectRouteComm}${id}`,'',httpOption);
+    }
 
 
     //////////////Change role////////////
@@ -301,6 +322,18 @@ export class RequestService {
     }
 
 
+
+///////////////////////////Deleteincactive users//////////////
+    deleteAllI="/rest/delete/inactiveUsers";
+    deleteAllUserI(){
+      const httpOption = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'token': `${localStorage.getItem('tokenID')}`
+        })
+      }
+      return this.http.post<JSON>(`${this.deleteAllI}`,'',httpOption);
+    }
 
 
     getImagesFromURL(uri){

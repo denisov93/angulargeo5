@@ -36,7 +36,7 @@ export class DeleteUserComponent implements OnInit {
             arr.push( {deleteUsername: e.key.path[0].name, deleteName: e.properties.user_name.value, deleteEmail: e.properties.user_email.value, deleteRole: e.properties.user_role.value} );
           }
         );
-        if(arr==[]){
+        if(arr.length == 0){
           alert("Não existem dados para mostrar! There is no data to show!");
         }
         this.ELEMENT_DATA = arr;
@@ -50,8 +50,9 @@ export class DeleteUserComponent implements OnInit {
 
   deleteAllU(){
 
-    //Ver os campos necessarios e ligar ao servidor...
-    alert("Os utilizadores inactivos foram apagados! The inactive users was deleted successfully!");
+    //Ver os campos necessarios e ligar ao servidor... /inactiveUsers
+    //this.req.deleteAllUserI().subscribe(); 
+    alert("Os utilizadores inactivos foram apagados! Endpoint Intencionalmente Desligado");
     setTimeout( () => this.router.navigate(['/admin']) , 100 );
   }
 

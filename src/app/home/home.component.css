@@ -13,12 +13,12 @@
   }
 
 .img{
-    
+    margin-left: 6rem;
     position: relative;
     top:0;
     left:0;
-    width: 100vw;
-    height: 5%;
+    width: 1780px;
+    height: 500px;
 }
 
 /***************Buton lang********/

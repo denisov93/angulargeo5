@@ -3,14 +3,14 @@ body{
 }
 
 /* Style the video: 100% width and height to cover the entire window */
-#myVideo {
+#myVideoApp {
     margin:auto;
     display:block;
     position: center;
     right: 0;
     bottom: 0;
-    width:25%;
-    
+    width:30%;
+    height: 100vh;
   }
   
   /* Add some content at the bottom of the video/page */
@@ -35,6 +35,4 @@ body{
     border-color: transparent;
   }
 
-  video::-webkit-media-controls {
-    display: none;
-  }
+ 

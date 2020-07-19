@@ -59,7 +59,7 @@
             <h4>{{'InactComm'|translate}}</h4>
             <mat-form-field appearance="simple">
                 <mat-label>{{'EnterIdComm'|translate}}</mat-label>
-                <input matInput [formControl]="commentId" required>
+                <input matInput [formControl]="commentId" [(ngModel)]="commentToDel" required>
                 <mat-error *ngIf="commentId.invalid">{{'IdCommError'|translate}}</mat-error>
             </mat-form-field>
 
@@ -74,7 +74,6 @@
             <br>           
             <h4 id="Note">{{'URepNote1'|translate}}</h4>
             <h4>{{'URepNote2'|translate}}</h4>
-            <h4>{{'URepNote3'|translate}}</h4>
         </nb-card-body>
     </nb-card>
         <p>

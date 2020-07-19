@@ -69,6 +69,7 @@ import { OverlayContainer, FullscreenOverlayContainer } from '@angular/cdk/overl
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PremErrComponent } from './premerr/premerr.component';
 import { AppPageComponent } from './app-page/app-page.component';
+import { SafePipe } from './services/safe.pipe';
 
 //import { Interceptor } from './services/Interceptor';
 
@@ -98,6 +99,7 @@ import { AppPageComponent } from './app-page/app-page.component';
     MapCamInfoComponent,
     PremErrComponent,
     AppPageComponent,
+    SafePipe, 
     ],
   imports: [
     BrowserModule,

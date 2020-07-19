@@ -128,7 +128,7 @@
         <mat-icon aria-hidden="true" (click)="hideShowRoutes()">directions_walk</mat-icon>
     </button>
     <button id="Curiosity" mat-fab color="primary">
-        <mat-icon aria-hidden="true" (click)="showHideCuriosity()" >priority_high</mat-icon>
+        <mat-icon aria-hidden="true" (click)="showHideCuriosity()" >not_listed_location</mat-icon>
     </button>
     <button id="GeoSpot" mat-fab color="warn">
         <mat-icon aria-hidden="true" (click)="showHideGeoSpots()" >tour</mat-icon>
@@ -206,13 +206,11 @@
                         <carousel id="2" [slides]="item.img"></carousel>
                         </div>
                     </mat-tab>
-                    <mat-tab label="Carta Geologica"> 
-                        <object data="{{item.data.mapLink}}" type="application/pdf">
-                        </object>    
+                    <mat-tab label="Carta Geologica">                         
+                        <iframe [src]="item.data.mapLink | safe" type="application/pdf"></iframe>    
                     </mat-tab>
-                    <mat-tab label="Noticia Explicativa"> 
-                        <object data="{{item.data.noticeLink}}" type="application/pdf">
-                        </object> 
+                    <mat-tab label="Noticia Explicativa">
+                        <iframe [src]="item.data.noticeLink | safe" type="application/pdf"></iframe> 
                     </mat-tab>
                   </mat-tab-group>
             </agm-info-window>
