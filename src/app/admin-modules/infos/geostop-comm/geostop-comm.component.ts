@@ -5,7 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { RequestService } from 'src/app/services/RequestService';
 import { HttpErrorResponse } from '@angular/common/http';
-
+import {animate, state, style, transition, trigger} from '@angular/animations';
 export interface GeoCommentElement {
   geoCommId: string;
   usernameGC: string;
@@ -17,13 +17,20 @@ export interface GeoCommentElement {
 @Component({
   selector: 'app-geostop-comm',
   templateUrl: './geostop-comm.component.html',
-  styleUrls: ['./geostop-comm.component.scss']
+  styleUrls: ['./geostop-comm.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class GeostopCommComponent implements OnInit {
-
+  expandedElement:GeoCommentElement|null;
   ELEMENT_DATA: GeoCommentElement[] =[];
   dataSource;
-  displayedColumns: string[] = ['geoCommId', 'usernameGC', 'geostopName', 'geoComment'];
+  displayedColumns: string[] = ['geoCommId', 'usernameGC', 'geostopName'];
 
    //Validators:
    commentId = new FormControl('', [Validators.required]);y
@@ -48,10 +55,11 @@ export class GeostopCommComponent implements OnInit {
         }
         this.ELEMENT_DATA = arr;
         this.dataSource = new MatTableDataSource<GeoCommentElement>(this.ELEMENT_DATA);
+        this.dataSource.paginator = this.paginator;
       },(err:HttpErrorResponse)=>{console.log(err)}
 
     );
-    this.dataSource.paginator = this.paginator;
+    
   }
 
   onSubmit(){

@@ -5,6 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { RequestService } from 'src/app/services/RequestService';
 import { HttpErrorResponse } from '@angular/common/http';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+
 
 export interface RouteCommentElement {
   routeCommId: string;
@@ -17,13 +19,20 @@ export interface RouteCommentElement {
 @Component({
   selector: 'app-route-comm',
   templateUrl: './route-comm.component.html',
-  styleUrls: ['./route-comm.component.scss']
+  styleUrls: ['./route-comm.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class RouteCommComponent implements OnInit {
-
+  expandedElement:RouteCommentElement|null;
   ELEMENT_DATA: RouteCommentElement[] =[];
   dataSource;
-  displayedColumns: string[] = ['routeCommId', 'usernameR', 'routeName', 'routeComment'];
+  displayedColumns: string[] = ['routeCommId', 'usernameR', 'routeName'];
 
    //Validators:
    commentId = new FormControl('', [Validators.required]);
@@ -42,9 +51,10 @@ export class RouteCommComponent implements OnInit {
             arr.push( { routeCommId: e.commentID , usernameR: e.username , routeName: e.routeID , routeComment: e.content } );
           }
         );
-        if(arr==[]){
+        if(arr.length==0){
           alert("Não existem dados para mostrar! There is no data to show!");
         }
+        this.ELEMENT_DATA = arr;
         this.dataSource = new MatTableDataSource<RouteCommentElement>(this.ELEMENT_DATA);
         this.dataSource.paginator = this.paginator;
       },(err:HttpErrorResponse)=>{console.log(err)}

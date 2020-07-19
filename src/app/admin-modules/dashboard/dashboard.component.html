@@ -63,16 +63,15 @@
                     <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
                     <div class="example-element-detail"
                         [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                        <div *ngFor="let item of element.questionsQ">
+                        <div class="example-element-description" *ngFor="let item of element.questionsQ">
                             
-                                Questão {{item.number}}: {{item.question}}
-                                <br>
-                                Certa: {{item.rightAnswer}}
-                                Erradas: <br>
+                                <h5>Questão:</h5> 
+                                <p>{{item.question}}</p>
+                                <p>Certa: {{item.rightAnswer}}</p>
+                                <p>Erradas:</p>
                                <p>{{item.wrongAnswer1}}</p>
                                <p>{{item.wrongAnswer2}}</p>
                                <p>{{item.wrongAnswer3}}</p>
-                            
                         </div>
                     </div>
                     </td>
