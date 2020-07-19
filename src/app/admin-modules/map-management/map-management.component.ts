@@ -273,10 +273,10 @@ export class MapManagementComponent {
         }catch(err){ }
           i++;
         }
+        window.alert("Informações Adicionadas!  Information Added!");
         }
       );
 
-      console.log(th);
 
     }
   }
