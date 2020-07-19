@@ -36,23 +36,23 @@ export class PermissionManComponent implements OnInit {
 
     this.req.getAllActiveAdmin().subscribe(
       data=>{
+        console.log(data);
         var arr:UserElement[]=[];
         data.map(
           e=>{
-            arr.push({ username: e.commentID , email:e.username, role:e.geoSpotName});
+            arr.push({ username: e.key.path[0].name , email:e.properties.user_email.value, role:e.properties.user_role.value});
           }
         );
-        if(arr==[]){
+        if(arr.length ==0){
           alert("Não existem dados para mostrar! There is no data to show!");
         }
         this.ELEMENT_DATA = arr;
         this.dataSource = new MatTableDataSource<UserElement>(this.ELEMENT_DATA);
+        this.dataSource.paginator = this.paginator;
       },(err:HttpErrorResponse)=>{console.log(err)}
 
     );
 
-
-    this.dataSource.paginator = this.paginator;
   }
 
   onSubmit(){

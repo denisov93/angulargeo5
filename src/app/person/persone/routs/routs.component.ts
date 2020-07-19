@@ -12,14 +12,13 @@ export interface RouteData {
   description: string;
 }
 
-const ELEMENT_DATA: RouteData[] = [];
-
 @Component({
   selector: 'app-routs',
   templateUrl: './routs.component.html',
   styleUrls: ['./routs.component.css']
 })
 export class RoutsComponent implements OnInit {
+  ELEMENT_DATA: RouteData[] = [];
   dataSource;
   displayedColumns: string[] = ['photo', 'title', 'description'];
   
@@ -34,7 +33,7 @@ export class RoutsComponent implements OnInit {
     this.req.getmyCams().subscribe(
       (data : any )=>{ 
         data.map( element => {
-          
+          var arr:RouteData[]=[];
           var img = "";
           this.req.getRoutePhotos(element.id).subscribe(
             images=>{
@@ -45,12 +44,14 @@ export class RoutsComponent implements OnInit {
                 title: element.title,
                 description: element.description
               }
-              ELEMENT_DATA.push(route);
-              this.dataSource= new MatTableDataSource<RouteData>(ELEMENT_DATA);  
-              this.dataSource.paginator = this.paginator;
-              this.dataSource.sort = this.sort;
+              arr.push(route);
+              
             }
           );
+              this.ELEMENT_DATA = arr;
+              this.dataSource= new MatTableDataSource<RouteData>(this.ELEMENT_DATA);  
+              this.dataSource.paginator = this.paginator;
+              this.dataSource.sort = this.sort;
         });
       },(err: HttpErrorResponse)=>{ console.log(err)}
     );

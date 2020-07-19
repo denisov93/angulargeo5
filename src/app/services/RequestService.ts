@@ -188,7 +188,7 @@ export class RequestService {
       return this.http.post<any[]>(`${this.allUsersGet}`,'',httpOption);
     }
 
-    allAdminGet="/rest/backOffice//listActiveAdmins"
+    allAdminGet="/rest/backOffice/listActiveAdmins"
     getAllActiveAdmin(){
       const httpOption = {
         headers: new HttpHeaders({

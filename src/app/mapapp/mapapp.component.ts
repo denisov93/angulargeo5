@@ -767,10 +767,8 @@ public markerOptions = {
     icon:'../../assets/finishmarker.png'
   },
   waypoints: {
-    infoWindow: `<h4>A<h4>
-    <a href='http://google.com' target='_blank'>A</a>
-    `,
-    icon: '../../assets/dirPoint.png',
+    infoWindow: 'Waypoint',
+    icon: '../../assets/blue.png',
     stopover: false,
   },
 };
