@@ -67,7 +67,7 @@ export class SettingsComponent {
 
     //Para ja' esta' a funcionar como debug para nos XD...
     //alert("Thanks for update you're info Data: "+ JSON.stringify(this.userInput));
-    alert("Os seus dados foram actualizados com sucesso! Information updated successfully!");
+   
 
     //Verificacao de campos introduzidos
     //Os campos que nao foram preenchidos ou seja nao existe atualizacao a fazer vamos buscar o valor 'a localstore...
@@ -131,11 +131,13 @@ export class SettingsComponent {
         place: this.userInput.user_place,
         country: this.userInput.user_country,
         birthday: this.userInput.user_birthday,
-        zip_code: this.userInput.user_zip_code,
+        zipCode: this.userInput.user_zip_code,
       }
+      console.log(body);
       this.request.upUserNPInfo(body).subscribe(
        (data)=> {
                   this.saveUpdate();
+                  alert("Os seus dados foram actualizados com sucesso! Information updated successfully!");
                 },(err : HttpErrorResponse)=>{
                   this.isRequestError = true;
                   setTimeout( () => this.isRequestError = false , 2500 );
@@ -154,11 +156,13 @@ export class SettingsComponent {
         place: this.userInput.user_place,
         country: this.userInput.user_country,
         birthday: this.userInput.user_birthday,
-        zip_code: this.userInput.user_zip_code
+        zipCode: this.userInput.user_zip_code
       }     
+      console.log(body);
       this.request.updateUserInfo(body).subscribe(
         (data)=>{
                   this.saveUpdate();
+                  alert("Os seus dados foram actualizados com sucesso! Information updated successfully!");
                 },(err : HttpErrorResponse)=>{
                   this.isRequestError = true;
                   setTimeout( () => this.isRequestError = false , 2500 );
@@ -174,7 +178,7 @@ export class SettingsComponent {
     localStorage.setItem("userInfo", JSON.stringify(this.userI));    
     localStorage.setItem("ProfileTabIdx", "0");
     setTimeout( () => this.router.navigate(['/home']) , 0.01 );
-    setTimeout( () => this.router.navigate(['/person']) , 100 );
+    setTimeout( () => this.router.navigate(['/personAd']) , 100 );
   }
 
    //Implementar para guardar a imagem o utilizador no servidor...

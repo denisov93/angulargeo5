@@ -619,7 +619,7 @@ if(this.anyWayP){
   mf.visible = false;
   mf.images = this.filesToUpload;
   mf.isTracked = false;
-
+  mf.createdlocally = true;
   //console.log(mf);
  
  this.waywayway.push(mf);

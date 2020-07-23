@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { FormControl, Validators } from '@angular/forms';
 import { RequestService } from 'src/app/services/RequestService';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 export interface RateUserElement {
   rateUsername: string;
@@ -34,7 +35,7 @@ export class RateUserComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private req: RequestService) { }
+  constructor(private req: RequestService,private router: Router) { }
 
   ngOnInit(): void {
     this.req.getAllUsers().subscribe(
@@ -68,7 +69,9 @@ export class RateUserComponent implements OnInit {
     console.log(body);
     console.log(this.userTargetI)
     this.req.deactivateAccCommunity(body).subscribe(
-      data=>{alert("A conta foi desactivada! The user account is inactive!");},(err:HttpErrorResponse)=>{ console.log(err)}
+      data=>{alert("A conta foi desactivada! The user account is inactive!");
+      setTimeout( () => this.router.navigate(['/admin']) , 100 );
+    },(err:HttpErrorResponse)=>{ console.log(err)}
     );
     //Falta ligação com o servidor!
     
@@ -80,7 +83,9 @@ export class RateUserComponent implements OnInit {
     }
 
     this.req.activateAccCommunity(body).subscribe(
-      data=>{alert("A conta foi activada! The user account is active!");},(err:HttpErrorResponse)=>{ console.log(err)}
+      data=>{alert("A conta foi activada! The user account is active!");
+      setTimeout( () => this.router.navigate(['/admin']) , 100 );
+    },(err:HttpErrorResponse)=>{ console.log(err)}
     );    
   }
 

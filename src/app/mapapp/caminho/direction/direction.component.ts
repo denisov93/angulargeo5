@@ -16,6 +16,9 @@ export class DirectionComponent implements OnInit {
   @Input() direction : Direction
   @Output() deleteDir: EventEmitter<Direction> = new EventEmitter();
   isRequestError: boolean = false;
+  isRequestSuccess: boolean = false;
+  isImageSendOK: boolean = false;
+
   activeIds: string[] = [];
   dirId:string;
   images
@@ -143,19 +146,30 @@ export class DirectionComponent implements OnInit {
         dir.intermidiatePoints[i] = direction.waypoints[i].location;
       }
     }
-    
+    if(direction.username == localStorage.getItem("username") && !direction.createdlocally){
+      //route owner
+      window.alert("Caminho que tenta adicionar ja existe nos seu caminhos");
+
+    }else{
+    direction.username = localStorage.getItem("username");
+    dir.id = this.rr.create_UUID();
     //console.log(dir);
     this.req.addToFovorites(dir).subscribe(
       (data : any)=>{
-        if(this.direction.images!=null )  this.addphoto(direction.id);
+        this.isRequestSuccess = true;
+        setTimeout( () => this.isRequestSuccess = false , 3000 );
+
+        if(this.direction.images!=null )  this.addphoto(dir.id);
       },
       (err : HttpErrorResponse)=>{
         this.isRequestError = true;
         setTimeout( () => this.isRequestError = false , 2500 );     
       });
-  }
-  addphoto(id){
+    }
 
+  }
+
+  addphoto(id){
     var i = 0;
     while(i<this.direction.images.length){
 
@@ -170,6 +184,7 @@ export class DirectionComponent implements OnInit {
     }catch(err){ }
       i++;
     }
+    
   }
 }
 

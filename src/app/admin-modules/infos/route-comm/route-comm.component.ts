@@ -43,8 +43,8 @@ export class RouteCommComponent implements OnInit {
   constructor(private router : Router, private req: RequestService) { }
 
   ngOnInit(): void {
-    this.req.getAllActiveCommentRoute().subscribe(
-      data=>{
+    this.req.getAllActiveCommentRoute().subscribe( 
+      data=>{console.log(data);
         var arr:RouteCommentElement[]=[];
         data.map(
           e=>{
@@ -67,6 +67,7 @@ export class RouteCommComponent implements OnInit {
     this.req.deactivateRouteComment(this.commentToDel).subscribe(
       data=>{ 
         alert("O utilizador foi sancionado e o comentário desactivado! The user has been sanctioned and the comment has been disabled!");
+        this.cancel();
       },(err:HttpErrorResponse)=>{ console.log(err) }
     );
 

@@ -69,6 +69,7 @@ export class GeostopCommComponent implements OnInit {
     this.req.deactivateGeoComment(this.commentToDel).subscribe(
       data=>{ 
         alert("O utilizador foi sancionado e o comentário desactivado! The user has been sanctioned and the comment has been disabled!");
+        this.cancel();
        },(err:HttpErrorResponse)=>{console.log(err)}
     );
 

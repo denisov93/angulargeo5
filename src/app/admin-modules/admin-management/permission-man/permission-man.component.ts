@@ -61,10 +61,10 @@ export class PermissionManComponent implements OnInit {
        newRole: this.selectedValue
      }
      this.req.changeAdminRoleTo(body).subscribe(
-        res=>{ alert("A função do Administrador foi atualizada! The Admin role was updated successfully!"); },(err:HttpErrorResponse)=>{alert("Ups Algo correu mal")}
+        res=>{ alert("A função do Administrador foi atualizada! The Admin role was updated successfully!"); this.onCancel(); },
+        (err:HttpErrorResponse)=>{alert("Ups Algo correu mal")}
      );
      
-     //Falta fazer a lig com o servidor!!
   }
 
   onCancel(){

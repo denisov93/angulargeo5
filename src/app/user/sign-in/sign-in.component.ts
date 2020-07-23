@@ -31,31 +31,19 @@ export class SignInComponent implements OnInit {
     }
     this.isLoginError = true;
 
-    //Para receber as infos de um utilizador e redirecionar para /person se for um utilizador comum e para /admin se for um administrador
-    this.getPersoneInfo();
+    
 
     this.request.userAuthentication(body).subscribe((data : any)=>{
     // console.log(data);
+    
      
+
      localStorage.setItem('username',body.username); 
      localStorage.setItem('tokenID',data);
 
-     if(this.userI.user_role != "User"){
 
-      setTimeout( () => {
-       
-        this.router.navigate(['/admin']) 
-      }, 300 );
+     this.getPersoneInfo();
 
-     }
-     else{
-    
-      setTimeout( () => {
-        
-        this.router.navigate(['/person']) 
-      }, 300 );   
-    }  
-    
    },
    (err : HttpErrorResponse)=>{
      this.isLoginError = true;
@@ -92,7 +80,7 @@ export class SignInComponent implements OnInit {
         else this.userI.user_birthday = data.user_birthday;
 
         if(data.user_zip_code == ""){this.userI.user_zip_code = "-";}
-        else this.userI.user_birthday = data.user_birthday;
+        else this.userI.user_zip_code = data.user_zip_code;
 
           this.savePersone(); 
       },
@@ -105,5 +93,22 @@ export class SignInComponent implements OnInit {
 
   savePersone(){
     localStorage.setItem("userInfo", JSON.stringify(this.userI));
+
+    if(this.userI.user_role != "User"){
+
+      setTimeout( () => {
+       
+        this.router.navigate(['/admin']) 
+      }, 300 );
+
+     }
+     else{
+    
+      setTimeout( () => {
+        
+        this.router.navigate(['/person']) 
+      }, 300 );   
+    }
+    
   }
 }

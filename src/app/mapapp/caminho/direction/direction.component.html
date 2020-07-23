@@ -42,7 +42,16 @@
                     <strong>{{'AddFavFail'|translate}}</strong>
                 </div>
             </div>
-
+            <div *ngIf="isRequestSuccess">
+              <div class="alert alert-success" role="alert">
+                <strong>{{'AddedToYourRoutes'|translate}}</strong>
+            </div>
+            </div>
+            <div *ngIf="isImageSendOK">
+              <div class="alert alert-primary" role="alert">
+                <strong>{{'ImageSendWithOK'|translate}}</strong>
+            </div>
+            </div>
         </ng-template>
     </ngb-panel>
 </ngb-accordion>

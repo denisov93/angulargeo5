@@ -118,7 +118,7 @@ export class RequestService {
       return this.http.post<any[]>(`${this.getgeoSpotP}${nome}${'/pictures'}`,'',httpOption);
      }
 
-     geoDelComm="/rest/communityModerator/makeRouteCommentInactive/"
+     geoDelComm="/rest/communityModerator/makeGeoSpotCommentInactive/"
      deactivateGeoComment(id){
       const httpOption = {
         headers: new HttpHeaders({

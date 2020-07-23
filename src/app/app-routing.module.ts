@@ -76,12 +76,12 @@ const routes: Routes = [
 
   {path:'person',component : TopBarComponent,
   children:[{path : '',component:PersoneComponent, canActivate:[AuthGuard]},
-            {path : 'userSettings',component:SettingsComponent, canActivate:[AuthGuardUserSett]}
+            {path : 'userSettings',component:SettingsComponent}
   ]},
 
   {path:'personAd',component : TopBarComponent,
   children:[{path : '',component:PersoneComponent, canActivate:[AuthGuardAdmin]},
-            {path : 'userSettings',component:SettingsComponent, canActivate:[AuthGuardUserSett]}
+            {path : 'userSettings',component:SettingsComponent}
   ]},
 
   {path: 'aboutus',component : TopBarComponent,

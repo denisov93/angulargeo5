@@ -242,7 +242,7 @@
     "MapRedB": "Criar Percurso",
     "MapStartP": "Escolha o seu ponto de ínicio!",
     "MapStartPB":"Ponto de Partida",
-    "MapSReady": "Arraste o marcador e carregue em definir quando estiver pronto",
+    "MapSReady": "Arraste o marcador e carregue em definir quando estiver pronto (se o marcador estiver fora do seu campo de visão, carregue no mapa duas vezes)",
     "Set":"Definir",
     "OtherForm": "Ou pode usar este modo:",
     "StartCoord": "O percurso começa nas coordenadas:",
@@ -259,7 +259,8 @@
     "PressRB": "Carregue no botão vermelho para terminar o percurso.",
     "WPRB":"Ponto de chegada",
     "SetURoute": "Definir percurso por explorar",
-    "SetStartP": "Definir o ponto de partida em",
+    "SetStartP": "O ponto de partida foi definido, para finalizar criação do caminho: ",
+    "SetEndP":"Depois de adicionar os pontos intermedios, arraste o marcados para localização de chegada e carregue em Definir",
     "SetWayP": "Criar Ponto Intermédio",
     "SetWayPointU1": "Carregue em criar pontos intermédios",
     "SetWayPointU2": "para criar pontos intermédios no percurso",
@@ -277,6 +278,8 @@
     "AddFavFail": "Não foi possível adicionar o percurso aos seus Percursos.",
     "Delete": "Apagar",
     "Sat": "Satélite",    
+    "AddedToYourRoutes":"Caminho foi adicionado aos Seus Caminhos, se adicionou imagens, estão a ser processadas",
+    "ImageSendWithOK":"As suas imagens foram adicionadas!",
 
     "Community":"Comunidade",
 

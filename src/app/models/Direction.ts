@@ -15,4 +15,5 @@ export class Direction{
     images:FileList
     isTracked:boolean
     imagesS:any[]
+    createdlocally:boolean
 }

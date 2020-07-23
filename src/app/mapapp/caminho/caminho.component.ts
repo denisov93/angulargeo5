@@ -85,6 +85,9 @@ export class CaminhoComponent implements OnInit {
   }
  
   getAllMyRoutes(){
+
+    this.delAll();
+
     this.req.getmyCams().subscribe(
       (data : any )=>{  console.log(data); 
         data.forEach( (element: any) => {

@@ -50,10 +50,14 @@ export class DeleteUserComponent implements OnInit {
 
   deleteAllU(){
 
-    //Ver os campos necessarios e ligar ao servidor... /inactiveUsers
-    //this.req.deleteAllUserI().subscribe(); 
-    alert("Os utilizadores inactivos foram apagados! Endpoint Intencionalmente Desligado");
-    setTimeout( () => this.router.navigate(['/admin']) , 100 );
+    this.req.deleteAllUserI().subscribe(
+      data=>{
+        alert("Utilizadores inactivos foram eliminados!");
+        this.cancel();
+      },(err:HttpErrorResponse)=>{alert("Ups, erro"); console.log(err); }
+    ); 
+    
+    
   }
 
   cancel(){

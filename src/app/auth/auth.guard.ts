@@ -20,8 +20,11 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       if(decodedToken.token.role==="User"){
         return true;
       }
-      else{        
-        this.router.navigate(['/admin']);
+      else{
+        setTimeout(
+          ()=>this.router.navigate(['/admin']),20
+        );        
+        
         return false;
       }  
       

@@ -244,7 +244,7 @@
     "MapRedB": "Create Route",
     "MapStartP": "Select Starting Point",
     "MapStartPB":"Starting Point",
-    "MapSReady": "Just Drag Marker and Press Set when you ready!",
+    "MapSReady": "Just Drag Marker and Press Set when you ready! (if marker not in you sigth, double click somewhere on the map)",
     "Set":"Set",
     "OtherForm":"Or you can use this form:",
     "StartCoord": "The rout starts in Coordinates:",
@@ -255,7 +255,8 @@
     "StartLong": "Start Longitude",
     "EndLat": "Finish Latitude",
     "EndLong": "Finish Longitude",
-    "SetStartP": "Start set to",
+    "SetStartP": "Starting point is now set, to finish:",
+    "SetEndP":"After addind your waypoints, drag marker to the finish location and press Set",
     "SelectWP": "Select WayPoints",
     "PressGB": ">Press this green button to create WayPoints",
     "WPGB": "WAY Point",
@@ -277,9 +278,11 @@
     "RFavFailLoad": "Your Routes Failed to Load.", 
     "AddFav": "Add to Your Routes",
     "AddFavFail":"Failed add to Favorites",
+    "AddedToYourRoutes":"Added To Your Routes, if you have images they are being processed ...",
     "Delete": "Delete",
     "Sat": "Satélite",     
-   
+    "ImageSendWithOK":"Your images has been added!",
+
     "Community": "Community",
 
     "AboutUS": "About us",

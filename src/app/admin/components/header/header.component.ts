@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('username');
     localStorage.removeItem('userInfo');
     localStorage.removeItem('myDirections'); 
+    alert("Saiu da sua conta, esperemos vê-lo em breve!");
     setTimeout( () => this.router.navigate(['/home']) , 200 );     
   }
 

@@ -1,13 +1,13 @@
 <h2>{{'RoutesCommH'|translate}}</h2>
 
 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="60px">
-    <div fxFlex="60">
+    <div fxFlex="100">
         <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
 
                 <!-- Routes Comment ID Column -->
                 <ng-container matColumnDef="routeCommId">
-                    <th mat-header-cell *matHeaderCellDef>{{'GeoId'|translate}} </th>
+                    <th mat-header-cell *matHeaderCellDef>{{'RoutesCommH'|translate}} </th>
                     <td mat-cell *matCellDef="let element"> {{element.routeCommId}} </td>
                 </ng-container>
                 

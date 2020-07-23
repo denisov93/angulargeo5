@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { RequestService } from 'src/app/services/RequestService';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quizzes',
@@ -16,7 +17,7 @@ export class QuizzesComponent implements OnInit {
   quizzIntro: String;
   quizzKW: String;
 
-  constructor(private formBuilder: FormBuilder, private req: RequestService) { }
+  constructor(private formBuilder: FormBuilder, private req: RequestService,private router: Router) { }
 
   ngOnInit(): void {
     this.dynamicForm = this.formBuilder.group({
@@ -71,6 +72,7 @@ export class QuizzesComponent implements OnInit {
     this.req.submitQuizze(sbt).subscribe(
       data=>{
         alert('SUCCESS!! You have created a new quizze!! :-)\n\n' );
+        setTimeout( () => this.router.navigate(['/admin']) , 100 );
       },(err : HttpErrorResponse)=>{}
     );
 
